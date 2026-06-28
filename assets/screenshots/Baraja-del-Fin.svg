@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Mockup de Baraja del Fin">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#09050f"/><stop offset="1" stop-color="#251234"/></linearGradient>
+    <radialGradient id="glow" cx="76%" cy="20%" r="70%"><stop stop-color="#fb7185" stop-opacity=".48"/><stop offset=".45" stop-color="#fb7185" stop-opacity=".12"/><stop offset="1" stop-color="#fb7185" stop-opacity="0"/></radialGradient>
+    <style>
+      .font { font-family: Inter, Arial, Helvetica, sans-serif; }
+      .meta { font-size: 19px; font-weight: 800; fill: rgba(255,255,255,.74); letter-spacing: 4px; text-transform: uppercase; }
+      .title { font-size: 54px; font-weight: 950; fill: #f8fbff; letter-spacing: -2.6px; }
+      .sub { font-size: 24px; fill: rgba(248,251,255,.72); }
+      .label { font-size: 16px; font-weight: 800; fill: rgba(248,251,255,.74); letter-spacing: 1px; }
+      .small { font-size: 14px; fill: rgba(248,251,255,.62); }
+      .panel { fill: rgba(2,6,23,.54); stroke: rgba(255,255,255,.16); stroke-width: 2; }
+      .panel2 { fill: rgba(255,255,255,.075); stroke: rgba(255,255,255,.16); stroke-width: 2; }
+      .line { stroke: rgba(255,255,255,.12); stroke-width: 2; }
+      .accent { fill: #fb7185; }
+      .accentStroke { stroke: #fb7185; stroke-width: 4; fill: none; }
+      .accent2 { fill: #a78bfa; }
+    </style>
+  </defs>
+  <rect width="1280" height="720" rx="42" fill="url(#bg)"/>
+  <circle cx="1010" cy="116" r="305" fill="url(#glow)"/>
+  <rect x="28" y="28" width="1224" height="664" rx="34" fill="rgba(255,255,255,.018)" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+  <g opacity=".28">
+    <line x1="80" y1="110" x2="1200" y2="110" class="line"/><line x1="80" y1="210" x2="1200" y2="210" class="line"/><line x1="80" y1="310" x2="1200" y2="310" class="line"/><line x1="80" y1="410" x2="1200" y2="410" class="line"/><line x1="80" y1="510" x2="1200" y2="510" class="line"/>
+  </g>
+  <text x="58" y="86" class="font meta">Juegos / Horror</text>
+  <text x="58" y="166" class="font title">Baraja del Fin</text>
+  <text x="60" y="214" class="font sub">Cartas narrativas, horror y decisiones imposibles.</text>
+  <g transform="translate(568 110)"><rect x="30" y="90" width="132" height="190" rx="20" fill="rgba(255,255,255,.10)" stroke="#fb7185" stroke-opacity=".55" stroke-width="3" transform="rotate(-8 96 185)"/><text x="68" y="206" class="font" style="font-size:62px;font-weight:950;fill:#fb7185" transform="rotate(-8 96 185)">1</text><rect x="170" y="50" width="132" height="190" rx="20" fill="rgba(255,255,255,.10)" stroke="#a78bfa" stroke-opacity=".55" stroke-width="3" transform="rotate(5 236 145)"/><text x="208" y="166" class="font" style="font-size:62px;font-weight:950;fill:#a78bfa" transform="rotate(5 236 145)">2</text><rect x="310" y="96" width="132" height="190" rx="20" fill="rgba(255,255,255,.10)" stroke="#22d3ee" stroke-opacity=".55" stroke-width="3" transform="rotate(11 376 191)"/><text x="348" y="212" class="font" style="font-size:62px;font-weight:950;fill:#22d3ee" transform="rotate(11 376 191)">3</text><rect x="118" y="238" width="132" height="190" rx="20" fill="rgba(255,255,255,.10)" stroke="#fbbf24" stroke-opacity=".55" stroke-width="3" transform="rotate(-3 184 333)"/><text x="156" y="354" class="font" style="font-size:62px;font-weight:950;fill:#fbbf24" transform="rotate(-3 184 333)">4</text><rect x="266" y="248" width="132" height="190" rx="20" fill="rgba(255,255,255,.10)" stroke="#4ade80" stroke-opacity=".55" stroke-width="3" transform="rotate(6 332 343)"/><text x="304" y="364" class="font" style="font-size:62px;font-weight:950;fill:#4ade80" transform="rotate(6 332 343)">5</text></g><rect x="60" y="550" width="250" height="54" rx="27" fill="#f8fbff"/><text x="92" y="585" class="font label" fill="#020617">JUGAR AHORA</text>
+</svg>

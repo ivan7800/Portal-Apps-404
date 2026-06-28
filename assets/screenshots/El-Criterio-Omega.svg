@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Mockup de El Criterio Omega">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#100507"/><stop offset="1" stop-color="#25080d"/></linearGradient>
+    <radialGradient id="glow" cx="76%" cy="20%" r="70%"><stop stop-color="#ef4444" stop-opacity=".48"/><stop offset=".45" stop-color="#ef4444" stop-opacity=".12"/><stop offset="1" stop-color="#ef4444" stop-opacity="0"/></radialGradient>
+    <style>
+      .font { font-family: Inter, Arial, Helvetica, sans-serif; }
+      .meta { font-size: 19px; font-weight: 800; fill: rgba(255,255,255,.74); letter-spacing: 4px; text-transform: uppercase; }
+      .title { font-size: 54px; font-weight: 950; fill: #f8fbff; letter-spacing: -2.6px; }
+      .sub { font-size: 24px; fill: rgba(248,251,255,.72); }
+      .label { font-size: 16px; font-weight: 800; fill: rgba(248,251,255,.74); letter-spacing: 1px; }
+      .small { font-size: 14px; fill: rgba(248,251,255,.62); }
+      .panel { fill: rgba(2,6,23,.54); stroke: rgba(255,255,255,.16); stroke-width: 2; }
+      .panel2 { fill: rgba(255,255,255,.075); stroke: rgba(255,255,255,.16); stroke-width: 2; }
+      .line { stroke: rgba(255,255,255,.12); stroke-width: 2; }
+      .accent { fill: #ef4444; }
+      .accentStroke { stroke: #ef4444; stroke-width: 4; fill: none; }
+      .accent2 { fill: #f97316; }
+    </style>
+  </defs>
+  <rect width="1280" height="720" rx="42" fill="url(#bg)"/>
+  <circle cx="1010" cy="116" r="305" fill="url(#glow)"/>
+  <rect x="28" y="28" width="1224" height="664" rx="34" fill="rgba(255,255,255,.018)" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+  <g opacity=".28">
+    <line x1="80" y1="110" x2="1200" y2="110" class="line"/><line x1="80" y1="210" x2="1200" y2="210" class="line"/><line x1="80" y1="310" x2="1200" y2="310" class="line"/><line x1="80" y1="410" x2="1200" y2="410" class="line"/><line x1="80" y1="510" x2="1200" y2="510" class="line"/>
+  </g>
+  <text x="58" y="86" class="font meta">Narrativa / Universo 404</text>
+  <text x="58" y="166" class="font title">El Criterio Omega</text>
+  <text x="60" y="214" class="font sub">Caso, símbolo y thriller oscuro del Universo 404.</text>
+  
+  <g transform="translate(600 110)">
+    <rect x="0" y="0" width="520" height="480" rx="28" class="panel"/>
+    <rect x="40" y="40" width="440" height="260" rx="22" fill="rgba(239,68,68,.10)" stroke="rgba(248,113,113,.28)" stroke-width="2"/>
+    <text x="218" y="210" class="font" style="font-size:150px;font-weight:950;fill:#ef4444;letter-spacing:-8px">Ω</text>
+    <rect x="72" y="340" width="300" height="22" rx="11" fill="rgba(255,255,255,.30)"/><rect x="72" y="384" width="250" height="16" rx="8" fill="rgba(255,255,255,.18)"/><rect x="72" y="416" width="330" height="16" rx="8" fill="rgba(255,255,255,.16)"/>
+  </g>
+  <rect x="60" y="550" width="246" height="54" rx="27" fill="#f8fbff"/><text x="92" y="585" class="font label" fill="#020617">ENTRAR AL CASO</text>
+</svg>
