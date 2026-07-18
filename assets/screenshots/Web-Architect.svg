@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Mockup visual de Web Architect">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#031114"></stop>
+      <stop offset="1" stop-color="#0f3b61"></stop>
+    </linearGradient>
+    <linearGradient id="cta" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e0f2fe"></stop>
+      <stop offset=".55" stop-color="#22d3ee"></stop>
+      <stop offset="1" stop-color="#a78bfa"></stop>
+    </linearGradient>
+    
+  </defs>
+  <rect width="1280" height="720" rx="42" fill="url(#bg)"></rect>
+  <circle cx="1010" cy="120" r="340" fill="#22d3ee" opacity=".22"></circle>
+  <circle cx="250" cy="650" r="260" fill="#a78bfa" opacity=".12"></circle>
+  <rect x="28" y="28" width="1224" height="664" rx="34" fill="#ffffff" opacity=".025" stroke="#ffffff" stroke-opacity=".18" stroke-width="2"></rect>
+
+  <text x="58" y="88" class="font meta">Dev / Diseño · Nueva app</text>
+  <text x="58" y="174" class="font title">Web Architect</text>
+  <text x="60" y="226" class="font sub">Crea modelos pro de webs en segundos.</text>
+  <text x="60" y="262" class="font sub">Prototipa estructuras, hero y CTA.</text>
+
+  <rect x="60" y="550" width="284" height="56" rx="28" fill="url(#cta)"></rect>
+  <text x="96" y="586" class="font label" fill="#020617">CREAR MODELO WEB</text>
+  <rect x="366" y="550" width="160" height="56" rx="28" fill="#ffffff" opacity=".10" stroke="#ffffff" stroke-opacity=".28"></rect>
+  <text x="410" y="586" class="font label">GITHUB</text>
+
+  <g transform="translate(540 94)">
+    <rect x="0" y="0" width="680" height="528" rx="30" fill="#06111f" opacity=".92" stroke="#bae6fd" stroke-opacity=".22" stroke-width="2"></rect>
+    <rect x="22" y="18" width="636" height="50" rx="18" fill="#101d31"></rect>
+    <circle cx="52" cy="43" r="7" fill="#fb7185"></circle><circle cx="76" cy="43" r="7" fill="#fbbf24"></circle><circle cx="100" cy="43" r="7" fill="#4ade80"></circle>
+    <rect x="132" y="31" width="360" height="23" rx="12" fill="#020617" opacity=".92"></rect>
+    <text x="150" y="48" class="font tiny">web-architect://nuevo-modelo/pro</text>
+
+    <rect x="32" y="94" width="166" height="392" rx="22" fill="#0f1c2f" stroke="#ffffff" stroke-opacity=".10"></rect>
+    <text x="58" y="132" class="font label">Bloques</text>
+    <rect x="58" y="154" width="104" height="30" rx="15" fill="#22d3ee"></rect>
+    <rect x="58" y="204" width="108" height="18" rx="9" fill="#ffffff" opacity=".20"></rect>
+    <rect x="58" y="238" width="124" height="18" rx="9" fill="#ffffff" opacity=".16"></rect>
+    <rect x="58" y="272" width="88" height="18" rx="9" fill="#ffffff" opacity=".16"></rect>
+    <rect x="58" y="334" width="112" height="82" rx="18" fill="#22d3ee" opacity=".16" stroke="#22d3ee" stroke-opacity=".30"></rect>
+    <rect x="58" y="432" width="112" height="30" rx="15" fill="#a78bfa" opacity=".45"></rect>
+
+    <rect x="224" y="94" width="416" height="392" rx="26" fill="#0b1627" stroke="#ffffff" stroke-opacity=".12"></rect>
+    <rect x="260" y="132" width="216" height="28" rx="14" fill="#f8fbff"></rect>
+    <rect x="260" y="182" width="314" height="17" rx="9" fill="#ffffff" opacity=".26"></rect>
+    <rect x="260" y="212" width="250" height="17" rx="9" fill="#ffffff" opacity=".18"></rect>
+    <rect x="260" y="258" width="138" height="48" rx="24" fill="#22d3ee"></rect>
+    <rect x="416" y="258" width="138" height="48" rx="24" fill="#ffffff" opacity=".12" stroke="#ffffff" stroke-opacity=".20"></rect>
+    <rect x="260" y="354" width="92" height="86" rx="18" fill="#22d3ee" opacity=".24"></rect>
+    <rect x="378" y="354" width="92" height="86" rx="18" fill="#a78bfa" opacity=".26"></rect>
+    <rect x="496" y="354" width="92" height="86" rx="18" fill="#7dd3fc" opacity=".18"></rect>
+    <text x="280" y="395" class="font tiny">Hero</text>
+    <text x="398" y="395" class="font tiny">Pricing</text>
+    <text x="516" y="395" class="font tiny">CTA</text>
+  </g>
+</svg>

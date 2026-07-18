@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">FileForge 404</title>
+  <desc id="desc">Mockup visual de un comandante de archivos de doble panel para revisar y preparar proyectos web antes de GitHub Pages.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#05070d"></stop>
+      <stop offset="0.5" stop-color="#0a1f2f"></stop>
+      <stop offset="1" stop-color="#15213b"></stop>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0b1220" stop-opacity="0.97"></stop>
+      <stop offset="1" stop-color="#07111d" stop-opacity="0.96"></stop>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#38bdf8"></stop>
+      <stop offset="0.48" stop-color="#22d3ee"></stop>
+      <stop offset="1" stop-color="#f59e0b"></stop>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18" result="blur"></feGaussianBlur>
+      <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+    
+  </defs>
+  <rect width="1280" height="720" rx="42" fill="url(#bg)"></rect>
+  <circle cx="1010" cy="140" r="280" fill="#38bdf8" opacity=".15" filter="url(#glow)"></circle>
+  <circle cx="250" cy="650" r="270" fill="#f59e0b" opacity=".10" filter="url(#glow)"></circle>
+  <rect x="32" y="30" width="1216" height="660" rx="34" fill="#ffffff" opacity=".026" stroke="#ffffff" stroke-opacity=".16" stroke-width="2"></rect>
+
+  <text x="62" y="90" class="font meta">Dev / GitHub Pages · Nueva app</text>
+  <text x="62" y="180" class="font title">FileForge 404</text>
+  <text x="64" y="232" class="font sub">Comandante de archivos de doble panel</text>
+  <text x="64" y="266" class="font sub">para revisar, comparar y preparar proyectos web.</text>
+
+  <rect x="64" y="548" width="246" height="58" rx="29" fill="url(#accent)"></rect>
+  <text x="101" y="585" class="font label" fill="#020617">ABRIR FILEFORGE</text>
+  <rect x="332" y="548" width="174" height="58" rx="29" fill="#ffffff" opacity=".10" stroke="#ffffff" stroke-opacity=".26"></rect>
+  <text x="384" y="585" class="font label">GITHUB</text>
+
+  <g transform="translate(534 82)">
+    <rect x="0" y="0" width="694" height="558" rx="32" fill="url(#panel)" stroke="#bae6fd" stroke-opacity=".22" stroke-width="2"></rect>
+    <rect x="24" y="20" width="646" height="52" rx="18" fill="#050b16" opacity=".88"></rect>
+    <circle cx="55" cy="46" r="7" fill="#fb7185"></circle><circle cx="80" cy="46" r="7" fill="#fbbf24"></circle><circle cx="105" cy="46" r="7" fill="#4ade80"></circle>
+    <rect x="138" y="33" width="394" height="24" rx="12" fill="#111827"></rect>
+    <text x="158" y="50" class="font tiny">fileforge://proyecto/auditoria-github-pages</text>
+
+    <rect x="32" y="96" width="296" height="392" rx="24" fill="#0f172a" stroke="#ffffff" stroke-opacity=".12"></rect>
+    <text x="58" y="136" class="font label">Panel A · Proyecto actual</text>
+    <g transform="translate(58 166)">
+      <rect x="0" y="0" width="244" height="34" rx="12" fill="#38bdf8" opacity=".16" stroke="#38bdf8" stroke-opacity=".35"></rect>
+      <text x="18" y="23" class="font code">index.html</text>
+      <rect x="0" y="50" width="244" height="34" rx="12" fill="#ffffff" opacity=".07"></rect>
+      <text x="18" y="73" class="font code">styles.css</text>
+      <rect x="0" y="100" width="244" height="34" rx="12" fill="#ffffff" opacity=".07"></rect>
+      <text x="18" y="123" class="font code">app.js</text>
+      <rect x="0" y="150" width="244" height="34" rx="12" fill="#f59e0b" opacity=".13" stroke="#f59e0b" stroke-opacity=".30"></rect>
+      <text x="18" y="173" class="font code">manifest.webmanifest</text>
+      <rect x="0" y="200" width="244" height="34" rx="12" fill="#ffffff" opacity=".07"></rect>
+      <text x="18" y="223" class="font code">assets/screenshots/</text>
+    </g>
+
+    <rect x="366" y="96" width="296" height="392" rx="24" fill="#08111f" stroke="#ffffff" stroke-opacity=".12"></rect>
+    <text x="392" y="136" class="font label">Panel B · Release limpio</text>
+    <g transform="translate(392 166)">
+      <rect x="0" y="0" width="244" height="34" rx="12" fill="#22d3ee" opacity=".13" stroke="#22d3ee" stroke-opacity=".35"></rect>
+      <text x="18" y="23" class="font code">rutas verificadas</text>
+      <rect x="0" y="50" width="244" height="34" rx="12" fill="#22c55e" opacity=".13" stroke="#22c55e" stroke-opacity=".30"></rect>
+      <text x="18" y="73" class="font code">sin archivos basura</text>
+      <rect x="0" y="100" width="244" height="34" rx="12" fill="#ffffff" opacity=".07"></rect>
+      <text x="18" y="123" class="font code">PWA preparada</text>
+      <rect x="0" y="150" width="244" height="34" rx="12" fill="#ffffff" opacity=".07"></rect>
+      <text x="18" y="173" class="font code">README + changelog</text>
+      <rect x="0" y="200" width="244" height="34" rx="12" fill="#f59e0b" opacity=".13" stroke="#f59e0b" stroke-opacity=".30"></rect>
+      <text x="18" y="223" class="font code">listo para subir</text>
+    </g>
+
+    <path d="M328 292 L366 292" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"></path>
+    <path d="M352 274 L370 292 L352 310" fill="none" stroke="#e0f2fe" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+
+    <rect x="34" y="512" width="184" height="24" rx="12" fill="#22c55e" opacity=".16"></rect>
+    <text x="54" y="529" class="font tiny" fill="#bbf7d0">Comparación lista</text>
+    <rect x="238" y="512" width="200" height="24" rx="12" fill="#38bdf8" opacity=".15"></rect>
+    <text x="258" y="529" class="font tiny">Preparación GitHub Pages</text>
+    <rect x="458" y="512" width="166" height="24" rx="12" fill="#f59e0b" opacity=".14"></rect>
+    <text x="478" y="529" class="font tiny">Release controlado</text>
+  </g>
+</svg>

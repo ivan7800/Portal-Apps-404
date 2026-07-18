@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Shortcut Forge 404</title>
+  <desc id="desc">Mockup visual de una consola para diseñar, documentar y ejecutar recetas de Apple Shortcuts en iPhone y Mac.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05070d"></stop>
+      <stop offset="0.5" stop-color="#0d1a2b"></stop>
+      <stop offset="1" stop-color="#161022"></stop>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220" stop-opacity="0.97"></stop>
+      <stop offset="1" stop-color="#0a0e1c" stop-opacity="0.97"></stop>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a78bfa"></stop>
+      <stop offset="0.5" stop-color="#38bdf8"></stop>
+      <stop offset="1" stop-color="#34d399"></stop>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18" result="blur"></feGaussianBlur>
+      <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" rx="42" fill="url(#bg)"></rect>
+  <circle cx="1010" cy="130" r="270" fill="#a78bfa" opacity=".14" filter="url(#glow)"></circle>
+  <circle cx="220" cy="660" r="260" fill="#34d399" opacity=".10" filter="url(#glow)"></circle>
+  <rect x="32" y="30" width="1216" height="660" rx="34" fill="#ffffff" opacity=".026" stroke="#ffffff" stroke-opacity=".16" stroke-width="2"></rect>
+
+  <text x="62" y="90" font-family="Arial, sans-serif" font-size="18" letter-spacing="2" fill="#93A0C4">PRODUCTIVIDAD / AUTOMATIZACIÓN IOS · NUEVA APP</text>
+  <text x="62" y="178" font-family="Arial, sans-serif" font-size="52" font-weight="700" fill="#EEF1F8">Shortcut Forge 404</text>
+  <text x="64" y="228" font-family="Arial, sans-serif" font-size="24" fill="#c3cbe6">Diseña, documenta y ejecuta recetas</text>
+  <text x="64" y="262" font-family="Arial, sans-serif" font-size="24" fill="#c3cbe6">para Apple Shortcuts, local-first.</text>
+
+  <rect x="64" y="548" width="266" height="58" rx="29" fill="url(#accent)"></rect>
+  <text x="101" y="585" font-family="Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="1" fill="#0a0e1c">ABRIR SHORTCUT FORGE</text>
+  <rect x="352" y="548" width="150" height="58" rx="29" fill="#ffffff" opacity=".10" stroke="#ffffff" stroke-opacity=".26"></rect>
+  <text x="392" y="585" font-family="Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="1" fill="#EEF1F8">GITHUB</text>
+
+  <g transform="translate(566 88)">
+    <!-- Phone frame -->
+    <rect x="0" y="0" width="300" height="546" rx="42" fill="url(#panel)" stroke="#a78bfa" stroke-opacity=".28" stroke-width="2"></rect>
+    <rect x="18" y="20" width="264" height="506" rx="26" fill="#070b14"></rect>
+    <rect x="110" y="30" width="80" height="16" rx="8" fill="#000000" opacity=".6"></rect>
+
+    <text x="38" y="78" font-family="Arial, sans-serif" font-size="15" fill="#93A0C4">Nueva receta</text>
+    <text x="38" y="106" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#EEF1F8">Buenas noches ⌁</text>
+
+    <g transform="translate(38 130)">
+      <rect x="0" y="0" width="224" height="60" rx="16" fill="#a78bfa" opacity=".14" stroke="#a78bfa" stroke-opacity=".4"></rect>
+      <text x="18" y="26" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#e6defc">1 · Abrir cámara trasera</text>
+      <text x="18" y="46" font-family="Consolas, monospace" font-size="12" fill="#b9aef0">Acción · Cámara</text>
+
+      <rect x="0" y="72" width="224" height="60" rx="16" fill="#38bdf8" opacity=".13" stroke="#38bdf8" stroke-opacity=".38"></rect>
+      <text x="18" y="98" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#d6efff">2 · Guardar en álbum</text>
+      <text x="18" y="118" font-family="Consolas, monospace" font-size="12" fill="#9fd6f7">Acción · Fotos</text>
+
+      <rect x="0" y="144" width="224" height="60" rx="16" fill="#34d399" opacity=".13" stroke="#34d399" stroke-opacity=".38"></rect>
+      <text x="18" y="170" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#d3f7e8">3 · Notificar en Mac</text>
+      <text x="18" y="190" font-family="Consolas, monospace" font-size="12" fill="#9de8c4">Acción · Handoff</text>
+
+      <rect x="0" y="216" width="224" height="44" rx="14" stroke-dasharray="5 6" stroke="#ffffff" stroke-opacity=".24" fill="none"></rect>
+      <text x="18" y="243" font-family="Arial, sans-serif" font-size="13" fill="#93A0C4">+ Añadir paso</text>
+    </g>
+
+    <g transform="translate(38 420)">
+      <rect x="0" y="0" width="224" height="40" rx="20" fill="url(#accent)"></rect>
+      <text x="18" y="26" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#0a0e1c">▶ Ejecutar receta</text>
+    </g>
+    <text x="38" y="500" font-family="Arial, sans-serif" font-size="12" fill="#6d7796">Sincronizado · iPhone ↔ Mac</text>
+  </g>
+
+  <g transform="translate(64 300)">
+    <rect x="0" y="0" width="450" height="220" rx="24" fill="#ffffff" opacity=".035" stroke="#ffffff" stroke-opacity=".12"></rect>
+    <text x="26" y="40" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1" fill="#93A0C4">BIBLIOTECA DE RECETAS</text>
+
+    <rect x="26" y="60" width="398" height="42" rx="12" fill="#ffffff" opacity=".05"></rect>
+    <text x="44" y="86" font-family="Arial, sans-serif" font-size="14" fill="#dfe4f5">Buenos días · rutina completa</text>
+
+    <rect x="26" y="112" width="398" height="42" rx="12" fill="#ffffff" opacity=".05"></rect>
+    <text x="44" y="138" font-family="Arial, sans-serif" font-size="14" fill="#dfe4f5">Backup de fotos a NAS</text>
+
+    <rect x="26" y="164" width="398" height="42" rx="12" fill="#a78bfa" opacity=".13" stroke="#a78bfa" stroke-opacity=".3"></rect>
+    <text x="44" y="190" font-family="Arial, sans-serif" font-size="14" fill="#e6defc">Modo enfoque + captura escritorio</text>
+  </g>
+</svg>

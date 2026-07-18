@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">PDF Forge 404</title>
+  <desc id="desc">Mockup premium de una herramienta local para convertir PDF a Word y Word a PDF.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#150f08"></stop>
+      <stop offset="0.48" stop-color="#111827"></stop>
+      <stop offset="1" stop-color="#2b1606"></stop>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe6a3"></stop>
+      <stop offset="0.5" stop-color="#d4a635"></stop>
+      <stop offset="1" stop-color="#8a5a12"></stop>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="12" result="blur"></feGaussianBlur>
+      <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" rx="42" fill="url(#bg)"></rect>
+  <circle cx="1005" cy="110" r="220" fill="#d4a635" opacity=".10"></circle>
+  <circle cx="190" cy="650" r="250" fill="#38bdf8" opacity=".07"></circle>
+  <rect x="72" y="68" width="1056" height="624" rx="34" fill="#070b12" opacity=".82" stroke="#d4a635" stroke-opacity=".38"></rect>
+  <rect x="110" y="112" width="980" height="70" rx="20" fill="#0d1320" stroke="#f8d477" stroke-opacity=".22"></rect>
+  <text x="142" y="157" fill="#ffe6a3" font-family="Inter,Segoe UI,Arial" font-size="30" font-weight="800">PDF Forge 404</text>
+  <text x="820" y="156" fill="#9ca3af" font-family="Inter,Segoe UI,Arial" font-size="20">LOCAL · STATIC · GITHUB PAGES</text>
+  <rect x="120" y="230" width="290" height="370" rx="24" fill="#111827" stroke="#334155"></rect>
+  <rect x="160" y="275" width="178" height="232" rx="16" fill="#f8fafc"></rect>
+  <path d="M292 275 L338 321 L292 321 Z" fill="#cbd5e1"></path>
+  <text x="190" y="398" fill="#dc2626" font-family="Inter,Segoe UI,Arial" font-size="44" font-weight="900">PDF</text>
+  <text x="164" y="545" fill="#cbd5e1" font-family="Inter,Segoe UI,Arial" font-size="22" font-weight="700">PDF → WORD</text>
+  <rect x="455" y="230" width="290" height="370" rx="24" fill="#101827" stroke="#d4a635" stroke-opacity=".42"></rect>
+  <path d="M518 410 C555 360 600 360 636 410 C673 460 717 456 742 412" fill="none" stroke="url(#gold)" stroke-width="13" stroke-linecap="round" filter="url(#glow)"></path>
+  <path d="M565 354 L603 316 L641 354" fill="none" stroke="#ffe6a3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M565 466 L603 504 L641 466" fill="none" stroke="#ffe6a3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"></path>
+  <text x="506" y="545" fill="#ffe6a3" font-family="Inter,Segoe UI,Arial" font-size="22" font-weight="800">CONVERSIÓN</text>
+  <rect x="790" y="230" width="290" height="370" rx="24" fill="#111827" stroke="#334155"></rect>
+  <rect x="850" y="275" width="170" height="232" rx="16" fill="#eff6ff"></rect>
+  <path d="M850 334 H1020" stroke="#60a5fa" stroke-width="10"></path>
+  <path d="M884 382 H986 M884 424 H986 M884 466 H956" stroke="#1e3a8a" stroke-width="12" stroke-linecap="round"></path>
+  <text x="862" y="545" fill="#cbd5e1" font-family="Inter,Segoe UI,Arial" font-size="22" font-weight="700">WORD → PDF</text>
+  <rect x="170" y="630" width="860" height="22" rx="11" fill="#1f2937"></rect>
+  <rect x="170" y="630" width="610" height="22" rx="11" fill="url(#gold)" opacity=".9"></rect>
+</svg>
