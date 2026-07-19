@@ -135,7 +135,7 @@
 
       '<section class="sec">' +
         '<div class="sec-head"><p class="kicker">Centro de mando</p>' +
-        '<h2>Entra por intención, no por lista.</h2></div>' +
+        '<h2>Cada puerta lleva a un mundo distinto.</h2></div>' +
         '<div class="grid-cmd">' +
           '<a class="cmd" href="#top-apps"><span class="num">01</span><strong>Top apps</strong><small>Lo más representativo para enseñar primero.</small></a>' +
           '<a class="cmd" href="#suites"><span class="num">02</span><strong>Suites U404</strong><small>Archivo simbólico, Estudio audiovisual, Formación &amp; IT.</small></a>' +
