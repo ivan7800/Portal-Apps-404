@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Entidad 404 — Digital Creature Simulator</title>
+  <desc id="desc">Portada oscura premium para una mascota virtual digital en evolución.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="75%">
+      <stop offset="0" stop-color="#17213b"></stop>
+      <stop offset="0.52" stop-color="#090d18"></stop>
+      <stop offset="1" stop-color="#03050a"></stop>
+    </radialGradient>
+    <radialGradient id="egg" cx="40%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#d8f7ff"></stop>
+      <stop offset="0.28" stop-color="#61d8ff"></stop>
+      <stop offset="0.66" stop-color="#6657d9"></stop>
+      <stop offset="1" stop-color="#171b42"></stop>
+    </radialGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop stop-color="#59e6ff" stop-opacity="0"></stop>
+      <stop offset=".5" stop-color="#59e6ff"></stop>
+      <stop offset="1" stop-color="#a46cff" stop-opacity="0"></stop>
+    </linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="16" result="b"></feGaussianBlur>
+      <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#75dbff" stroke-opacity=".055"></path>
+    </pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"></rect>
+  <rect width="1200" height="675" fill="url(#grid)"></rect>
+  <path d="M0 520C260 430 380 615 650 512s380-28 550-90V675H0Z" fill="#11152b" opacity=".72"></path>
+  <ellipse cx="600" cy="515" rx="222" ry="38" fill="#59dfff" opacity=".11" filter="url(#glow)"></ellipse>
+  <g filter="url(#glow)">
+    <path d="M600 160c-110 0-174 121-157 239 14 94 73 139 157 139s143-45 157-139c17-118-47-239-157-239Z" fill="url(#egg)" stroke="#8beaff" stroke-width="4"></path>
+    <path d="M525 283c27-54 72-79 132-68" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="15" stroke-linecap="round"></path>
+    <path d="M544 383c32 23 80 23 112 0" fill="none" stroke="#b8f6ff" stroke-opacity=".68" stroke-width="7" stroke-linecap="round"></path>
+    <circle cx="554" cy="344" r="13" fill="#06101c" stroke="#a9f5ff" stroke-width="5"></circle>
+    <circle cx="646" cy="344" r="13" fill="#06101c" stroke="#a9f5ff" stroke-width="5"></circle>
+  </g>
+  <g fill="none" stroke="#69e8ff" stroke-opacity=".42">
+    <circle cx="600" cy="350" r="232" stroke-dasharray="4 19"></circle>
+    <circle cx="600" cy="350" r="270" stroke-opacity=".16"></circle>
+  </g>
+  <path d="M135 92H470" stroke="url(#line)" stroke-width="2"></path>
+  <text x="135" y="77" fill="#8eeaff" font-family="Arial,Helvetica,sans-serif" font-size="22" letter-spacing="7">DIGITAL CREATURE SIMULATOR</text>
+  <text x="135" y="575" fill="#f3f7ff" font-family="Arial,Helvetica,sans-serif" font-size="72" font-weight="700" letter-spacing="2">ENTIDAD 404</text>
+  <text x="138" y="620" fill="#a9b7d4" font-family="Arial,Helvetica,sans-serif" font-size="24" letter-spacing="3">CUIDA · CONECTA · EVOLUCIONA</text>
+  <g transform="translate(995 82)">
+    <circle r="44" fill="#0b1021" stroke="#7de8ff" stroke-width="2"></circle>
+    <text x="0" y="10" text-anchor="middle" fill="#dffbff" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700">U404</text>
+  </g>
+</svg>
