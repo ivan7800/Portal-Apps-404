@@ -4,7 +4,7 @@ Portal estático y PWA instalable que reúne **71 proyectos web** de I. Roig. Es
 
 ## Características
 
-- Catálogo de 71 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
+- Catálogo de 72 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
 - Filtros por tecnología y por siete sagas temáticas.
 - Diez proyectos destacados y una aplicación aleatoria en portada.
 - Fichas accesibles mediante diálogo modal con cierre por `Esc`, bloqueo de scroll, control de foco y restauración del elemento de origen.
@@ -24,7 +24,7 @@ sw.js                      Caché offline de la interfaz
 robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
-  data.js                  Catálogo de 71 aplicaciones
+  data.js                  Catálogo de 72 aplicaciones
   styles.css               Diseño responsive y temas
   fonts.css                Cuatro fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
