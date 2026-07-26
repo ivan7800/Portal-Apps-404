@@ -1,10 +1,10 @@
 # I. Roig · Portal Apps 404
 
-Portal estático y PWA instalable que reúne **77 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
+Portal estático y PWA instalable que reúne **78 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
 
 ## Características
 
-- Catálogo de 77 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
+- Catálogo de 78 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
 - Filtros por tecnología y por siete sagas temáticas.
 - Diez proyectos destacados y una aplicación aleatoria en portada.
 - Fichas accesibles mediante diálogo modal con cierre por `Esc`, bloqueo de scroll, control de foco y restauración del elemento de origen.
@@ -24,7 +24,7 @@ sw.js                      Caché offline de la interfaz
 robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
-  data.js                  Catálogo de 77 aplicaciones
+  data.js                  Catálogo de 78 aplicaciones
   styles.css               Diseño responsive y temas
   fonts.css                Cuatro fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
@@ -58,3 +58,10 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Añadida World TV 404 como aplicación número 77.
 - Catálogo multimedia para importar, organizar y reproducir canales públicos, propios o autorizados.
 - Caché PWA actualizada a `portal-apps-404-v15`.
+
+
+## Actualización v16 — World Dishes 404
+
+- Añadida World Dishes 404 como aplicación número 78.
+- Incluye 33 recetas iniciales, búsqueda, filtros, favoritos, lista de la compra, ajuste de raciones y modo cocina.
+- Caché PWA actualizada a `portal-apps-404-v16`.
