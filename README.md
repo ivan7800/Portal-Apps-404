@@ -1,10 +1,10 @@
 # I. Roig · Portal Apps 404
 
-Portal estático y PWA instalable que reúne **80 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
+Portal estático y PWA instalable que reúne **81 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
 
 ## Características
 
-- Catálogo de 80 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
+- Catálogo de 81 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
 - Filtros por tecnología y por siete sagas temáticas.
 - Diez proyectos destacados y una aplicación aleatoria en portada.
 - Fichas accesibles mediante diálogo modal con cierre por `Esc`, bloqueo de scroll, control de foco y restauración del elemento de origen.
@@ -24,7 +24,7 @@ sw.js                      Caché offline de la interfaz
 robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
-  data.js                  Catálogo de 80 aplicaciones
+  data.js                  Catálogo de 81 aplicaciones
   styles.css               Diseño responsive y temas
   fonts.css                Cuatro fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
@@ -72,4 +72,11 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Añadida AppHub 404 como aplicación número 79.
 - Gestión local de instalación, actualización, inventario y mantenimiento de aplicaciones Windows mediante WinGet.
 - Se reutiliza un recurso visual existente para mantener el paquete en 100 archivos.
-- Caché PWA actualizada a `portal-apps-404-v18`.
+- Caché PWA actualizada a `portal-apps-404-v19`.
+
+## Versión 19 — Motion 404
+
+- Añadida Motion 404 al catálogo.
+- Total actualizado a 81 aplicaciones únicas.
+- Caché PWA actualizada a `portal-apps-404-v19`.
+- Se reutiliza un recurso visual existente para conservar el límite de 100 archivos.
