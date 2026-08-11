@@ -1,10 +1,10 @@
 # I. Roig · Portal Apps 404
 
-Portal estático y PWA instalable que reúne **81 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
+Portal estático y PWA instalable que reúne **79 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
 
 ## Características
 
-- Catálogo de 81 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
+- Catálogo de 82 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
 - Filtros por tecnología y por siete sagas temáticas.
 - Diez proyectos destacados y una aplicación aleatoria en portada.
 - Fichas accesibles mediante diálogo modal con cierre por `Esc`, bloqueo de scroll, control de foco y restauración del elemento de origen.
@@ -24,7 +24,7 @@ sw.js                      Caché offline de la interfaz
 robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
-  data.js                  Catálogo de 81 aplicaciones
+  data.js                  Catálogo de 82 aplicaciones
   styles.css               Diseño responsive y temas
   fonts.css                Cuatro fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
@@ -77,6 +77,13 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 ## Versión 19 — Motion 404
 
 - Añadida Motion 404 al catálogo.
-- Total actualizado a 81 aplicaciones únicas.
+- Total actualizado a 82 aplicaciones únicas.
 - Caché PWA actualizada a `portal-apps-404-v19`.
 - Se reutiliza un recurso visual existente para conservar el límite de 100 archivos.
+
+## Actualización v20 — Luna Natura 404
+
+- Añadida Luna Natura 404 como aplicación número 82.
+- Integra meteorología real, calendario lunar, huerto inteligente, tareas, 123 cultivos, diseñador de bancales y diario natural.
+- Se reutiliza un recurso visual existente para mantener el paquete en 100 archivos.
+- Caché PWA actualizada a `portal-apps-404-v20`.
