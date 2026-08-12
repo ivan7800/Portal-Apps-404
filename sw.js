@@ -1,4 +1,4 @@
-const CACHE='portal-apps-404-v20';
+const CACHE='portal-apps-404-v21';
 const CORE=['./','./index.html','./assets/styles.css','./assets/fonts.css','./assets/data.js','./assets/app.js','./assets/logo.webp','./assets/favicon-32.png','./assets/apple-touch-icon.png','./assets/icon-192.png','./assets/icon-512.png','./manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
