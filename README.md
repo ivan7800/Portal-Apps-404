@@ -1,10 +1,10 @@
 # I. Roig · Portal Apps 404
 
-Portal estático y PWA instalable que reúne **83 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
+Portal estático y PWA instalable que reúne **84 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
 
 ## Características
 
-- Catálogo de 83 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
+- Catálogo de 84 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
 - Filtros por tecnología y por siete sagas temáticas.
 - Diez proyectos destacados y una aplicación aleatoria en portada.
 - Fichas accesibles mediante diálogo modal con cierre por `Esc`, bloqueo de scroll, control de foco y restauración del elemento de origen.
@@ -24,7 +24,7 @@ sw.js                      Caché offline de la interfaz
 robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
-  data.js                  Catálogo de 83 aplicaciones
+  data.js                  Catálogo de 84 aplicaciones
   styles.css               Diseño responsive y temas
   fonts.css                Cuatro fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
@@ -96,3 +96,12 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Se refleja la separación editorial entre corpus revisado e índice de descubrimiento.
 - Se reutiliza un recurso visual existente para mantener el paquete en 100 archivos.
 - Caché PWA actualizada a `portal-apps-404-v21`.
+
+
+## Actualización v22 — Comic Reader 404
+
+- Añadida Comic Reader 404 como aplicación número 84.
+- PWA privada y local-first para leer y organizar cómics propios en CBZ/ZIP, CBR/RAR, PDF e imágenes.
+- Preparada para GitHub Pages, sin backend, cuenta ni compilación.
+- Se reutiliza `assets/screenshots/Atlas-Librorum.svg` para mantener el proyecto en 100 archivos.
+- Caché PWA actualizada a `portal-apps-404-v22`.
