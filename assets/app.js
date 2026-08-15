@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v24 */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v26 */
 (function () {
   'use strict';
 
@@ -79,8 +79,57 @@
     for (var i = 0; i < INTENTS.length; i++) if (INTENTS[i].id === state.activeIntent) return INTENTS[i];
     return null;
   }
+  var SEARCH_ALIASES = {
+    'PixelForge-404': 'editar foto fotos imagen imagenes photoshop capas psd raw diseño grafico retoque',
+    'Novel-Forge-404': 'escribir novela libro manuscrito narrativa escritor planificar capitulos epub',
+    'Comic-Reader-404': 'leer comic comics manga cbz cbr rar pdf lector biblioteca',
+    'MYTHOS-404': 'mitologia mitos dioses religiones folklore leyendas cultura historia',
+    'Motion-404': 'animacion motion web animada prompts diseño interfaz ui ux',
+    'Luna-Natura-404': 'huerto luna lunar plantas cultivo cultivos jardin naturaleza meteorologia',
+    'World-TV-404': 'television tv canales iptv multimedia ver television',
+    'AppHub-404': 'windows winget instalar programas actualizar software aplicaciones',
+    'AETHERION-Editorial-OS': 'revisar novela editorial corregir manuscrito auditoria literaria',
+    'Photo-Studio-OS': 'foto fotografia imagen editar fotos',
+    'PDF-Forge-404': 'pdf unir dividir convertir editar documento',
+    'PromptForge-404': 'prompt prompts inteligencia artificial ia generar prompts',
+    'Second-Brain-404': 'notas obsidian rag documentos conocimiento segundo cerebro'
+  };
+  function normalizeText(value) {
+    var s = String(value == null ? '' : value).toLowerCase();
+    try { s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); } catch (e) {}
+    return s.replace(/[^a-z0-9]+/g, ' ').trim();
+  }
   function appText(a) {
-    return [a.name, a.category, a.short, a.description, a.saga, LANGUAGES[a.name]].join(' ').toLowerCase();
+    return normalizeText([a.name, a.category, a.short, a.description, a.saga, LANGUAGES[a.name], SEARCH_ALIASES[a.name] || ''].join(' '));
+  }
+  function queryTokens(q) { return normalizeText(q).split(/\s+/).filter(Boolean); }
+  function searchScore(a, q) {
+    var tokens = queryTokens(q);
+    if (!tokens.length) return 0;
+    var name = normalizeText(a.name);
+    var category = normalizeText(a.category);
+    var short = normalizeText(a.short);
+    var full = appText(a);
+    var score = 0;
+    tokens.forEach(function (t) {
+      if (name.indexOf(t) !== -1) score += 12;
+      if (category.indexOf(t) !== -1) score += 7;
+      if (short.indexOf(t) !== -1) score += 5;
+      if (full.indexOf(t) !== -1) score += 3;
+    });
+    if (full.indexOf(normalizeText(q)) !== -1) score += 14;
+    return score;
+  }
+  function relatedApps(a) {
+    return APPS.filter(function (x) { return x.name !== a.name; }).map(function (x) {
+      var score = 0;
+      if (x.saga === a.saga) score += 5;
+      if (x.category === a.category) score += 6;
+      var ac = normalizeText(a.category).split(' '), xc = normalizeText(x.category);
+      ac.forEach(function (t) { if (t.length > 3 && xc.indexOf(t) !== -1) score += 2; });
+      if (x.featured) score += 1;
+      return { app: x, score: score };
+    }).filter(function (x) { return x.score > 0; }).sort(function (a1, b1) { return b1.score - a1.score || a1.app.name.localeCompare(b1.app.name); }).slice(0, 3).map(function (x) { return x.app; });
   }
   function isFavorite(name) { return state.favorites.indexOf(name) !== -1; }
 
@@ -90,19 +139,22 @@
     if (intent) out = out.filter(function (a) { return intent.test.test(appText(a)); });
     if (state.activeSaga) out = out.filter(function (a) { return a.saga === state.activeSaga; });
     if (state.techFilter) out = out.filter(function (a) { return (LANGUAGES[a.name] || 'JavaScript') === state.techFilter; });
-    var q = state.query.trim().toLowerCase();
-    if (q) out = out.filter(function (a) { return appText(a).indexOf(q) !== -1; });
+    var q = state.query.trim();
+    if (q) out = out.filter(function (a) { return searchScore(a, q) > 0; }).sort(function (a, b) { return searchScore(b, q) - searchScore(a, q); });
     return out;
   }
 
   function paletteResults() {
-    var q = state.paletteQuery.trim().toLowerCase();
+    var q = state.paletteQuery.trim();
     if (!q) {
       var recent = state.recent.map(byName).filter(Boolean);
       var featured = APPS.filter(function (a) { return a.featured; });
       return recent.concat(featured.filter(function (a) { return recent.indexOf(a) === -1; })).slice(0, 8);
     }
-    return APPS.filter(function (a) { return appText(a).indexOf(q) !== -1; }).slice(0, 8);
+    return APPS.map(function (a) { return { app: a, score: searchScore(a, q) }; })
+      .filter(function (x) { return x.score > 0; })
+      .sort(function (a, b) { return b.score - a.score || a.app.name.localeCompare(b.app.name); })
+      .slice(0, 8).map(function (x) { return x.app; });
   }
 
   function setIntent(id) {
@@ -282,7 +334,7 @@
               (list.length ? (state.view === 'grid' ? '<div class="catalog-grid">' + list.map(compactCard).join('') + '</div>' : '<div class="catalog-list">' + list.map(listCard).join('') + '</div>') : '<div class="empty"><span>◌</span><h3>Sin coincidencias</h3><p>Prueba otra búsqueda o elimina los filtros activos.</p><button class="ghost compact" id="reset-empty">Restablecer filtros</button></div>') +
             '</section>' +
 
-            '<footer class="footer"><div><img src="assets/logo.webp" alt="" width="36" height="36"><span><strong>Universo 404 OS</strong><small>I. Roig · v24</small></span></div><p>' + APPS.length + ' apps · local-first · sin tracking · GitHub Pages</p><a href="#top">Volver al núcleo ↑</a></footer>' +
+            '<footer class="footer"><div><img src="assets/logo.webp" alt="" width="36" height="36"><span><strong>Universo 404 OS</strong><small>I. Roig · v26</small></span></div><p>' + APPS.length + ' apps · local-first · sin tracking · GitHub Pages</p><a href="#top">Volver al núcleo ↑</a></footer>' +
           '</main>' +
           mobileNavHTML() +
         '</div>' +
@@ -311,13 +363,15 @@
   }
 
   function modalHTML(a) {
+    var related = relatedApps(a);
     return '<div class="overlay" id="modal-overlay"><div class="app-modal" id="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">' +
       '<button class="modal-close" id="close-modal" aria-label="Cerrar ficha">×</button>' +
       '<div class="modal-shot"><img src="' + esc(a.screenshot) + '" alt="Vista previa de ' + esc(a.name) + '" width="1280" height="720"><span>' + esc(a.saga) + '</span></div>' +
       '<div class="modal-content"><div class="modal-heading"><div><p class="kicker">' + esc(a.category) + '</p><h2 id="modal-title">' + esc(a.name) + '</h2></div><button class="modal-fav" id="modal-fav" data-fav="' + esc(a.name) + '" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★ Favorita' : '☆ Favorita') + '</button></div>' +
       '<p class="modal-description">' + esc(a.description || a.short) + '</p><div class="modal-tags"><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span><span>GitHub Pages</span><span>Local-first</span></div>' +
-      '<div class="modal-actions"><a class="primary" href="' + esc(a.pages) + '" target="_blank" rel="noopener noreferrer">Abrir aplicación ↗</a><a class="ghost" href="' + esc(a.github) + '" target="_blank" rel="noopener noreferrer">Ver repositorio</a></div></div>' +
-    '</div></div>';
+      '<div class="modal-actions"><a class="primary" href="' + esc(a.pages) + '" target="_blank" rel="noopener noreferrer">Abrir aplicación ↗</a><a class="ghost" href="' + esc(a.github) + '" target="_blank" rel="noopener noreferrer">Ver repositorio</a></div>' +
+      (related.length ? '<div class="modal-related"><p class="kicker">Conexiones 404</p><h3>También te puede servir</h3><div class="related-grid">' + related.map(function (r) { return '<button data-app="' + esc(r.name) + '"><span>' + esc(r.icon) + '</span><span><strong>' + esc(r.name) + '</strong><small>' + esc(r.category) + '</small></span><b>→</b></button>'; }).join('') + '</div></div>' : '') +
+      '</div></div></div>';
   }
 
   function paletteHTML() {

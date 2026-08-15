@@ -129,4 +129,12 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Favoritos y recientes locales; sin backend ni tracking.
 - Catálogo con vistas cuadrícula/lista y filtros combinables.
 - Nueva ficha modal, panel de estado, navegación lateral y barra móvil.
-- Metadatos SEO y caché PWA actualizados a v24.
+- Metadatos SEO y caché PWA actualizados a v26.
+
+## v26 — Refinamiento premium
+
+- Conserva el diseño Universo 404 OS elegido como base.
+- Buscador mejorado por intención y sinónimos.
+- Fichas de app con conexiones relacionadas.
+- Microinteracciones y profundidad visual refinadas.
+- Catálogo y métricas siguen calculándose desde las 85 apps reales.
