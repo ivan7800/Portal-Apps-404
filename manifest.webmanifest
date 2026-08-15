@@ -1,7 +1,7 @@
 {
-  "name": "I. Roig · Portal Apps 404",
-  "short_name": "Apps 404",
-  "description": "Catálogo de 85 aplicaciones web de I. Roig.",
+  "name": "Universo 404 OS · I. Roig",
+  "short_name": "U404 OS",
+  "description": "Centro de mando local-first con 85 aplicaciones web de I. Roig.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

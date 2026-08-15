@@ -4,9 +4,13 @@ Portal estático y PWA instalable que reúne **85 proyectos web** de I. Roig. Es
 
 ## Características
 
-- Catálogo de 85 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
+- Catálogo de 85 aplicaciones con búsqueda por nombre, categoría, descripción, saga, intención o tecnología.
 - Filtros por tecnología y por siete sagas temáticas.
-- Diez proyectos destacados y una aplicación aleatoria en portada.
+- Centro de mando Universo 404 OS con 85 aplicaciones, acceso por intención y mapa orbital de los siete mundos.
+- Buscador universal con `Ctrl/Cmd + K`, resultados por nombre, función, categoría, saga y tecnología.
+- Favoritos y apps recientes persistentes en `localStorage`, sin cuentas ni sincronización externa.
+- Vistas de catálogo en cuadrícula o lista, con preferencia local.
+- Ocho proyectos destacados y una aplicación aleatoria en portada.
 - Fichas accesibles mediante diálogo modal con cierre por `Esc`, bloqueo de scroll, control de foco y restauración del elemento de origen.
 - Tres temas visuales con preferencia persistente en `localStorage`.
 - PWA instalable con caché básica de la interfaz principal.
@@ -26,7 +30,7 @@ assets/
   app.js                   Interfaz y lógica en JavaScript
   data.js                  Catálogo de 85 aplicaciones
   styles.css               Diseño responsive y temas
-  fonts.css                Cuatro fuentes/subconjuntos locales
+  fonts.css                Tres fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
   logo.webp                Identidad visual
   screenshots/             Mockups SVG del catálogo
@@ -113,3 +117,16 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Editor gráfico local-first con capas, máscaras, filtros, PSD/PSB, RAW mediante LibRaw-WASM, compositor tiled e IA neuronal local.
 - Caché PWA actualizada a `portal-apps-404-v23`.
 - Se reutiliza un recurso visual existente para mantener el proyecto en 100 archivos.
+
+
+## Versión 24 — Universo 404 OS
+
+- Rediseño integral del portal como centro de mando / sistema operativo visual.
+- Total verificado: **85 aplicaciones**.
+- Navegación por intención: Crear, Escribir, Diseñar, Investigar, Organizar, Jugar y Aprender.
+- Mapa orbital interactivo de los siete mundos/sagas.
+- Command Palette con `Ctrl/Cmd + K`, navegación por teclado y apertura rápida.
+- Favoritos y recientes locales; sin backend ni tracking.
+- Catálogo con vistas cuadrícula/lista y filtros combinables.
+- Nueva ficha modal, panel de estado, navegación lateral y barra móvil.
+- Metadatos SEO y caché PWA actualizados a v24.
