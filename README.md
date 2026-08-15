@@ -1,4 +1,4 @@
-# I. Roig · Portal Apps 404
+# I. Roig · Portal Apps 404 — Universo 404 OS v27 Signature Edition
 
 Portal estático y PWA instalable que reúne **85 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
 
@@ -12,7 +12,10 @@ Portal estático y PWA instalable que reúne **85 proyectos web** de I. Roig. Es
 - Vistas de catálogo en cuadrícula o lista, con preferencia local.
 - Ocho proyectos destacados y una aplicación aleatoria en portada.
 - Fichas accesibles mediante diálogo modal con cierre por `Esc`, bloqueo de scroll, control de foco y restauración del elemento de origen.
-- Tres temas visuales con preferencia persistente en `localStorage`.
+- Siete skins visuales reales — Cósmica, Obsidiana, Void OLED, Glass, Terminal, Arctic y Synthwave — con preferencia persistente en `localStorage`.
+- Selector visual de apariencia con previsualizaciones y control manual de movimiento ambiental.
+- Oculus 404 reactivo, órbitas animadas, microinteracciones y parallax mínimo en puntero fino, sin librerías externas.
+- Respeta `prefers-reduced-motion` y permite forzar movimiento reducido desde la propia interfaz.
 - PWA instalable con caché básica de la interfaz principal.
 - Diseño responsive, fuentes autoalojadas, `prefers-reduced-motion`, skip link y foco visible.
 - Sin tracking, CDN, cookies, cuentas ni backend.
@@ -129,7 +132,7 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Favoritos y recientes locales; sin backend ni tracking.
 - Catálogo con vistas cuadrícula/lista y filtros combinables.
 - Nueva ficha modal, panel de estado, navegación lateral y barra móvil.
-- Metadatos SEO y caché PWA actualizados a v26.
+- Metadatos SEO y caché PWA actualizados a v24.
 
 ## v26 — Refinamiento premium
 
@@ -138,3 +141,14 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Fichas de app con conexiones relacionadas.
 - Microinteracciones y profundidad visual refinadas.
 - Catálogo y métricas siguen calculándose desde las 85 apps reales.
+
+## Actualización v27 — Signature Edition
+
+- Mantiene las 85 aplicaciones y la arquitectura visual elegida de Universo 404 OS.
+- Añade siete skins diferenciadas, no simples recoloreados.
+- Nuevo panel accesible de Apariencia con miniaturas y persistencia local.
+- Oculus 404 reactivo a búsqueda, favoritos, navegación y apertura de fichas.
+- Movimiento ambiental CSS, entrada escalonada y parallax mínimo solo con puntero fino.
+- Modo de movimiento reducido manual además de `prefers-reduced-motion`.
+- Sin dependencias externas ni nuevos assets; sigue preparado para GitHub Pages.
+- Caché PWA actualizada a `portal-apps-404-v27-signature`.

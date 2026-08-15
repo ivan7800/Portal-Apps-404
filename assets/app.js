@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v26 */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v27 Signature Edition */
 (function () {
   'use strict';
 
@@ -11,8 +11,10 @@
 
   var APPS = D.APPS;
   var LANGUAGES = D.LANGUAGES || {};
-  var SKINS = ['cosmica', 'obsidiana', 'claro'];
-  var SKIN_NAMES = { cosmica: 'Cósmica', obsidiana: 'Obsidiana', claro: 'Claro' };
+  var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
+  var SKIN_NAMES = { cosmica: 'Cósmica', obsidiana: 'Obsidiana', void: 'Void OLED', glass: 'Glass', terminal: 'Terminal', arctic: 'Arctic', synthwave: 'Synthwave' };
+  var SKIN_HINTS = { cosmica: 'Naranja y azul · identidad 404', obsidiana: 'Grafito elegante · baja saturación', void: 'Negro absoluto · OLED', glass: 'Cristal oscuro · profundidad', terminal: 'Workstation · fósforo verde', arctic: 'Claro editorial · máxima limpieza', synthwave: 'Neón violeta · experimental' };
+  var THEME_COLORS = { cosmica: '#070a12', obsidiana: '#08090c', void: '#000000', glass: '#081018', terminal: '#050907', arctic: '#eef3f7', synthwave: '#0d0717' };
   var VIEW_NAMES = { grid: 'Cuadrícula', list: 'Lista' };
 
   var INTENTS = [
@@ -50,10 +52,13 @@
     recent: loadJSON('u404-recent', []),
     palette: false,
     paletteQuery: '',
+    skinPanel: false,
+    motion: loadText('u404-motion', 'auto'),
     spotlight: APPS[Math.floor(Math.random() * APPS.length)]
   };
   if (SKINS.indexOf(state.skin) === -1) state.skin = 'cosmica';
   if (!VIEW_NAMES[state.view]) state.view = 'grid';
+  if (['auto', 'reduced'].indexOf(state.motion) === -1) state.motion = 'auto';
 
   var esc = function (s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (ch) {
@@ -80,7 +85,7 @@
     return null;
   }
   var SEARCH_ALIASES = {
-    'PixelForge-404': 'editar foto fotos imagen imagenes photoshop capas psd raw diseño grafico retoque',
+    'PixelForge-404': 'editar fotos editar foto photoshop imagen imagenes capas psd raw diseño grafico retoque',
     'Novel-Forge-404': 'escribir novela libro manuscrito narrativa escritor planificar capitulos epub',
     'Comic-Reader-404': 'leer comic comics manga cbz cbr rar pdf lector biblioteca',
     'MYTHOS-404': 'mitologia mitos dioses religiones folklore leyendas cultura historia',
@@ -89,7 +94,7 @@
     'World-TV-404': 'television tv canales iptv multimedia ver television',
     'AppHub-404': 'windows winget instalar programas actualizar software aplicaciones',
     'AETHERION-Editorial-OS': 'revisar novela editorial corregir manuscrito auditoria literaria',
-    'Photo-Studio-OS': 'foto fotografia imagen editar fotos',
+    'Photo-Studio-OS': 'foto fotografia estudio fotografico imagen retoque estudio visual',
     'PDF-Forge-404': 'pdf unir dividir convertir editar documento',
     'PromptForge-404': 'prompt prompts inteligencia artificial ia generar prompts',
     'Second-Brain-404': 'notas obsidian rag documentos conocimiento segundo cerebro'
@@ -162,12 +167,14 @@
     state.activeSaga = null;
     state.query = '';
     render();
+    pulseCore('navigate');
     scrollToId('catalogo');
   }
   function setSaga(name) {
     state.activeSaga = state.activeSaga === name ? null : name;
     state.activeIntent = null;
     render();
+    pulseCore('navigate');
     scrollToId('catalogo');
   }
   function scrollToId(id) {
@@ -184,6 +191,7 @@
     if (isFavorite(name)) state.favorites = state.favorites.filter(function (n) { return n !== name; });
     else state.favorites = [name].concat(state.favorites).slice(0, 30);
     saveJSON('u404-favorites', state.favorites);
+    pulseCore('favorite');
   }
 
   function openApp(name) {
@@ -194,6 +202,7 @@
     state.selectedApp = app;
     state.palette = false;
     render();
+    pulseCore('open');
     document.body.classList.add('modal-open');
     var c = document.getElementById('close-modal');
     if (c) c.focus();
@@ -211,8 +220,10 @@
 
   function openPalette() {
     state.palette = true;
+    state.skinPanel = false;
     state.paletteQuery = '';
     render();
+    pulseCore('search');
     document.body.classList.add('modal-open');
     var input = document.getElementById('palette-q');
     if (input) input.focus();
@@ -275,6 +286,9 @@
   function render() {
     document.documentElement.setAttribute('data-skin', state.skin);
     document.documentElement.setAttribute('data-view', state.view);
+    document.documentElement.setAttribute('data-motion', state.motion);
+    var themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) themeMeta.setAttribute('content', THEME_COLORS[state.skin] || '#070a12');
     var list = catalog();
     var featured = APPS.filter(function (a) { return a.featured; }).slice(0, 8);
     var favoriteApps = state.favorites.map(byName).filter(Boolean);
@@ -334,13 +348,14 @@
               (list.length ? (state.view === 'grid' ? '<div class="catalog-grid">' + list.map(compactCard).join('') + '</div>' : '<div class="catalog-list">' + list.map(listCard).join('') + '</div>') : '<div class="empty"><span>◌</span><h3>Sin coincidencias</h3><p>Prueba otra búsqueda o elimina los filtros activos.</p><button class="ghost compact" id="reset-empty">Restablecer filtros</button></div>') +
             '</section>' +
 
-            '<footer class="footer"><div><img src="assets/logo.webp" alt="" width="36" height="36"><span><strong>Universo 404 OS</strong><small>I. Roig · v26</small></span></div><p>' + APPS.length + ' apps · local-first · sin tracking · GitHub Pages</p><a href="#top">Volver al núcleo ↑</a></footer>' +
+            '<footer class="footer"><div><img src="assets/logo.webp" alt="" width="36" height="36"><span><strong>Universo 404 OS</strong><small>I. Roig · v27 Signature</small></span></div><p>' + APPS.length + ' apps · local-first · sin tracking · GitHub Pages</p><a href="#top">Volver al núcleo ↑</a></footer>' +
           '</main>' +
           mobileNavHTML() +
         '</div>' +
       '</div>' +
       (state.selectedApp ? modalHTML(state.selectedApp) : '') +
-      (state.palette ? paletteHTML() : '');
+      (state.palette ? paletteHTML() : '') +
+      (state.skinPanel ? skinPanelHTML() : '');
 
     wire();
   }
@@ -350,12 +365,12 @@
       '<a class="side-brand" href="#top"><img src="assets/logo.webp" alt="" width="48" height="48"><span><strong>U404</strong><small>PORTAL OS</small></span></a>' +
       '<nav class="side-nav"><p>Explorar</p><a href="#top" class="active"><span>◉</span>Inicio</a><a href="#intenciones"><span>✦</span>Qué quieres hacer</a><a href="#top-apps"><span>◇</span>Destacadas</a><a href="#catalogo"><span>▦</span>Catálogo <b>' + APPS.length + '</b></a><a href="#panel"><span>⌁</span>Control Center</a></nav>' +
       '<div class="side-worlds"><p>Mundos</p>' + sagas.map(function (s) { return '<button data-saga="' + esc(s.name) + '" class="' + (state.activeSaga === s.name ? 'active' : '') + '"><span>' + esc(s.icon) + '</span><em>' + esc(s.name) + '</em><b>' + s.count + '</b></button>'; }).join('') + '</div>' +
-      '<div class="side-bottom"><button id="skin" class="skin-button"><span>◐</span><span><small>Skin</small><strong>' + esc(SKIN_NAMES[state.skin]) + '</strong></span></button><a href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer"><span>⌘</span>GitHub ↗</a></div>' +
+      '<div class="side-bottom"><button id="skin" class="skin-button"><span>◐</span><span><small>Apariencia</small><strong>' + esc(SKIN_NAMES[state.skin]) + '</strong></span></button><a href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer"><span>⌘</span>GitHub ↗</a></div>' +
     '</aside>';
   }
 
   function topbarHTML() {
-    return '<header class="topbar"><div class="crumb"><span class="pulse"></span><strong>UNIVERSO 404</strong><span>/</span><span>Centro de mando</span></div><div class="top-actions"><button class="top-search" id="open-palette-top">⌕ <span>Buscar apps</span><kbd>Ctrl K</kbd></button><button class="icon-btn" id="skin-top" aria-label="Cambiar skin" title="Cambiar skin">◐</button><a class="avatar" href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer" aria-label="GitHub de I. Roig">IR</a></div></header>';
+    return '<header class="topbar"><div class="crumb"><span class="pulse"></span><strong>UNIVERSO 404</strong><span>/</span><span>Centro de mando</span></div><div class="top-actions"><button class="top-search" id="open-palette-top">⌕ <span>Buscar apps</span><kbd>Ctrl K</kbd></button><button class="icon-btn" id="skin-top" aria-label="Abrir apariencia" title="Apariencia">◐</button><a class="avatar" href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer" aria-label="GitHub de I. Roig">IR</a></div></header>';
   }
 
   function mobileNavHTML() {
@@ -384,11 +399,69 @@
     '</div></div>';
   }
 
+
+  function skinPanelHTML() {
+    return '<div class="overlay skin-overlay" id="skin-overlay"><div class="skin-panel" id="skin-panel" role="dialog" aria-modal="true" aria-labelledby="skin-title" tabindex="-1">' +
+      '<div class="skin-head"><div><p class="kicker">Signature Edition</p><h2 id="skin-title">Apariencia</h2><p>Elige una atmósfera. La selección se guarda solo en este navegador.</p></div><button class="modal-close skin-close" id="close-skin" aria-label="Cerrar apariencia">×</button></div>' +
+      '<div class="skin-grid">' + SKINS.map(function (key) {
+        return '<button class="skin-choice' + (state.skin === key ? ' is-active' : '') + '" data-skin-choice="' + key + '" aria-pressed="' + (state.skin === key) + '">' +
+          '<span class="skin-preview preview-' + key + '"><i></i><i></i><i></i><b>404</b></span>' +
+          '<span class="skin-copy"><strong>' + esc(SKIN_NAMES[key]) + '</strong><small>' + esc(SKIN_HINTS[key]) + '</small></span><em>' + (state.skin === key ? '✓' : '→') + '</em>' +
+        '</button>';
+      }).join('') + '</div>' +
+      '<div class="motion-setting"><span><strong>Movimiento ambiental</strong><small>Respeta “Reducir movimiento” del sistema automáticamente.</small></span><button id="motion-toggle" class="motion-toggle" aria-pressed="' + (state.motion === 'reduced') + '"><span></span>' + (state.motion === 'reduced' ? 'Reducido' : 'Dinámico') + '</button></div>' +
+      '<div class="skin-foot"><span>Sin librerías externas</span><span>GPU-friendly</span><span>Preferencia local</span></div>' +
+    '</div></div>';
+  }
+
+  function openSkinPanel() {
+    state.skinPanel = true;
+    state.palette = false;
+    render();
+    document.body.classList.add('modal-open');
+    var panel = document.getElementById('skin-panel');
+    if (panel) panel.focus();
+  }
+
+  function closeSkinPanel() {
+    state.skinPanel = false;
+    document.body.classList.remove('modal-open');
+    render();
+    var trigger = document.getElementById('skin');
+    if (trigger) trigger.focus();
+  }
+
+  function setSkin(key) {
+    if (SKINS.indexOf(key) === -1) return;
+    state.skin = key;
+    try { localStorage.setItem('u404-skin', state.skin); } catch (e) {}
+    render();
+    document.body.classList.add('modal-open');
+    var chosen = document.querySelector('[data-skin-choice="' + cssEsc(key) + '"]');
+    if (chosen) chosen.focus();
+  }
+
+  function toggleMotion() {
+    state.motion = state.motion === 'reduced' ? 'auto' : 'reduced';
+    try { localStorage.setItem('u404-motion', state.motion); } catch (e) {}
+    render();
+    document.body.classList.add('modal-open');
+    var toggle = document.getElementById('motion-toggle');
+    if (toggle) toggle.focus();
+  }
+
+  var activityTimer = null;
+  function pulseCore(kind) {
+    document.body.setAttribute('data-activity', kind || 'active');
+    if (activityTimer) clearTimeout(activityTimer);
+    activityTimer = setTimeout(function () { document.body.removeAttribute('data-activity'); }, 720);
+  }
+
   function wire() {
     var skin = document.getElementById('skin');
     var skinTop = document.getElementById('skin-top');
-    if (skin) skin.onclick = nextSkin;
-    if (skinTop) skinTop.onclick = nextSkin;
+    if (skin) skin.onclick = openSkinPanel;
+    if (skinTop) skinTop.onclick = openSkinPanel;
 
     ['open-palette', 'open-palette-top', 'open-palette-core', 'mobile-search'].forEach(function (id) {
       var el = document.getElementById(id); if (el) el.onclick = openPalette;
@@ -426,6 +499,18 @@
     if (reset) reset.onclick = resetFilters;
     var clearRecent = document.getElementById('clear-recent');
     if (clearRecent) clearRecent.onclick = function () { state.recent = []; saveJSON('u404-recent', []); render(); };
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-skin-choice]'), function (b) {
+      b.onclick = function () { setSkin(b.getAttribute('data-skin-choice')); };
+    });
+    var motionToggle = document.getElementById('motion-toggle');
+    if (motionToggle) motionToggle.onclick = toggleMotion;
+    var skinOv = document.getElementById('skin-overlay');
+    if (skinOv) {
+      skinOv.onclick = function (e) { if (e.target === skinOv) closeSkinPanel(); };
+      var skinClose = document.getElementById('close-skin');
+      if (skinClose) skinClose.onclick = closeSkinPanel;
+    }
 
     var modalOv = document.getElementById('modal-overlay');
     if (modalOv) {
@@ -482,6 +567,7 @@
     if (e.key === 'Escape') {
       if (state.selectedApp) { closeApp(); return; }
       if (state.palette) { closePalette(); return; }
+      if (state.skinPanel) { closeSkinPanel(); return; }
     }
     if (state.palette && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
       var items = Array.prototype.slice.call(document.querySelectorAll('[data-palette-app]'));
@@ -499,17 +585,45 @@
         if (selected) { e.preventDefault(); openApp(selected.getAttribute('data-palette-app')); }
       }
     }
-    if ((state.selectedApp || state.palette) && e.key === 'Tab') trapFocus(e);
+    if ((state.selectedApp || state.palette || state.skinPanel) && e.key === 'Tab') trapFocus(e);
   });
 
   function trapFocus(e) {
-    var dialog = state.selectedApp ? document.getElementById('app-modal') : document.getElementById('palette');
+    var dialog = state.selectedApp ? document.getElementById('app-modal') : (state.palette ? document.getElementById('palette') : document.getElementById('skin-panel'));
     if (!dialog) return;
     var focusable = dialog.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])');
     if (!focusable.length) return;
     var first = focusable[0], last = focusable[focusable.length - 1];
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+
+  var finePointer = !!(window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches);
+  var pointerRAF = 0;
+  if (finePointer) {
+    document.addEventListener('pointermove', function (e) {
+      if (state.motion === 'reduced' || reduceMotion()) return;
+      if (pointerRAF) cancelAnimationFrame(pointerRAF);
+      pointerRAF = requestAnimationFrame(function () {
+        var uni = document.querySelector('.universe');
+        if (uni) {
+          var r = uni.getBoundingClientRect();
+          var dx = ((e.clientX - (r.left + r.width / 2)) / r.width);
+          var dy = ((e.clientY - (r.top + r.height / 2)) / r.height);
+          dx = Math.max(-.5, Math.min(.5, dx));
+          dy = Math.max(-.5, Math.min(.5, dy));
+          uni.style.setProperty('--parallax-x', (dx * 10).toFixed(2) + 'px');
+          uni.style.setProperty('--parallax-y', (dy * 10).toFixed(2) + 'px');
+        }
+        var card = e.target && e.target.closest ? e.target.closest('.app-card,.intent-card,.small-tile') : null;
+        if (card) {
+          var cr = card.getBoundingClientRect();
+          card.style.setProperty('--px', (((e.clientX - cr.left) / cr.width) * 100).toFixed(1) + '%');
+          card.style.setProperty('--py', (((e.clientY - cr.top) / cr.height) * 100).toFixed(1) + '%');
+        }
+      });
+    }, { passive: true });
   }
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
