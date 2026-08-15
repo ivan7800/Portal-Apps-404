@@ -1,10 +1,10 @@
 # I. Roig · Portal Apps 404
 
-Portal estático y PWA instalable que reúne **84 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
+Portal estático y PWA instalable que reúne **79 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
 
 ## Características
 
-- Catálogo de 84 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
+- Catálogo de 85 aplicaciones con búsqueda por nombre, categoría, descripción, saga o tecnología.
 - Filtros por tecnología y por siete sagas temáticas.
 - Diez proyectos destacados y una aplicación aleatoria en portada.
 - Fichas accesibles mediante diálogo modal con cierre por `Esc`, bloqueo de scroll, control de foco y restauración del elemento de origen.
@@ -24,7 +24,7 @@ sw.js                      Caché offline de la interfaz
 robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
-  data.js                  Catálogo de 84 aplicaciones
+  data.js                  Catálogo de 85 aplicaciones
   styles.css               Diseño responsive y temas
   fonts.css                Cuatro fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
@@ -105,3 +105,11 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Preparada para GitHub Pages, sin backend, cuenta ni compilación.
 - Se reutiliza `assets/screenshots/Atlas-Librorum.svg` para mantener el proyecto en 100 archivos.
 - Caché PWA actualizada a `portal-apps-404-v22`.
+
+
+## Actualización v23 — PixelForge 404
+
+- Añadida PixelForge 404 como aplicación 85 del catálogo.
+- Editor gráfico local-first con capas, máscaras, filtros, PSD/PSB, RAW mediante LibRaw-WASM, compositor tiled e IA neuronal local.
+- Caché PWA actualizada a `portal-apps-404-v23`.
+- Se reutiliza un recurso visual existente para mantener el proyecto en 100 archivos.
