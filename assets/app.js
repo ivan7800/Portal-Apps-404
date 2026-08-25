@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v31 Signature Edition */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v32 Signature Edition */
 (function () {
   'use strict';
 
@@ -306,7 +306,7 @@
             '<section class="hero-os" id="top">' +
               '<div class="hero-copy">' +
                 '<p class="eyebrow"><span class="status-dot"></span> UNIVERSO 404 · SISTEMA ONLINE</p>' +
-                '<h1>Tu ecosistema digital.<br><em>89 apps, un solo universo.</em></h1>' +
+                '<h1>Tu ecosistema digital.<br><em>90 apps, un solo universo.</em></h1>' +
                 '<p class="lede">Herramientas, escritura, diseño, IA, sistemas, cultura y ficción interactiva reunidos en un centro de mando local-first.</p>' +
                 '<div class="hero-actions"><button class="primary" id="open-palette">⌕ Buscar en Universo 404 <kbd>Ctrl K</kbd></button><a class="ghost" href="#catalogo">Explorar las ' + APPS.length + ' apps</a></div>' +
                 '<div class="system-pills"><span><b>' + APPS.length + '</b> apps</span><span><b>' + sagaNames.length + '</b> mundos</span><span><b>' + totalCats + '</b> categorías</span><span>● sin tracking</span></div>' +
