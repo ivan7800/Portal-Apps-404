@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">FartLab 404</title>
+  <desc id="desc">Vista conceptual del laboratorio de audio humorístico FartLab 404</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07110e"></stop>
+      <stop offset="0.52" stop-color="#10241d"></stop>
+      <stop offset="1" stop-color="#08100f"></stop>
+    </linearGradient>
+    <radialGradient id="glow" cx="70%" cy="30%" r="55%">
+      <stop offset="0" stop-color="#95ff5b" stop-opacity=".32"></stop>
+      <stop offset="1" stop-color="#95ff5b" stop-opacity="0"></stop>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="28"></feGaussianBlur></filter>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"></rect>
+  <rect width="1280" height="720" fill="url(#glow)"></rect>
+  <circle cx="1030" cy="170" r="125" fill="#8bff65" opacity=".12" filter="url(#blur)"></circle>
+  <g fill="none" stroke="#b0ff82" stroke-opacity=".2">
+    <path d="M0 102h1280M0 618h1280"></path>
+    <path d="M88 0v720M1192 0v720"></path>
+  </g>
+  <g transform="translate(78 70)">
+    <text x="0" y="20" fill="#8dff70" font-family="system-ui,sans-serif" font-size="18" letter-spacing="8">U404 AUDIO LAB</text>
+    <text x="0" y="104" fill="#f2fff0" font-family="Georgia,serif" font-size="70">FartLab 404</text>
+    <text x="0" y="146" fill="#b4c9b5" font-family="system-ui,sans-serif" font-size="22">SONIDOS REALES · PRIVACIDAD LOCAL · PWA</text>
+  </g>
+  <g transform="translate(78 270)">
+    <rect width="720" height="300" rx="30" fill="#09130f" stroke="#94ff70" stroke-opacity=".26"></rect>
+    <text x="34" y="50" fill="#8dff70" font-family="system-ui,sans-serif" font-size="15" letter-spacing="5">REPRODUCIENDO</text>
+    <text x="34" y="105" fill="#f2fff0" font-family="Georgia,serif" font-size="34">Laboratorio preparado</text>
+    <path d="M36 180 C75 130 110 228 150 175 S230 128 270 180 345 232 390 170 470 124 520 182 610 236 680 170" fill="none" stroke="#91ff69" stroke-width="5" stroke-linecap="round"></path>
+    <circle cx="70" cy="250" r="28" fill="#91ff69"></circle>
+    <path d="M62 238l20 12-20 12z" fill="#07110e"></path>
+    <rect x="120" y="232" width="430" height="8" rx="4" fill="#263d2c"></rect>
+    <rect x="120" y="232" width="250" height="8" rx="4" fill="#91ff69"></rect>
+    <text x="580" y="257" fill="#b4c9b5" font-family="system-ui,sans-serif" font-size="18">0:04 / 0:11</text>
+  </g>
+  <g transform="translate(840 270)">
+    <rect width="360" height="300" rx="30" fill="#101a15" stroke="#94ff70" stroke-opacity=".22"></rect>
+    <text x="28" y="48" fill="#8dff70" font-family="system-ui,sans-serif" font-size="15" letter-spacing="4">ARCHIVO ACÚSTICO</text>
+    <g transform="translate(28 78)" font-family="system-ui,sans-serif">
+      <rect width="304" height="50" rx="16" fill="#17271d"></rect><text x="20" y="31" fill="#efffed" font-size="17">16 sonidos reales</text>
+      <rect y="64" width="304" height="50" rx="16" fill="#17271d"></rect><text x="20" y="95" fill="#efffed" font-size="17">Importación privada</text>
+      <rect y="128" width="304" height="50" rx="16" fill="#17271d"></rect><text x="20" y="159" fill="#efffed" font-size="17">Grabación directa</text>
+      <rect y="192" width="304" height="50" rx="16" fill="#91ff69"></rect><text x="20" y="223" fill="#07110e" font-size="17" font-weight="700">Abrir laboratorio →</text>
+    </g>
+  </g>
+  <text x="78" y="665" fill="#82998a" font-family="system-ui,sans-serif" font-size="17">MP3 · WAV · OGG · M4A · AAC · WebM · Todo almacenado solo en tu dispositivo</text>
+</svg>

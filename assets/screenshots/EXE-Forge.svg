@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">EXE Forge 404</title>
+  <desc id="desc">Centro híbrido de análisis, configuración y construcción de aplicaciones para Windows</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#04070d"></stop><stop offset=".48" stop-color="#0b1421"></stop><stop offset="1" stop-color="#17130b"></stop>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#f7c65c"></stop><stop offset=".55" stop-color="#f59e0b"></stop><stop offset="1" stop-color="#fde68a"></stop>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#22d3ee"></stop><stop offset="1" stop-color="#3b82f6"></stop>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="12" result="blur"></feGaussianBlur><feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+    
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"></rect>
+  <circle cx="1080" cy="105" r="260" fill="#f59e0b" opacity=".09" filter="url(#glow)"></circle>
+  <circle cx="1025" cy="650" r="250" fill="#22d3ee" opacity=".06" filter="url(#glow)"></circle>
+  <rect x="28" y="28" width="1224" height="664" rx="34" fill="#050a11" stroke="#3a3a33" stroke-width="2"></rect>
+  <text x="64" y="91" class="font meta">BUILD · VALIDATE · SIGN · SHIP</text>
+  <text x="64" y="166" class="font title">EXE Forge 404</text>
+  <text x="66" y="210" class="font sub">Del proyecto a una distribución Windows verificable</text>
+
+  <g transform="translate(64 252)">
+    <rect width="344" height="347" rx="24" class="panel"></rect>
+    <text x="25" y="40" class="font label">ANALIZADOR DE PROYECTOS</text>
+    <g transform="translate(22 62)">
+      <rect width="300" height="52" rx="14" class="row"></rect><circle cx="27" cy="26" r="8" fill="#22d3ee"></circle><text x="47" y="22" class="font label">TECNOLOGÍA DETECTADA</text><text x="47" y="40" class="font small">Electron + JavaScript</text>
+      <g transform="translate(0 64)"><rect width="300" height="52" rx="14" class="row"></rect><circle cx="27" cy="26" r="8" fill="#22c55e"></circle><text x="47" y="22" class="font label">PRE-FLIGHT</text><text x="47" y="40" class="font small">Arquitectura · QA · Seguridad</text></g>
+      <g transform="translate(0 128)"><rect width="300" height="52" rx="14" class="row"></rect><circle cx="27" cy="26" r="8" fill="#f59e0b"></circle><text x="47" y="22" class="font label">MOTOR RECOMENDADO</text><text x="47" y="40" class="font small">Electron Builder</text></g>
+      <g transform="translate(0 204)"><rect width="300" height="56" rx="18" fill="url(#gold)"></rect><text x="150" y="35" text-anchor="middle" class="font" style="font-size:14px;font-weight:950;fill:#171005;letter-spacing:1px">CONFIGURAR BUILD</text></g>
+    </g>
+  </g>
+
+  <g transform="translate(432 252)">
+    <rect width="784" height="347" rx="24" class="panel"></rect>
+    <rect x="22" y="20" width="740" height="49" rx="15" fill="#060b12" stroke="#2f3948"></rect>
+    <circle cx="48" cy="44.5" r="6" fill="#fb7185"></circle><circle cx="70" cy="44.5" r="6" fill="#fbbf24"></circle><circle cx="92" cy="44.5" r="6" fill="#4ade80"></circle>
+    <text x="124" y="50" class="mono">exe-forge://build-studio/windows-x64</text>
+    <text x="27" y="105" class="font label">PLAN DE SALIDA</text>
+    <g transform="translate(24 124)">
+      <rect width="174" height="77" rx="16" class="row"></rect><text x="18" y="29" class="font label">PORTABLE EXE</text><text x="18" y="51" class="font small">Sin instalación</text><circle cx="145" cy="38" r="13" fill="#22c55e" opacity=".18"></circle><path d="M138 38l5 5 9-11" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+      <g transform="translate(188)"><rect width="174" height="77" rx="16" class="row"></rect><text x="18" y="29" class="font label">SETUP NSIS</text><text x="18" y="51" class="font small">Instalador guiado</text><circle cx="145" cy="38" r="13" fill="#22c55e" opacity=".18"></circle><path d="M138 38l5 5 9-11" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></g>
+      <g transform="translate(376)"><rect width="174" height="77" rx="16" class="row"></rect><text x="18" y="29" class="font label">ZIP RELEASE</text><text x="18" y="51" class="font small">Distribución directa</text><circle cx="145" cy="38" r="13" fill="#22c55e" opacity=".18"></circle><path d="M138 38l5 5 9-11" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></g>
+      <g transform="translate(564)"><rect width="174" height="77" rx="16" class="row"></rect><text x="18" y="29" class="font label">MSI</text><text x="18" y="51" class="font small">Entorno corporativo</text><circle cx="145" cy="38" r="13" fill="#3b82f6" opacity=".18"></circle><text x="145" y="43" text-anchor="middle" class="font label">+</text></g>
+    </g>
+    <g transform="translate(24 220)">
+      <rect width="468" height="98" rx="17" fill="#060b12" stroke="#29384a"></rect>
+      <text x="18" y="27" class="font label">RECETA REPRODUCIBLE</text>
+      <text x="18" y="52" class="mono">target: windows-x64 · compression: maximum</text>
+      <text x="18" y="75" class="mono">sha256: enabled · release: prepared</text>
+      <rect x="488" width="250" height="98" rx="17" fill="#0c1927" stroke="url(#blue)" stroke-width="2"></rect>
+      <text x="613" y="34" text-anchor="middle" class="font label">CALIDAD PREVISTA</text>
+      <text x="613" y="75" text-anchor="middle" class="font" style="font-size:38px;font-weight:950;fill:#eaf8ff">94/100</text>
+    </g>
+  </g>
+  <text x="64" y="660" class="font meta">MODO WEB: ANALIZA Y CONFIGURA · MODO LOCAL: CONSTRUYE</text>
+</svg>
