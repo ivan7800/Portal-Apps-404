@@ -1,4 +1,10 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v35 Discovery & Reliability
+# I. Roig · Portal Apps 404 — Universo 404 OS v36 ReleaseForge
+
+## Actualización v36 — ReleaseForge 404
+
+- Añadida **ReleaseForge 404** como aplicación nº 92.
+- Web App Auditor, QA Lab & Release Studio para revisar, probar y preparar aplicaciones web antes de publicarlas.
+- Integrada en **Formación & IT**, en las búsquedas, filtros, novedades y enlaces directos del portal.
 
 ## Actualización v35 — Discovery & Reliability
 
