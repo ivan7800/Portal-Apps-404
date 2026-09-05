@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v36 ReleaseForge */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v37 Compra 404 */
 (function () {
   'use strict';
 
@@ -11,7 +11,7 @@
 
   var APPS = D.APPS;
   var readyTimer = null;
-  var VERSION = 'v36 ReleaseForge';
+  var VERSION = 'v37 Compra 404';
   var UPDATED = '5 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];

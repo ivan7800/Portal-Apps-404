@@ -1,4 +1,10 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v36 ReleaseForge
+# I. Roig · Portal Apps 404 — Universo 404 OS v37 Compra 404
+
+## Actualización v37 — Compra 404
+
+- Añadida **Compra 404** como aplicación nº 93.
+- Lista de la compra sencilla, visual y local-first, con organización práctica y opciones para compartirla.
+- Integrada en **Vida privada**, en las búsquedas, filtros, novedades y enlaces directos del portal.
 
 ## Actualización v36 — ReleaseForge 404
 
