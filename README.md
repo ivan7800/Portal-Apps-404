@@ -1,12 +1,12 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v32 Signature Edition
+# I. Roig · Portal Apps 404 — Universo 404 OS v33 Signature Edition
 
-Portal estático y PWA instalable que reúne **90 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
+Portal estático y PWA instalable que reúne **91 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
 
 ## Características
 
-- Catálogo de 90 aplicaciones con búsqueda por nombre, categoría, descripción, saga, intención o tecnología.
+- Catálogo de 91 aplicaciones con búsqueda por nombre, categoría, descripción, saga, intención o tecnología.
 - Filtros por tecnología y por siete sagas temáticas.
-- Centro de mando Universo 404 OS con 90 aplicaciones, acceso por intención y mapa orbital de los siete mundos.
+- Centro de mando Universo 404 OS con 91 aplicaciones, acceso por intención y mapa orbital de los siete mundos.
 - Buscador universal con `Ctrl/Cmd + K`, resultados por nombre, función, categoría, saga y tecnología.
 - Favoritos y apps recientes persistentes en `localStorage`, sin cuentas ni sincronización externa.
 - Vistas de catálogo en cuadrícula o lista, con preferencia local.
@@ -31,7 +31,7 @@ sw.js                      Caché offline de la interfaz
 robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
-  data.js                  Catálogo de 90 aplicaciones
+  data.js                  Catálogo de 91 aplicaciones
   styles.css               Diseño responsive y temas
   fonts.css                Tres fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
@@ -125,7 +125,7 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 ## Versión 24 — Universo 404 OS
 
 - Rediseño integral del portal como centro de mando / sistema operativo visual.
-- Total verificado: **90 aplicaciones**.
+- Total verificado: **91 aplicaciones**.
 - Navegación por intención: Crear, Escribir, Diseñar, Investigar, Organizar, Jugar y Aprender.
 - Mapa orbital interactivo de los siete mundos/sagas.
 - Command Palette con `Ctrl/Cmd + K`, navegación por teclado y apertura rápida.
@@ -140,18 +140,18 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Buscador mejorado por intención y sinónimos.
 - Fichas de app con conexiones relacionadas.
 - Microinteracciones y profundidad visual refinadas.
-- Catálogo y métricas siguen calculándose desde las 90 apps reales.
+- Catálogo y métricas siguen calculándose desde las 91 apps reales.
 
-## Actualización v32 — Signature Edition
+## Actualización v33 — Signature Edition
 
-- Mantiene las 90 aplicaciones y la arquitectura visual elegida de Universo 404 OS.
+- Mantiene las 91 aplicaciones y la arquitectura visual elegida de Universo 404 OS.
 - Añade siete skins diferenciadas, no simples recoloreados.
 - Nuevo panel accesible de Apariencia con miniaturas y persistencia local.
 - Oculus 404 reactivo a búsqueda, favoritos, navegación y apertura de fichas.
 - Movimiento ambiental CSS, entrada escalonada y parallax mínimo solo con puntero fino.
 - Modo de movimiento reducido manual además de `prefers-reduced-motion`.
 - Sin dependencias externas ni nuevos assets; sigue preparado para GitHub Pages.
-- Caché PWA actualizada a `portal-apps-404-v32-signature`.
+- Caché PWA actualizada a `portal-apps-404-v33-signature`.
 
 
 ## Actualización v28 — MD Forge 404
@@ -186,3 +186,9 @@ Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema
 - Añadida **SECOND BRAIN 404** como aplicación/proyecto nº 90.
 - Second Brain local-first para Windows con Obsidian, Docker, RAG, Watch Folder, grafo de conocimiento y memoria persistente controlada.
 - Enlace principal al repositorio GitHub del proyecto.
+
+
+## Actualización v33 — Ringtone 404
+
+- Añadida **Ringtone 404** como aplicación nº 91.
+- PWA local-first para seleccionar hasta 30 segundos de audio, previsualizar, procesar y exportar un ringtone sin subir el archivo a servidores.
