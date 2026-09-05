@@ -33,7 +33,7 @@
 @media(max-width:720px){.modal-related{margin-top:20px}.related-grid button{padding:10px}}
 
 /* ========================================================================
-   Universo 404 OS v32 — Signature Edition
+   Universo 404 OS v33 — Signature Edition
    Seven real skins, reactive Oculus, ambient motion and premium micro-UX.
    ======================================================================== */
 [data-skin="void"]{--bg:#000;--bg2:#030303;--panel:#060708;--panel2:#0a0b0d;--glass:rgba(0,0,0,.88);--ink:#f4f5f7;--muted:#8f949d;--faint:#585d66;--line:rgba(255,255,255,.09);--accent:#ff9c52;--accent-rgb:255,156,82;--accent2:#6bb7ff;--accent2-rgb:107,183,255;--good:#7fe0ad;--shadow:0 28px 90px rgba(0,0,0,.8)}
