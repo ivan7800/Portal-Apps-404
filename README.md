@@ -1,4 +1,17 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v34 Ultimate Motion
+# I. Roig · Portal Apps 404 — Universo 404 OS v35 Discovery & Reliability
+
+## Actualización v35 — Discovery & Reliability
+
+- Recuento visible calculado directamente desde `assets/data.js`; los metadatos ya no quedan obsoletos al ampliar el catálogo.
+- Estado editorial, plataforma y disponibilidad local visibles en tarjetas y fichas.
+- Ordenación por recomendación, fecha de incorporación, nombre, categoría y favoritos.
+- Búsquedas, filtros, vista y fichas representados en la URL, compatibles con enlaces directos y navegación atrás/adelante.
+- Botón “Sorpréndeme” que evita las aplicaciones abiertas recientemente.
+- Discovery Center con las seis últimas incorporaciones.
+- Instalación PWA guiada, estado online/offline y aviso controlado de actualización.
+- Enlaces compartibles mediante el menú nativo o copia al portapapeles.
+- Transiciones de salida, cambio animado de vista y respeto íntegro de movimiento reducido.
+- Auditor local y opcionalmente online mediante `node scripts/audit.mjs`.
 
 ## Actualización v34 — Ultimate Motion
 
@@ -10,13 +23,13 @@
 - Respeto completo de `prefers-reduced-motion` y simplificación en móvil.
 - Sin librerías externas, telemetría, backend ni pantalla de carga bloqueante.
 
-Portal estático y PWA instalable que reúne **91 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
+Portal estático y PWA instalable que reúne los proyectos web de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y calcula automáticamente el tamaño del catálogo.
 
 ## Características
 
-- Catálogo de 91 aplicaciones con búsqueda por nombre, categoría, descripción, saga, intención o tecnología.
+- Catálogo dinámico con búsqueda por nombre, categoría, descripción, saga, intención o tecnología.
 - Filtros por tecnología y por siete sagas temáticas.
-- Centro de mando Universo 404 OS con 91 aplicaciones, acceso por intención y mapa orbital de los siete mundos.
+- Centro de mando Universo 404 OS con acceso por intención y mapa orbital de sus mundos.
 - Buscador universal con `Ctrl/Cmd + K`, resultados por nombre, función, categoría, saga y tecnología.
 - Favoritos y apps recientes persistentes en `localStorage`, sin cuentas ni sincronización externa.
 - Vistas de catálogo en cuadrícula o lista, con preferencia local.
@@ -47,6 +60,8 @@ assets/
   fonts/                    Archivos WOFF2 utilizados
   logo.webp                Identidad visual
   screenshots/             Mockups SVG del catálogo
+scripts/
+  audit.mjs                Auditoría local y comprobación opcional de URLs
 ```
 
 ## Publicar en GitHub Pages
@@ -65,7 +80,14 @@ Los datos viven en `assets/data.js`. Cada app requiere `name`, `short`, `categor
 ```bash
 node --check assets/data.js
 node --check assets/app.js
+node scripts/audit.mjs
 python3 -m http.server 8080
+```
+
+Para comprobar también las páginas publicadas y los repositorios:
+
+```bash
+node scripts/audit.mjs --online
 ```
 
 Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema, apertura/cierre de fichas, navegación por teclado y modo móvil.

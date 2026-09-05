@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v33 Signature Edition */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v35 Discovery & Reliability */
 (function () {
   'use strict';
 
@@ -10,12 +10,17 @@
   }
 
   var APPS = D.APPS;
+  var readyTimer = null;
+  var VERSION = 'v35 Discovery & Reliability';
+  var UPDATED = '5 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
   var SKIN_NAMES = { cosmica: 'Cósmica', obsidiana: 'Obsidiana', void: 'Void OLED', glass: 'Glass', terminal: 'Terminal', arctic: 'Arctic', synthwave: 'Synthwave' };
   var SKIN_HINTS = { cosmica: 'Naranja y azul · identidad 404', obsidiana: 'Grafito elegante · baja saturación', void: 'Negro absoluto · OLED', glass: 'Cristal oscuro · profundidad', terminal: 'Workstation · fósforo verde', arctic: 'Claro editorial · máxima limpieza', synthwave: 'Neón violeta · experimental' };
   var THEME_COLORS = { cosmica: '#070a12', obsidiana: '#08090c', void: '#000000', glass: '#081018', terminal: '#050907', arctic: '#eef3f7', synthwave: '#0d0717' };
   var VIEW_NAMES = { grid: 'Cuadrícula', list: 'Lista' };
+  var SORT_NAMES = { recommended: 'Recomendadas', recent: 'Más recientes', name: 'Nombre A–Z', category: 'Categoría', favorites: 'Favoritas primero' };
+  var URL_KEYS = ['buscar', 'mundo', 'intencion', 'tecnologia', 'orden', 'vista', 'app'];
 
   var INTENTS = [
     { id: 'crear', icon: '✦', name: 'Crear', hint: 'Ideas, contenido y herramientas', test: /diseño|visual|escritura|multimedia|música|audio|prompt|foto/i },
@@ -48,17 +53,20 @@
     techFilter: '',
     selectedApp: null,
     view: loadText('u404-view', 'grid'),
+    sort: loadText('u404-sort', 'recommended'),
     favorites: loadJSON('u404-favorites', []),
     recent: loadJSON('u404-recent', []),
     palette: false,
     paletteQuery: '',
     skinPanel: false,
-    motion: loadText('u404-motion', 'auto'),
+    motion: loadText('u404-motion', 'balanced'),
     spotlight: APPS[Math.floor(Math.random() * APPS.length)]
   };
   if (SKINS.indexOf(state.skin) === -1) state.skin = 'cosmica';
   if (!VIEW_NAMES[state.view]) state.view = 'grid';
-  if (['auto', 'reduced'].indexOf(state.motion) === -1) state.motion = 'auto';
+  if (!SORT_NAMES[state.sort]) state.sort = 'recommended';
+  if (state.motion === 'auto') state.motion = 'balanced';
+  if (['reduced', 'balanced', 'cinematic'].indexOf(state.motion) === -1) state.motion = 'balanced';
 
   var esc = function (s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (ch) {
@@ -79,6 +87,48 @@
   function byName(name) {
     for (var i = 0; i < APPS.length; i++) if (APPS[i].name === name) return APPS[i];
     return null;
+  }
+  function appMeta(a) {
+    var text = [a.name, a.short, a.description, a.category, LANGUAGES[a.name]].join(' ');
+    var experimental = /experimento|experimental|simulad|laboratorio/i.test(text);
+    var desktop = /PowerShell|Electron|Docker|Python|BAT|Windows/i.test(text);
+    var wasm = /WebAssembly|WASM/i.test(text);
+    var local = /offline|local-first|local first|sin backend|PWA/i.test(text);
+    var index = APPS.indexOf(a);
+    return {
+      status: experimental ? 'Experimental' : 'Publicada',
+      statusClass: experimental ? 'experimental' : 'published',
+      platform: desktop ? 'Windows + web' : (wasm ? 'WebAssembly' : 'Web'),
+      offline: local ? 'Local / offline' : 'Conexión variable',
+      recent: index >= APPS.length - 12,
+      order: index
+    };
+  }
+
+  function applyURLState(fromNavigation) {
+    var params;
+    try { params = new URL(window.location.href).searchParams; } catch (e) { return; }
+    state.query = params.get('buscar') || '';
+    state.activeSaga = sagaNames.indexOf(params.get('mundo')) !== -1 ? params.get('mundo') : null;
+    state.activeIntent = INTENTS.some(function (x) { return x.id === params.get('intencion'); }) ? params.get('intencion') : null;
+    state.techFilter = techs.indexOf(params.get('tecnologia')) !== -1 ? params.get('tecnologia') : '';
+    state.sort = SORT_NAMES[params.get('orden')] ? params.get('orden') : (fromNavigation ? 'recommended' : state.sort);
+    state.view = VIEW_NAMES[params.get('vista')] ? params.get('vista') : (fromNavigation ? 'grid' : state.view);
+    state.selectedApp = byName(params.get('app'));
+  }
+
+  function syncURL(push) {
+    if (!window.history || !window.URL) return;
+    var url = new URL(window.location.href);
+    URL_KEYS.forEach(function (key) { url.searchParams.delete(key); });
+    if (state.query) url.searchParams.set('buscar', state.query);
+    if (state.activeSaga) url.searchParams.set('mundo', state.activeSaga);
+    if (state.activeIntent) url.searchParams.set('intencion', state.activeIntent);
+    if (state.techFilter) url.searchParams.set('tecnologia', state.techFilter);
+    if (state.sort !== 'recommended') url.searchParams.set('orden', state.sort);
+    if (state.view !== 'grid') url.searchParams.set('vista', state.view);
+    if (state.selectedApp) url.searchParams.set('app', state.selectedApp.name);
+    try { window.history[push ? 'pushState' : 'replaceState']({}, '', url.pathname + (url.search ? url.search : '') + url.hash); } catch (e) {}
   }
   function currentIntent() {
     for (var i = 0; i < INTENTS.length; i++) if (INTENTS[i].id === state.activeIntent) return INTENTS[i];
@@ -145,7 +195,13 @@
     if (state.activeSaga) out = out.filter(function (a) { return a.saga === state.activeSaga; });
     if (state.techFilter) out = out.filter(function (a) { return (LANGUAGES[a.name] || 'JavaScript') === state.techFilter; });
     var q = state.query.trim();
-    if (q) out = out.filter(function (a) { return searchScore(a, q) > 0; }).sort(function (a, b) { return searchScore(b, q) - searchScore(a, q); });
+    if (q) out = out.filter(function (a) { return searchScore(a, q) > 0; });
+    if (state.sort === 'name') out.sort(function (a, b) { return a.name.localeCompare(b.name, 'es'); });
+    else if (state.sort === 'category') out.sort(function (a, b) { return a.category.localeCompare(b.category, 'es') || a.name.localeCompare(b.name, 'es'); });
+    else if (state.sort === 'recent') out.sort(function (a, b) { return appMeta(b).order - appMeta(a).order; });
+    else if (state.sort === 'favorites') out.sort(function (a, b) { return Number(isFavorite(b.name)) - Number(isFavorite(a.name)) || a.name.localeCompare(b.name, 'es'); });
+    else if (q) out.sort(function (a, b) { return searchScore(b, q) - searchScore(a, q); });
+    else out.sort(function (a, b) { return Number(!!b.featured) - Number(!!a.featured) || appMeta(b).order - appMeta(a).order; });
     return out;
   }
 
@@ -166,6 +222,7 @@
     state.activeIntent = state.activeIntent === id ? null : id;
     state.activeSaga = null;
     state.query = '';
+    syncURL(true);
     render();
     pulseCore('navigate');
     scrollToId('catalogo');
@@ -173,6 +230,7 @@
   function setSaga(name) {
     state.activeSaga = state.activeSaga === name ? null : name;
     state.activeIntent = null;
+    syncURL(true);
     render();
     pulseCore('navigate');
     scrollToId('catalogo');
@@ -181,7 +239,7 @@
     var el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
   }
-  function reduceMotion() { return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
+  function reduceMotion() { return state.motion === 'reduced' || !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
 
   function addRecent(name) {
     state.recent = [name].concat(state.recent.filter(function (n) { return n !== name; })).slice(0, 8);
@@ -201,6 +259,8 @@
     addRecent(name);
     state.selectedApp = app;
     state.palette = false;
+    modalHistoryPushed = true;
+    syncURL(true);
     render();
     pulseCore('open');
     document.body.classList.add('modal-open');
@@ -209,13 +269,18 @@
   }
 
   function closeApp() {
-    state.selectedApp = null;
-    document.body.classList.remove('modal-open');
-    render();
-    if (lastFocusName) {
-      var again = document.querySelector('[data-app="' + cssEsc(lastFocusName) + '"]');
-      if (again) again.focus();
-    }
+    animateClose('modal-overlay', function () {
+      if (modalHistoryPushed) {
+        modalHistoryPushed = false;
+        window.history.back();
+        return;
+      }
+      state.selectedApp = null;
+      syncURL(false);
+      document.body.classList.remove('modal-open');
+      render();
+      restoreAppFocus();
+    });
   }
 
   function openPalette() {
@@ -229,12 +294,14 @@
     if (input) input.focus();
   }
   function closePalette() {
-    state.palette = false;
-    state.paletteQuery = '';
-    document.body.classList.remove('modal-open');
-    render();
-    var trigger = document.getElementById('open-palette');
-    if (trigger) trigger.focus();
+    animateClose('palette-overlay', function () {
+      state.palette = false;
+      state.paletteQuery = '';
+      document.body.classList.remove('modal-open');
+      render();
+      var trigger = document.getElementById('open-palette');
+      if (trigger) trigger.focus();
+    });
   }
 
   function cssEsc(value) {
@@ -243,13 +310,28 @@
   }
 
   var lastFocusName = null;
+  var modalHistoryPushed = false;
+  function restoreAppFocus() {
+    if (!lastFocusName) return;
+    var again = document.querySelector('[data-app="' + cssEsc(lastFocusName) + '"]');
+    if (again) again.focus();
+  }
+  function animateClose(id, done) {
+    var el = document.getElementById(id);
+    if (!el || reduceMotion()) { done(); return; }
+    if (el.classList.contains('is-closing')) return;
+    el.classList.add('is-closing');
+    setTimeout(done, 190);
+  }
   var alt = function (i) { return i % 2 === 0 ? 'var(--accent)' : 'var(--accent2)'; };
 
   function compactCard(a, i) {
+    var meta = appMeta(a);
     return '<article class="app-card" style="--c:' + alt(i) + '">' +
       '<button class="app-open" data-app="' + esc(a.name) + '" aria-label="Ver ficha de ' + esc(a.name) + '">' +
         '<span class="app-shot"><img src="' + esc(a.screenshot) + '" alt="" loading="lazy" decoding="async" width="1280" height="720"></span>' +
-        '<span class="app-copy"><span class="app-meta"><span>' + esc(a.category) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span></span>' +
+        (meta.recent ? '<span class="release-badge">NUEVA</span>' : '') +
+        '<span class="app-copy"><span class="app-meta"><span>' + esc(a.category) + '</span><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span></span>' +
         '<strong>' + esc(a.name) + '</strong><span class="app-desc">' + esc(a.short) + '</span></span>' +
       '</button>' +
       '<button class="fav" data-fav="' + esc(a.name) + '" aria-label="' + (isFavorite(a.name) ? 'Quitar ' : 'Añadir ') + esc(a.name) + (isFavorite(a.name) ? ' de favoritos' : ' a favoritos') + '" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★' : '☆') + '</button>' +
@@ -257,11 +339,12 @@
   }
 
   function listCard(a, i) {
+    var meta = appMeta(a);
     return '<article class="app-row" style="--c:' + alt(i) + '">' +
       '<button class="row-open" data-app="' + esc(a.name) + '">' +
         '<span class="row-icon">' + esc(a.icon) + '</span>' +
         '<span class="row-main"><strong>' + esc(a.name) + '</strong><small>' + esc(a.short) + '</small></span>' +
-        '<span class="row-cat">' + esc(a.category) + '</span><span class="row-tech">' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span><span class="row-go">→</span>' +
+        '<span class="row-cat">' + esc(a.category) + '</span><span class="row-tech"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span></span><span class="row-go">→</span>' +
       '</button>' +
       '<button class="fav row-fav" data-fav="' + esc(a.name) + '" aria-label="Favorito" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★' : '☆') + '</button>' +
     '</article>';
@@ -287,12 +370,15 @@
     document.documentElement.setAttribute('data-skin', state.skin);
     document.documentElement.setAttribute('data-view', state.view);
     document.documentElement.setAttribute('data-motion', state.motion);
+    document.title = state.selectedApp ? state.selectedApp.name + ' · Universo 404' : 'Universo 404 OS · ' + APPS.length + ' aplicaciones · I. Roig';
     var themeMeta = document.querySelector('meta[name="theme-color"]');
     if (themeMeta) themeMeta.setAttribute('content', THEME_COLORS[state.skin] || '#070a12');
+    document.body.classList.toggle('modal-open', !!(state.selectedApp || state.palette || state.skinPanel));
     var list = catalog();
     var featured = APPS.filter(function (a) { return a.featured; }).slice(0, 8);
     var favoriteApps = state.favorites.map(byName).filter(Boolean);
     var recentApps = state.recent.map(byName).filter(Boolean).slice(0, 6);
+    var latestApps = APPS.slice(-6).reverse();
     var intent = currentIntent();
     var sp = state.spotlight;
     var activeFilter = intent ? intent.name : (state.activeSaga || 'Todas');
@@ -306,9 +392,9 @@
             '<section class="hero-os" id="top">' +
               '<div class="hero-copy">' +
                 '<p class="eyebrow"><span class="status-dot"></span> UNIVERSO 404 · SISTEMA ONLINE</p>' +
-                '<h1>Tu ecosistema digital.<br><em>91 apps, un solo universo.</em></h1>' +
+                '<h1>Tu ecosistema digital.<br><em>' + APPS.length + ' apps, un solo universo.</em></h1>' +
                 '<p class="lede">Herramientas, escritura, diseño, IA, sistemas, cultura y ficción interactiva reunidos en un centro de mando local-first.</p>' +
-                '<div class="hero-actions"><button class="primary" id="open-palette">⌕ Buscar en Universo 404 <kbd>Ctrl K</kbd></button><a class="ghost" href="#catalogo">Explorar las ' + APPS.length + ' apps</a></div>' +
+                '<div class="hero-actions"><button class="primary" id="open-palette">⌕ Buscar en Universo 404 <kbd>Ctrl K</kbd></button><button class="ghost" id="random-app">✦ Sorpréndeme</button><button class="ghost install-pwa' + (deferredInstallPrompt ? ' is-ready' : '') + '" id="install-pwa">⇩ Instalar portal</button></div>' +
                 '<div class="system-pills"><span><b>' + APPS.length + '</b> apps</span><span><b>' + sagaNames.length + '</b> mundos</span><span><b>' + totalCats + '</b> categorías</span><span>● sin tracking</span></div>' +
               '</div>' +
               orbitHTML() +
@@ -329,11 +415,13 @@
             (favoriteApps.length ? '<section class="section" id="favoritos"><div class="section-head"><div><p class="kicker">Tu espacio</p><h2>Favoritos</h2></div><p>Guardados solo en este navegador.</p></div><div class="small-grid">' + favoriteApps.slice(0, 8).map(smallTile).join('') + '</div></section>' : '') +
             (recentApps.length ? '<section class="section" id="recientes"><div class="section-head"><div><p class="kicker">Actividad local</p><h2>Abiertas recientemente</h2></div><button class="text-btn" id="clear-recent">Limpiar</button></div><div class="small-grid">' + recentApps.map(smallTile).join('') + '</div></section>' : '') +
 
+            '<section class="section news-section" id="novedades"><div class="section-head"><div><p class="kicker">Discovery Center · actualizado ' + UPDATED + '</p><h2>Últimas incorporaciones</h2></div><p>Las seis aplicaciones añadidas más recientemente al catálogo.</p></div><div class="featured-grid">' + latestApps.map(compactCard).join('') + '</div></section>' +
+
             '<section class="section" id="top-apps"><div class="section-head"><div><p class="kicker">Selección 404</p><h2>Imprescindibles</h2></div><p>Una muestra representativa del ecosistema.</p></div><div class="featured-grid">' + featured.map(compactCard).join('') + '</div></section>' +
 
             '<section class="section control-panel" id="panel">' +
               '<div class="section-head"><div><p class="kicker">Control Center</p><h2>Estado del ecosistema</h2></div><p>Datos calculados en tiempo real desde el catálogo.</p></div>' +
-              '<div class="stats-grid"><div class="stat"><strong>' + APPS.length + '</strong><span>apps catalogadas</span></div><div class="stat"><strong>' + sagaNames.length + '</strong><span>mundos</span></div><div class="stat"><strong>' + totalCats + '</strong><span>categorías</span></div><div class="stat"><strong>' + techs.length + '</strong><span>tecnologías</span></div></div>' +
+              '<div class="stats-grid"><div class="stat"><strong data-count="' + APPS.length + '">' + APPS.length + '</strong><span>apps catalogadas</span></div><div class="stat"><strong data-count="' + sagaNames.length + '">' + sagaNames.length + '</strong><span>mundos</span></div><div class="stat"><strong data-count="' + totalCats + '">' + totalCats + '</strong><span>categorías</span></div><div class="stat"><strong data-count="' + techs.length + '">' + techs.length + '</strong><span>tecnologías</span></div></div>' +
               '<div class="distribution"><h3>Distribución por mundo</h3>' + sagas.map(function (s) { return '<button class="dist-row" data-saga="' + esc(s.name) + '"><span>' + esc(s.icon) + ' ' + esc(s.name) + '</span><i><b style="width:' + Math.round((s.count / maxSaga) * 100) + '%"></b></i><strong>' + s.count + '</strong></button>'; }).join('') + '</div>' +
             '</section>' +
 
@@ -342,35 +430,42 @@
               '<div class="catalog-toolbar">' +
                 '<label class="catalog-search"><span>⌕</span><input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Buscar por nombre, función, categoría…" value="' + esc(state.query) + '"></label>' +
                 '<select id="tech" aria-label="Filtrar por tecnología"><option value="">Toda tecnología</option>' + techs.map(function (t) { return '<option value="' + esc(t) + '"' + (state.techFilter === t ? ' selected' : '') + '>' + esc(t) + '</option>'; }).join('') + '</select>' +
+                '<select id="sort" aria-label="Ordenar aplicaciones">' + Object.keys(SORT_NAMES).map(function (key) { return '<option value="' + key + '"' + (state.sort === key ? ' selected' : '') + '>' + esc(SORT_NAMES[key]) + '</option>'; }).join('') + '</select>' +
                 '<button class="filter-chip' + ((state.activeIntent || state.activeSaga) ? ' is-on' : '') + '" id="clear-filter">' + esc(activeFilter) + ((state.activeIntent || state.activeSaga) ? ' ×' : '') + '</button>' +
               '</div>' +
               '<div class="catalog-status"><span role="status">Mostrando <b>' + list.length + '</b> de ' + APPS.length + '</span><span>' + esc(VIEW_NAMES[state.view]) + '</span></div>' +
               (list.length ? (state.view === 'grid' ? '<div class="catalog-grid">' + list.map(compactCard).join('') + '</div>' : '<div class="catalog-list">' + list.map(listCard).join('') + '</div>') : '<div class="empty"><span>◌</span><h3>Sin coincidencias</h3><p>Prueba otra búsqueda o elimina los filtros activos.</p><button class="ghost compact" id="reset-empty">Restablecer filtros</button></div>') +
             '</section>' +
 
-            '<footer class="footer"><div><img src="assets/logo.webp" alt="" width="36" height="36"><span><strong>Universo 404 OS</strong><small>I. Roig · v28 Signature</small></span></div><p>' + APPS.length + ' apps · local-first · sin tracking · GitHub Pages</p><a href="#top">Volver al núcleo ↑</a></footer>' +
+            '<footer class="footer"><div><img src="assets/logo.webp" alt="" width="36" height="36"><span><strong>Universo 404 OS</strong><small>I. Roig · ' + VERSION + '</small></span></div><p>' + APPS.length + ' apps · local-first · sin tracking · GitHub Pages</p><a href="#top">Volver al núcleo ↑</a></footer>' +
           '</main>' +
           mobileNavHTML() +
         '</div>' +
       '</div>' +
       (state.selectedApp ? modalHTML(state.selectedApp) : '') +
       (state.palette ? paletteHTML() : '') +
-      (state.skinPanel ? skinPanelHTML() : '');
+      (state.skinPanel ? skinPanelHTML() : '') +
+      '<div class="system-toast" id="system-toast" role="status" aria-live="polite"></div>' +
+      '<div class="update-toast" id="update-toast" role="status"' + (waitingWorker ? '' : ' hidden') + '><span><strong>Actualización disponible</strong><small>Hay una nueva versión del portal preparada.</small></span><button id="apply-update">Actualizar ahora</button></div>';
 
     wire();
+    initMotion();
+    if (!readyTimer && !root.classList.contains('u404-ready')) {
+      readyTimer = setTimeout(function () { root.classList.add('u404-ready'); }, 850);
+    }
   }
 
   function sidebarHTML() {
     return '<aside class="sidebar" aria-label="Navegación principal">' +
       '<a class="side-brand" href="#top"><img src="assets/logo.webp" alt="" width="48" height="48"><span><strong>U404</strong><small>PORTAL OS</small></span></a>' +
-      '<nav class="side-nav"><p>Explorar</p><a href="#top" class="active"><span>◉</span>Inicio</a><a href="#intenciones"><span>✦</span>Qué quieres hacer</a><a href="#top-apps"><span>◇</span>Destacadas</a><a href="#catalogo"><span>▦</span>Catálogo <b>' + APPS.length + '</b></a><a href="#panel"><span>⌁</span>Control Center</a></nav>' +
+      '<nav class="side-nav"><p>Explorar</p><a href="#top" class="active"><span>◉</span>Inicio</a><a href="#intenciones"><span>✦</span>Qué quieres hacer</a><a href="#novedades"><span>＋</span>Novedades</a><a href="#top-apps"><span>◇</span>Destacadas</a><a href="#catalogo"><span>▦</span>Catálogo <b>' + APPS.length + '</b></a><a href="#panel"><span>⌁</span>Control Center</a></nav>' +
       '<div class="side-worlds"><p>Mundos</p>' + sagas.map(function (s) { return '<button data-saga="' + esc(s.name) + '" class="' + (state.activeSaga === s.name ? 'active' : '') + '"><span>' + esc(s.icon) + '</span><em>' + esc(s.name) + '</em><b>' + s.count + '</b></button>'; }).join('') + '</div>' +
       '<div class="side-bottom"><button id="skin" class="skin-button"><span>◐</span><span><small>Apariencia</small><strong>' + esc(SKIN_NAMES[state.skin]) + '</strong></span></button><a href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer"><span>⌘</span>GitHub ↗</a></div>' +
     '</aside>';
   }
 
   function topbarHTML() {
-    return '<header class="topbar"><div class="crumb"><span class="pulse"></span><strong>UNIVERSO 404</strong><span>/</span><span>Centro de mando</span></div><div class="top-actions"><button class="top-search" id="open-palette-top">⌕ <span>Buscar apps</span><kbd>Ctrl K</kbd></button><button class="icon-btn" id="skin-top" aria-label="Abrir apariencia" title="Apariencia">◐</button><a class="avatar" href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer" aria-label="GitHub de I. Roig">IR</a></div></header>';
+    return '<header class="topbar"><div class="crumb"><span class="pulse ' + (navigator.onLine ? '' : 'is-offline') + '"></span><strong>UNIVERSO 404</strong><span>/</span><span id="network-label">' + (navigator.onLine ? 'Sistema online' : 'Modo sin conexión') + '</span></div><div class="top-actions"><button class="top-search" id="open-palette-top">⌕ <span>Buscar apps</span><kbd>Ctrl K</kbd></button><button class="icon-btn install-pwa' + (deferredInstallPrompt ? ' is-ready' : '') + '" id="install-pwa-top" aria-label="Instalar portal" title="Instalar portal">⇩</button><button class="icon-btn" id="skin-top" aria-label="Abrir apariencia" title="Apariencia">◐</button><a class="avatar" href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer" aria-label="GitHub de I. Roig">IR</a></div></header>';
   }
 
   function mobileNavHTML() {
@@ -379,12 +474,13 @@
 
   function modalHTML(a) {
     var related = relatedApps(a);
+    var meta = appMeta(a);
     return '<div class="overlay" id="modal-overlay"><div class="app-modal" id="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">' +
       '<button class="modal-close" id="close-modal" aria-label="Cerrar ficha">×</button>' +
       '<div class="modal-shot"><img src="' + esc(a.screenshot) + '" alt="Vista previa de ' + esc(a.name) + '" width="1280" height="720"><span>' + esc(a.saga) + '</span></div>' +
       '<div class="modal-content"><div class="modal-heading"><div><p class="kicker">' + esc(a.category) + '</p><h2 id="modal-title">' + esc(a.name) + '</h2></div><button class="modal-fav" id="modal-fav" data-fav="' + esc(a.name) + '" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★ Favorita' : '☆ Favorita') + '</button></div>' +
-      '<p class="modal-description">' + esc(a.description || a.short) + '</p><div class="modal-tags"><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span><span>GitHub Pages</span><span>Local-first</span></div>' +
-      '<div class="modal-actions"><a class="primary" href="' + esc(a.pages) + '" target="_blank" rel="noopener noreferrer">Abrir aplicación ↗</a><a class="ghost" href="' + esc(a.github) + '" target="_blank" rel="noopener noreferrer">Ver repositorio</a></div>' +
+      '<p class="modal-description">' + esc(a.description || a.short) + '</p><div class="modal-tags"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span><span>' + esc(meta.platform) + '</span><span>' + esc(meta.offline) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span></div>' +
+      '<div class="modal-actions"><a class="primary" href="' + esc(a.pages) + '" target="_blank" rel="noopener noreferrer">Abrir aplicación ↗</a><a class="ghost" href="' + esc(a.github) + '" target="_blank" rel="noopener noreferrer">Ver repositorio</a><button class="ghost" id="share-app">Compartir ficha</button></div>' +
       (related.length ? '<div class="modal-related"><p class="kicker">Conexiones 404</p><h3>También te puede servir</h3><div class="related-grid">' + related.map(function (r) { return '<button data-app="' + esc(r.name) + '"><span>' + esc(r.icon) + '</span><span><strong>' + esc(r.name) + '</strong><small>' + esc(r.category) + '</small></span><b>→</b></button>'; }).join('') + '</div></div>' : '') +
       '</div></div></div>';
   }
@@ -409,7 +505,9 @@
           '<span class="skin-copy"><strong>' + esc(SKIN_NAMES[key]) + '</strong><small>' + esc(SKIN_HINTS[key]) + '</small></span><em>' + (state.skin === key ? '✓' : '→') + '</em>' +
         '</button>';
       }).join('') + '</div>' +
-      '<div class="motion-setting"><span><strong>Movimiento ambiental</strong><small>Respeta “Reducir movimiento” del sistema automáticamente.</small></span><button id="motion-toggle" class="motion-toggle" aria-pressed="' + (state.motion === 'reduced') + '"><span></span>' + (state.motion === 'reduced' ? 'Reducido' : 'Dinámico') + '</button></div>' +
+      '<div class="motion-setting"><span><strong>Intensidad del movimiento</strong><small>Equilibrado es el modo recomendado. La preferencia del sistema siempre tiene prioridad.</small></span><div class="motion-options" role="group" aria-label="Intensidad del movimiento">' +
+        [['reduced','Reducido'],['balanced','Equilibrado'],['cinematic','Cinematográfico']].map(function (m) { return '<button data-motion-choice="' + m[0] + '" aria-pressed="' + (state.motion === m[0]) + '">' + m[1] + '</button>'; }).join('') +
+      '</div></div>' +
       '<div class="skin-foot"><span>Sin librerías externas</span><span>GPU-friendly</span><span>Preferencia local</span></div>' +
     '</div></div>';
   }
@@ -424,11 +522,13 @@
   }
 
   function closeSkinPanel() {
-    state.skinPanel = false;
-    document.body.classList.remove('modal-open');
-    render();
-    var trigger = document.getElementById('skin');
-    if (trigger) trigger.focus();
+    animateClose('skin-overlay', function () {
+      state.skinPanel = false;
+      document.body.classList.remove('modal-open');
+      render();
+      var trigger = document.getElementById('skin');
+      if (trigger) trigger.focus();
+    });
   }
 
   function setSkin(key) {
@@ -441,20 +541,81 @@
     if (chosen) chosen.focus();
   }
 
-  function toggleMotion() {
-    state.motion = state.motion === 'reduced' ? 'auto' : 'reduced';
+  function setMotion(mode) {
+    if (['reduced', 'balanced', 'cinematic'].indexOf(mode) === -1) return;
+    state.motion = mode;
     try { localStorage.setItem('u404-motion', state.motion); } catch (e) {}
     render();
     document.body.classList.add('modal-open');
-    var toggle = document.getElementById('motion-toggle');
+    var toggle = document.querySelector('[data-motion-choice="' + mode + '"]');
     if (toggle) toggle.focus();
   }
 
   var activityTimer = null;
+  var searchTimer = null;
+  var deferredInstallPrompt = null;
+  var waitingWorker = null;
   function pulseCore(kind) {
     document.body.setAttribute('data-activity', kind || 'active');
     if (activityTimer) clearTimeout(activityTimer);
     activityTimer = setTimeout(function () { document.body.removeAttribute('data-activity'); }, 720);
+  }
+
+  function openRandomApp() {
+    var available = APPS.filter(function (a) { return state.recent.indexOf(a.name) === -1; });
+    if (!available.length) available = APPS.slice();
+    openApp(available[Math.floor(Math.random() * available.length)].name);
+  }
+
+  function showToast(message) {
+    var toast = document.getElementById('system-toast');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.remove('is-visible');
+    void toast.offsetWidth;
+    toast.classList.add('is-visible');
+    setTimeout(function () { toast.classList.remove('is-visible'); }, 3600);
+  }
+
+  function installPWA() {
+    if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
+      showToast('Universo 404 ya está instalado.');
+      return;
+    }
+    if (!deferredInstallPrompt) {
+      var ios = /iphone|ipad|ipod/i.test(navigator.userAgent || '');
+      showToast(ios ? 'En Safari: Compartir → Añadir a pantalla de inicio.' : 'Usa la opción “Instalar aplicación” del menú del navegador.');
+      return;
+    }
+    deferredInstallPrompt.prompt();
+    deferredInstallPrompt.userChoice.then(function (choice) {
+      showToast(choice.outcome === 'accepted' ? 'Instalación iniciada.' : 'Instalación cancelada.');
+      deferredInstallPrompt = null;
+    });
+  }
+
+  function shareCurrentApp() {
+    if (!state.selectedApp) return;
+    syncURL(false);
+    var url = window.location.href;
+    var data = { title: state.selectedApp.name + ' · Universo 404', text: state.selectedApp.short, url: url };
+    if (navigator.share) {
+      navigator.share(data).catch(function () {});
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { showToast('Enlace de la ficha copiado.'); }, function () { showToast('No se pudo copiar el enlace.'); });
+    } else {
+      window.prompt('Copia el enlace de esta ficha:', url);
+    }
+  }
+
+  function showUpdate(worker) {
+    waitingWorker = worker || waitingWorker;
+    var toast = document.getElementById('update-toast');
+    if (toast) toast.hidden = false;
+  }
+
+  function applyUpdate() {
+    if (waitingWorker) waitingWorker.postMessage({ type: 'SKIP_WAITING' });
   }
 
   function wire() {
@@ -466,6 +627,10 @@
     ['open-palette', 'open-palette-top', 'open-palette-core', 'mobile-search'].forEach(function (id) {
       var el = document.getElementById(id); if (el) el.onclick = openPalette;
     });
+    ['install-pwa', 'install-pwa-top'].forEach(function (id) { var el = document.getElementById(id); if (el) el.onclick = installPWA; });
+    var random = document.getElementById('random-app'); if (random) random.onclick = openRandomApp;
+    var update = document.getElementById('apply-update'); if (update) update.onclick = applyUpdate;
+    var share = document.getElementById('share-app'); if (share) share.onclick = shareCurrentApp;
 
     Array.prototype.forEach.call(document.querySelectorAll('[data-intent]'), function (b) {
       b.onclick = function () { setIntent(b.getAttribute('data-intent')); };
@@ -486,15 +651,27 @@
       };
     });
     Array.prototype.forEach.call(document.querySelectorAll('[data-view]'), function (b) {
-      b.onclick = function () { state.view = b.getAttribute('data-view'); try { localStorage.setItem('u404-view', state.view); } catch (e) {} render(); scrollToId('catalogo'); };
+      b.onclick = function () {
+        var nextView = b.getAttribute('data-view');
+        var commit = function () { state.view = nextView; try { localStorage.setItem('u404-view', state.view); } catch (e) {} syncURL(true); render(); };
+        if (document.startViewTransition && !reduceMotion()) document.startViewTransition(commit); else commit();
+        scrollToId('catalogo');
+      };
     });
 
     var q = document.getElementById('q');
-    if (q) q.oninput = function (e) { state.query = e.target.value; updateCatalogOnly(); };
+    if (q) q.oninput = function (e) {
+      state.query = e.target.value;
+      syncURL(false);
+      if (searchTimer) clearTimeout(searchTimer);
+      searchTimer = setTimeout(updateCatalogOnly, 70);
+    };
     var tech = document.getElementById('tech');
-    if (tech) tech.onchange = function (e) { state.techFilter = e.target.value; render(); scrollToId('catalogo'); };
+    if (tech) tech.onchange = function (e) { state.techFilter = e.target.value; syncURL(true); render(); scrollToId('catalogo'); };
+    var sort = document.getElementById('sort');
+    if (sort) sort.onchange = function (e) { state.sort = e.target.value; try { localStorage.setItem('u404-sort', state.sort); } catch (err) {} syncURL(true); render(); scrollToId('catalogo'); };
     var clear = document.getElementById('clear-filter');
-    if (clear) clear.onclick = function () { state.activeSaga = null; state.activeIntent = null; render(); scrollToId('catalogo'); };
+    if (clear) clear.onclick = function () { state.activeSaga = null; state.activeIntent = null; syncURL(true); render(); scrollToId('catalogo'); };
     var reset = document.getElementById('reset-empty');
     if (reset) reset.onclick = resetFilters;
     var clearRecent = document.getElementById('clear-recent');
@@ -503,8 +680,9 @@
     Array.prototype.forEach.call(document.querySelectorAll('[data-skin-choice]'), function (b) {
       b.onclick = function () { setSkin(b.getAttribute('data-skin-choice')); };
     });
-    var motionToggle = document.getElementById('motion-toggle');
-    if (motionToggle) motionToggle.onclick = toggleMotion;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-motion-choice]'), function (b) {
+      b.onclick = function () { setMotion(b.getAttribute('data-motion-choice')); };
+    });
     var skinOv = document.getElementById('skin-overlay');
     if (skinOv) {
       skinOv.onclick = function (e) { if (e.target === skinOv) closeSkinPanel(); };
@@ -558,7 +736,47 @@
   }
 
   function resetFilters() {
-    state.query = ''; state.activeSaga = null; state.activeIntent = null; state.techFilter = ''; render(); scrollToId('catalogo');
+    state.query = ''; state.activeSaga = null; state.activeIntent = null; state.techFilter = ''; state.sort = 'recommended';
+    try { localStorage.setItem('u404-sort', state.sort); } catch (e) {}
+    syncURL(true); render(); scrollToId('catalogo');
+  }
+
+  var motionObserver = null;
+  function initMotion() {
+    if (motionObserver) motionObserver.disconnect();
+    var targets = document.querySelectorAll('.section-head,.intent-card,.spot-card,.small-tile,.featured-grid .app-card,.control-panel,.catalog-section');
+    if (reduceMotion() || !('IntersectionObserver' in window)) {
+      Array.prototype.forEach.call(targets, function (el) { el.classList.add('is-visible'); });
+      animateMetrics();
+      return;
+    }
+    motionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        if (entry.target.classList.contains('control-panel')) animateMetrics();
+        motionObserver.unobserve(entry.target);
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -7% 0px' });
+    Array.prototype.forEach.call(targets, function (el, i) {
+      el.style.setProperty('--reveal-delay', Math.min(i % 8, 5) * 36 + 'ms');
+      motionObserver.observe(el);
+    });
+  }
+
+  function animateMetrics() {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), function (el) {
+      if (el.getAttribute('data-animated') || reduceMotion()) return;
+      el.setAttribute('data-animated', 'true');
+      var target = Number(el.getAttribute('data-count')) || 0, start = performance.now();
+      function frame(now) {
+        var p = Math.min(1, (now - start) / 700);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.dist-row i b'), function (bar) { bar.classList.add('bar-ready'); });
   }
 
   document.addEventListener('keydown', function (e) {
@@ -626,9 +844,62 @@
     }, { passive: true });
   }
 
+  window.addEventListener('beforeinstallprompt', function (event) {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    var buttons = document.querySelectorAll('.install-pwa');
+    Array.prototype.forEach.call(buttons, function (button) { button.classList.add('is-ready'); });
+  });
+
+  window.addEventListener('appinstalled', function () {
+    deferredInstallPrompt = null;
+    showToast('Universo 404 se ha instalado correctamente.');
+  });
+
+  function updateNetworkUI() {
+    var dot = document.querySelector('.topbar .pulse');
+    var label = document.getElementById('network-label');
+    if (dot) dot.classList.toggle('is-offline', !navigator.onLine);
+    if (label) label.textContent = navigator.onLine ? 'Sistema online' : 'Modo sin conexión';
+    showToast(navigator.onLine ? 'Conexión recuperada.' : 'Estás usando el portal sin conexión.');
+  }
+  window.addEventListener('online', updateNetworkUI);
+  window.addEventListener('offline', updateNetworkUI);
+
+  window.addEventListener('popstate', function () {
+    var hadModal = !!state.selectedApp;
+    modalHistoryPushed = false;
+    applyURLState(true);
+    render();
+    if (hadModal && !state.selectedApp) restoreAppFocus();
+  });
+
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    window.addEventListener('load', function () { navigator.serviceWorker.register('./sw.js').catch(function () {}); });
+    var refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (refreshing) return;
+      refreshing = true;
+      window.location.reload();
+    });
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js').then(function (registration) {
+        if (registration.waiting) showUpdate(registration.waiting);
+        registration.addEventListener('updatefound', function () {
+          var worker = registration.installing;
+          if (!worker) return;
+          worker.addEventListener('statechange', function () {
+            if (worker.state === 'installed' && navigator.serviceWorker.controller) showUpdate(worker);
+          });
+        });
+      }).catch(function () {});
+    });
   }
 
+  applyURLState();
   render();
+  if (state.selectedApp) {
+    document.body.classList.add('modal-open');
+    var initialClose = document.getElementById('close-modal');
+    if (initialClose) initialClose.focus();
+  }
 })();
