@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Size Match 404</title>
+  <desc id="desc">Ilustración abstracta educativa sobre medidas, comodidad y comunicación.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#17152b"/><stop offset="1" stop-color="#312044"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#f29ac1"/><stop offset="1" stop-color="#8fd3ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" rx="34" fill="url(#bg)"/>
+  <circle cx="1030" cy="110" r="210" fill="#f29ac1" opacity=".08"/>
+  <circle cx="180" cy="610" r="250" fill="#8fd3ff" opacity=".07"/>
+  <g transform="translate(110 115)">
+    <text x="0" y="70" fill="#fff" font-family="system-ui,sans-serif" font-size="66" font-weight="800">Size Match 404</text>
+    <text x="0" y="125" fill="#c9c4db" font-family="system-ui,sans-serif" font-size="28">Educación · comodidad · control</text>
+    <g transform="translate(0 205)">
+      <rect width="760" height="150" rx="28" fill="#ffffff" opacity=".06" stroke="#ffffff" stroke-opacity=".12"/>
+      <line x1="65" y1="76" x2="695" y2="76" stroke="url(#accent)" stroke-width="12" stroke-linecap="round"/>
+      <g fill="#fff" opacity=".9">
+        <circle cx="120" cy="76" r="18"/><circle cx="320" cy="76" r="18"/><circle cx="520" cy="76" r="18"/><circle cx="680" cy="76" r="18"/>
+      </g>
+      <g fill="#c9c4db" font-family="system-ui,sans-serif" font-size="17" text-anchor="middle">
+        <text x="120" y="120">medidas</text><text x="320" y="120">sensibilidad</text><text x="520" y="120">lubricación</text><text x="680" y="120">control</text>
+      </g>
+    </g>
+    <text x="0" y="435" fill="#f4eff9" font-family="system-ui,sans-serif" font-size="24">Información orientativa, privada y sin backend</text>
+  </g>
+  <g transform="translate(930 400)">
+    <path d="M0 80 C45 20 120 20 165 80 C120 145 45 145 0 80Z" fill="none" stroke="url(#accent)" stroke-width="14"/>
+    <circle cx="82" cy="80" r="26" fill="#fff" opacity=".92"/>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">StyleForge 404</title>
+  <desc id="desc">Mockup visual de una app para convertir referencias visuales en sistemas de diseño exportables.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#071013"></stop>
+      <stop offset="0.48" stop-color="#10243a"></stop>
+      <stop offset="1" stop-color="#2a1643"></stop>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0b1624" stop-opacity="0.96"></stop>
+      <stop offset="1" stop-color="#121827" stop-opacity="0.95"></stop>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#22d3ee"></stop>
+      <stop offset="0.52" stop-color="#a78bfa"></stop>
+      <stop offset="1" stop-color="#facc15"></stop>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="16" result="blur"></feGaussianBlur>
+      <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+    
+  </defs>
+  <rect width="1280" height="720" rx="42" fill="url(#bg)"></rect>
+  <circle cx="1035" cy="120" r="280" fill="#22d3ee" opacity=".16" filter="url(#glow)"></circle>
+  <circle cx="210" cy="645" r="260" fill="#a78bfa" opacity=".14" filter="url(#glow)"></circle>
+  <rect x="32" y="30" width="1216" height="660" rx="34" fill="#ffffff" opacity=".028" stroke="#ffffff" stroke-opacity=".16" stroke-width="2"></rect>
+
+  <text x="62" y="90" class="font meta">Dev / Diseño · Nueva app</text>
+  <text x="62" y="178" class="font title">StyleForge 404</text>
+  <text x="64" y="230" class="font sub">Analiza referencias visuales y conviértelas</text>
+  <text x="64" y="264" class="font sub">en un sistema de diseño propio y exportable.</text>
+
+  <rect x="64" y="548" width="258" height="58" rx="29" fill="url(#accent)"></rect>
+  <text x="101" y="585" class="font label" fill="#020617">ABRIR STYLEFORGE</text>
+  <rect x="344" y="548" width="170" height="58" rx="29" fill="#ffffff" opacity=".10" stroke="#ffffff" stroke-opacity=".26"></rect>
+  <text x="395" y="585" class="font label">GITHUB</text>
+
+  <g transform="translate(540 88)">
+    <rect x="0" y="0" width="686" height="548" rx="32" fill="url(#panel)" stroke="#bae6fd" stroke-opacity=".22" stroke-width="2"></rect>
+    <rect x="24" y="20" width="638" height="52" rx="18" fill="#050b16" opacity=".86"></rect>
+    <circle cx="55" cy="46" r="7" fill="#fb7185"></circle><circle cx="80" cy="46" r="7" fill="#fbbf24"></circle><circle cx="105" cy="46" r="7" fill="#4ade80"></circle>
+    <rect x="138" y="33" width="372" height="24" rx="12" fill="#111827"></rect>
+    <text x="158" y="50" class="font tiny">styleforge://referencia/sistema-propio</text>
+
+    <rect x="34" y="102" width="196" height="400" rx="24" fill="#0f172a" stroke="#ffffff" stroke-opacity=".10"></rect>
+    <text x="62" y="143" class="font label">Referencias</text>
+    <rect x="62" y="166" width="138" height="92" rx="18" fill="#22d3ee" opacity=".18" stroke="#22d3ee" stroke-opacity=".42"></rect>
+    <rect x="82" y="188" width="96" height="12" rx="6" fill="#e0f2fe" opacity=".70"></rect>
+    <rect x="82" y="214" width="68" height="12" rx="6" fill="#e0f2fe" opacity=".35"></rect>
+    <rect x="62" y="284" width="138" height="92" rx="18" fill="#a78bfa" opacity=".18" stroke="#a78bfa" stroke-opacity=".42"></rect>
+    <circle cx="104" cy="330" r="24" fill="#a78bfa" opacity=".70"></circle>
+    <rect x="142" y="312" width="38" height="38" rx="10" fill="#facc15" opacity=".72"></rect>
+    <rect x="62" y="402" width="138" height="54" rx="18" fill="#ffffff" opacity=".08" stroke="#ffffff" stroke-opacity=".14"></rect>
+    <text x="83" y="436" class="font tiny">3 fuentes</text>
+
+    <rect x="258" y="102" width="396" height="400" rx="28" fill="#08111f" stroke="#ffffff" stroke-opacity=".12"></rect>
+    <text x="292" y="148" class="font label">Sistema de diseño generado</text>
+    <rect x="292" y="174" width="170" height="8" rx="4" fill="url(#accent)"></rect>
+
+    <g transform="translate(292 218)">
+      <rect x="0" y="0" width="72" height="72" rx="18" fill="#22d3ee"></rect>
+      <rect x="92" y="0" width="72" height="72" rx="18" fill="#a78bfa"></rect>
+      <rect x="184" y="0" width="72" height="72" rx="18" fill="#facc15"></rect>
+      <rect x="276" y="0" width="72" height="72" rx="18" fill="#0f172a" stroke="#ffffff" stroke-opacity=".22"></rect>
+    </g>
+
+    <g transform="translate(292 328)">
+      <rect x="0" y="0" width="158" height="48" rx="16" fill="#ffffff" opacity=".08"></rect>
+      <text x="22" y="31" class="font tiny">Tokens CSS</text>
+      <rect x="182" y="0" width="166" height="48" rx="16" fill="#ffffff" opacity=".08"></rect>
+      <text x="206" y="31" class="font tiny">UI Kit JSON</text>
+      <rect x="0" y="70" width="348" height="48" rx="16" fill="#22d3ee" opacity=".16" stroke="#22d3ee" stroke-opacity=".36"></rect>
+      <text x="26" y="101" class="font tiny" fill="#bae6fd">Exportar guía visual reutilizable</text>
+    </g>
+
+    <path d="M238 290 C270 232 310 262 342 220 C388 160 446 190 486 150 C532 104 586 138 632 104" fill="none" stroke="url(#accent)" stroke-width="5" stroke-linecap="round" opacity=".78"></path>
+  </g>
+</svg>

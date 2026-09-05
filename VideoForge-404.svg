@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">VideoForge 404</title>
+  <desc id="desc">Mockup premium de una app web estática para convertir y preparar vídeo y audio desde el navegador.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#020617"></stop>
+      <stop offset="0.50" stop-color="#111827"></stop>
+      <stop offset="1" stop-color="#1e1b4b"></stop>
+    </linearGradient>
+    <linearGradient id="hot" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"></stop>
+      <stop offset="0.48" stop-color="#a78bfa"></stop>
+      <stop offset="1" stop-color="#f97316"></stop>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="b"></feGaussianBlur>
+      <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" rx="42" fill="url(#bg)"></rect>
+  <circle cx="1010" cy="110" r="230" fill="#22d3ee" opacity=".09"></circle>
+  <circle cx="160" cy="650" r="250" fill="#f97316" opacity=".08"></circle>
+  <rect x="74" y="70" width="1052" height="620" rx="34" fill="#070b12" opacity=".86" stroke="#334155"></rect>
+  <rect x="116" y="112" width="968" height="70" rx="20" fill="#0d1322" stroke="#22d3ee" stroke-opacity=".25"></rect>
+  <text x="148" y="157" fill="#e0f2fe" font-family="Inter,Segoe UI,Arial" font-size="30" font-weight="900">VideoForge 404</text>
+  <text x="806" y="156" fill="#93c5fd" font-family="Inter,Segoe UI,Arial" font-size="19" font-weight="700">VIDEO · AUDIO · BROWSER</text>
+
+  <rect x="122" y="230" width="440" height="322" rx="28" fill="#0b1220" stroke="#1e40af" stroke-opacity=".55"></rect>
+  <rect x="160" y="270" width="364" height="205" rx="20" fill="#020617" stroke="#334155"></rect>
+  <path d="M312 326 L312 420 L402 373 Z" fill="url(#hot)" filter="url(#glow)"></path>
+  <rect x="160" y="500" width="364" height="16" rx="8" fill="#1f2937"></rect>
+  <rect x="160" y="500" width="238" height="16" rx="8" fill="url(#hot)"></rect>
+  <text x="170" y="585" fill="#cbd5e1" font-family="Inter,Segoe UI,Arial" font-size="24" font-weight="800">Convertir · cortar · preparar</text>
+
+  <rect x="630" y="230" width="448" height="322" rx="28" fill="#0b1220" stroke="#7c3aed" stroke-opacity=".5"></rect>
+  <text x="675" y="286" fill="#f8fafc" font-family="Inter,Segoe UI,Arial" font-size="34" font-weight="900">Pipeline multimedia</text>
+  <text x="675" y="328" fill="#94a3b8" font-family="Inter,Segoe UI,Arial" font-size="20">Archivos locales, sin backend ni base de datos.</text>
+  <g font-family="Inter,Segoe UI,Arial" font-size="18" font-weight="800">
+    <rect x="675" y="370" width="150" height="56" rx="16" fill="#0e7490" opacity=".86"></rect>
+    <text x="711" y="405" fill="#ecfeff">VIDEO</text>
+    <rect x="848" y="370" width="150" height="56" rx="16" fill="#6d28d9" opacity=".86"></rect>
+    <text x="886" y="405" fill="#f5f3ff">AUDIO</text>
+    <rect x="675" y="450" width="323" height="56" rx="16" fill="#334155" opacity=".92"></rect>
+    <text x="711" y="485" fill="#e2e8f0">GITHUB PAGES READY</text>
+  </g>
+
+  <rect x="170" y="630" width="860" height="22" rx="11" fill="#1f2937"></rect>
+  <rect x="170" y="630" width="690" height="22" rx="11" fill="url(#hot)" opacity=".95"></rect>
+</svg>
