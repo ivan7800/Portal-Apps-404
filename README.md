@@ -1,4 +1,14 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v33 Signature Edition
+# I. Roig · Portal Apps 404 — Universo 404 OS v34 Ultimate Motion
+
+## Actualización v34 — Ultimate Motion
+
+- Tres intensidades guardadas localmente: Reducido, Equilibrado y Cinematográfico.
+- Revelado progresivo de secciones con `IntersectionObserver` y alternativa segura.
+- Contadores y barras del Control Center animados al entrar en pantalla.
+- Apertura premium de fichas, buscador y selector de apariencia.
+- Microanimación de favoritos, halos orbitales y ambientación especial por skin.
+- Respeto completo de `prefers-reduced-motion` y simplificación en móvil.
+- Sin librerías externas, telemetría, backend ni pantalla de carga bloqueante.
 
 Portal estático y PWA instalable que reúne **91 proyectos web** de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y mantiene todo el catálogo en el navegador.
 

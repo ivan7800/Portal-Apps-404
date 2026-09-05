@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Mockup de QR Studio Offline">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#060913"></stop><stop offset="1" stop-color="#111827"></stop></linearGradient>
+    <radialGradient id="glow" cx="76%" cy="20%" r="70%"><stop stop-color="#22d3ee" stop-opacity=".48"></stop><stop offset=".45" stop-color="#22d3ee" stop-opacity=".12"></stop><stop offset="1" stop-color="#22d3ee" stop-opacity="0"></stop></radialGradient>
+    
+  </defs>
+  <rect width="1280" height="720" rx="42" fill="url(#bg)"></rect>
+  <circle cx="1010" cy="116" r="305" fill="url(#glow)"></circle>
+  <rect x="28" y="28" width="1224" height="664" rx="34" fill="rgba(255,255,255,.018)" stroke="rgba(255,255,255,.18)" stroke-width="2"></rect>
+  <g opacity=".28">
+    <line x1="80" y1="110" x2="1200" y2="110" class="line"></line><line x1="80" y1="210" x2="1200" y2="210" class="line"></line><line x1="80" y1="310" x2="1200" y2="310" class="line"></line><line x1="80" y1="410" x2="1200" y2="410" class="line"></line><line x1="80" y1="510" x2="1200" y2="510" class="line"></line>
+  </g>
+  <text x="58" y="86" class="font meta">Utilidad / Privacidad</text>
+  <text x="58" y="166" class="font title">QR Studio Offline</text>
+  <text x="60" y="214" class="font sub">Generador QR privado, rápido y sin conexión.</text>
+  <g transform="translate(650 130)"><rect x="0" y="0" width="360" height="360" rx="26" fill="#f8fbff"></rect><rect x="28" y="28" width="84" height="84" rx="8" fill="#020617"></rect><rect x="248" y="28" width="84" height="84" rx="8" fill="#020617"></rect><rect x="28" y="248" width="84" height="84" rx="8" fill="#020617"></rect><rect x="152" y="152" width="32" height="32" rx="8" fill="#020617"></rect><rect x="204" y="152" width="32" height="32" rx="8" fill="#020617"></rect><rect x="152" y="204" width="32" height="32" rx="8" fill="#020617"></rect><rect x="248" y="204" width="32" height="32" rx="8" fill="#020617"></rect><rect x="204" y="256" width="32" height="32" rx="8" fill="#020617"></rect><rect x="126" y="84" width="32" height="32" rx="8" fill="#020617"></rect><rect x="294" y="148" width="32" height="32" rx="8" fill="#020617"></rect><rect x="124" y="262" width="32" height="32" rx="8" fill="#020617"></rect></g><rect x="60" y="550" width="230" height="54" rx="27" fill="#f8fbff"></rect><text x="92" y="585" class="font label" fill="#020617">GENERAR QR</text>
+</svg>
