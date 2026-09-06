@@ -1,4 +1,10 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v37 Compra 404
+# I. Roig · Portal Apps 404 — Universo 404 OS v38 Caminos Malditos Sangrientos
+
+## Actualización v38 — Caminos Malditos Sangrientos
+
+- Añadida **Caminos Malditos Sangrientos** como aplicación nº 94.
+- Motor narrativo local-first de horror cósmico: juego de rol libre, escritura colaborativa, memoria narrativa y mundo estructurado.
+- Integrada en **Universo 404**, búsquedas, filtros, novedades y enlaces directos del portal.
 
 ## Actualización v37 — Compra 404
 
