@@ -113,7 +113,8 @@ body[data-activity="navigate"] .orbit-c{border-color:rgba(var(--accent-rgb),.72)
 @media(prefers-reduced-motion:reduce){body:after,.universe:before,.core,.hero-copy>*,.catalog-grid .app-card,.universe{animation:none!important}.universe,.core,.orbit-node{transform:none!important}}
 
 /* v34 Ultimate Motion: purposeful transitions, three intensities */
-.section-head,.intent-card,.spot-card,.small-tile,.featured-grid .app-card,.control-panel,.catalog-section{opacity:0;transform:translate3d(0,16px,0);transition:opacity .55s ease var(--reveal-delay,0ms),transform .55s cubic-bezier(.2,.72,.2,1) var(--reveal-delay,0ms)}
+.section-head,.intent-card,.spot-card,.small-tile,.featured-grid .app-card,.control-panel{opacity:0;transform:translate3d(0,16px,0);transition:opacity .55s ease var(--reveal-delay,0ms),transform .55s cubic-bezier(.2,.72,.2,1) var(--reveal-delay,0ms)}
+.catalog-section{opacity:1;transform:none}
 .is-visible{opacity:1!important;transform:none!important}
 .u404-ready .catalog-grid .app-card{animation:none}
 .overlay{animation:overlayIn .22s both}.app-modal,.palette,.skin-panel{animation:dialogIn .38s cubic-bezier(.2,.78,.2,1) both}
