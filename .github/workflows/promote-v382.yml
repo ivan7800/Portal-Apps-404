@@ -1,0 +1,30 @@
+name: Promote Portal Apps 404 v38.2
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Replace the release tree
+        run: |
+          mkdir -p /tmp/portal-release
+          unzip -q Portal-Apps-404_v38.2.1_GITHUB_READY.zip -d /tmp/portal-release
+          rsync -a --delete --exclude='.git/' /tmp/portal-release/ ./
+          git config user.name 'Ivanboss'
+          git config user.email 'lordcibal@hotmail.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No changes to promote.'
+            exit 0
+          fi
+          git commit -m 'Release Portal Apps 404 v38.2'
+          git push origin HEAD:main
