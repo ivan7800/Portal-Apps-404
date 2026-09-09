@@ -1,0 +1,33 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      check_external_links:
+        description: Comprobar las URLs externas del catálogo
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run release checks
+        run: npm run check
+      - name: Check external links
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.check_external_links }}
+        run: npm run audit:online
