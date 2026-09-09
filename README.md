@@ -1,4 +1,23 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v38 Caminos Malditos Sangrientos
+# I. Roig · Portal Apps 404 — Universo 404 OS v38.2
+
+## Actualización v38.2 — Quality & PWA
+
+- El catálogo declara de forma explícita estado, disponibilidad, plataforma, soporte offline y tipo de entrega de cada aplicación.
+- La búsqueda usa un módulo puro y probado, normaliza acentos y actualiza únicamente el catálogo en lugar de reconstruir toda la interfaz.
+- Los filtros activos pueden retirarse individualmente y el botón de limpieza muestra cuántos hay aplicados.
+- La paleta universal expone correctamente su opción activa a tecnologías de asistencia.
+- Los controles táctiles principales alcanzan un mínimo de 44 × 44 px e incluyen mejoras para áreas seguras y contraste forzado.
+- La PWA limita la limpieza a sus propias cachés, evita acumular una copia por cada URL y conserva una interfaz offline versionada.
+- Se añaden pruebas automáticas, auditoría de release, flujo de GitHub Actions y documentación de contribución y seguridad.
+
+## Correcciones v38.1 — Release Audit
+
+- Normalizados los dos mundos aislados para recuperar la taxonomía de siete mundos y evitar nodos solapados en el mapa orbital.
+- Corregidos el destino del enlace de salto, la estructura de landmarks y el nombre accesible del buscador.
+- El botón de filtros elimina ahora búsqueda, mundo, intención, tecnología y ordenación de forma coherente.
+- Las fichas relacionadas reemplazan la ficha activa sin crear una cadena de entradas de historial.
+- Los estados no comprobados se muestran como “Catalogada” y “Offline declarado”, no como hechos verificados.
+- Sincronizado el indicador online/offline de la cabecera principal y renovada la caché PWA.
 
 ## Actualización v38 — Caminos Malditos Sangrientos
 
@@ -41,7 +60,7 @@
 - Respeto completo de `prefers-reduced-motion` y simplificación en móvil.
 - Sin librerías externas, telemetría, backend ni pantalla de carga bloqueante.
 
-Portal estático y PWA instalable que reúne los proyectos web de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias externas y calcula automáticamente el tamaño del catálogo.
+Portal estático y PWA instalable que reúne los proyectos web de I. Roig. Está preparado para GitHub Pages, funciona sin backend, no incorpora analítica ni dependencias de ejecución externas y calcula automáticamente el tamaño del catálogo. Las preferencias y el historial reciente permanecen en el navegador.
 
 ## Características
 
@@ -57,7 +76,7 @@ Portal estático y PWA instalable que reúne los proyectos web de I. Roig. Está
 - Selector visual de apariencia con previsualizaciones y control manual de movimiento ambiental.
 - Oculus 404 reactivo, órbitas animadas, microinteracciones y parallax mínimo en puntero fino, sin librerías externas.
 - Respeta `prefers-reduced-motion` y permite forzar movimiento reducido desde la propia interfaz.
-- PWA instalable con caché básica de la interfaz principal.
+- PWA instalable con shell offline, actualización controlada y caché aislada por proyecto.
 - Diseño responsive, fuentes autoalojadas, `prefers-reduced-motion`, skip link y foco visible.
 - Sin tracking, CDN, cookies, cuentas ni backend.
 
@@ -72,7 +91,8 @@ sw.js                      Caché offline de la interfaz
 robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
-  data.js                  Catálogo de 91 aplicaciones
+  catalog-utils.js         Normalización y ranking puro de búsqueda
+  data.js                  Catálogo de 94 aplicaciones
   styles.css               Diseño responsive y temas
   fonts.css                Tres fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
@@ -80,6 +100,14 @@ assets/
   screenshots/             Mockups SVG del catálogo
 scripts/
   audit.mjs                Auditoría local y comprobación opcional de URLs
+tests/                     Pruebas unitarias y de regresión
+.github/workflows/
+  quality.yml              Validación automática en GitHub Actions
+package.json               Comandos de calidad y metadatos de release
+CHANGELOG.md               Historial de cambios
+CONTRIBUTING.md            Guía de contribución
+SECURITY.md                Política para comunicar vulnerabilidades
+RELEASE_AUDIT_v38.2.md     Evidencias, riesgos y checklist de la release
 ```
 
 ## Publicar en GitHub Pages
@@ -91,24 +119,31 @@ scripts/
 
 ## Editar el catálogo
 
-Los datos viven en `assets/data.js`. Cada app requiere `name`, `short`, `category`, `saga`, `icon`, `screenshot`, `pages` y `github`. La propiedad opcional `featured: true` la añade a “Imprescindibles”. También debe existir una entrada del mismo nombre en `LANGUAGES`.
+Los datos viven en `assets/data.js`. Cada app requiere `name`, `short`, `category`, `saga`, `icon`, `screenshot`, `pages`, `github`, `status`, `availability`, `offline`, `platform` y `delivery`. La propiedad opcional `featured: true` la añade a “Imprescindibles”. También debe existir una entrada del mismo nombre en `LANGUAGES`.
+
+Los valores editoriales admitidos están documentados y validados por el auditor. `availability: "unverified"` significa que el enlace forma parte del catálogo, pero no se ha comprobado en la release actual; no equivale a “disponible”.
 
 ## Verificación rápida
 
 ```bash
-node --check assets/data.js
-node --check assets/app.js
-node scripts/audit.mjs
+npm install
+npm run check
 python3 -m http.server 8080
 ```
 
 Para comprobar también las páginas publicadas y los repositorios:
 
 ```bash
-node scripts/audit.mjs --online
+npm run audit:online
 ```
 
 Después abre `http://localhost:8080`, prueba búsqueda, filtros, cambio de tema, apertura/cierre de fichas, navegación por teclado y modo móvil.
+
+## Limitaciones conocidas
+
+- El repositorio no incluye una licencia. Antes de aceptar contribuciones o redistribuciones, añade la licencia que decidas aplicar.
+- El auditor local valida estructura, datos y recursos. La disponibilidad de las 188 URLs externas (`pages` y `github`) requiere ejecutar `npm run audit:online` con acceso de red; hasta entonces se muestra como no verificada.
+- “Offline declarado” describe la ficha del proyecto enlazado; no certifica que cada aplicación externa haya superado una prueba offline desde este portal.
 
 ## Actualización v15 — World TV 404
 

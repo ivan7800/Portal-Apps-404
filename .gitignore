@@ -1,0 +1,22 @@
+# Sistema y editores
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Entorno y secretos
+.env
+.env.*
+!.env.example
+
+# Pruebas y herramientas
+node_modules/
+coverage/
+*.log
+
+# Entregas generadas
+*_RELEASE.zip
+*_AUDIT.md

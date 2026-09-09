@@ -137,7 +137,7 @@ body[data-activity="navigate"] .orbit-c{border-color:rgba(var(--accent-rgb),.72)
 
 /* v35 Discovery & Reliability */
 .catalog-toolbar{grid-template-columns:minmax(250px,1fr) 180px 180px auto}
-.status-label{font-size:.56rem!important;letter-spacing:.04em!important;text-transform:uppercase;white-space:nowrap}.status-label.published{color:var(--good)!important}.status-label.experimental{color:var(--accent)!important}
+.status-label{font-size:.56rem!important;letter-spacing:.04em!important;text-transform:uppercase;white-space:nowrap}.status-label.published{color:var(--good)!important}.status-label.experimental{color:var(--accent)!important}.status-label.archived{color:var(--muted)!important}
 .release-badge{position:absolute;z-index:4;top:9px;left:9px;border:1px solid rgba(var(--accent-rgb),.38);border-radius:999px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(8px);color:var(--accent);padding:4px 7px;font-size:.51rem;font-weight:700;letter-spacing:.11em;box-shadow:0 5px 18px rgba(0,0,0,.2)}
 .install-pwa.is-ready{border-color:rgba(var(--accent-rgb),.48);color:var(--accent);box-shadow:0 0 20px rgba(var(--accent-rgb),.1)}
 .pulse.is-offline{background:var(--accent);box-shadow:0 0 13px var(--accent)}
@@ -161,3 +161,22 @@ body[data-activity="navigate"] .orbit-c{border-color:rgba(var(--accent-rgb),.72)
 @media(max-width:980px){.universe{width:min(82vw,570px,100%)}}
 @media(max-width:720px){.universe{width:min(100%,510px);margin-inline:auto}}
 @media(max-width:460px){.universe{width:100%;height:auto;aspect-ratio:1;margin:-20px auto;transform:none}.n6{right:0}}
+
+/* v38.2 Quality & PWA: targets táctiles, filtros y safe areas */
+.icon-btn,.avatar,.modal-close,.fav{min-width:44px;min-height:44px}
+.icon-btn,.avatar{width:44px;height:44px}
+.modal-close{width:44px;height:44px}
+.fav{width:44px;height:44px;right:6px;bottom:6px}
+.app-copy strong{padding-right:48px}
+.view-switch button{width:44px;height:40px}
+.primary.compact,.ghost.compact,.filter-chip,.motion-options button{min-height:44px}
+.filter-chip:disabled{cursor:not-allowed;opacity:.62}
+.active-filters{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0 0 13px;color:var(--faint);font-size:.66rem}
+.active-filters>span{font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.active-filters button{min-height:36px;max-width:100%;border:1px solid rgba(var(--accent-rgb),.3);border-radius:999px;background:rgba(var(--accent-rgb),.07);color:var(--muted);padding:6px 10px;cursor:pointer;overflow-wrap:anywhere;text-align:left}
+.active-filters button:hover{border-color:var(--accent);color:var(--ink)}
+.active-filters button b{color:var(--accent);margin-left:3px}
+.overlay{padding:max(18px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))}
+@media(max-width:980px){.mobile-nav{bottom:max(12px,env(safe-area-inset-bottom))}.workspace{padding-bottom:calc(100px + env(safe-area-inset-bottom))}}
+@media(max-width:520px){.active-filters{align-items:stretch;flex-direction:column}.active-filters button{width:100%}}
+@media(forced-colors:active){:focus-visible{outline:3px solid Highlight}.status-dot,.pulse{forced-color-adjust:none}.active-filters button{border:1px solid ButtonText}}

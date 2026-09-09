@@ -1,18 +1,19 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v38 Caminos Malditos Sangrientos */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v38.2 Quality & PWA */
 (function () {
   'use strict';
 
   var D = window.PORTAL_DATA;
+  var Catalog = window.PORTAL_CATALOG;
   var root = document.getElementById('app');
-  if (!D || !Array.isArray(D.APPS) || !root) {
+  if (!D || !Catalog || !Array.isArray(D.APPS) || !D.APPS.length || !root) {
     if (root) root.innerHTML = '<p class="fatal">No se pudo cargar el catálogo.</p>';
     return;
   }
 
   var APPS = D.APPS;
   var readyTimer = null;
-  var VERSION = 'v38 Caminos Malditos Sangrientos';
-  var UPDATED = '5 de septiembre de 2026';
+  var VERSION = 'v38.2 Quality & PWA';
+  var UPDATED = '9 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
   var SKIN_NAMES = { cosmica: 'Cósmica', obsidiana: 'Obsidiana', void: 'Void OLED', glass: 'Glass', terminal: 'Terminal', arctic: 'Arctic', synthwave: 'Synthwave' };
@@ -44,6 +45,13 @@
   function loadText(key, fallback) {
     try { return localStorage.getItem(key) || fallback; } catch (e) { return fallback; }
   }
+  function loadStringArray(key, limit) {
+    var value = loadJSON(key, []);
+    if (!Array.isArray(value)) return [];
+    return value.filter(function (item, index, items) {
+      return typeof item === 'string' && items.indexOf(item) === index;
+    }).slice(0, limit);
+  }
 
   var state = {
     skin: loadText('u404-skin', 'cosmica'),
@@ -54,8 +62,8 @@
     selectedApp: null,
     view: loadText('u404-view', 'grid'),
     sort: loadText('u404-sort', 'recommended'),
-    favorites: loadJSON('u404-favorites', []),
-    recent: loadJSON('u404-recent', []),
+    favorites: loadStringArray('u404-favorites', 30),
+    recent: loadStringArray('u404-recent', 8),
     palette: false,
     paletteQuery: '',
     skinPanel: false,
@@ -89,17 +97,17 @@
     return null;
   }
   function appMeta(a) {
-    var text = [a.name, a.short, a.description, a.category, LANGUAGES[a.name]].join(' ');
-    var experimental = /experimento|experimental|simulad|laboratorio/i.test(text);
-    var desktop = /PowerShell|Electron|Docker|Python|BAT|Windows/i.test(text);
-    var wasm = /WebAssembly|WASM/i.test(text);
-    var local = /offline|local-first|local first|sin backend|PWA/i.test(text);
+    var status = { catalogued: 'Catalogada', experimental: 'Experimental', archived: 'Archivada' }[a.status] || 'Catalogada';
+    var platform = { web: 'Web', webassembly: 'WebAssembly', 'hybrid-windows': 'Windows + web' }[a.platform] || 'Web';
+    var offline = { declared: 'Offline declarado', 'not-declared': 'Conexión variable' }[a.offline] || 'Conexión variable';
+    var availability = { verified: 'Enlace verificado', unverified: 'Enlace sin verificar', unavailable: 'No disponible' }[a.availability] || 'Enlace sin verificar';
     var index = APPS.indexOf(a);
     return {
-      status: experimental ? 'Experimental' : 'Publicada',
-      statusClass: experimental ? 'experimental' : 'published',
-      platform: desktop ? 'Windows + web' : (wasm ? 'WebAssembly' : 'Web'),
-      offline: local ? 'Local / offline' : 'Conexión variable',
+      status: status,
+      statusClass: a.status === 'experimental' ? 'experimental' : (a.status === 'archived' ? 'archived' : 'published'),
+      platform: platform,
+      offline: offline,
+      availability: availability,
       recent: index >= APPS.length - 12,
       order: index
     };
@@ -147,33 +155,12 @@
     'Photo-Studio-OS': 'foto fotografia estudio fotografico imagen retoque estudio visual',
     'PDF-Forge-404': 'pdf unir dividir convertir editar documento',
     'PromptForge-404': 'prompt prompts inteligencia artificial ia generar prompts',
-    'Second-Brain-404': 'notas obsidian rag documentos conocimiento segundo cerebro'
+    'SECOND-BRAIN-404': 'notas obsidian rag documentos conocimiento segundo cerebro'
   };
-  function normalizeText(value) {
-    var s = String(value == null ? '' : value).toLowerCase();
-    try { s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); } catch (e) {}
-    return s.replace(/[^a-z0-9]+/g, ' ').trim();
-  }
-  function appText(a) {
-    return normalizeText([a.name, a.category, a.short, a.description, a.saga, LANGUAGES[a.name], SEARCH_ALIASES[a.name] || ''].join(' '));
-  }
-  function queryTokens(q) { return normalizeText(q).split(/\s+/).filter(Boolean); }
+  function normalizeText(value) { return Catalog.normalizeText(value); }
+  function appText(a) { return Catalog.appText(a, LANGUAGES, SEARCH_ALIASES); }
   function searchScore(a, q) {
-    var tokens = queryTokens(q);
-    if (!tokens.length) return 0;
-    var name = normalizeText(a.name);
-    var category = normalizeText(a.category);
-    var short = normalizeText(a.short);
-    var full = appText(a);
-    var score = 0;
-    tokens.forEach(function (t) {
-      if (name.indexOf(t) !== -1) score += 12;
-      if (category.indexOf(t) !== -1) score += 7;
-      if (short.indexOf(t) !== -1) score += 5;
-      if (full.indexOf(t) !== -1) score += 3;
-    });
-    if (full.indexOf(normalizeText(q)) !== -1) score += 14;
-    return score;
+    return Catalog.searchScore(a, q, LANGUAGES, SEARCH_ALIASES);
   }
   function relatedApps(a) {
     return APPS.filter(function (x) { return x.name !== a.name; }).map(function (x) {
@@ -218,6 +205,31 @@
       .slice(0, 8).map(function (x) { return x.app; });
   }
 
+  function activeFilterItems() {
+    var items = [];
+    var intent = currentIntent();
+    if (state.query) items.push({ key: 'query', label: 'Búsqueda: “' + state.query + '”' });
+    if (state.activeSaga) items.push({ key: 'saga', label: 'Mundo: ' + state.activeSaga });
+    if (intent) items.push({ key: 'intent', label: 'Intención: ' + intent.name });
+    if (state.techFilter) items.push({ key: 'tech', label: 'Tecnología: ' + state.techFilter });
+    if (state.sort !== 'recommended') items.push({ key: 'sort', label: 'Orden: ' + SORT_NAMES[state.sort] });
+    return items;
+  }
+
+  function activeFiltersHTML() {
+    var items = activeFilterItems();
+    if (!items.length) return '';
+    return '<div class="active-filters" aria-label="Filtros activos"><span>Filtros activos</span>' + items.map(function (item) {
+      return '<button type="button" data-clear-filter="' + item.key + '" aria-label="Eliminar ' + esc(item.label) + '">' + esc(item.label) + ' <b aria-hidden="true">×</b></button>';
+    }).join('') + '</div>';
+  }
+
+  function catalogContentHTML(list) {
+    return activeFiltersHTML() +
+      '<div class="catalog-status"><span role="status" aria-live="polite">Mostrando <b>' + list.length + '</b> de ' + APPS.length + '</span><span>' + esc(VIEW_NAMES[state.view]) + '</span></div>' +
+      (list.length ? (state.view === 'grid' ? '<div class="catalog-grid">' + list.map(compactCard).join('') + '</div>' : '<div class="catalog-list">' + list.map(listCard).join('') + '</div>') : '<div class="empty"><span>◌</span><h3>Sin coincidencias</h3><p>Prueba otra búsqueda o elimina los filtros activos.</p><button class="ghost compact" id="reset-empty">Restablecer filtros</button></div>');
+  }
+
   function setIntent(id) {
     state.activeIntent = state.activeIntent === id ? null : id;
     state.activeSaga = null;
@@ -255,12 +267,13 @@
   function openApp(name) {
     var app = byName(name);
     if (!app) return;
-    lastFocusName = name;
+    var replacingModal = !!state.selectedApp;
+    if (!replacingModal) lastFocusName = name;
     addRecent(name);
     state.selectedApp = app;
     state.palette = false;
-    modalHistoryPushed = true;
-    syncURL(true);
+    modalHistoryPushed = modalHistoryPushed || !replacingModal;
+    syncURL(!replacingModal);
     render();
     pulseCore('open');
     document.body.classList.add('modal-open');
@@ -346,7 +359,7 @@
         '<span class="row-main"><strong>' + esc(a.name) + '</strong><small>' + esc(a.short) + '</small></span>' +
         '<span class="row-cat">' + esc(a.category) + '</span><span class="row-tech"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span></span><span class="row-go">→</span>' +
       '</button>' +
-      '<button class="fav row-fav" data-fav="' + esc(a.name) + '" aria-label="Favorito" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★' : '☆') + '</button>' +
+      '<button class="fav row-fav" data-fav="' + esc(a.name) + '" aria-label="' + (isFavorite(a.name) ? 'Quitar ' : 'Añadir ') + esc(a.name) + (isFavorite(a.name) ? ' de favoritos' : ' a favoritos') + '" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★' : '☆') + '</button>' +
     '</article>';
   }
 
@@ -357,7 +370,7 @@
   }
 
   function orbitHTML() {
-    return '<div class="universe" aria-label="Mapa de las siete áreas del ecosistema">' +
+    return '<div class="universe" aria-label="Mapa de las ' + sagaNames.length + ' áreas del ecosistema">' +
       '<div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div>' +
       '<button class="core" id="open-palette-core" aria-label="Abrir buscador universal"><img src="assets/logo.webp" alt="" width="180" height="180"><span>U404</span><small>' + APPS.length + ' sistemas</small></button>' +
       sagas.map(function (s, i) {
@@ -379,21 +392,20 @@
     var favoriteApps = state.favorites.map(byName).filter(Boolean);
     var recentApps = state.recent.map(byName).filter(Boolean).slice(0, 6);
     var latestApps = APPS.slice(-6).reverse();
-    var intent = currentIntent();
     var sp = state.spotlight;
-    var activeFilter = intent ? intent.name : (state.activeSaga || 'Todas');
+    var filterCount = activeFilterItems().length;
 
     root.innerHTML =
       '<div class="os-shell">' +
         sidebarHTML() +
         '<div class="os-main">' +
           topbarHTML() +
-          '<main class="workspace" id="main-content">' +
+          '<main class="workspace" id="main-content" tabindex="-1">' +
             '<section class="hero-os" id="top">' +
               '<div class="hero-copy">' +
-                '<p class="eyebrow"><span class="status-dot"></span> UNIVERSO 404 · SISTEMA ONLINE</p>' +
+                '<p class="eyebrow"><span class="status-dot"></span> UNIVERSO 404 · <span id="hero-network-label">' + (navigator.onLine ? 'CONEXIÓN DETECTADA' : 'SIN CONEXIÓN DETECTADA') + '</span></p>' +
                 '<h1>Tu ecosistema digital.<br><em>' + APPS.length + ' apps, un solo universo.</em></h1>' +
-                '<p class="lede">Herramientas, escritura, diseño, IA, sistemas, cultura y ficción interactiva reunidos en un centro de mando local-first.</p>' +
+                '<p class="lede">Herramientas, escritura, diseño, IA, sistemas, cultura y ficción interactiva reunidos en un portal estático con preferencias locales.</p>' +
                 '<div class="hero-actions"><button class="primary" id="open-palette">⌕ Buscar en Universo 404 <kbd>Ctrl K</kbd></button><button class="ghost" id="random-app">✦ Sorpréndeme</button><button class="ghost install-pwa' + (deferredInstallPrompt ? ' is-ready' : '') + '" id="install-pwa">⇩ Instalar portal</button></div>' +
                 '<div class="system-pills"><span><b>' + APPS.length + '</b> apps</span><span><b>' + sagaNames.length + '</b> mundos</span><span><b>' + totalCats + '</b> categorías</span><span>● sin tracking</span></div>' +
               '</div>' +
@@ -409,7 +421,7 @@
 
             '<section class="section spotlight-os" id="destacada">' +
               '<div class="spot-card"><div class="spot-visual"><img src="' + esc(sp.screenshot) + '" alt="Vista previa de ' + esc(sp.name) + '" loading="lazy" width="1280" height="720"><span class="spot-badge">SELECCIÓN DEL SISTEMA</span></div>' +
-              '<div class="spot-copy"><p class="kicker">App destacada</p><h2>' + esc(sp.name) + '</h2><p>' + esc(sp.description || sp.short) + '</p><div class="tagline"><span>' + esc(sp.category) + '</span><span>' + esc(LANGUAGES[sp.name] || 'JavaScript') + '</span><span>' + esc(sp.saga) + '</span></div><div class="spot-actions"><button class="primary compact" data-app="' + esc(sp.name) + '">Ver ficha</button><a class="ghost compact" href="' + esc(sp.pages) + '" target="_blank" rel="noopener noreferrer">Abrir app ↗</a></div></div></div>' +
+              '<div class="spot-copy"><p class="kicker">App destacada</p><h2>' + esc(sp.name) + '</h2><p>' + esc(sp.description || sp.short) + '</p><div class="tagline"><span>' + esc(sp.category) + '</span><span>' + esc(LANGUAGES[sp.name] || 'JavaScript') + '</span><span>' + esc(sp.saga) + '</span></div><div class="spot-actions"><button class="primary compact" data-app="' + esc(sp.name) + '">Ver ficha</button><a class="ghost compact" href="' + esc(sp.pages) + '" target="_blank" rel="noopener noreferrer" aria-label="' + (sp.delivery === 'repository' ? 'Abrir repositorio' : 'Abrir aplicación') + '; se abre en otra pestaña">' + (sp.delivery === 'repository' ? 'Abrir repositorio ↗' : 'Abrir app ↗') + '</a></div></div></div>' +
             '</section>' +
 
             (favoriteApps.length ? '<section class="section" id="favoritos"><div class="section-head"><div><p class="kicker">Tu espacio</p><h2>Favoritos</h2></div><p>Guardados solo en este navegador.</p></div><div class="small-grid">' + favoriteApps.slice(0, 8).map(smallTile).join('') + '</div></section>' : '') +
@@ -426,18 +438,17 @@
             '</section>' +
 
             '<section class="section catalog-section" id="catalogo">' +
-              '<div class="section-head catalog-head"><div><p class="kicker">Explorador</p><h2>Las ' + APPS.length + ' aplicaciones</h2></div><div class="view-switch" role="group" aria-label="Vista del catálogo"><button data-view="grid" aria-pressed="' + (state.view === 'grid') + '" title="Cuadrícula">▦</button><button data-view="list" aria-pressed="' + (state.view === 'list') + '" title="Lista">☷</button></div></div>' +
+              '<div class="section-head catalog-head"><div><p class="kicker">Explorador</p><h2>Las ' + APPS.length + ' aplicaciones</h2></div><div class="view-switch" role="group" aria-label="Vista del catálogo"><button data-view="grid" aria-label="Vista en cuadrícula" aria-pressed="' + (state.view === 'grid') + '" title="Cuadrícula">▦</button><button data-view="list" aria-label="Vista en lista" aria-pressed="' + (state.view === 'list') + '" title="Lista">☷</button></div></div>' +
               '<div class="catalog-toolbar">' +
-                '<label class="catalog-search"><span>⌕</span><input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Buscar por nombre, función, categoría…" value="' + esc(state.query) + '"></label>' +
+                '<label class="catalog-search"><span aria-hidden="true">⌕</span><input id="q" type="search" autocomplete="off" spellcheck="false" aria-label="Buscar aplicaciones" placeholder="Buscar por nombre, función, categoría…" value="' + esc(state.query) + '"></label>' +
                 '<select id="tech" aria-label="Filtrar por tecnología"><option value="">Toda tecnología</option>' + techs.map(function (t) { return '<option value="' + esc(t) + '"' + (state.techFilter === t ? ' selected' : '') + '>' + esc(t) + '</option>'; }).join('') + '</select>' +
                 '<select id="sort" aria-label="Ordenar aplicaciones">' + Object.keys(SORT_NAMES).map(function (key) { return '<option value="' + key + '"' + (state.sort === key ? ' selected' : '') + '>' + esc(SORT_NAMES[key]) + '</option>'; }).join('') + '</select>' +
-                '<button class="filter-chip' + ((state.activeIntent || state.activeSaga) ? ' is-on' : '') + '" id="clear-filter">' + esc(activeFilter) + ((state.activeIntent || state.activeSaga) ? ' ×' : '') + '</button>' +
+                '<button class="filter-chip' + (filterCount ? ' is-on' : '') + '" id="clear-filter" aria-label="' + (filterCount ? 'Eliminar todos los filtros' : 'No hay filtros activos') + '"' + (filterCount ? '' : ' disabled') + '>' + (filterCount ? 'Limpiar (' + filterCount + ')' : 'Sin filtros') + '</button>' +
               '</div>' +
-              '<div class="catalog-status"><span role="status">Mostrando <b>' + list.length + '</b> de ' + APPS.length + '</span><span>' + esc(VIEW_NAMES[state.view]) + '</span></div>' +
-              (list.length ? (state.view === 'grid' ? '<div class="catalog-grid">' + list.map(compactCard).join('') + '</div>' : '<div class="catalog-list">' + list.map(listCard).join('') + '</div>') : '<div class="empty"><span>◌</span><h3>Sin coincidencias</h3><p>Prueba otra búsqueda o elimina los filtros activos.</p><button class="ghost compact" id="reset-empty">Restablecer filtros</button></div>') +
+              '<div id="catalog-content">' + catalogContentHTML(list) + '</div>' +
             '</section>' +
 
-            '<footer class="footer"><div><img src="assets/logo.webp" alt="" width="36" height="36"><span><strong>Universo 404 OS</strong><small>I. Roig · ' + VERSION + '</small></span></div><p>' + APPS.length + ' apps · local-first · sin tracking · GitHub Pages</p><a href="#top">Volver al núcleo ↑</a></footer>' +
+            '<footer class="footer"><div><img src="assets/logo.webp" alt="" width="36" height="36"><span><strong>Universo 404 OS</strong><small>I. Roig · ' + VERSION + '</small></span></div><p>' + APPS.length + ' apps · preferencias locales · sin tracking · GitHub Pages</p><a href="#top">Volver al núcleo ↑</a></footer>' +
           '</main>' +
           mobileNavHTML() +
         '</div>' +
@@ -460,12 +471,12 @@
       '<a class="side-brand" href="#top"><img src="assets/logo.webp" alt="" width="48" height="48"><span><strong>U404</strong><small>PORTAL OS</small></span></a>' +
       '<nav class="side-nav"><p>Explorar</p><a href="#top" class="active"><span>◉</span>Inicio</a><a href="#intenciones"><span>✦</span>Qué quieres hacer</a><a href="#novedades"><span>＋</span>Novedades</a><a href="#top-apps"><span>◇</span>Destacadas</a><a href="#catalogo"><span>▦</span>Catálogo <b>' + APPS.length + '</b></a><a href="#panel"><span>⌁</span>Control Center</a></nav>' +
       '<div class="side-worlds"><p>Mundos</p>' + sagas.map(function (s) { return '<button data-saga="' + esc(s.name) + '" class="' + (state.activeSaga === s.name ? 'active' : '') + '"><span>' + esc(s.icon) + '</span><em>' + esc(s.name) + '</em><b>' + s.count + '</b></button>'; }).join('') + '</div>' +
-      '<div class="side-bottom"><button id="skin" class="skin-button"><span>◐</span><span><small>Apariencia</small><strong>' + esc(SKIN_NAMES[state.skin]) + '</strong></span></button><a href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer"><span>⌘</span>GitHub ↗</a></div>' +
+      '<div class="side-bottom"><button id="skin" class="skin-button"><span>◐</span><span><small>Apariencia</small><strong>' + esc(SKIN_NAMES[state.skin]) + '</strong></span></button><a href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer" aria-label="GitHub de I. Roig; se abre en otra pestaña"><span>⌘</span>GitHub ↗</a></div>' +
     '</aside>';
   }
 
   function topbarHTML() {
-    return '<header class="topbar"><div class="crumb"><span class="pulse ' + (navigator.onLine ? '' : 'is-offline') + '"></span><strong>UNIVERSO 404</strong><span>/</span><span id="network-label">' + (navigator.onLine ? 'Sistema online' : 'Modo sin conexión') + '</span></div><div class="top-actions"><button class="top-search" id="open-palette-top">⌕ <span>Buscar apps</span><kbd>Ctrl K</kbd></button><button class="icon-btn install-pwa' + (deferredInstallPrompt ? ' is-ready' : '') + '" id="install-pwa-top" aria-label="Instalar portal" title="Instalar portal">⇩</button><button class="icon-btn" id="skin-top" aria-label="Abrir apariencia" title="Apariencia">◐</button><a class="avatar" href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer" aria-label="GitHub de I. Roig">IR</a></div></header>';
+    return '<header class="topbar"><div class="crumb"><span class="pulse ' + (navigator.onLine ? '' : 'is-offline') + '"></span><strong>UNIVERSO 404</strong><span>/</span><span id="network-label">' + (navigator.onLine ? 'Conexión detectada' : 'Sin conexión detectada') + '</span></div><div class="top-actions"><button class="top-search" id="open-palette-top">⌕ <span>Buscar apps</span><kbd>Ctrl K</kbd></button><button class="icon-btn install-pwa' + (deferredInstallPrompt ? ' is-ready' : '') + '" id="install-pwa-top" aria-label="Instalar portal" title="Instalar portal">⇩</button><button class="icon-btn" id="skin-top" aria-label="Abrir apariencia" title="Apariencia">◐</button><a class="avatar" href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer" aria-label="GitHub de I. Roig; se abre en otra pestaña">IR</a></div></header>';
   }
 
   function mobileNavHTML() {
@@ -475,22 +486,30 @@
   function modalHTML(a) {
     var related = relatedApps(a);
     var meta = appMeta(a);
-    return '<div class="overlay" id="modal-overlay"><div class="app-modal" id="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">' +
+    var primaryLabel = a.delivery === 'repository' ? 'Abrir repositorio ↗' : 'Abrir aplicación ↗';
+    return '<div class="overlay" id="modal-overlay"><div class="app-modal" id="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description" tabindex="-1">' +
       '<button class="modal-close" id="close-modal" aria-label="Cerrar ficha">×</button>' +
       '<div class="modal-shot"><img src="' + esc(a.screenshot) + '" alt="Vista previa de ' + esc(a.name) + '" width="1280" height="720"><span>' + esc(a.saga) + '</span></div>' +
       '<div class="modal-content"><div class="modal-heading"><div><p class="kicker">' + esc(a.category) + '</p><h2 id="modal-title">' + esc(a.name) + '</h2></div><button class="modal-fav" id="modal-fav" data-fav="' + esc(a.name) + '" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★ Favorita' : '☆ Favorita') + '</button></div>' +
-      '<p class="modal-description">' + esc(a.description || a.short) + '</p><div class="modal-tags"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span><span>' + esc(meta.platform) + '</span><span>' + esc(meta.offline) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span></div>' +
-      '<div class="modal-actions"><a class="primary" href="' + esc(a.pages) + '" target="_blank" rel="noopener noreferrer">Abrir aplicación ↗</a><a class="ghost" href="' + esc(a.github) + '" target="_blank" rel="noopener noreferrer">Ver repositorio</a><button class="ghost" id="share-app">Compartir ficha</button></div>' +
+      '<p class="modal-description" id="modal-description">' + esc(a.description || a.short) + '</p><div class="modal-tags"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span><span>' + esc(meta.availability) + '</span><span>' + esc(meta.platform) + '</span><span>' + esc(meta.offline) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span></div>' +
+      '<div class="modal-actions"><a class="primary" href="' + esc(a.pages) + '" target="_blank" rel="noopener noreferrer" aria-label="' + esc(primaryLabel.replace(' ↗', '')) + '; se abre en otra pestaña">' + esc(primaryLabel) + '</a>' + (a.delivery === 'repository' ? '' : '<a class="ghost" href="' + esc(a.github) + '" target="_blank" rel="noopener noreferrer" aria-label="Ver repositorio; se abre en otra pestaña">Ver repositorio</a>') + '<button class="ghost" id="share-app">Compartir ficha</button></div>' +
       (related.length ? '<div class="modal-related"><p class="kicker">Conexiones 404</p><h3>También te puede servir</h3><div class="related-grid">' + related.map(function (r) { return '<button data-app="' + esc(r.name) + '"><span>' + esc(r.icon) + '</span><span><strong>' + esc(r.name) + '</strong><small>' + esc(r.category) + '</small></span><b>→</b></button>'; }).join('') + '</div></div>' : '') +
       '</div></div></div>';
+  }
+
+  function paletteResultsHTML(results) {
+    if (!results.length) return '<div class="palette-results" id="palette-results" role="listbox" aria-label="Aplicaciones encontradas"><p class="palette-empty">No hay coincidencias. Prueba con “imagen”, “novela”, “Windows” o “terror”.</p></div>';
+    return '<div class="palette-results" id="palette-results" role="listbox" aria-label="Aplicaciones encontradas">' + results.map(function (a, i) {
+      return '<button type="button" role="option" id="palette-result-' + i + '" data-palette-app="' + esc(a.name) + '" aria-selected="' + (i === 0) + '" tabindex="-1"' + (i === 0 ? ' class="selected"' : '') + '><span class="p-icon">' + esc(a.icon) + '</span><span><strong>' + esc(a.name) + '</strong><small>' + esc(a.short) + '</small></span><em>' + esc(a.category) + '</em><b>↵</b></button>';
+    }).join('') + '</div>';
   }
 
   function paletteHTML() {
     var results = paletteResults();
     return '<div class="overlay palette-overlay" id="palette-overlay"><div class="palette" id="palette" role="dialog" aria-modal="true" aria-labelledby="palette-title">' +
-      '<div class="palette-input"><span>⌕</span><input id="palette-q" type="search" autocomplete="off" placeholder="Busca una app o escribe lo que quieres hacer…" value="' + esc(state.paletteQuery) + '" aria-label="Buscar en Universo 404"><kbd>ESC</kbd></div>' +
+      '<div class="palette-input"><span aria-hidden="true">⌕</span><input id="palette-q" type="search" role="combobox" autocomplete="off" placeholder="Busca una app o escribe lo que quieres hacer…" value="' + esc(state.paletteQuery) + '" aria-label="Buscar en Universo 404" aria-autocomplete="list" aria-expanded="true" aria-controls="palette-results"' + (results.length ? ' aria-activedescendant="palette-result-0"' : '') + '><kbd>ESC</kbd></div>' +
       '<div class="palette-body"><p id="palette-title">' + (state.paletteQuery ? 'Resultados' : (state.recent.length ? 'Recientes y destacadas' : 'Apps destacadas')) + '</p>' +
-      (results.length ? '<div class="palette-results">' + results.map(function (a, i) { return '<button data-palette-app="' + esc(a.name) + '"' + (i === 0 ? ' class="selected"' : '') + '><span class="p-icon">' + esc(a.icon) + '</span><span><strong>' + esc(a.name) + '</strong><small>' + esc(a.short) + '</small></span><em>' + esc(a.category) + '</em><b>↵</b></button>'; }).join('') + '</div>' : '<div class="palette-empty">No hay coincidencias. Prueba con “imagen”, “novela”, “Windows” o “terror”.</div>') +
+      paletteResultsHTML(results) +
       '</div><div class="palette-foot"><span><kbd>↑</kbd><kbd>↓</kbd> navegar</span><span><kbd>Enter</kbd> abrir</span><span>' + APPS.length + ' apps locales</span></div>' +
     '</div></div>';
   }
@@ -517,8 +536,8 @@
     state.palette = false;
     render();
     document.body.classList.add('modal-open');
-    var panel = document.getElementById('skin-panel');
-    if (panel) panel.focus();
+    var close = document.getElementById('close-skin');
+    if (close) close.focus();
   }
 
   function closeSkinPanel() {
@@ -600,7 +619,9 @@
     var url = window.location.href;
     var data = { title: state.selectedApp.name + ' · Universo 404', text: state.selectedApp.short, url: url };
     if (navigator.share) {
-      navigator.share(data).catch(function () {});
+      navigator.share(data).catch(function (error) {
+        if (!error || error.name !== 'AbortError') showToast('No se pudo compartir la ficha.');
+      });
     } else if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(function () { showToast('Enlace de la ficha copiado.'); }, function () { showToast('No se pudo copiar el enlace.'); });
     } else {
@@ -616,6 +637,55 @@
 
   function applyUpdate() {
     if (waitingWorker) waitingWorker.postMessage({ type: 'SKIP_WAITING' });
+  }
+
+  function clearOneFilter(key) {
+    if (key === 'query') state.query = '';
+    else if (key === 'saga') state.activeSaga = null;
+    else if (key === 'intent') state.activeIntent = null;
+    else if (key === 'tech') state.techFilter = '';
+    else if (key === 'sort') {
+      state.sort = 'recommended';
+      try { localStorage.setItem('u404-sort', state.sort); } catch (error) {}
+    }
+    syncURL(true);
+    render();
+    scrollToId('catalogo');
+  }
+
+  function wireDynamicContent(scope) {
+    var area = scope || document;
+    Array.prototype.forEach.call(area.querySelectorAll('[data-app]'), function (button) {
+      button.onclick = function () { openApp(button.getAttribute('data-app')); };
+    });
+    Array.prototype.forEach.call(area.querySelectorAll('[data-fav]'), function (button) {
+      button.onclick = function (event) {
+        event.stopPropagation();
+        toggleFavorite(button.getAttribute('data-fav'));
+        var selectedName = state.selectedApp && state.selectedApp.name;
+        render();
+        if (selectedName) {
+          document.body.classList.add('modal-open');
+          var favorite = document.getElementById('modal-fav');
+          if (favorite) favorite.focus();
+        }
+      };
+    });
+    Array.prototype.forEach.call(area.querySelectorAll('[data-clear-filter]'), function (button) {
+      button.onclick = function () { clearOneFilter(button.getAttribute('data-clear-filter')); };
+    });
+    var reset = area.querySelector('#reset-empty');
+    if (reset) reset.onclick = resetFilters;
+  }
+
+  function updateClearFilterButton() {
+    var button = document.getElementById('clear-filter');
+    if (!button) return;
+    var count = activeFilterItems().length;
+    button.disabled = !count;
+    button.classList.toggle('is-on', !!count);
+    button.setAttribute('aria-label', count ? 'Eliminar todos los filtros' : 'No hay filtros activos');
+    button.textContent = count ? 'Limpiar (' + count + ')' : 'Sin filtros';
   }
 
   function wire() {
@@ -638,18 +708,7 @@
     Array.prototype.forEach.call(document.querySelectorAll('[data-saga]'), function (b) {
       b.onclick = function () { setSaga(b.getAttribute('data-saga')); };
     });
-    Array.prototype.forEach.call(document.querySelectorAll('[data-app]'), function (b) {
-      b.onclick = function () { openApp(b.getAttribute('data-app')); };
-    });
-    Array.prototype.forEach.call(document.querySelectorAll('[data-fav]'), function (b) {
-      b.onclick = function (e) {
-        e.stopPropagation();
-        toggleFavorite(b.getAttribute('data-fav'));
-        var selectedName = state.selectedApp && state.selectedApp.name;
-        render();
-        if (selectedName) { document.body.classList.add('modal-open'); var f = document.getElementById('modal-fav'); if (f) f.focus(); }
-      };
-    });
+    wireDynamicContent(document);
     Array.prototype.forEach.call(document.querySelectorAll('[data-view]'), function (b) {
       b.onclick = function () {
         var nextView = b.getAttribute('data-view');
@@ -671,9 +730,7 @@
     var sort = document.getElementById('sort');
     if (sort) sort.onchange = function (e) { state.sort = e.target.value; try { localStorage.setItem('u404-sort', state.sort); } catch (err) {} syncURL(true); render(); scrollToId('catalogo'); };
     var clear = document.getElementById('clear-filter');
-    if (clear) clear.onclick = function () { state.activeSaga = null; state.activeIntent = null; syncURL(true); render(); scrollToId('catalogo'); };
-    var reset = document.getElementById('reset-empty');
-    if (reset) reset.onclick = resetFilters;
+    if (clear) clear.onclick = resetFilters;
     var clearRecent = document.getElementById('clear-recent');
     if (clearRecent) clearRecent.onclick = function () { state.recent = []; saveJSON('u404-recent', []); render(); };
 
@@ -705,21 +762,23 @@
   }
 
   function updateCatalogOnly() {
-    var section = document.getElementById('catalogo');
-    if (!section) { render(); return; }
-    var active = document.activeElement;
-    var value = state.query;
-    var pos = active && active.id === 'q' ? active.selectionStart : value.length;
-    render();
-    var next = document.getElementById('q');
-    if (next) { next.focus(); try { next.setSelectionRange(pos, pos); } catch (e) {} }
+    var content = document.getElementById('catalog-content');
+    if (!content) { render(); return; }
+    content.innerHTML = catalogContentHTML(catalog());
+    updateClearFilterButton();
+    wireDynamicContent(content);
   }
 
   function renderPaletteBody() {
     var results = paletteResults();
     var body = document.querySelector('.palette-body');
     if (!body) return;
-    body.innerHTML = '<p id="palette-title">Resultados</p>' + (results.length ? '<div class="palette-results">' + results.map(function (a, i) { return '<button data-palette-app="' + esc(a.name) + '"' + (i === 0 ? ' class="selected"' : '') + '><span class="p-icon">' + esc(a.icon) + '</span><span><strong>' + esc(a.name) + '</strong><small>' + esc(a.short) + '</small></span><em>' + esc(a.category) + '</em><b>↵</b></button>'; }).join('') + '</div>' : '<div class="palette-empty">No hay coincidencias. Prueba con “imagen”, “novela”, “Windows” o “terror”.</div>');
+    body.innerHTML = '<p id="palette-title">Resultados</p>' + paletteResultsHTML(results);
+    var input = document.getElementById('palette-q');
+    if (input) {
+      if (results.length) input.setAttribute('aria-activedescendant', 'palette-result-0');
+      else input.removeAttribute('aria-activedescendant');
+    }
     wirePaletteResults();
   }
 
@@ -794,7 +853,12 @@
       var current = document.querySelector('[data-palette-app].selected');
       var idx = Math.max(0, items.indexOf(current));
       idx = e.key === 'ArrowDown' ? (idx + 1) % items.length : (idx - 1 + items.length) % items.length;
-      items.forEach(function (x) { x.classList.remove('selected'); }); items[idx].classList.add('selected'); items[idx].scrollIntoView({ block: 'nearest' });
+      items.forEach(function (x) { x.classList.remove('selected'); x.setAttribute('aria-selected', 'false'); });
+      items[idx].classList.add('selected');
+      items[idx].setAttribute('aria-selected', 'true');
+      var paletteInput = document.getElementById('palette-q');
+      if (paletteInput) paletteInput.setAttribute('aria-activedescendant', items[idx].id);
+      items[idx].scrollIntoView({ block: 'nearest' });
     }
     if (state.palette && e.key === 'Enter') {
       var input = document.getElementById('palette-q');
@@ -859,9 +923,11 @@
   function updateNetworkUI() {
     var dot = document.querySelector('.topbar .pulse');
     var label = document.getElementById('network-label');
+    var heroLabel = document.getElementById('hero-network-label');
     if (dot) dot.classList.toggle('is-offline', !navigator.onLine);
-    if (label) label.textContent = navigator.onLine ? 'Sistema online' : 'Modo sin conexión';
-    showToast(navigator.onLine ? 'Conexión recuperada.' : 'Estás usando el portal sin conexión.');
+    if (label) label.textContent = navigator.onLine ? 'Conexión detectada' : 'Sin conexión detectada';
+    if (heroLabel) heroLabel.textContent = navigator.onLine ? 'CONEXIÓN DETECTADA' : 'SIN CONEXIÓN DETECTADA';
+    showToast(navigator.onLine ? 'El navegador indica que la conexión ha vuelto.' : 'El navegador indica que no hay conexión.');
   }
   window.addEventListener('online', updateNetworkUI);
   window.addEventListener('offline', updateNetworkUI);
