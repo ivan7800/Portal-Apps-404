@@ -19,6 +19,7 @@ jobs:
           mkdir -p /tmp/portal-release
           unzip -q Portal-Apps-404_v38.2.1_GITHUB_READY.zip -d /tmp/portal-release
           rsync -a --delete --exclude='.git/' /tmp/portal-release/ ./
+          rm -f .github/workflows/quality.yml
           git config user.name 'Ivanboss'
           git config user.email 'lordcibal@hotmail.com'
           git add -A
