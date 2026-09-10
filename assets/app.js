@@ -882,6 +882,29 @@
     if (presentationOv) presentationOv.onclick = function (e) { if (e.target === presentationOv) closePresentation(); };
   }
 
+  // Keep critical interactions alive even when a render replaces the modal or catalog.
+  // Delegation also covers mobile browsers that may dispatch the first tap to a
+  // newly-created button before the per-node wiring has completed.
+  var delegatedInteractionsBound = false;
+  function bindDelegatedInteractions() {
+    if (delegatedInteractionsBound) return;
+    delegatedInteractionsBound = true;
+    document.addEventListener('click', function (event) {
+      var target = event.target && event.target.closest ? event.target.closest('#close-modal') : null;
+      if (!target) return;
+      event.preventDefault();
+      event.stopPropagation();
+      closeApp();
+    }, true);
+    document.addEventListener('input', function (event) {
+      var input = event.target;
+      if (!input || input.id !== 'q') return;
+      state.query = input.value || '';
+      syncURL(false);
+      updateCatalogOnly();
+    }, true);
+  }
+
   function updateCatalogOnly() {
     var content = document.getElementById('catalog-content');
     if (!content) { render(); return; }
@@ -1088,6 +1111,7 @@
   }
 
   applyURLState();
+  bindDelegatedInteractions();
   render();
   if (state.selectedApp) {
     document.body.classList.add('modal-open');
