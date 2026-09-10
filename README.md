@@ -1,4 +1,10 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.1 Visual Polish
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.2 Lighthouse Polish
+
+## Actualización v41.2 — Lighthouse Polish
+
+- Corregido el rol ARIA del indicador de progreso de exploración.
+- Reforzado el contraste de metadatos del catálogo manteniendo la estética original.
+- Resultado Lighthouse móvil de referencia antes del ajuste: 96 rendimiento, 93 accesibilidad, 100 buenas prácticas y 100 SEO.
 
 ## Actualización v41.1 — Visual Polish
 

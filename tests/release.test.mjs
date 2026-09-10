@@ -29,6 +29,11 @@ test('el buscador universal expone selección activa accesible', () => {
   assert.match(app, /role="option"/);
 });
 
+test('el progreso de exploración usa semántica de medidor accesible', () => {
+  assert.match(app, /class="exploration-meter" role="progressbar"/);
+  assert.match(app, /aria-valuemin="0" aria-valuemax="100" aria-valuenow=/);
+});
+
 test('las funciones premium son locales y accesibles', () => {
   assert.match(app, /function presentationHTML/);
   assert.match(app, /id="presentation-stage" role="dialog" aria-modal="true"/);
@@ -38,11 +43,11 @@ test('las funciones premium son locales y accesibles', () => {
   assert.doesNotMatch(app, /api\.qrserver|chart\.googleapis/);
 });
 
-test('manifest y caché usan la release v41.1 y rutas relativas', () => {
+test('manifest y caché usan la release v41.2 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-1-visual-polish/);
+  assert.match(serviceWorker, /v41-2-lighthouse-polish/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 

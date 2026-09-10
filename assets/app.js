@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.1 Visual Polish */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.2 Lighthouse Polish */
 (function () {
   'use strict';
 
@@ -27,7 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.1 Visual Polish';
+  var VERSION = 'v41.2 Lighthouse Polish';
   var UPDATED = '10 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -472,7 +472,7 @@
             '<section class="section control-panel" id="panel">' +
               '<div class="section-head"><div><p class="kicker">Control Center</p><h2>Estado del ecosistema</h2></div><p>Datos calculados en tiempo real desde el catálogo.</p></div>' +
               '<div class="stats-grid"><div class="stat"><strong data-count="' + APPS.length + '">' + APPS.length + '</strong><span>apps catalogadas</span></div><div class="stat"><strong data-count="' + sagaNames.length + '">' + sagaNames.length + '</strong><span>mundos</span></div><div class="stat"><strong data-count="' + totalCats + '">' + totalCats + '</strong><span>categorías</span></div><div class="stat"><strong data-count="' + techs.length + '">' + techs.length + '</strong><span>tecnologías</span></div></div>' +
-              '<div class="exploration-card"><div><p class="kicker">Mapa de descubrimiento</p><h3>' + state.explored.length + ' de ' + APPS.length + ' aplicaciones exploradas</h3><p>Este progreso se guarda únicamente en este navegador.</p></div><div class="exploration-meter" aria-label="Progreso de exploración: ' + Math.round((state.explored.length / APPS.length) * 100) + '%"><b style="width:' + Math.max(2, Math.round((state.explored.length / APPS.length) * 100)) + '%"></b></div><span class="exploration-percent">' + Math.round((state.explored.length / APPS.length) * 100) + '%</span></div>' +
+              '<div class="exploration-card"><div><p class="kicker">Mapa de descubrimiento</p><h3>' + state.explored.length + ' de ' + APPS.length + ' aplicaciones exploradas</h3><p>Este progreso se guarda únicamente en este navegador.</p></div><div class="exploration-meter" role="progressbar" aria-label="Progreso de exploración" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round((state.explored.length / APPS.length) * 100) + '"><b style="width:' + Math.max(2, Math.round((state.explored.length / APPS.length) * 100)) + '%"></b></div><span class="exploration-percent">' + Math.round((state.explored.length / APPS.length) * 100) + '%</span></div>' +
               '<div class="distribution"><h3>Distribución por mundo</h3>' + sagas.map(function (s) { return '<button class="dist-row" data-saga="' + esc(s.name) + '"><span>' + esc(s.icon) + ' ' + esc(s.name) + '</span><i><b style="width:' + Math.round((s.count / maxSaga) * 100) + '%"></b></i><strong>' + s.count + '</strong></button>'; }).join('') + '</div>' +
             '</section>' +
 

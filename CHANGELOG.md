@@ -1,5 +1,11 @@
 # Changelog
 
+## v41.2 Lighthouse Polish — revisión publicada
+
+- El medidor de exploración expone ahora semántica `progressbar` completa.
+- Mejorado el contraste de los estados y firmas técnicas del catálogo.
+- Renovación de la caché PWA para entregar los ajustes inmediatamente.
+
 ## v41.1 Visual Polish — revisión local
 
 - Capturas reales para Biblioteca de Sueños, Tarot, Ouija, I Ching, FotoLibro Studio, Photo Studio OS, Calma Mental y Mi Recetario PRO.

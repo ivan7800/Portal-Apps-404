@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-1-visual-polish';
+const CACHE = CACHE_PREFIX + 'v41-2-lighthouse-polish';
 const CORE = [
   './',
   './index.html',
