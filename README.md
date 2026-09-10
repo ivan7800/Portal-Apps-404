@@ -1,4 +1,9 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.2 Lighthouse Polish
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.3 Lighthouse Final
+
+## Actualización v41.3 — Lighthouse Final
+
+- Reforzado el contraste del atajo `Ctrl K` en el buscador de escritorio.
+- Se conserva el resultado móvil: 96 rendimiento y 100 en accesibilidad, buenas prácticas y SEO.
 
 ## Actualización v41.2 — Lighthouse Polish
 

@@ -43,11 +43,11 @@ test('las funciones premium son locales y accesibles', () => {
   assert.doesNotMatch(app, /api\.qrserver|chart\.googleapis/);
 });
 
-test('manifest y caché usan la release v41.2 y rutas relativas', () => {
+test('manifest y caché usan la release v41.3 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-2-lighthouse-polish/);
+  assert.match(serviceWorker, /v41-3-lighthouse-final/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 

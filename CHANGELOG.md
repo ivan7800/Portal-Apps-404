@@ -1,5 +1,10 @@
 # Changelog
 
+## v41.3 Lighthouse Final — revisión publicada
+
+- Corregido el último contraste insuficiente detectado por Lighthouse en escritorio.
+- Renovación de caché PWA para entregar el ajuste.
+
 ## v41.2 Lighthouse Polish — revisión publicada
 
 - El medidor de exploración expone ahora semántica `progressbar` completa.
