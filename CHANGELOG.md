@@ -1,5 +1,9 @@
 # Changelog
 
+## v41.6 Close Control Polish — revisión preparada
+
+- Ajustado el centrado óptico del glifo “×” dentro del botón de cierre.
+
 ## v41.5 Cover Polish — revisión preparada
 
 - Corregido el recorte y desplazamiento aparente de portadas reales dentro de las fichas.

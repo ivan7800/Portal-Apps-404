@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.5 Cover Polish */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.6 Close Control Polish */
 (function () {
   'use strict';
 
@@ -27,7 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.5 Cover Polish';
+  var VERSION = 'v41.6 Close Control Polish';
   var UPDATED = '10 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];

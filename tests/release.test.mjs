@@ -49,6 +49,7 @@ test('la ficha se cierra al primer toque y la cruz queda centrada', () => {
   assert.match(closeApp, /if \(!state\.selectedApp \|\| appClosing\) return/);
   assert.ok(closeApp.indexOf('state.selectedApp = null') < closeApp.indexOf("animateClose('modal-overlay'"));
   assert.match(styles, /\.modal-close\{[^}]*width:48px[^}]*height:48px[^}]*display:grid[^}]*place-items:center[^}]*touch-action:manipulation/);
+  assert.match(styles, /\.modal-close:before\{[^}]*transform:translateY\(3px\)/);
   assert.match(styles, /\.app-modal\{[^}]*max-height:calc\(100dvh[^}]*margin:auto/);
 });
 
@@ -58,11 +59,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.5 y rutas relativas', () => {
+test('manifest y caché usan la release v41.6 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-5-cover-polish/);
+  assert.match(serviceWorker, /v41-6-close-control-polish/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 

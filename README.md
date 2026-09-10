@@ -1,4 +1,8 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.5 Cover Polish
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.6 Close Control Polish
+
+## Actualización v41.6 — Close Control Polish
+
+- Ajustado el centrado óptico del glifo “×” dentro del botón de cierre.
 
 ## Actualización v41.5 — Cover Polish
 

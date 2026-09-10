@@ -222,7 +222,7 @@ html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}body{-webki
 .overlay{overflow:auto;overscroll-behavior:contain}
 .app-modal{max-height:calc(100vh - 36px);max-height:calc(100dvh - max(36px,env(safe-area-inset-top) + env(safe-area-inset-bottom) + 24px));margin:auto}
 .modal-close{right:14px;top:14px;width:48px;height:48px;padding:0;border-radius:11px;font-size:0;line-height:1;display:grid;place-items:center;touch-action:manipulation}
-.modal-close:before{content:"\00d7";font-size:1.45rem;line-height:1;transform:translateY(-1px)}
+.modal-close:before{content:"\00d7";font-size:1.45rem;line-height:1;transform:translateY(3px)}
 
 /* v41.5: modal covers stay complete; card thumbnails may keep their editorial crop. */
 .app-modal{width:min(1080px,100%);grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr)}
