@@ -1,4 +1,10 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.4 Modal Polish
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.5 Cover Polish
+
+## Actualización v41.5 — Cover Polish
+
+- Las portadas reales se muestran completas y centradas dentro de la ficha, sin el recorte editorial de las miniaturas.
+- La columna visual queda estable mientras se recorre el contenido en escritorio y recupera formato panorámico en móvil/tablet.
+- La cabecera reserva una zona propia para el cierre, evitando cruces con el botón de favorito.
 
 ## Actualización v41.4 — Modal Polish
 

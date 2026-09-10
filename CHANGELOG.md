@@ -1,6 +1,12 @@
 # Changelog
 
-## v41.4 Modal Polish — revisión preparada
+## v41.5 Cover Polish — revisión preparada
+
+- Corregido el recorte y desplazamiento aparente de portadas reales dentro de las fichas.
+- Separado el encaje de miniaturas (`cover`) del encaje del modal (`contain`).
+- Estabilizada la columna visual y reservada la zona de los controles superiores.
+
+## v41.4 Modal Polish — revisión publicada
 
 - Corregido el cierre de fichas para que responda al primer toque también en iPhone.
 - Añadido bloqueo contra cierres duplicados y recuperación del historial.

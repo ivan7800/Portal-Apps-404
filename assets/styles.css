@@ -223,3 +223,11 @@ html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}body{-webki
 .app-modal{max-height:calc(100vh - 36px);max-height:calc(100dvh - max(36px,env(safe-area-inset-top) + env(safe-area-inset-bottom) + 24px));margin:auto}
 .modal-close{right:14px;top:14px;width:48px;height:48px;padding:0;border-radius:11px;font-size:0;line-height:1;display:grid;place-items:center;touch-action:manipulation}
 .modal-close:before{content:"\00d7";font-size:1.45rem;line-height:1;transform:translateY(-1px)}
+
+/* v41.5: modal covers stay complete; card thumbnails may keep their editorial crop. */
+.app-modal{width:min(1080px,100%);grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr)}
+.modal-shot{position:sticky;top:0;align-self:start;height:calc(100vh - 36px);height:calc(100dvh - max(36px,env(safe-area-inset-top) + env(safe-area-inset-bottom) + 24px));min-height:0;max-height:none;overflow:hidden}
+.modal-shot .modal-shot-visual{width:100%;height:100%;display:grid!important;place-items:center}
+.modal-shot .modal-shot-visual img{width:100%;height:100%;object-fit:contain;object-position:50% 50%}
+.modal-content{min-width:0}.modal-heading{padding-right:56px}
+@media(max-width:980px){.app-modal{grid-template-columns:1fr}.modal-shot{position:relative;top:auto;height:auto;min-height:290px;max-height:360px;aspect-ratio:16/9}.modal-heading{padding-right:56px}}

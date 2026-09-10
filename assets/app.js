@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.4 Modal Polish */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.5 Cover Polish */
 (function () {
   'use strict';
 
@@ -27,7 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.4 Modal Polish';
+  var VERSION = 'v41.5 Cover Polish';
   var UPDATED = '10 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
