@@ -1,4 +1,9 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.6 Close Control Polish
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.7 Interaction Fix
+
+## Actualización v41.7 — Interaction Fix
+
+- El cierre de fichas retira el modal en el primer toque y sincroniza el historial después.
+- El buscador principal responde a escritura, confirmación y teclado virtual de iPhone.
 
 ## Actualización v41.6 — Close Control Polish
 

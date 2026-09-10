@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.6 Close Control Polish */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.7 Interaction Fix */
 (function () {
   'use strict';
 
@@ -27,7 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.6 Close Control Polish';
+  var VERSION = 'v41.7 Interaction Fix';
   var UPDATED = '10 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -326,23 +326,11 @@
     modalHistoryPushed = false;
     state.selectedApp = null;
     document.body.classList.remove('modal-open');
-    animateClose('modal-overlay', function () {
-      if (shouldReturnInHistory) {
-        window.history.back();
-        window.setTimeout(function () {
-          if (!appClosing) return;
-          syncURL(false);
-          render();
-          restoreAppFocus();
-          appClosing = false;
-        }, 400);
-        return;
-      }
-      syncURL(false);
-      render();
-      restoreAppFocus();
-      appClosing = false;
-    });
+    syncURL(false);
+    render();
+    restoreAppFocus();
+    appClosing = false;
+    if (shouldReturnInHistory) window.setTimeout(function () { window.history.back(); }, 0);
   }
 
   function openPalette() {
@@ -845,12 +833,17 @@
     });
 
     var q = document.getElementById('q');
-    if (q) q.oninput = function (e) {
-      state.query = e.target.value;
+    var commitQuery = function (event) {
+      var input = event.target;
+      state.query = input.value;
       syncURL(false);
-      if (searchTimer) clearTimeout(searchTimer);
-      searchTimer = setTimeout(updateCatalogOnly, 70);
+      updateCatalogOnly();
     };
+    if (q) {
+      q.oninput = commitQuery;
+      q.onchange = commitQuery;
+      q.onsearch = commitQuery;
+    }
     var tech = document.getElementById('tech');
     if (tech) tech.onchange = function (e) { state.techFilter = e.target.value; syncURL(true); render(); scrollToId('catalogo'); };
     var sort = document.getElementById('sort');

@@ -1,5 +1,10 @@
 # Changelog
 
+## v41.7 Interaction Fix — revisión preparada
+
+- Cierre inmediato de fichas, con historial sincronizado después.
+- Buscador reforzado para teclado de escritorio y teclado virtual de iPhone.
+
 ## v41.6 Close Control Polish — revisión preparada
 
 - Ajustado el centrado óptico del glifo “×” dentro del botón de cierre.

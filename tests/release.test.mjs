@@ -47,10 +47,20 @@ test('las funciones premium son locales y accesibles', () => {
 test('la ficha se cierra al primer toque y la cruz queda centrada', () => {
   const closeApp = app.match(/function closeApp\(\) \{([\s\S]*?)\n  function openPalette/)?.[1] || '';
   assert.match(closeApp, /if \(!state\.selectedApp \|\| appClosing\) return/);
-  assert.ok(closeApp.indexOf('state.selectedApp = null') < closeApp.indexOf("animateClose('modal-overlay'"));
+  assert.ok(closeApp.indexOf('state.selectedApp = null') < closeApp.indexOf('syncURL(false)'));
+  assert.doesNotMatch(closeApp, /animateClose\('modal-overlay'/);
   assert.match(styles, /\.modal-close\{[^}]*width:48px[^}]*height:48px[^}]*display:grid[^}]*place-items:center[^}]*touch-action:manipulation/);
   assert.match(styles, /\.modal-close:before\{[^}]*transform:translateY\(3px\)/);
   assert.match(styles, /\.app-modal\{[^}]*max-height:calc\(100dvh[^}]*margin:auto/);
+});
+
+test('el buscador aplica texto en teclado y teclado virtual', () => {
+  const wire = app.match(/function wire\(\) \{([\s\S]*?)\n  function updateCatalogOnly/)?.[1] || '';
+  assert.match(wire, /q\.oninput = commitQuery/);
+  assert.match(wire, /q\.onchange = commitQuery/);
+  assert.match(wire, /q\.onsearch = commitQuery/);
+  assert.match(wire, /state\.query = input\.value/);
+  assert.match(wire, /updateCatalogOnly\(\)/);
 });
 
 test('las portadas de ficha se muestran completas y centradas', () => {
@@ -59,11 +69,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.6 y rutas relativas', () => {
+test('manifest y caché usan la release v41.7 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-6-close-control-polish/);
+  assert.match(serviceWorker, /v41-7-interaction-fix/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 
