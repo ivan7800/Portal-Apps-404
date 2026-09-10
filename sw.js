@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v38-2-quality-pwa';
+const CACHE = CACHE_PREFIX + 'v41-1-visual-polish';
 const CORE = [
   './',
   './index.html',
@@ -7,6 +7,7 @@ const CORE = [
   './assets/fonts.css',
   './assets/data.js',
   './assets/catalog-utils.js',
+  './assets/qr-lite.js',
   './assets/app.js',
   './assets/logo.webp',
   './assets/favicon-32.png',

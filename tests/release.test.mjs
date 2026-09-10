@@ -7,6 +7,7 @@ const app = await readFile(new URL('../assets/app.js', import.meta.url), 'utf8')
 const manifest = JSON.parse(await readFile(new URL('../manifest.webmanifest', import.meta.url), 'utf8'));
 const serviceWorker = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
 const audit = await readFile(new URL('../scripts/audit.mjs', import.meta.url), 'utf8');
+const qrLite = await readFile(new URL('../assets/qr-lite.js', import.meta.url), 'utf8');
 
 test('la página contiene un único landmark principal en tiempo de ejecución', () => {
   assert.doesNotMatch(index, /<main[^>]+id=["']app["']/i);
@@ -28,11 +29,20 @@ test('el buscador universal expone selección activa accesible', () => {
   assert.match(app, /role="option"/);
 });
 
-test('manifest y caché usan la release v38.2 y rutas relativas', () => {
+test('las funciones premium son locales y accesibles', () => {
+  assert.match(app, /function presentationHTML/);
+  assert.match(app, /id="presentation-stage" role="dialog" aria-modal="true"/);
+  assert.match(app, /id="app-qr"/);
+  assert.match(app, /window\.QRLite\.draw/);
+  assert.match(qrLite, /global\.QRLite=/);
+  assert.doesNotMatch(app, /api\.qrserver|chart\.googleapis/);
+});
+
+test('manifest y caché usan la release v41.1 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v38-2-quality-pwa/);
+  assert.match(serviceWorker, /v41-1-visual-polish/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 

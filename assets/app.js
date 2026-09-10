@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v38.2 Quality & PWA */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.1 Visual Polish */
 (function () {
   'use strict';
 
@@ -11,8 +11,23 @@
   }
 
   var APPS = D.APPS;
+  var screenshotUses = {};
+  APPS.forEach(function (app) { screenshotUses[app.screenshot] = (screenshotUses[app.screenshot] || 0) + 1; });
+  var GENERIC_COVER_APPS = {
+    INSANITY: 1, 'musica-404': 1, json404: 1, SafeSignal: 1,
+    'Windows-Master-Suite': 1, Cauers4ever: 1, 'diario-moleskine': 1,
+    'Biblioteca-Oculta': 1, 'PocketTone-Archive': 1, 'Storyboard-Studio': 1,
+    'portal-descargas-corporativas': 1, 'sin-bruma': 1, 'Atlas-Pattern-AI': 1,
+    'Claude-Skills-Pack': 1, 'zerokey-ai': 1, 'doppelganger-chat': 1, 'i.roig': 1,
+    'El-Evangelio-del-Nombre-Devorado': 1, 'NECRONOMICON-404': 1,
+    'Strategy-Lab-Campaign': 1, 'Vigilia-Abisal': 1, 'VOX-MORPHER-404': 1,
+    'Guardian-Senior-AI': 1, 'AppHub-404': 1, 'MYTHOS-404': 1,
+    'PixelForge-404': 1, 'MD-Forge-404': 1, 'FileDoctor-404': 1, 'HumanScript-404': 1,
+    'IT-Commander-404': 1, 'SECOND-BRAIN-404': 1, 'Ringtone-404': 1,
+    'ReleaseForge-404': 1, 'Compra-404': 1
+  };
   var readyTimer = null;
-  var VERSION = 'v39 Cosmic Edition';
+  var VERSION = 'v41.1 Visual Polish';
   var UPDATED = '10 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -64,9 +79,12 @@
     sort: loadText('u404-sort', 'recommended'),
     favorites: loadStringArray('u404-favorites', 30),
     recent: loadStringArray('u404-recent', 8),
+    explored: loadStringArray('u404-explored', APPS.length),
     palette: false,
     paletteQuery: '',
     skinPanel: false,
+    presentation: false,
+    presentationIndex: 0,
     motion: loadText('u404-motion', 'balanced'),
     spotlight: APPS[Math.floor(Math.random() * APPS.length)]
   };
@@ -173,6 +191,15 @@
       return { app: x, score: score };
     }).filter(function (x) { return x.score > 0; }).sort(function (a1, b1) { return b1.score - a1.score || a1.app.name.localeCompare(b1.app.name); }).slice(0, 3).map(function (x) { return x.app; });
   }
+  function sharedScreenshot(a) { return !!(a && (screenshotUses[a.screenshot] > 1 || GENERIC_COVER_APPS[a.name])); }
+  function coverHTML(a, altText, eager) {
+    var index = Math.max(0, APPS.indexOf(a));
+    if (sharedScreenshot(a)) {
+      var hue = (index * 47 + 18) % 360;
+      return '<span class="app-shot generated-cover" style="--cover-hue:' + hue + '" role="img" aria-label="Portada de ' + esc(a.name) + '"><span class="cover-rings" aria-hidden="true"></span><span class="cover-core" aria-hidden="true">' + esc(a.icon) + '</span><span class="cover-title">' + esc(a.name) + '</span><span class="cover-category">' + esc(a.category) + '</span></span>';
+    }
+    return '<span class="app-shot"><img src="' + esc(a.screenshot) + '" alt="' + esc(altText || ('Vista previa de ' + a.name)) + '" loading="' + (eager ? 'eager' : 'lazy') + '" decoding="async" width="1280" height="720"></span>';
+  }
   function isFavorite(name) { return state.favorites.indexOf(name) !== -1; }
 
   function catalog() {
@@ -240,11 +267,14 @@
     scrollToId('catalogo');
   }
   function setSaga(name) {
-    state.activeSaga = state.activeSaga === name ? null : name;
-    state.activeIntent = null;
-    syncURL(true);
-    render();
-    pulseCore('navigate');
+    var changeWorld = function () {
+      state.activeSaga = state.activeSaga === name ? null : name;
+      state.activeIntent = null;
+      syncURL(true);
+      render();
+    };
+    if (document.startViewTransition && !reduceMotion()) document.startViewTransition(changeWorld); else changeWorld();
+    pulseCore('world');
     scrollToId('catalogo');
   }
   function scrollToId(id) {
@@ -256,6 +286,11 @@
   function addRecent(name) {
     state.recent = [name].concat(state.recent.filter(function (n) { return n !== name; })).slice(0, 8);
     saveJSON('u404-recent', state.recent);
+  }
+  function addExplored(name) {
+    if (state.explored.indexOf(name) !== -1) return;
+    state.explored = state.explored.concat(name).slice(-APPS.length);
+    saveJSON('u404-explored', state.explored);
   }
   function toggleFavorite(name) {
     if (isFavorite(name)) state.favorites = state.favorites.filter(function (n) { return n !== name; });
@@ -270,8 +305,10 @@
     var replacingModal = !!state.selectedApp;
     if (!replacingModal) lastFocusName = name;
     addRecent(name);
+    addExplored(name);
     state.selectedApp = app;
     state.palette = false;
+    state.presentation = false;
     modalHistoryPushed = modalHistoryPushed || !replacingModal;
     syncURL(!replacingModal);
     render();
@@ -342,7 +379,7 @@
     var meta = appMeta(a);
     return '<article class="app-card" style="--c:' + alt(i) + '">' +
       '<button class="app-open" data-app="' + esc(a.name) + '" aria-label="Ver ficha de ' + esc(a.name) + '">' +
-        '<span class="app-shot"><img src="' + esc(a.screenshot) + '" alt="" loading="lazy" decoding="async" width="1280" height="720"></span>' +
+        coverHTML(a, 'Vista previa de ' + a.name, false) +
         (meta.recent ? '<span class="release-badge">NUEVA</span>' : '') +
         '<span class="app-copy"><span class="app-meta"><span>' + esc(a.category) + '</span><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span></span>' +
         '<strong>' + esc(a.name) + '</strong><span class="app-desc">' + esc(a.short) + '</span><span class="card-signature"><span>' + esc(meta.platform) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span><b>↗</b></span></span>' +
@@ -386,7 +423,7 @@
     document.title = state.selectedApp ? state.selectedApp.name + ' · Universo 404' : 'Universo 404 OS · ' + APPS.length + ' aplicaciones · I. Roig';
     var themeMeta = document.querySelector('meta[name="theme-color"]');
     if (themeMeta) themeMeta.setAttribute('content', THEME_COLORS[state.skin] || '#070a12');
-    document.body.classList.toggle('modal-open', !!(state.selectedApp || state.palette || state.skinPanel));
+    document.body.classList.toggle('modal-open', !!(state.selectedApp || state.palette || state.skinPanel || state.presentation));
     var list = catalog();
     var featured = APPS.filter(function (a) { return a.featured; }).slice(0, 8);
     var favoriteApps = state.favorites.map(byName).filter(Boolean);
@@ -406,8 +443,8 @@
                 '<p class="eyebrow"><span class="status-dot"></span> UNIVERSO 404 · <span id="hero-network-label">' + (navigator.onLine ? 'CONEXIÓN DETECTADA' : 'SIN CONEXIÓN DETECTADA') + '</span></p>' +
                 '<h1>Tu ecosistema digital.<br><em>' + APPS.length + ' apps, un solo universo.</em></h1>' +
                 '<p class="lede">Herramientas, escritura, diseño, IA, sistemas, cultura y ficción interactiva reunidos en un portal estático con preferencias locales.</p>' +
-                '<div class="hero-actions"><button class="primary" id="open-palette">⌕ Buscar en Universo 404 <kbd>Ctrl K</kbd></button><button class="ghost" id="random-app">✦ Sorpréndeme</button><button class="ghost install-pwa' + (deferredInstallPrompt ? ' is-ready' : '') + '" id="install-pwa">⇩ Instalar portal</button></div>' +
-                '<div class="system-pills"><span><b>' + APPS.length + '</b> apps</span><span><b>' + sagaNames.length + '</b> mundos</span><span><b>' + totalCats + '</b> categorías</span><span>● sin tracking</span></div>' +
+                '<div class="hero-actions"><button class="primary" id="open-palette">⌕ Buscar en Universo 404 <kbd>Ctrl K</kbd></button><button class="ghost" id="random-app">✦ Sorpréndeme</button><button class="ghost" id="open-presentation">▶ Presentación</button><button class="ghost install-pwa' + (deferredInstallPrompt ? ' is-ready' : '') + '" id="install-pwa">⇩ Instalar portal</button></div>' +
+                '<div class="system-pills"><span><b>' + APPS.length + '</b> apps</span><span><b>' + sagaNames.length + '</b> mundos</span><span><b>' + totalCats + '</b> categorías</span><span><b>' + state.explored.length + '</b> exploradas</span></div>' +
                 '<div class="hero-signal"><span class="signal-beacon" aria-hidden="true"></span><span class="signal-copy"><small>SEÑAL DESTACADA · AHORA</small><strong>' + esc(sp.name) + '</strong></span><button class="signal-open" data-app="' + esc(sp.name) + '">Abrir ficha <span aria-hidden="true">↗</span></button></div>' +
               '</div>' +
               orbitHTML() +
@@ -421,7 +458,7 @@
             '</section>' +
 
             '<section class="section spotlight-os" id="destacada">' +
-              '<div class="spot-card"><div class="spot-visual"><img src="' + esc(sp.screenshot) + '" alt="Vista previa de ' + esc(sp.name) + '" loading="lazy" width="1280" height="720"><span class="spot-badge">SELECCIÓN DEL SISTEMA</span></div>' +
+              '<div class="spot-card"><div class="spot-visual">' + coverHTML(sp, 'Vista previa de ' + sp.name, true).replace('class="app-shot"', 'class="app-shot spot-shot"') + '<span class="spot-badge">SELECCIÓN DEL SISTEMA</span></div>' +
               '<div class="spot-copy"><p class="kicker">App destacada</p><h2>' + esc(sp.name) + '</h2><p>' + esc(sp.description || sp.short) + '</p><div class="tagline"><span>' + esc(sp.category) + '</span><span>' + esc(LANGUAGES[sp.name] || 'JavaScript') + '</span><span>' + esc(sp.saga) + '</span></div><div class="spot-actions"><button class="primary compact" data-app="' + esc(sp.name) + '">Ver ficha</button><a class="ghost compact" href="' + esc(sp.pages) + '" target="_blank" rel="noopener noreferrer" aria-label="' + (sp.delivery === 'repository' ? 'Abrir repositorio' : 'Abrir aplicación') + '; se abre en otra pestaña">' + (sp.delivery === 'repository' ? 'Abrir repositorio ↗' : 'Abrir app ↗') + '</a></div></div></div>' +
             '</section>' +
 
@@ -435,8 +472,13 @@
             '<section class="section control-panel" id="panel">' +
               '<div class="section-head"><div><p class="kicker">Control Center</p><h2>Estado del ecosistema</h2></div><p>Datos calculados en tiempo real desde el catálogo.</p></div>' +
               '<div class="stats-grid"><div class="stat"><strong data-count="' + APPS.length + '">' + APPS.length + '</strong><span>apps catalogadas</span></div><div class="stat"><strong data-count="' + sagaNames.length + '">' + sagaNames.length + '</strong><span>mundos</span></div><div class="stat"><strong data-count="' + totalCats + '">' + totalCats + '</strong><span>categorías</span></div><div class="stat"><strong data-count="' + techs.length + '">' + techs.length + '</strong><span>tecnologías</span></div></div>' +
+              '<div class="exploration-card"><div><p class="kicker">Mapa de descubrimiento</p><h3>' + state.explored.length + ' de ' + APPS.length + ' aplicaciones exploradas</h3><p>Este progreso se guarda únicamente en este navegador.</p></div><div class="exploration-meter" aria-label="Progreso de exploración: ' + Math.round((state.explored.length / APPS.length) * 100) + '%"><b style="width:' + Math.max(2, Math.round((state.explored.length / APPS.length) * 100)) + '%"></b></div><span class="exploration-percent">' + Math.round((state.explored.length / APPS.length) * 100) + '%</span></div>' +
               '<div class="distribution"><h3>Distribución por mundo</h3>' + sagas.map(function (s) { return '<button class="dist-row" data-saga="' + esc(s.name) + '"><span>' + esc(s.icon) + ' ' + esc(s.name) + '</span><i><b style="width:' + Math.round((s.count / maxSaga) * 100) + '%"></b></i><strong>' + s.count + '</strong></button>'; }).join('') + '</div>' +
             '</section>' +
+
+            '<section class="section about-section" id="universo"><div class="about-grid"><div><p class="kicker">El proyecto</p><h2>Universo 404</h2><p>Un sistema operativo personal para reunir herramientas, mundos narrativos y experimentos en un único espacio local-first.</p><p class="about-note">Sin cuentas. Sin tracking. Tus favoritos, historial y progreso viven en tu dispositivo.</p></div><div class="about-orbit" aria-hidden="true"><span>404</span><i></i><i></i></div><div class="about-facts"><span><b>' + APPS.length + '</b> aplicaciones</span><span><b>' + sagaNames.length + '</b> mundos conectados</span><span><b>0</b> servidores propios</span></div></div></section>' +
+
+            '<section class="section constellation-section" id="mapa"><div class="section-head"><div><p class="kicker">Cartografía interactiva</p><h2>Mapa del Universo</h2></div><p>Selecciona un mundo para descubrir sus aplicaciones y conexiones.</p></div><div class="constellation-map"><div class="constellation-core"><span>U404</span><small>' + APPS.length + ' sistemas</small></div>' + sagas.map(function (s, i) { return '<button class="constellation-node cn' + i + '" data-saga="' + esc(s.name) + '" aria-pressed="' + (state.activeSaga === s.name) + '"><span>' + esc(s.icon) + '</span><strong>' + esc(s.name) + '</strong><small>' + s.count + ' apps</small></button>'; }).join('') + '<svg class="constellation-lines" viewBox="0 0 1000 420" preserveAspectRatio="none" aria-hidden="true"><path d="M500 210 L150 82 M500 210 L390 58 M500 210 L680 68 M500 210 L850 130 M500 210 L790 340 M500 210 L430 365 M500 210 L160 320"/></svg></div></section>' +
 
             '<section class="section catalog-section" id="catalogo">' +
               '<div class="section-head catalog-head"><div><p class="kicker">Explorador</p><h2>Las ' + APPS.length + ' aplicaciones</h2></div><div class="view-switch" role="group" aria-label="Vista del catálogo"><button data-view="grid" aria-label="Vista en cuadrícula" aria-pressed="' + (state.view === 'grid') + '" title="Cuadrícula">▦</button><button data-view="list" aria-label="Vista en lista" aria-pressed="' + (state.view === 'list') + '" title="Lista">☷</button></div></div>' +
@@ -457,11 +499,13 @@
       (state.selectedApp ? modalHTML(state.selectedApp) : '') +
       (state.palette ? paletteHTML() : '') +
       (state.skinPanel ? skinPanelHTML() : '') +
+      (state.presentation ? presentationHTML() : '') +
       '<div class="system-toast" id="system-toast" role="status" aria-live="polite"></div>' +
       '<div class="update-toast" id="update-toast" role="status"' + (waitingWorker ? '' : ' hidden') + '><span><strong>Actualización disponible</strong><small>Hay una nueva versión del portal preparada.</small></span><button id="apply-update">Actualizar ahora</button></div>';
 
     wire();
     initMotion();
+    renderAppQR();
     if (!readyTimer && !root.classList.contains('u404-ready')) {
       readyTimer = setTimeout(function () { root.classList.add('u404-ready'); }, 850);
     }
@@ -470,7 +514,7 @@
   function sidebarHTML() {
     return '<aside class="sidebar" aria-label="Navegación principal">' +
       '<a class="side-brand" href="#top"><img src="assets/logo.webp" alt="" width="48" height="48"><span><strong>U404</strong><small>PORTAL OS</small></span></a>' +
-      '<nav class="side-nav"><p>Explorar</p><a href="#top" class="active"><span>◉</span>Inicio</a><a href="#intenciones"><span>✦</span>Qué quieres hacer</a><a href="#novedades"><span>＋</span>Novedades</a><a href="#top-apps"><span>◇</span>Destacadas</a><a href="#catalogo"><span>▦</span>Catálogo <b>' + APPS.length + '</b></a><a href="#panel"><span>⌁</span>Control Center</a></nav>' +
+      '<nav class="side-nav"><p>Explorar</p><a href="#top" class="active"><span>◉</span>Inicio</a><a href="#intenciones"><span>✦</span>Qué quieres hacer</a><a href="#novedades"><span>＋</span>Novedades</a><a href="#top-apps"><span>◇</span>Destacadas</a><a href="#universo"><span>◌</span>Universo 404</a><a href="#mapa"><span>⌘</span>Mapa</a><a href="#catalogo"><span>▦</span>Catálogo <b>' + APPS.length + '</b></a><a href="#panel"><span>⌁</span>Control Center</a></nav>' +
       '<div class="side-worlds"><p>Mundos</p>' + sagas.map(function (s) { return '<button data-saga="' + esc(s.name) + '" class="' + (state.activeSaga === s.name ? 'active' : '') + '"><span>' + esc(s.icon) + '</span><em>' + esc(s.name) + '</em><b>' + s.count + '</b></button>'; }).join('') + '</div>' +
       '<div class="side-bottom"><button id="skin" class="skin-button"><span>◐</span><span><small>Apariencia</small><strong>' + esc(SKIN_NAMES[state.skin]) + '</strong></span></button><a href="https://github.com/ivan7800" target="_blank" rel="noopener noreferrer" aria-label="GitHub de I. Roig; se abre en otra pestaña"><span>⌘</span>GitHub ↗</a></div>' +
     '</aside>';
@@ -484,16 +528,34 @@
     return '<nav class="mobile-nav" aria-label="Navegación móvil"><a href="#top"><span>◉</span><small>Inicio</small></a><a href="#intenciones"><span>✦</span><small>Crear</small></a><button id="mobile-search"><span>⌕</span><small>Buscar</small></button><a href="#catalogo"><span>▦</span><small>Apps</small></a><a href="#panel"><span>⌁</span><small>Panel</small></a></nav>';
   }
 
+  function presentationApps() {
+    var selected = APPS.filter(function (a) { return a.featured; });
+    return selected.length ? selected : APPS.slice(0, 12);
+  }
+
+  function presentationHTML() {
+    var items = presentationApps();
+    var index = ((state.presentationIndex % items.length) + items.length) % items.length;
+    var a = items[index];
+    var meta = appMeta(a);
+    return '<div class="presentation-overlay" id="presentation-overlay"><div class="presentation-stage" id="presentation-stage" role="dialog" aria-modal="true" aria-labelledby="presentation-title" tabindex="-1">' +
+      '<button class="presentation-close" id="close-presentation" aria-label="Cerrar presentación">×</button>' +
+      '<div class="presentation-visual">' + coverHTML(a, 'Vista previa de ' + a.name, true).replace('class="app-shot"', 'class="app-shot presentation-shot"') + '<span class="presentation-counter">' + (index + 1) + ' / ' + items.length + '</span></div>' +
+      '<div class="presentation-copy"><p class="kicker">' + esc(a.saga) + ' · ' + esc(meta.platform) + '</p><h2 id="presentation-title">' + esc(a.name) + '</h2><p>' + esc(a.description || a.short) + '</p><div class="modal-tags"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span><span>' + esc(a.category) + '</span></div><div class="presentation-actions"><button class="ghost" id="presentation-prev">← Anterior</button><button class="primary" data-app="' + esc(a.name) + '">Ver ficha</button><button class="ghost" id="presentation-next">Siguiente →</button></div><p class="presentation-help">Usa ← → para navegar y Escape para salir.</p></div>' +
+    '</div></div>';
+  }
+
   function modalHTML(a) {
     var related = relatedApps(a);
     var meta = appMeta(a);
     var primaryLabel = a.delivery === 'repository' ? 'Abrir repositorio ↗' : 'Abrir aplicación ↗';
     return '<div class="overlay" id="modal-overlay"><div class="app-modal" id="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description" tabindex="-1">' +
       '<button class="modal-close" id="close-modal" aria-label="Cerrar ficha">×</button>' +
-      '<div class="modal-shot"><img src="' + esc(a.screenshot) + '" alt="Vista previa de ' + esc(a.name) + '" width="1280" height="720"><span>' + esc(a.saga) + '</span></div>' +
+      '<div class="modal-shot">' + coverHTML(a, 'Vista previa de ' + a.name, true).replace('class="app-shot"', 'class="app-shot modal-shot-visual"') + '<span class="modal-saga">' + esc(a.saga) + '</span></div>' +
       '<div class="modal-content"><div class="modal-heading"><div><p class="kicker">' + esc(a.category) + '</p><h2 id="modal-title">' + esc(a.name) + '</h2></div><button class="modal-fav" id="modal-fav" data-fav="' + esc(a.name) + '" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★ Favorita' : '☆ Favorita') + '</button></div>' +
       '<p class="modal-description" id="modal-description">' + esc(a.description || a.short) + '</p><div class="modal-tags"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span><span>' + esc(meta.availability) + '</span><span>' + esc(meta.platform) + '</span><span>' + esc(meta.offline) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span></div>' +
       '<div class="modal-actions"><a class="primary" href="' + esc(a.pages) + '" target="_blank" rel="noopener noreferrer" aria-label="' + esc(primaryLabel.replace(' ↗', '')) + '; se abre en otra pestaña">' + esc(primaryLabel) + '</a>' + (a.delivery === 'repository' ? '' : '<a class="ghost" href="' + esc(a.github) + '" target="_blank" rel="noopener noreferrer" aria-label="Ver repositorio; se abre en otra pestaña">Ver repositorio</a>') + '<button class="ghost" id="share-app">Compartir ficha</button></div>' +
+      '<div class="modal-qr"><canvas id="app-qr" width="180" height="180" role="img" aria-label="Código QR para abrir ' + esc(a.name) + '"></canvas><div><p class="kicker">Salto entre dispositivos</p><h3>Abrir desde el móvil</h3><p>Escanea este código. Se genera localmente y no envía la dirección a ningún servidor.</p><button class="ghost compact" id="download-qr">Descargar QR</button></div></div>' +
       (related.length ? '<div class="modal-related"><p class="kicker">Conexiones 404</p><h3>También te puede servir</h3><div class="related-grid">' + related.map(function (r) { return '<button data-app="' + esc(r.name) + '"><span>' + esc(r.icon) + '</span><span><strong>' + esc(r.name) + '</strong><small>' + esc(r.category) + '</small></span><b>→</b></button>'; }).join('') + '</div></div>' : '') +
       '</div></div></div>';
   }
@@ -585,6 +647,51 @@
     var available = APPS.filter(function (a) { return state.recent.indexOf(a.name) === -1; });
     if (!available.length) available = APPS.slice();
     openApp(available[Math.floor(Math.random() * available.length)].name);
+  }
+
+  function openPresentation() {
+    state.presentation = true;
+    state.presentationIndex = 0;
+    render();
+    document.body.classList.add('modal-open');
+    var stage = document.getElementById('presentation-stage');
+    if (stage) stage.focus();
+  }
+
+  function closePresentation() {
+    state.presentation = false;
+    document.body.classList.remove('modal-open');
+    render();
+    var trigger = document.getElementById('open-presentation');
+    if (trigger) trigger.focus();
+  }
+
+  function stepPresentation(amount) {
+    var length = presentationApps().length;
+    state.presentationIndex = (state.presentationIndex + amount + length) % length;
+    render();
+    document.body.classList.add('modal-open');
+    var stage = document.getElementById('presentation-stage');
+    if (stage) stage.focus();
+  }
+
+  function renderAppQR() {
+    var canvas = document.getElementById('app-qr');
+    if (!canvas || !state.selectedApp || !window.QRLite) return;
+    try {
+      window.QRLite.draw(canvas, state.selectedApp.pages, { size: 180, margin: 4, foreground: '#101522', background: '#ffffff' });
+    } catch (error) {
+      canvas.hidden = true;
+    }
+  }
+
+  function downloadAppQR() {
+    var canvas = document.getElementById('app-qr');
+    if (!canvas || !state.selectedApp) return;
+    var link = document.createElement('a');
+    link.download = state.selectedApp.name.replace(/[^a-z0-9-]+/gi, '-') + '-QR.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
   }
 
   function showToast(message) {
@@ -700,8 +807,13 @@
     });
     ['install-pwa', 'install-pwa-top'].forEach(function (id) { var el = document.getElementById(id); if (el) el.onclick = installPWA; });
     var random = document.getElementById('random-app'); if (random) random.onclick = openRandomApp;
+    var presentation = document.getElementById('open-presentation'); if (presentation) presentation.onclick = openPresentation;
     var update = document.getElementById('apply-update'); if (update) update.onclick = applyUpdate;
     var share = document.getElementById('share-app'); if (share) share.onclick = shareCurrentApp;
+    var qrDownload = document.getElementById('download-qr'); if (qrDownload) qrDownload.onclick = downloadAppQR;
+    var presentationClose = document.getElementById('close-presentation'); if (presentationClose) presentationClose.onclick = closePresentation;
+    var presentationPrev = document.getElementById('presentation-prev'); if (presentationPrev) presentationPrev.onclick = function () { stepPresentation(-1); };
+    var presentationNext = document.getElementById('presentation-next'); if (presentationNext) presentationNext.onclick = function () { stepPresentation(1); };
 
     Array.prototype.forEach.call(document.querySelectorAll('[data-intent]'), function (b) {
       b.onclick = function () { setIntent(b.getAttribute('data-intent')); };
@@ -760,6 +872,8 @@
       if (pq) pq.oninput = function (e) { state.paletteQuery = e.target.value; renderPaletteBody(); };
       wirePaletteResults();
     }
+    var presentationOv = document.getElementById('presentation-overlay');
+    if (presentationOv) presentationOv.onclick = function (e) { if (e.target === presentationOv) closePresentation(); };
   }
 
   function updateCatalogOnly() {
@@ -842,7 +956,11 @@
   document.addEventListener('keydown', function (e) {
     var isShortcut = (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k';
     if (isShortcut) { e.preventDefault(); if (state.palette) closePalette(); else openPalette(); return; }
+    if (state.presentation && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+      e.preventDefault(); stepPresentation(e.key === 'ArrowRight' ? 1 : -1); return;
+    }
     if (e.key === 'Escape') {
+      if (state.presentation) { closePresentation(); return; }
       if (state.selectedApp) { closeApp(); return; }
       if (state.palette) { closePalette(); return; }
       if (state.skinPanel) { closeSkinPanel(); return; }
@@ -868,11 +986,11 @@
         if (selected) { e.preventDefault(); openApp(selected.getAttribute('data-palette-app')); }
       }
     }
-    if ((state.selectedApp || state.palette || state.skinPanel) && e.key === 'Tab') trapFocus(e);
+    if ((state.selectedApp || state.palette || state.skinPanel || state.presentation) && e.key === 'Tab') trapFocus(e);
   });
 
   function trapFocus(e) {
-    var dialog = state.selectedApp ? document.getElementById('app-modal') : (state.palette ? document.getElementById('palette') : document.getElementById('skin-panel'));
+    var dialog = state.selectedApp ? document.getElementById('app-modal') : (state.palette ? document.getElementById('palette') : (state.skinPanel ? document.getElementById('skin-panel') : document.getElementById('presentation-stage')));
     if (!dialog) return;
     var focusable = dialog.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])');
     if (!focusable.length) return;

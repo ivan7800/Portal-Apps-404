@@ -1,6 +1,54 @@
 # Changelog
 
+## v41.1 Visual Polish — revisión local
+
+- Capturas reales para Biblioteca de Sueños, Tarot, Ouija, I Ching, FotoLibro Studio, Photo Studio OS, Calma Mental y Mi Recetario PRO.
+- Optimización del icono PWA de 512 px: 433 KB → 118 KB.
+- Renovación de la caché PWA y pruebas de release.
+
 Los cambios relevantes del proyecto se documentan en este archivo.
+
+## v41 Premium Universe — revisión local
+
+- Añadida transición visual al cambiar entre mundos.
+- Incorporado un mapa interactivo de los siete mundos y sus conexiones.
+- Añadido modo presentación navegable con teclado y controles táctiles.
+- Integrado un generador QR local en cada ficha, sin servicios externos.
+- Renovada la caché PWA e incluido el generador QR para uso sin conexión.
+
+## v40.3 Portadas Completas — revisión local
+
+- Detectadas 42 fichas que conservaban el patrón visual genérico original.
+- Aplicadas portadas únicas a todas las fichas genéricas o con capturas compartidas.
+- Resultado: 52 portadas generadas y 42 composiciones originales conservadas.
+
+## v40.2 Cover Polish — revisión local
+
+- Sustituidas las portadas repetidas por composiciones visuales únicas y ligeras.
+- Añadido texto alternativo descriptivo a las capturas reales.
+- Mejorada la lectura de las portadas en móvil y en fichas ampliadas.
+
+## v40.1 Final polish — revisión local
+
+- Mejorada la estabilidad visual de imágenes y tarjetas para reducir saltos de diseño.
+- Añadido modo reducido de desplazamiento cuando el sistema lo solicita.
+- Refinados foco, targets táctiles, tipografía y áreas seguras para móvil.
+- Añadida barra de herramientas del catálogo persistente durante la exploración.
+- Aplicada carga diferida de secciones para reducir trabajo inicial.
+
+## v40 Discovery Edition — revisión local
+
+- Añadido progreso local de exploración del catálogo.
+- Añadido manifiesto visual del Universo 404.
+- Mejorado el panel de novedades y la lectura de descubrimiento.
+- Esta iteración queda preparada para revisión antes de publicarse.
+
+## v39 Cosmic Edition — revisión local
+
+- Añadida una señal destacada en la portada para acceder rápidamente a una aplicación.
+- Enriquecidas las tarjetas con plataforma, tecnología y acceso visual.
+- Reforzada la jerarquía visual de la sección de novedades.
+- Esta iteración es local y todavía no se ha publicado en GitHub.
 
 ## [38.2.0] — 2026-09-09
 

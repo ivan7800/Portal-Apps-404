@@ -1,4 +1,19 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v38.2
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.1 Visual Polish
+
+## Actualización v41.1 — Visual Polish
+
+- Ocho portadas generadas se sustituyen por capturas reales verificadas de sus aplicaciones publicadas.
+- El icono PWA de 512 px reduce su peso de 433 KB a 118 KB sin pérdida visual apreciable.
+- La caché del service worker se renueva para distribuir los nuevos recursos.
+
+## Actualización v41 — Premium Universe
+
+- Portadas únicas para todas las fichas genéricas o con capturas compartidas.
+- Mapa interactivo de los siete mundos del ecosistema.
+- Modo presentación a pantalla completa con teclado y controles táctiles.
+- Códigos QR generados localmente dentro de cada ficha.
+- Transiciones visuales al cambiar de mundo respetando movimiento reducido.
+- Caché PWA renovada con funcionamiento offline del generador QR.
 
 ## Actualización v38.2 — Quality & PWA
 
