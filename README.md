@@ -1,4 +1,8 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.7 Interaction Fix
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.8 Cache Bust
+
+## Actualización v41.8 — Cache Bust
+
+- Versionadas las rutas de JavaScript y CSS para que Safari no reutilice una copia antigua.
 
 ## Actualización v41.7 — Interaction Fix
 

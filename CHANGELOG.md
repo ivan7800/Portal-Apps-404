@@ -1,5 +1,9 @@
 # Changelog
 
+## v41.8 Cache Bust — revisión preparada
+
+- Versionadas las rutas de JavaScript y CSS para evitar que Safari conserve el comportamiento anterior.
+
 ## v41.7 Interaction Fix — revisión preparada
 
 - Cierre inmediato de fichas, con historial sincronizado después.

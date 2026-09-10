@@ -16,6 +16,12 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
   assert.match(app, /<main class="workspace" id="main-content" tabindex="-1">/);
 });
 
+test('los recursos críticos llevan versión explícita para evitar caché antigua', () => {
+  assert.match(index, /assets\/styles\.css\?v=41\.8/);
+  assert.match(index, /assets\/app\.js\?v=41\.8/);
+  assert.match(index, /assets\/data\.js\?v=41\.8/);
+});
+
 test('la búsqueda evita reconstruir toda la aplicación', () => {
   const partialUpdate = app.match(/function updateCatalogOnly\(\) \{([\s\S]*?)\n  function renderPaletteBody/)?.[1] || '';
   assert.match(partialUpdate, /catalog-content/);
@@ -69,11 +75,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.7 y rutas relativas', () => {
+test('manifest y caché usan la release v41.8 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-7-interaction-fix/);
+  assert.match(serviceWorker, /v41-8-cache-bust/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 
