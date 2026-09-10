@@ -1,4 +1,11 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.3 Lighthouse Final
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.4 Modal Polish
+
+## Actualización v41.4 — Modal Polish
+
+- La ficha cambia a estado cerrado desde el primer toque, antes de completar la animación.
+- El cierre conserva la navegación atrás con una recuperación segura si el navegador no emite el evento esperado.
+- La “×” tiene un área táctil de 48 × 48 px, centrado óptico y respuesta táctil directa.
+- El diálogo se centra dentro del alto útil y respeta las zonas seguras del dispositivo.
 
 ## Actualización v41.3 — Lighthouse Final
 

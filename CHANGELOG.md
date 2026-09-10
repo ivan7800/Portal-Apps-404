@@ -1,5 +1,12 @@
 # Changelog
 
+## v41.4 Modal Polish — revisión preparada
+
+- Corregido el cierre de fichas para que responda al primer toque también en iPhone.
+- Añadido bloqueo contra cierres duplicados y recuperación del historial.
+- Centrada ópticamente la “×” dentro de un objetivo táctil de 48 × 48 px.
+- Ajustado el centrado vertical del diálogo a la zona segura del viewport.
+
 ## v41.3 Lighthouse Final — revisión publicada
 
 - Corregido el último contraste insuficiente detectado por Lighthouse en escritorio.

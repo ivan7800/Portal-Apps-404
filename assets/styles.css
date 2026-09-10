@@ -217,3 +217,9 @@ html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}body{-webki
 @keyframes beaconPulse{50%{box-shadow:0 0 0 9px rgba(var(--accent-rgb),0),0 0 28px var(--accent)}}@keyframes signalSweep{0%,55%{transform:translateX(-100%)}75%,100%{transform:translateX(100%)}}
 @media(max-width:720px){.hero-signal{width:100%;margin-top:20px}.signal-open{padding-inline:8px}.card-signature{gap:5px}.card-signature span{padding-inline:5px}}
 @media(prefers-reduced-motion:reduce){.hero-signal:after,.signal-beacon{animation:none}}
+
+/* Modal interaction polish: stable viewport centering and a true one-tap close target. */
+.overlay{overflow:auto;overscroll-behavior:contain}
+.app-modal{max-height:calc(100vh - 36px);max-height:calc(100dvh - max(36px,env(safe-area-inset-top) + env(safe-area-inset-bottom) + 24px));margin:auto}
+.modal-close{right:14px;top:14px;width:48px;height:48px;padding:0;border-radius:11px;font-size:0;line-height:1;display:grid;place-items:center;touch-action:manipulation}
+.modal-close:before{content:"\00d7";font-size:1.45rem;line-height:1;transform:translateY(-1px)}

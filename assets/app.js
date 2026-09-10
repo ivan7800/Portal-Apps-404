@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.3 Lighthouse Final */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.4 Modal Polish */
 (function () {
   'use strict';
 
@@ -27,7 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.3 Lighthouse Final';
+  var VERSION = 'v41.4 Modal Polish';
   var UPDATED = '10 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -302,6 +302,7 @@
   function openApp(name) {
     var app = byName(name);
     if (!app) return;
+    appClosing = false;
     var replacingModal = !!state.selectedApp;
     if (!replacingModal) lastFocusName = name;
     addRecent(name);
@@ -319,17 +320,28 @@
   }
 
   function closeApp() {
+    if (!state.selectedApp || appClosing) return;
+    appClosing = true;
+    var shouldReturnInHistory = modalHistoryPushed;
+    modalHistoryPushed = false;
+    state.selectedApp = null;
+    document.body.classList.remove('modal-open');
     animateClose('modal-overlay', function () {
-      if (modalHistoryPushed) {
-        modalHistoryPushed = false;
+      if (shouldReturnInHistory) {
         window.history.back();
+        window.setTimeout(function () {
+          if (!appClosing) return;
+          syncURL(false);
+          render();
+          restoreAppFocus();
+          appClosing = false;
+        }, 400);
         return;
       }
-      state.selectedApp = null;
       syncURL(false);
-      document.body.classList.remove('modal-open');
       render();
       restoreAppFocus();
+      appClosing = false;
     });
   }
 
@@ -361,6 +373,7 @@
 
   var lastFocusName = null;
   var modalHistoryPushed = false;
+  var appClosing = false;
   function restoreAppFocus() {
     if (!lastFocusName) return;
     var again = document.querySelector('[data-app="' + cssEsc(lastFocusName) + '"]');
@@ -1056,7 +1069,8 @@
     modalHistoryPushed = false;
     applyURLState(true);
     render();
-    if (hadModal && !state.selectedApp) restoreAppFocus();
+    if ((hadModal || appClosing) && !state.selectedApp) restoreAppFocus();
+    appClosing = false;
   });
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
