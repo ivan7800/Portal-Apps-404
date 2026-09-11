@@ -17,9 +17,9 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
 });
 
 test('los recursos críticos llevan versión explícita para evitar caché antigua', () => {
-  assert.match(index, /assets\/styles\.css\?v=41\.12/);
-  assert.match(index, /assets\/app\.js\?v=41\.12/);
-  assert.match(index, /assets\/data\.js\?v=41\.12/);
+  assert.match(index, /assets\/styles\.css\?v=41\.13/);
+  assert.match(index, /assets\/app\.js\?v=41\.13/);
+  assert.match(index, /assets\/data\.js\?v=41\.13/);
 });
 
 test('la búsqueda evita reconstruir toda la aplicación', () => {
@@ -75,11 +75,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.12 y rutas relativas', () => {
+test('manifest y caché usan la release v41.13 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-12-persistent-controls/);
+  assert.match(serviceWorker, /v41-13-reliable-filters/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 
@@ -89,9 +89,9 @@ test('el auditor ignora metadatos del clon y dependencias locales', () => {
 });
 
 
-test('la versión visible y el registro del service worker coinciden con v41.12', () => {
-  assert.match(app, /var VERSION = 'v41\.12 Persistent Controls'/);
-  assert.match(app, /register\('\.\/sw\.js\?v=41\.12'\)/);
+test('la versión visible y el registro del service worker coinciden con v41.13', () => {
+  assert.match(app, /var VERSION = 'v41\.13 Reliable Filters'/);
+  assert.match(app, /register\('\.\/sw\.js\?v=41\.13'\)/);
 });
 
 test('los controles del catálogo usan delegación persistente', () => {
@@ -99,7 +99,8 @@ test('los controles del catálogo usan delegación persistente', () => {
   assert.match(app, /function setCatalogTechnology\(value\)/);
   assert.match(app, /function setCatalogSort\(value\)/);
   assert.match(app, /var view = target\.closest\('\[data-view\]'\)/);
-  assert.match(app, /if \(target\.id === 'tech'\)/);
-  assert.match(app, /else if \(target\.id === 'sort'\)/);
+  assert.match(app, /data-toggle-catalog-menu/);
+  assert.match(app, /data-tech-filter/);
+  assert.match(app, /data-catalog-sort/);
   assert.match(app, /target\.closest\('#clear-filter'\)/);
 });
