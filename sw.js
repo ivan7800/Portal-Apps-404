@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-21-stable-catalog-restore';
+const CACHE = CACHE_PREFIX + 'v41-22-quinqui-404';
 const CORE = [
   './',
   './index.html',
@@ -14,6 +14,7 @@ const CORE = [
   './assets/apple-touch-icon.png',
   './assets/icon-192.png',
   './assets/icon-512.png',
+  './assets/screenshots/QUINQUI-404.webp',
   './manifest.webmanifest'
 ];
 

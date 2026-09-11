@@ -18,7 +18,7 @@ async function createHarness(scope = 'https://example.test/') {
   };
   const caches = {
     open: async key => { calls.opened.push(key); return cache; },
-    keys: async () => ['another-app-v1', 'portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-11-clean-catalog', 'portal-apps-404-v41-21-stable-catalog-restore'],
+    keys: async () => ['another-app-v1', 'portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-11-clean-catalog', 'portal-apps-404-v41-21-stable-catalog-restore', 'portal-apps-404-v41-22-quinqui-404'],
     delete: async key => { calls.deleted.push(key); return true; }
   };
   const self = {
@@ -55,7 +55,7 @@ test('instala el shell y activa solo su familia de cachés', async () => {
   assert.ok(harness.calls.added.includes('./assets/catalog-utils.js'));
   harness.handlers.activate({ waitUntil: value => { task = value; } });
   await task;
-  assert.deepEqual(harness.calls.deleted, ['portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-11-clean-catalog']);
+  assert.deepEqual(harness.calls.deleted, ['portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-11-clean-catalog', 'portal-apps-404-v41-21-stable-catalog-restore']);
   assert.equal(harness.calls.claimed, 1);
 });
 

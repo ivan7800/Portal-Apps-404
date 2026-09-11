@@ -1,7 +1,7 @@
 window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
-    "release": "v41.21",
+    "release": "v41.22",
     "updated": "2026-09-10",
     "externalLinksVerifiedAt": null
   },
@@ -146,7 +146,8 @@ window.PORTAL_DATA = {
     "Ringtone-404": "JavaScript + Web Audio API",
     "ReleaseForge-404": "JavaScript",
     "Compra-404": "JavaScript",
-    "Caminos-Malditos-Sangrientos": "JavaScript"
+    "Caminos-Malditos-Sangrientos": "JavaScript",
+    "QUINQUI-404": "JavaScript"
   },
   "APPS": [
     {
@@ -1613,6 +1614,23 @@ window.PORTAL_DATA = {
       "screenshot": "assets/screenshots/Nightmare-404.svg",
       "pages": "https://ivan7800.github.io/Caminos-Malditos-Sangrientos/",
       "github": "https://github.com/ivan7800/Caminos-Malditos-Sangrientos",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app"
+    },
+    {
+      "name": "QUINQUI-404",
+      "short": "Archivo digital interactivo del cine quinqui español: películas, protagonistas, prensa, barrios, música y memoria urbana.",
+      "description": "QUINQUI 404 es un archivo digital interactivo del cine quinqui español. Reúne filmoteca visual, protagonistas, hemeroteca, reportajes, barrios, cronología, música, escenas y memoria urbana, distinguiendo documento histórico, recreación editorial y relato mediático.",
+      "category": "Cultura / Cine",
+      "saga": "Archivo simbólico",
+      "icon": "▣",
+      "featured": true,
+      "screenshot": "assets/screenshots/QUINQUI-404.webp",
+      "pages": "https://ivan7800.github.io/QUINQUI-404/",
+      "github": "https://github.com/ivan7800/QUINQUI-404",
       "status": "catalogued",
       "availability": "unverified",
       "offline": "declared",

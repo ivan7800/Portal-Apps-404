@@ -17,9 +17,9 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
 });
 
 test('los recursos críticos llevan versión explícita para evitar caché antigua', () => {
-  assert.match(index, /assets\/styles\.css\?v=41\.21/);
-  assert.match(index, /assets\/app\.js\?v=41\.21/);
-  assert.match(index, /assets\/data\.js\?v=41\.21/);
+  assert.match(index, /assets\/styles\.css\?v=41\.22/);
+  assert.match(index, /assets\/app\.js\?v=41\.22/);
+  assert.match(index, /assets\/data\.js\?v=41\.22/);
 });
 
 test('la búsqueda evita reconstruir toda la aplicación', () => {
@@ -74,11 +74,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.21 y rutas relativas', () => {
+test('manifest y caché usan la release v41.22 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-21-stable-catalog-restore/);
+  assert.match(serviceWorker, /v41-22-quinqui-404/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 
@@ -88,7 +88,7 @@ test('el auditor ignora metadatos del clon y dependencias locales', () => {
 });
 
 
-test('la versión visible y el registro del service worker coinciden con v41.21', () => {
-  assert.match(app, /var VERSION = 'v41\.21 Stable Catalog Restore'/);
-  assert.match(app, /register\('\.\/sw\.js\?v=41\.21'\)/);
+test('la versión visible y el registro del service worker coinciden con v41.22', () => {
+  assert.match(app, /var VERSION = 'v41\.22 · QUINQUI 404'/);
+  assert.match(app, /register\('\.\/sw\.js\?v=41\.22'\)/);
 });

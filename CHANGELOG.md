@@ -1,5 +1,10 @@
 # Changelog
 
+## v41.22 · QUINQUI 404
+
+- Añadido QUINQUI 404 al catálogo, con enlace, metadatos y portada editorial local.
+- Renovadas las rutas versionadas y la caché PWA para entregar la nueva ficha.
+
 ## v41.21 Stable Catalog Restore — restauración validada
 
 - Restaurada la base v41.11, confirmada como estable en PC e iPhone.
