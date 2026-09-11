@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.18 Native Filter Links */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.19 Persistent App Opening */
 (function () {
   'use strict';
 
@@ -28,7 +28,7 @@
   };
   var readyTimer = null;
   var catalogMenuOpenedAt = 0;
-  var VERSION = 'v41.18 Native Filter Links';
+  var VERSION = 'v41.19 Persistent App Opening';
   var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -953,6 +953,21 @@
         setCatalogView(view.getAttribute('data-view'));
         return;
       }
+      var favorite = target.closest('[data-fav]');
+      if (favorite) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleFavorite(favorite.getAttribute('data-fav'));
+        render();
+        return;
+      }
+      var appButton = target.closest('[data-app]');
+      if (appButton) {
+        event.preventDefault();
+        event.stopPropagation();
+        openApp(appButton.getAttribute('data-app'));
+        return;
+      }
       var techChoice = target.closest('[data-tech-filter]');
       if (techChoice) {
         event.preventDefault();
@@ -1174,7 +1189,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.18').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.19').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

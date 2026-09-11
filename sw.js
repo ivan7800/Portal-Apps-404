@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-18-native-filter-links';
+const CACHE = CACHE_PREFIX + 'v41-19-persistent-app-opening';
 const CORE = [
   './',
   './index.html',
