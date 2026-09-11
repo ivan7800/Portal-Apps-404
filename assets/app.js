@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.16 No-Redraw Filters */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.17 Direct Filter Toggle */
 (function () {
   'use strict';
 
@@ -28,7 +28,7 @@
   };
   var readyTimer = null;
   var catalogMenuOpenedAt = 0;
-  var VERSION = 'v41.16 No-Redraw Filters';
+  var VERSION = 'v41.17 Direct Filter Toggle';
   var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -844,6 +844,13 @@
     var presentationClose = document.getElementById('close-presentation'); if (presentationClose) presentationClose.onclick = closePresentation;
     var presentationPrev = document.getElementById('presentation-prev'); if (presentationPrev) presentationPrev.onclick = function () { stepPresentation(-1); };
     var presentationNext = document.getElementById('presentation-next'); if (presentationNext) presentationNext.onclick = function () { stepPresentation(1); };
+    Array.prototype.forEach.call(document.querySelectorAll('[data-toggle-catalog-menu]'), function (button) {
+      button.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleCatalogMenu(button);
+      };
+    });
 
     Array.prototype.forEach.call(document.querySelectorAll('[data-intent]'), function (b) {
       b.onclick = function () { setIntent(b.getAttribute('data-intent')); };
@@ -946,13 +953,6 @@
         event.preventDefault();
         event.stopPropagation();
         setCatalogView(view.getAttribute('data-view'));
-        return;
-      }
-      var menuToggle = target.closest('[data-toggle-catalog-menu]');
-      if (menuToggle) {
-        event.preventDefault();
-        event.stopPropagation();
-        toggleCatalogMenu(menuToggle);
         return;
       }
       var techChoice = target.closest('[data-tech-filter]');
@@ -1176,7 +1176,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.16').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.17').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;
