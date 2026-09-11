@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.13 Reliable Filters */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.14 Filter Menu Fix */
 (function () {
   'use strict';
 
@@ -27,7 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.13 Reliable Filters';
+  var VERSION = 'v41.14 Filter Menu Fix';
   var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -919,6 +919,14 @@
     document.addEventListener('click', function (event) {
       var target = event.target && event.target.closest ? event.target : null;
       if (!target) return;
+      // This must happen in the same capture handler as the menu actions.
+      // Rendering inside one listener detaches the clicked button, so a later
+      // bubble listener would mistake it for a click outside and close it again.
+      if (state.catalogMenu && !target.closest('.catalog-menu')) {
+        state.catalogMenu = null;
+        render();
+        return;
+      }
       if (target.closest('#close-modal')) {
         event.preventDefault();
         event.stopPropagation();
@@ -968,13 +976,6 @@
         clearOneFilter(oneFilter.getAttribute('data-clear-filter'));
       }
     }, true);
-    document.addEventListener('click', function (event) {
-      if (!state.catalogMenu) return;
-      var target = event.target && event.target.closest ? event.target : null;
-      if (target && target.closest('.catalog-menu')) return;
-      state.catalogMenu = null;
-      render();
-    }, false);
   }
 
   function updateCatalogOnly() {
@@ -1169,7 +1170,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.13').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.14').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

@@ -1,8 +1,8 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.13 Reliable Filters
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.14 Filter Menu Fix
 
-## Actualización v41.13 — Reliable Filters
+## Actualización v41.14 — Filter Menu Fix
 
-Los filtros y el orden ya no dependen de los desplegables nativos del navegador. Se abren como un panel visible de opciones táctiles, con el estado seleccionado y una limpieza clara. El botón de actualización PWA recarga la aplicación si el navegador demora el cambio de controlador.
+Los filtros y el orden ya no dependen de los desplegables nativos del navegador. Se abren como un panel visible de opciones táctiles, con el estado seleccionado y una limpieza clara; el panel ya no se cierra durante el mismo clic que lo abre. El botón de actualización PWA recarga la aplicación si el navegador demora el cambio de controlador.
 
 ## Actualización v41.12 — Persistent Controls
 
