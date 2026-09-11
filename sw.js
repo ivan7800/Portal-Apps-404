@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-10-native-fallback';
+const CACHE = CACHE_PREFIX + 'v41-11-clean-catalog';
 const CORE = [
   './',
   './index.html',
@@ -42,11 +42,22 @@ async function updateCache(request, response) {
   return response;
 }
 
+function scopePath() {
+  return new URL(self.registration.scope).pathname;
+}
+
+function isShellNavigation(request) {
+  const scope = scopePath();
+  const path = new URL(request.url).pathname;
+  const indexPath = scope + (scope.endsWith('/') ? '' : '/') + 'index.html';
+  return path === scope || path === indexPath;
+}
+
 async function navigationResponse(request) {
   const cache = await caches.open(CACHE);
   try {
     const response = await fetch(request);
-    if (response.ok) {
+    if (response.ok && isShellNavigation(request)) {
       await cache.put('./index.html', response.clone());
     }
     return response;
@@ -68,6 +79,6 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
-  if (url.origin !== location.origin) return;
+  if (url.origin !== location.origin || !url.pathname.startsWith(scopePath())) return;
   event.respondWith(request.mode === 'navigate' ? navigationResponse(request) : assetResponse(request));
 });

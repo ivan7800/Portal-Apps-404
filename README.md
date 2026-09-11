@@ -1,4 +1,9 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.10 Native Fallback
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.11 Clean Catalog
+
+## Actualización v41.11 — Clean Catalog
+
+- Eliminada la barra de búsqueda del catálogo, que duplicaba el buscador universal y concentraba los problemas de interacción.
+- El catálogo conserva filtros por tecnología, orden, favoritos y acceso al buscador universal desde cabecera y navegación móvil.
 
 ## Actualización v41.10 — Native Fallback
 
@@ -160,7 +165,8 @@ package.json               Comandos de calidad y metadatos de release
 CHANGELOG.md               Historial de cambios
 CONTRIBUTING.md            Guía de contribución
 SECURITY.md                Política para comunicar vulnerabilidades
-RELEASE_AUDIT_v38.2.md     Evidencias, riesgos y checklist de la release
+RELEASE_AUDIT_v41.10.1.md  Auditoría y evidencias de la release actual
+RELEASE_AUDIT_v38.2.md     Auditoría histórica v38.2
 ```
 
 ## Publicar en GitHub Pages

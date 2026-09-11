@@ -17,9 +17,9 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
 });
 
 test('los recursos críticos llevan versión explícita para evitar caché antigua', () => {
-  assert.match(index, /assets\/styles\.css\?v=41\.10/);
-  assert.match(index, /assets\/app\.js\?v=41\.10/);
-  assert.match(index, /assets\/data\.js\?v=41\.10/);
+  assert.match(index, /assets\/styles\.css\?v=41\.11/);
+  assert.match(index, /assets\/app\.js\?v=41\.11/);
+  assert.match(index, /assets\/data\.js\?v=41\.11/);
 });
 
 test('la búsqueda evita reconstruir toda la aplicación', () => {
@@ -62,13 +62,10 @@ test('la ficha se cierra al primer toque y la cruz queda centrada', () => {
   assert.match(app, /document\.addEventListener\('click', closeFromEvent, true\)/);
 });
 
-test('el buscador aplica texto en teclado y teclado virtual', () => {
-  assert.match(app, /function commitCatalogQuery\(input\)/);
-  assert.match(app, /document\.addEventListener\('input', queryFromEvent, true\)/);
-  assert.match(app, /document\.addEventListener\('change', queryFromEvent, true\)/);
-  assert.match(app, /document\.addEventListener\('search', queryFromEvent, true\)/);
-  assert.match(app, /state\.query = input\.value \|\| ''/);
-  assert.match(app, /updateCatalogOnly\(\)/);
+test('el catálogo no incluye una barra de búsqueda redundante', () => {
+  assert.doesNotMatch(app, /id="catalog-search-form"/);
+  assert.doesNotMatch(app, /id="q" name="buscar"/);
+  assert.match(app, /id="open-palette-top"/);
 });
 
 test('las portadas de ficha se muestran completas y centradas', () => {
@@ -77,15 +74,21 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.10 y rutas relativas', () => {
+test('manifest y caché usan la release v41.11 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-10-native-fallback/);
+  assert.match(serviceWorker, /v41-11-clean-catalog/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 
 test('el auditor ignora metadatos del clon y dependencias locales', () => {
   assert.match(audit, /new Set\(\['\.git', 'node_modules'\]\)/);
   assert.doesNotMatch(audit, /debe mantenerse por debajo de 100/);
+});
+
+
+test('la versión visible y el registro del service worker coinciden con v41.11', () => {
+  assert.match(app, /var VERSION = 'v41\.11 Clean Catalog'/);
+  assert.match(app, /register\('\.\/sw\.js\?v=41\.11'\)/);
 });

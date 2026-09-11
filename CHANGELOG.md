@@ -1,5 +1,17 @@
 # Changelog
 
+## v41.11 Clean Catalog — revisión preparada
+
+- Retirada la barra de búsqueda del catálogo para eliminar una interacción redundante y frágil.
+- Se conservan los filtros, la ordenación y el buscador universal del portal.
+
+## v41.10.1 Release Audit — revisión preparada
+
+- Sincronizada la versión del paquete y la versión visible del portal con la release v41.10.
+- Permitido el envío nativo del buscador mediante `form-action 'self'` sin relajar el resto de la CSP.
+- Endurecido el service worker para que solo la navegación del shell pueda refrescar `index.html` en caché y para ignorar recursos fuera de su scope.
+- Añadidas regresiones automáticas para CSP, versionado y protección del shell offline.
+
 ## v41.10 Native Fallback — revisión preparada
 
 - La X de cada ficha tiene destino HTML nativo sin el parámetro app, además del cierre instantáneo por JavaScript.

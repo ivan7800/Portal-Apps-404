@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.8 Cache Bust */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.11 Clean Catalog */
 (function () {
   'use strict';
 
@@ -27,8 +27,8 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.8 Cache Bust';
-  var UPDATED = '10 de septiembre de 2026';
+  var VERSION = 'v41.11 Clean Catalog';
+  var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
   var SKIN_NAMES = { cosmica: 'Cósmica', obsidiana: 'Obsidiana', void: 'Void OLED', glass: 'Glass', terminal: 'Terminal', arctic: 'Arctic', synthwave: 'Synthwave' };
@@ -491,7 +491,6 @@
             '<section class="section catalog-section" id="catalogo">' +
               '<div class="section-head catalog-head"><div><p class="kicker">Explorador</p><h2>Las ' + APPS.length + ' aplicaciones</h2></div><div class="view-switch" role="group" aria-label="Vista del catálogo"><button data-view="grid" aria-label="Vista en cuadrícula" aria-pressed="' + (state.view === 'grid') + '" title="Cuadrícula">▦</button><button data-view="list" aria-label="Vista en lista" aria-pressed="' + (state.view === 'list') + '" title="Lista">☷</button></div></div>' +
               '<div class="catalog-toolbar">' +
-                '<form class="catalog-search" id="catalog-search-form" role="search" action="./" method="get"><span aria-hidden="true">⌕</span><input id="q" name="buscar" type="search" autocomplete="off" spellcheck="false" aria-label="Buscar aplicaciones" placeholder="Buscar por nombre, función, categoría…" value="' + esc(state.query) + '"></form>' +
                 '<select id="tech" aria-label="Filtrar por tecnología"><option value="">Toda tecnología</option>' + techs.map(function (t) { return '<option value="' + esc(t) + '"' + (state.techFilter === t ? ' selected' : '') + '>' + esc(t) + '</option>'; }).join('') + '</select>' +
                 '<select id="sort" aria-label="Ordenar aplicaciones">' + Object.keys(SORT_NAMES).map(function (key) { return '<option value="' + key + '"' + (state.sort === key ? ' selected' : '') + '>' + esc(SORT_NAMES[key]) + '</option>'; }).join('') + '</select>' +
                 '<button class="filter-chip' + (filterCount ? ' is-on' : '') + '" id="clear-filter" aria-label="' + (filterCount ? 'Eliminar todos los filtros' : 'No hay filtros activos') + '"' + (filterCount ? '' : ' disabled') + '>' + (filterCount ? 'Limpiar (' + filterCount + ')' : 'Sin filtros') + '</button>' +
@@ -878,11 +877,6 @@
   // Delegation also covers mobile browsers that may dispatch the first tap to a
   // newly-created button before the per-node wiring has completed.
   var delegatedInteractionsBound = false;
-  function commitCatalogQuery(input) {
-    state.query = input.value || '';
-    syncURL(false);
-    updateCatalogOnly();
-  }
   function bindDelegatedInteractions() {
     if (delegatedInteractionsBound) return;
     delegatedInteractionsBound = true;
@@ -895,21 +889,6 @@
     };
     document.addEventListener('pointerup', closeFromEvent, true);
     document.addEventListener('click', closeFromEvent, true);
-    var queryFromEvent = function (event) {
-      var input = event.target;
-      if (!input || input.id !== 'q') return;
-      commitCatalogQuery(input);
-    };
-    document.addEventListener('input', queryFromEvent, true);
-    document.addEventListener('change', queryFromEvent, true);
-    document.addEventListener('search', queryFromEvent, true);
-    document.addEventListener('submit', function (event) {
-      var form = event.target;
-      if (!form || form.id !== 'catalog-search-form') return;
-      event.preventDefault();
-      var input = form.querySelector('#q');
-      if (input) commitCatalogQuery(input);
-    }, true);
   }
 
   function updateCatalogOnly() {
@@ -1104,7 +1083,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.10').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.11').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

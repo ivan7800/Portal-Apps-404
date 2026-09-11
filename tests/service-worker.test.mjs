@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import vm from 'node:vm';
 
-async function createHarness() {
+async function createHarness(scope = 'https://example.test/') {
   const handlers = {};
   const calls = { added: [], deleted: [], opened: [], put: [], claimed: 0, skipped: 0 };
   let network = 'ok';
@@ -18,10 +18,11 @@ async function createHarness() {
   };
   const caches = {
     open: async key => { calls.opened.push(key); return cache; },
-    keys: async () => ['another-app-v1', 'portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-10-native-fallback'],
+    keys: async () => ['another-app-v1', 'portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-11-clean-catalog'],
     delete: async key => { calls.deleted.push(key); return true; }
   };
   const self = {
+    registration: { scope },
     addEventListener: (name, handler) => { handlers[name] = handler; },
     clients: { claim: async () => { calls.claimed += 1; } },
     skipWaiting: () => { calls.skipped += 1; }
@@ -94,4 +95,26 @@ test('sirve un asset cacheado y actualiza su copia en segundo plano', async () =
   assert.equal(await (await response).text(), 'cached');
   await new Promise(resolve => setTimeout(resolve, 0));
   assert.equal(harness.calls.put.length, 1);
+});
+
+
+test('no reemplaza el shell offline al navegar a otra página HTML', async () => {
+  const harness = await createHarness();
+  let response;
+  harness.handlers.fetch({
+    request: { method: 'GET', mode: 'navigate', url: 'https://example.test/404.html' },
+    respondWith: value => { response = value; }
+  });
+  assert.equal(await (await response).text(), 'network');
+  assert.equal(harness.calls.put.includes('./index.html'), false);
+});
+
+test('no intercepta recursos del mismo origen fuera del scope', async () => {
+  const harness = await createHarness('https://example.test/Portal-Apps-404/');
+  let handled = false;
+  harness.handlers.fetch({
+    request: { method: 'GET', mode: 'cors', url: 'https://example.test/otro-proyecto/app.js' },
+    respondWith: () => { handled = true; }
+  });
+  assert.equal(handled, false);
 });
