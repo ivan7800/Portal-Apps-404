@@ -1,6 +1,6 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.18 Native Filter Links
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.20 Native App Links
 
-## Actualización v41.18 — Direct Filter Toggle
+## Actualización v41.20 — enlaces nativos de fichas
 
 Los filtros y el orden ya no dependen de los desplegables nativos del navegador. Se abren sin redibujar el catálogo, por lo que el panel permanece abierto hasta elegir una opción o pulsar de nuevo el control. El botón de actualización PWA recarga la aplicación si el navegador demora el cambio de controlador.
 

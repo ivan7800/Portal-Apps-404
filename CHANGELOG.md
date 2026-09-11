@@ -1,6 +1,11 @@
 # Changelog
 
-## v41.18 Native Filter Links — corrección de controles y actualización
+## v41.20 Native App Links — corrección definitiva de apertura
+
+- Las tarjetas, filas, recomendaciones y destacados abren fichas mediante enlaces nativos con URL directa.
+- La apertura ya no depende de controladores que puedan quedar desfasados durante una actualización de la PWA.
+
+## v41.19 Persistent App Opening — corrección de controles y actualización
 
 - Sustituidos los desplegables nativos del catálogo por paneles de opciones visibles y táctiles, sin cierre inmediato al abrirlos.
 - El botón de actualización PWA incorpora una recarga de respaldo si el navegador demora el cambio de versión.

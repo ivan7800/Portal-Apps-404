@@ -30,7 +30,13 @@
 .related-grid button:hover{border-color:rgba(var(--accent-rgb),.38);transform:translateX(2px)}
 .related-grid button>span:first-child{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:rgba(var(--accent-rgb),.08);color:var(--accent)}
 .related-grid strong{display:block;font-size:.72rem}.related-grid small{display:block;color:var(--muted);font-size:.6rem}.related-grid b{color:var(--accent)}
-@media(max-width:720px){.modal-related{margin-top:20px}.related-grid button{padding:10px}}
+@media(max-width:720px){.modal-related{margin-top:20px}.related-grid button,.related-grid a{padding:10px}}
+
+/* Los enlaces de fichas conservan exactamente el aspecto de los controles. */
+a.app-open,a.row-open,a.small-tile,a.signal-open,.related-grid a{color:inherit;text-decoration:none}
+.related-grid a{width:100%;display:grid;grid-template-columns:34px 1fr 18px;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);padding:9px 10px;text-align:left;cursor:pointer;transition:border-color .18s ease,transform .18s ease}
+.related-grid a:hover{border-color:rgba(var(--accent-rgb),.38);transform:translateX(2px)}
+.related-grid a>span:first-child{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:rgba(var(--accent-rgb),.08);color:var(--accent)}
 
 /* ========================================================================
    Universo 404 OS v33 — Signature Edition
