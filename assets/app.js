@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.17 Direct Filter Toggle */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.18 Native Filter Links */
 (function () {
   'use strict';
 
@@ -28,7 +28,7 @@
   };
   var readyTimer = null;
   var catalogMenuOpenedAt = 0;
-  var VERSION = 'v41.17 Direct Filter Toggle';
+  var VERSION = 'v41.18 Native Filter Links';
   var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -268,17 +268,22 @@
 
   function catalogMenusHTML() {
     var techLabel = state.techFilter || 'Toda tecnología';
-    return '<div class="catalog-menu catalog-menu-tech">' +
-      '<button type="button" class="catalog-menu-toggle" data-toggle-catalog-menu="tech" aria-haspopup="true" aria-expanded="' + (state.catalogMenu === 'tech') + '"><span>' + esc(techLabel) + '</span><b aria-hidden="true">⌄</b></button>' +
-      '<div class="catalog-menu-popover" role="group" aria-label="Filtrar por tecnología"' + (state.catalogMenu === 'tech' ? '' : ' hidden') + '><p>Tecnología</p><div class="catalog-menu-options"><button type="button" data-tech-filter=""' + (!state.techFilter ? ' aria-pressed="true"' : '') + '>Todas</button>' + techs.map(function (t) { return '<button type="button" data-tech-filter="' + esc(t) + '" aria-pressed="' + (state.techFilter === t) + '">' + esc(t) + '</button>'; }).join('') + '</div></div>' +
-      '</div>';
+    return '<details class="catalog-menu catalog-menu-tech"><summary><span>' + esc(techLabel) + '</span><b aria-hidden="true">⌄</b></summary>' +
+      '<div class="catalog-menu-popover" role="group" aria-label="Filtrar por tecnología"><p>Tecnología</p><div class="catalog-menu-options"><a href="' + catalogFilterURL('tecnologia', '') + '"' + (!state.techFilter ? ' aria-current="true"' : '') + '>Todas</a>' + techs.map(function (t) { return '<a href="' + catalogFilterURL('tecnologia', t) + '"' + (state.techFilter === t ? ' aria-current="true"' : '') + '>' + esc(t) + '</a>'; }).join('') + '</div></div></details>';
   }
 
   function sortMenuHTML() {
-    return '<div class="catalog-menu catalog-menu-sort">' +
-      '<button type="button" class="catalog-menu-toggle" data-toggle-catalog-menu="sort" aria-haspopup="true" aria-expanded="' + (state.catalogMenu === 'sort') + '"><span>' + esc(SORT_NAMES[state.sort]) + '</span><b aria-hidden="true">⌄</b></button>' +
-      '<div class="catalog-menu-popover" role="group" aria-label="Ordenar aplicaciones"' + (state.catalogMenu === 'sort' ? '' : ' hidden') + '><p>Ordenar</p><div class="catalog-menu-options"><button type="button" data-catalog-sort="recommended" aria-pressed="' + (state.sort === 'recommended') + '">Recomendadas</button>' + Object.keys(SORT_NAMES).filter(function (key) { return key !== 'recommended'; }).map(function (key) { return '<button type="button" data-catalog-sort="' + key + '" aria-pressed="' + (state.sort === key) + '">' + esc(SORT_NAMES[key]) + '</button>'; }).join('') + '</div></div>' +
-      '</div>';
+    return '<details class="catalog-menu catalog-menu-sort"><summary><span>' + esc(SORT_NAMES[state.sort]) + '</span><b aria-hidden="true">⌄</b></summary>' +
+      '<div class="catalog-menu-popover" role="group" aria-label="Ordenar aplicaciones"><p>Ordenar</p><div class="catalog-menu-options">' + Object.keys(SORT_NAMES).map(function (key) { return '<a href="' + catalogFilterURL('orden', key === 'recommended' ? '' : key) + '"' + (state.sort === key ? ' aria-current="true"' : '') + '>' + esc(SORT_NAMES[key]) + '</a>'; }).join('') + '</div></div></details>';
+  }
+
+  function catalogFilterURL(key, value) {
+    try {
+      var url = new URL(window.location.href);
+      url.searchParams.delete('app');
+      if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
+      return url.pathname + url.search + '#catalogo';
+    } catch (e) { return '#catalogo'; }
   }
 
   function setIntent(id) {
@@ -844,13 +849,6 @@
     var presentationClose = document.getElementById('close-presentation'); if (presentationClose) presentationClose.onclick = closePresentation;
     var presentationPrev = document.getElementById('presentation-prev'); if (presentationPrev) presentationPrev.onclick = function () { stepPresentation(-1); };
     var presentationNext = document.getElementById('presentation-next'); if (presentationNext) presentationNext.onclick = function () { stepPresentation(1); };
-    Array.prototype.forEach.call(document.querySelectorAll('[data-toggle-catalog-menu]'), function (button) {
-      button.onclick = function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        toggleCatalogMenu(button);
-      };
-    });
 
     Array.prototype.forEach.call(document.querySelectorAll('[data-intent]'), function (b) {
       b.onclick = function () { setIntent(b.getAttribute('data-intent')); };
@@ -1176,7 +1174,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.17').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.18').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

@@ -17,9 +17,9 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
 });
 
 test('los recursos críticos llevan versión explícita para evitar caché antigua', () => {
-  assert.match(index, /assets\/styles\.css\?v=41\.17/);
-  assert.match(index, /assets\/app\.js\?v=41\.17/);
-  assert.match(index, /assets\/data\.js\?v=41\.17/);
+  assert.match(index, /assets\/styles\.css\?v=41\.18/);
+  assert.match(index, /assets\/app\.js\?v=41\.18/);
+  assert.match(index, /assets\/data\.js\?v=41\.18/);
 });
 
 test('la búsqueda evita reconstruir toda la aplicación', () => {
@@ -75,11 +75,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.17 y rutas relativas', () => {
+test('manifest y caché usan la release v41.18 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-17-direct-filter-toggle/);
+  assert.match(serviceWorker, /v41-18-native-filter-links/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 
@@ -89,9 +89,9 @@ test('el auditor ignora metadatos del clon y dependencias locales', () => {
 });
 
 
-test('la versión visible y el registro del service worker coinciden con v41.17', () => {
-  assert.match(app, /var VERSION = 'v41\.17 Direct Filter Toggle'/);
-  assert.match(app, /register\('\.\/sw\.js\?v=41\.17'\)/);
+test('la versión visible y el registro del service worker coinciden con v41.18', () => {
+  assert.match(app, /var VERSION = 'v41\.18 Native Filter Links'/);
+  assert.match(app, /register\('\.\/sw\.js\?v=41\.18'\)/);
 });
 
 test('los controles del catálogo usan delegación persistente', () => {
