@@ -832,18 +832,6 @@
       };
     });
 
-    var q = document.getElementById('q');
-    var commitQuery = function (event) {
-      var input = event.target;
-      state.query = input.value;
-      syncURL(false);
-      updateCatalogOnly();
-    };
-    if (q) {
-      q.oninput = commitQuery;
-      q.onchange = commitQuery;
-      q.onsearch = commitQuery;
-    }
     var tech = document.getElementById('tech');
     if (tech) tech.onchange = function (e) { state.techFilter = e.target.value; syncURL(true); render(); scrollToId('catalogo'); };
     var sort = document.getElementById('sort');
@@ -867,10 +855,7 @@
     }
 
     var modalOv = document.getElementById('modal-overlay');
-    if (modalOv) {
-      modalOv.onclick = function (e) { if (e.target === modalOv) closeApp(); };
-      var close = document.getElementById('close-modal'); if (close) close.onclick = closeApp;
-    }
+    if (modalOv) modalOv.onclick = function (e) { if (e.target === modalOv) closeApp(); };
     var paletteOv = document.getElementById('palette-overlay');
     if (paletteOv) {
       paletteOv.onclick = function (e) { if (e.target === paletteOv) closePalette(); };
@@ -886,23 +871,31 @@
   // Delegation also covers mobile browsers that may dispatch the first tap to a
   // newly-created button before the per-node wiring has completed.
   var delegatedInteractionsBound = false;
+  function commitCatalogQuery(input) {
+    state.query = input.value || '';
+    syncURL(false);
+    updateCatalogOnly();
+  }
   function bindDelegatedInteractions() {
     if (delegatedInteractionsBound) return;
     delegatedInteractionsBound = true;
-    document.addEventListener('click', function (event) {
+    var closeFromEvent = function (event) {
       var target = event.target && event.target.closest ? event.target.closest('#close-modal') : null;
       if (!target) return;
       event.preventDefault();
       event.stopPropagation();
       closeApp();
-    }, true);
-    document.addEventListener('input', function (event) {
+    };
+    document.addEventListener('pointerup', closeFromEvent, true);
+    document.addEventListener('click', closeFromEvent, true);
+    var queryFromEvent = function (event) {
       var input = event.target;
       if (!input || input.id !== 'q') return;
-      state.query = input.value || '';
-      syncURL(false);
-      updateCatalogOnly();
-    }, true);
+      commitCatalogQuery(input);
+    };
+    document.addEventListener('input', queryFromEvent, true);
+    document.addEventListener('change', queryFromEvent, true);
+    document.addEventListener('search', queryFromEvent, true);
   }
 
   function updateCatalogOnly() {
@@ -1097,7 +1090,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.9').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

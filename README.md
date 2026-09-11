@@ -1,8 +1,9 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.8 Cache Bust
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.9 Interaction Reset
 
-## Actualización v41.8 — Cache Bust
+## Actualización v41.9 — Interaction Reset
 
-- Versionadas las rutas de JavaScript y CSS para que Safari no reutilice una copia antigua.
+- Nueva caché PWA y rutas versionadas para que Safari no reutilice una copia antigua.
+- Cierre de ficha y buscador controlados por eventos persistentes, válidos tras cualquier renderizado.
 
 ## Actualización v41.7 — Interaction Fix
 

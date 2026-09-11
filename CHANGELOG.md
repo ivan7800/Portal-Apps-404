@@ -1,5 +1,11 @@
 # Changelog
 
+## v41.9 Interaction Reset — revisión preparada
+
+- Renovada la ruta del service worker y la caché PWA para reemplazar de forma inequívoca la versión anterior.
+- El cierre de ficha se resuelve desde eventos persistentes de puntero y clic.
+- El buscador principal escucha entrada, cambio y búsqueda desde un único controlador persistente.
+
 ## v41.8 Cache Bust — revisión preparada
 
 - Versionadas las rutas de JavaScript y CSS para evitar que Safari conserve el comportamiento anterior.
