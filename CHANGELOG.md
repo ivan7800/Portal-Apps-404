@@ -1,5 +1,10 @@
 # Changelog
 
+## v41.12 Persistent Controls — corrección de interacción
+
+- Filtros, orden y vista de catálogo controlados por delegación persistente.
+- Corregido el cierre de ficha al primer toque: ya no se propaga un segundo clic a la tarjeta de fondo.
+
 ## v41.11 Clean Catalog — revisión preparada
 
 - Retirada la barra de búsqueda del catálogo para eliminar una interacción redundante y frágil.

@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.11 Clean Catalog */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.12 Persistent Controls */
 (function () {
   'use strict';
 
@@ -27,7 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.11 Clean Catalog';
+  var VERSION = 'v41.12 Persistent Controls';
   var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -829,21 +829,6 @@
       b.onclick = function () { setSaga(b.getAttribute('data-saga')); };
     });
     wireDynamicContent(document);
-    Array.prototype.forEach.call(document.querySelectorAll('[data-view]'), function (b) {
-      b.onclick = function () {
-        var nextView = b.getAttribute('data-view');
-        var commit = function () { state.view = nextView; try { localStorage.setItem('u404-view', state.view); } catch (e) {} syncURL(true); render(); };
-        if (document.startViewTransition && !reduceMotion()) document.startViewTransition(commit); else commit();
-        scrollToId('catalogo');
-      };
-    });
-
-    var tech = document.getElementById('tech');
-    if (tech) tech.onchange = function (e) { state.techFilter = e.target.value; syncURL(true); render(); scrollToId('catalogo'); };
-    var sort = document.getElementById('sort');
-    if (sort) sort.onchange = function (e) { state.sort = e.target.value; try { localStorage.setItem('u404-sort', state.sort); } catch (err) {} syncURL(true); render(); scrollToId('catalogo'); };
-    var clear = document.getElementById('clear-filter');
-    if (clear) clear.onclick = resetFilters;
     var clearRecent = document.getElementById('clear-recent');
     if (clearRecent) clearRecent.onclick = function () { state.recent = []; saveJSON('u404-recent', []); render(); };
 
@@ -875,20 +860,76 @@
 
   // Keep critical interactions alive even when a render replaces the modal or catalog.
   // Delegation also covers mobile browsers that may dispatch the first tap to a
-  // newly-created button before the per-node wiring has completed.
+  // newly-created control before per-node wiring has completed.
   var delegatedInteractionsBound = false;
+  function setCatalogView(nextView) {
+    if (nextView !== 'grid' && nextView !== 'list') return;
+    var commit = function () {
+      state.view = nextView;
+      try { localStorage.setItem('u404-view', state.view); } catch (e) {}
+      syncURL(true);
+      render();
+    };
+    if (document.startViewTransition && !reduceMotion()) document.startViewTransition(commit); else commit();
+    scrollToId('catalogo');
+  }
+
+  function setCatalogTechnology(value) {
+    state.techFilter = value || '';
+    syncURL(true);
+    render();
+    scrollToId('catalogo');
+  }
+
+  function setCatalogSort(value) {
+    state.sort = Object.prototype.hasOwnProperty.call(SORT_NAMES, value) ? value : 'recommended';
+    try { localStorage.setItem('u404-sort', state.sort); } catch (e) {}
+    syncURL(true);
+    render();
+    scrollToId('catalogo');
+  }
+
   function bindDelegatedInteractions() {
     if (delegatedInteractionsBound) return;
     delegatedInteractionsBound = true;
-    var closeFromEvent = function (event) {
-      var target = event.target && event.target.closest ? event.target.closest('#close-modal') : null;
+    document.addEventListener('click', function (event) {
+      var target = event.target && event.target.closest ? event.target : null;
       if (!target) return;
-      event.preventDefault();
-      event.stopPropagation();
-      closeApp();
-    };
-    document.addEventListener('pointerup', closeFromEvent, true);
-    document.addEventListener('click', closeFromEvent, true);
+      if (target.closest('#close-modal')) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeApp();
+        return;
+      }
+      var view = target.closest('[data-view]');
+      if (view) {
+        event.preventDefault();
+        event.stopPropagation();
+        setCatalogView(view.getAttribute('data-view'));
+        return;
+      }
+      if (target.closest('#clear-filter')) {
+        event.preventDefault();
+        event.stopPropagation();
+        resetFilters();
+        return;
+      }
+      var oneFilter = target.closest('[data-clear-filter]');
+      if (oneFilter) {
+        event.preventDefault();
+        event.stopPropagation();
+        clearOneFilter(oneFilter.getAttribute('data-clear-filter'));
+      }
+    }, true);
+    document.addEventListener('change', function (event) {
+      var target = event.target;
+      if (!target) return;
+      if (target.id === 'tech') {
+        setCatalogTechnology(target.value);
+      } else if (target.id === 'sort') {
+        setCatalogSort(target.value);
+      }
+    }, true);
   }
 
   function updateCatalogOnly() {
@@ -1083,7 +1124,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.11').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.12').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

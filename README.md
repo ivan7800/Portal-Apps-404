@@ -1,4 +1,8 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.11 Clean Catalog
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.12 Persistent Controls
+
+## Actualización v41.12 — Persistent Controls
+
+Los filtros, el orden y el cambio entre cuadrícula/lista se gestionan ahora mediante eventos persistentes. Esto evita que dejen de responder después de que el catálogo se redibuje, tanto en ordenador como en iPhone. El cierre de las fichas usa un único clic para impedir que el toque se propague a una tarjeta situada debajo.
 
 ## Actualización v41.11 — Clean Catalog
 
