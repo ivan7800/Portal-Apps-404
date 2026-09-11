@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-20-native-app-links';
+const CACHE = CACHE_PREFIX + 'v41-21-stable-catalog-restore';
 const CORE = [
   './',
   './index.html',

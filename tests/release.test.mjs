@@ -17,9 +17,9 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
 });
 
 test('los recursos críticos llevan versión explícita para evitar caché antigua', () => {
-  assert.match(index, /assets\/styles\.css\?v=41\.20/);
-  assert.match(index, /assets\/app\.js\?v=41\.20/);
-  assert.match(index, /assets\/data\.js\?v=41\.20/);
+  assert.match(index, /assets\/styles\.css\?v=41\.21/);
+  assert.match(index, /assets\/app\.js\?v=41\.21/);
+  assert.match(index, /assets\/data\.js\?v=41\.21/);
 });
 
 test('la búsqueda evita reconstruir toda la aplicación', () => {
@@ -58,9 +58,8 @@ test('la ficha se cierra al primer toque y la cruz queda centrada', () => {
   assert.match(styles, /\.modal-close\{[^}]*width:48px[^}]*height:48px[^}]*display:grid[^}]*place-items:center[^}]*touch-action:manipulation/);
   assert.match(styles, /\.modal-close:before\{[^}]*transform:translateY\(3px\)/);
   assert.match(styles, /\.app-modal\{[^}]*max-height:calc\(100dvh[^}]*margin:auto/);
-  assert.match(app, /if \(target\.closest\('#close-modal'\)\)/);
-  assert.match(app, /document\.addEventListener\('click', function \(event\)/);
-  assert.doesNotMatch(app, /addEventListener\('pointerup'/);
+  assert.match(app, /document\.addEventListener\('pointerup', closeFromEvent, true\)/);
+  assert.match(app, /document\.addEventListener\('click', closeFromEvent, true\)/);
 });
 
 test('el catálogo no incluye una barra de búsqueda redundante', () => {
@@ -75,11 +74,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.20 y rutas relativas', () => {
+test('manifest y caché usan la release v41.21 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-20-native-app-links/);
+  assert.match(serviceWorker, /v41-21-stable-catalog-restore/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 
@@ -89,25 +88,7 @@ test('el auditor ignora metadatos del clon y dependencias locales', () => {
 });
 
 
-test('la versión visible y el registro del service worker coinciden con v41.20', () => {
-  assert.match(app, /var VERSION = 'v41\.20 Native App Links'/);
-  assert.match(app, /register\('\.\/sw\.js\?v=41\.20'\)/);
-});
-
-test('las fichas usan enlaces nativos y conservan una URL directa', () => {
-  assert.match(app, /function appHref\(name\)/);
-  assert.match(app, /<a class="app-open" href="' \+ esc\(appHref\(a\.name\)\)/);
-  assert.match(app, /<a class="row-open" href="' \+ esc\(appHref\(a\.name\)\)/);
-  assert.match(app, /<a class="small-tile" href="' \+ esc\(appHref\(a\.name\)\)/);
-});
-
-test('los controles del catálogo usan delegación persistente', () => {
-  assert.match(app, /function setCatalogView\(nextView\)/);
-  assert.match(app, /function setCatalogTechnology\(value\)/);
-  assert.match(app, /function setCatalogSort\(value\)/);
-  assert.match(app, /var view = target\.closest\('\[data-view\]'\)/);
-  assert.match(app, /data-toggle-catalog-menu/);
-  assert.match(app, /data-tech-filter/);
-  assert.match(app, /data-catalog-sort/);
-  assert.match(app, /target\.closest\('#clear-filter'\)/);
+test('la versión visible y el registro del service worker coinciden con v41.21', () => {
+  assert.match(app, /var VERSION = 'v41\.21 Stable Catalog Restore'/);
+  assert.match(app, /register\('\.\/sw\.js\?v=41\.21'\)/);
 });

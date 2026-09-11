@@ -1,7 +1,7 @@
 window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
-    "release": "v41.20",
+    "release": "v41.21",
     "updated": "2026-09-10",
     "externalLinksVerifiedAt": null
   },

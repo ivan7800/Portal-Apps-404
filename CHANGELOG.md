@@ -1,19 +1,9 @@
 # Changelog
 
-## v41.20 Native App Links — corrección definitiva de apertura
+## v41.21 Stable Catalog Restore — restauración validada
 
-- Las tarjetas, filas, recomendaciones y destacados abren fichas mediante enlaces nativos con URL directa.
-- La apertura ya no depende de controladores que puedan quedar desfasados durante una actualización de la PWA.
-
-## v41.19 Persistent App Opening — corrección de controles y actualización
-
-- Sustituidos los desplegables nativos del catálogo por paneles de opciones visibles y táctiles, sin cierre inmediato al abrirlos.
-- El botón de actualización PWA incorpora una recarga de respaldo si el navegador demora el cambio de versión.
-
-## v41.12 Persistent Controls — corrección de interacción
-
-- Filtros, orden y vista de catálogo controlados por delegación persistente.
-- Corregido el cierre de ficha al primer toque: ya no se propaga un segundo clic a la tarjeta de fondo.
+- Restaurada la base v41.11, confirmada como estable en PC e iPhone.
+- Renovadas las rutas versionadas y la caché PWA para evitar servir artefactos de releases posteriores.
 
 ## v41.11 Clean Catalog — revisión preparada
 

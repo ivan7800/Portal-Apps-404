@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.20 Native App Links */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.21 Stable Catalog Restore */
 (function () {
   'use strict';
 
@@ -27,8 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var catalogMenuOpenedAt = 0;
-  var VERSION = 'v41.20 Native App Links';
+  var VERSION = 'v41.21 Stable Catalog Restore';
   var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -86,7 +85,6 @@
     skinPanel: false,
     presentation: false,
     presentationIndex: 0,
-    catalogMenu: null,
     motion: loadText('u404-motion', 'balanced'),
     spotlight: APPS[Math.floor(Math.random() * APPS.length)]
   };
@@ -164,16 +162,6 @@
       url.searchParams.delete('app');
       return url.pathname + (url.search ? url.search : '') + url.hash;
     } catch (e) { return './'; }
-  }
-
-  /* A ficha siempre tiene una ruta real. Esto evita depender de listeners que
-     pueden quedar obsoletos tras una actualización de la PWA. */
-  function appHref(name) {
-    try {
-      var url = new URL(window.location.href);
-      url.searchParams.set('app', name);
-      return url.pathname + url.search + '#catalogo';
-    } catch (e) { return '#catalogo'; }
   }
   function currentIntent() {
     for (var i = 0; i < INTENTS.length; i++) if (INTENTS[i].id === state.activeIntent) return INTENTS[i];
@@ -274,26 +262,6 @@
     return activeFiltersHTML() +
       '<div class="catalog-status"><span role="status" aria-live="polite">Mostrando <b>' + list.length + '</b> de ' + APPS.length + '</span><span>' + esc(VIEW_NAMES[state.view]) + '</span></div>' +
       (list.length ? (state.view === 'grid' ? '<div class="catalog-grid">' + list.map(compactCard).join('') + '</div>' : '<div class="catalog-list">' + list.map(listCard).join('') + '</div>') : '<div class="empty"><span>◌</span><h3>Sin coincidencias</h3><p>Prueba otra búsqueda o elimina los filtros activos.</p><button class="ghost compact" id="reset-empty">Restablecer filtros</button></div>');
-  }
-
-  function catalogMenusHTML() {
-    var techLabel = state.techFilter || 'Toda tecnología';
-    return '<details class="catalog-menu catalog-menu-tech"><summary><span>' + esc(techLabel) + '</span><b aria-hidden="true">⌄</b></summary>' +
-      '<div class="catalog-menu-popover" role="group" aria-label="Filtrar por tecnología"><p>Tecnología</p><div class="catalog-menu-options"><a href="' + catalogFilterURL('tecnologia', '') + '"' + (!state.techFilter ? ' aria-current="true"' : '') + '>Todas</a>' + techs.map(function (t) { return '<a href="' + catalogFilterURL('tecnologia', t) + '"' + (state.techFilter === t ? ' aria-current="true"' : '') + '>' + esc(t) + '</a>'; }).join('') + '</div></div></details>';
-  }
-
-  function sortMenuHTML() {
-    return '<details class="catalog-menu catalog-menu-sort"><summary><span>' + esc(SORT_NAMES[state.sort]) + '</span><b aria-hidden="true">⌄</b></summary>' +
-      '<div class="catalog-menu-popover" role="group" aria-label="Ordenar aplicaciones"><p>Ordenar</p><div class="catalog-menu-options">' + Object.keys(SORT_NAMES).map(function (key) { return '<a href="' + catalogFilterURL('orden', key === 'recommended' ? '' : key) + '"' + (state.sort === key ? ' aria-current="true"' : '') + '>' + esc(SORT_NAMES[key]) + '</a>'; }).join('') + '</div></div></details>';
-  }
-
-  function catalogFilterURL(key, value) {
-    try {
-      var url = new URL(window.location.href);
-      url.searchParams.delete('app');
-      if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
-      return url.pathname + url.search + '#catalogo';
-    } catch (e) { return '#catalogo'; }
   }
 
   function setIntent(id) {
@@ -418,12 +386,12 @@
   function compactCard(a, i) {
     var meta = appMeta(a);
     return '<article class="app-card" style="--c:' + alt(i) + '">' +
-      '<a class="app-open" href="' + esc(appHref(a.name)) + '" aria-label="Ver ficha de ' + esc(a.name) + '">' +
+      '<button class="app-open" data-app="' + esc(a.name) + '" aria-label="Ver ficha de ' + esc(a.name) + '">' +
         coverHTML(a, 'Vista previa de ' + a.name, false) +
         (meta.recent ? '<span class="release-badge">NUEVA</span>' : '') +
         '<span class="app-copy"><span class="app-meta"><span>' + esc(a.category) + '</span><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span></span>' +
         '<strong>' + esc(a.name) + '</strong><span class="app-desc">' + esc(a.short) + '</span><span class="card-signature"><span>' + esc(meta.platform) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span><b>↗</b></span></span>' +
-      '</a>' +
+      '</button>' +
       '<button class="fav" data-fav="' + esc(a.name) + '" aria-label="' + (isFavorite(a.name) ? 'Quitar ' : 'Añadir ') + esc(a.name) + (isFavorite(a.name) ? ' de favoritos' : ' a favoritos') + '" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★' : '☆') + '</button>' +
     '</article>';
   }
@@ -431,19 +399,19 @@
   function listCard(a, i) {
     var meta = appMeta(a);
     return '<article class="app-row" style="--c:' + alt(i) + '">' +
-      '<a class="row-open" href="' + esc(appHref(a.name)) + '" aria-label="Ver ficha de ' + esc(a.name) + '">' +
+      '<button class="row-open" data-app="' + esc(a.name) + '">' +
         '<span class="row-icon">' + esc(a.icon) + '</span>' +
         '<span class="row-main"><strong>' + esc(a.name) + '</strong><small>' + esc(a.short) + '</small></span>' +
         '<span class="row-cat">' + esc(a.category) + '</span><span class="row-tech"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span></span><span class="row-go">→</span>' +
-      '</a>' +
+      '</button>' +
       '<button class="fav row-fav" data-fav="' + esc(a.name) + '" aria-label="' + (isFavorite(a.name) ? 'Quitar ' : 'Añadir ') + esc(a.name) + (isFavorite(a.name) ? ' de favoritos' : ' a favoritos') + '" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★' : '☆') + '</button>' +
     '</article>';
   }
 
   function smallTile(a, i) {
-    return '<a class="small-tile" href="' + esc(appHref(a.name)) + '" style="--c:' + alt(i) + '" aria-label="Ver ficha de ' + esc(a.name) + '">' +
+    return '<button class="small-tile" data-app="' + esc(a.name) + '" style="--c:' + alt(i) + '">' +
       '<span class="tile-icon">' + esc(a.icon) + '</span><span><strong>' + esc(a.name) + '</strong><small>' + esc(a.category) + '</small></span><span class="tile-go">↗</span>' +
-    '</a>';
+    '</button>';
   }
 
   function orbitHTML() {
@@ -485,7 +453,7 @@
                 '<p class="lede">Herramientas, escritura, diseño, IA, sistemas, cultura y ficción interactiva reunidos en un portal estático con preferencias locales.</p>' +
                 '<div class="hero-actions"><button class="primary" id="open-palette">⌕ Buscar en Universo 404 <kbd>Ctrl K</kbd></button><button class="ghost" id="random-app">✦ Sorpréndeme</button><button class="ghost" id="open-presentation">▶ Presentación</button><button class="ghost install-pwa' + (deferredInstallPrompt ? ' is-ready' : '') + '" id="install-pwa">⇩ Instalar portal</button></div>' +
                 '<div class="system-pills"><span><b>' + APPS.length + '</b> apps</span><span><b>' + sagaNames.length + '</b> mundos</span><span><b>' + totalCats + '</b> categorías</span><span><b>' + state.explored.length + '</b> exploradas</span></div>' +
-                '<div class="hero-signal"><span class="signal-beacon" aria-hidden="true"></span><span class="signal-copy"><small>SEÑAL DESTACADA · AHORA</small><strong>' + esc(sp.name) + '</strong></span><a class="signal-open" href="' + esc(appHref(sp.name)) + '">Abrir ficha <span aria-hidden="true">↗</span></a></div>' +
+                '<div class="hero-signal"><span class="signal-beacon" aria-hidden="true"></span><span class="signal-copy"><small>SEÑAL DESTACADA · AHORA</small><strong>' + esc(sp.name) + '</strong></span><button class="signal-open" data-app="' + esc(sp.name) + '">Abrir ficha <span aria-hidden="true">↗</span></button></div>' +
               '</div>' +
               orbitHTML() +
             '</section>' +
@@ -499,7 +467,7 @@
 
             '<section class="section spotlight-os" id="destacada">' +
               '<div class="spot-card"><div class="spot-visual">' + coverHTML(sp, 'Vista previa de ' + sp.name, true).replace('class="app-shot"', 'class="app-shot spot-shot"') + '<span class="spot-badge">SELECCIÓN DEL SISTEMA</span></div>' +
-              '<div class="spot-copy"><p class="kicker">App destacada</p><h2>' + esc(sp.name) + '</h2><p>' + esc(sp.description || sp.short) + '</p><div class="tagline"><span>' + esc(sp.category) + '</span><span>' + esc(LANGUAGES[sp.name] || 'JavaScript') + '</span><span>' + esc(sp.saga) + '</span></div><div class="spot-actions"><a class="primary compact" href="' + esc(appHref(sp.name)) + '">Ver ficha</a><a class="ghost compact" href="' + esc(sp.pages) + '" target="_blank" rel="noopener noreferrer" aria-label="' + (sp.delivery === 'repository' ? 'Abrir repositorio' : 'Abrir aplicación') + '; se abre en otra pestaña">' + (sp.delivery === 'repository' ? 'Abrir repositorio ↗' : 'Abrir app ↗') + '</a></div></div></div>' +
+              '<div class="spot-copy"><p class="kicker">App destacada</p><h2>' + esc(sp.name) + '</h2><p>' + esc(sp.description || sp.short) + '</p><div class="tagline"><span>' + esc(sp.category) + '</span><span>' + esc(LANGUAGES[sp.name] || 'JavaScript') + '</span><span>' + esc(sp.saga) + '</span></div><div class="spot-actions"><button class="primary compact" data-app="' + esc(sp.name) + '">Ver ficha</button><a class="ghost compact" href="' + esc(sp.pages) + '" target="_blank" rel="noopener noreferrer" aria-label="' + (sp.delivery === 'repository' ? 'Abrir repositorio' : 'Abrir aplicación') + '; se abre en otra pestaña">' + (sp.delivery === 'repository' ? 'Abrir repositorio ↗' : 'Abrir app ↗') + '</a></div></div></div>' +
             '</section>' +
 
             (favoriteApps.length ? '<section class="section" id="favoritos"><div class="section-head"><div><p class="kicker">Tu espacio</p><h2>Favoritos</h2></div><p>Guardados solo en este navegador.</p></div><div class="small-grid">' + favoriteApps.slice(0, 8).map(smallTile).join('') + '</div></section>' : '') +
@@ -523,8 +491,8 @@
             '<section class="section catalog-section" id="catalogo">' +
               '<div class="section-head catalog-head"><div><p class="kicker">Explorador</p><h2>Las ' + APPS.length + ' aplicaciones</h2></div><div class="view-switch" role="group" aria-label="Vista del catálogo"><button data-view="grid" aria-label="Vista en cuadrícula" aria-pressed="' + (state.view === 'grid') + '" title="Cuadrícula">▦</button><button data-view="list" aria-label="Vista en lista" aria-pressed="' + (state.view === 'list') + '" title="Lista">☷</button></div></div>' +
               '<div class="catalog-toolbar">' +
-                catalogMenusHTML() +
-                sortMenuHTML() +
+                '<select id="tech" aria-label="Filtrar por tecnología"><option value="">Toda tecnología</option>' + techs.map(function (t) { return '<option value="' + esc(t) + '"' + (state.techFilter === t ? ' selected' : '') + '>' + esc(t) + '</option>'; }).join('') + '</select>' +
+                '<select id="sort" aria-label="Ordenar aplicaciones">' + Object.keys(SORT_NAMES).map(function (key) { return '<option value="' + key + '"' + (state.sort === key ? ' selected' : '') + '>' + esc(SORT_NAMES[key]) + '</option>'; }).join('') + '</select>' +
                 '<button class="filter-chip' + (filterCount ? ' is-on' : '') + '" id="clear-filter" aria-label="' + (filterCount ? 'Eliminar todos los filtros' : 'No hay filtros activos') + '"' + (filterCount ? '' : ' disabled') + '>' + (filterCount ? 'Limpiar (' + filterCount + ')' : 'Sin filtros') + '</button>' +
               '</div>' +
               '<div id="catalog-content">' + catalogContentHTML(list) + '</div>' +
@@ -595,7 +563,7 @@
       '<p class="modal-description" id="modal-description">' + esc(a.description || a.short) + '</p><div class="modal-tags"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span><span>' + esc(meta.availability) + '</span><span>' + esc(meta.platform) + '</span><span>' + esc(meta.offline) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span></div>' +
       '<div class="modal-actions"><a class="primary" href="' + esc(a.pages) + '" target="_blank" rel="noopener noreferrer" aria-label="' + esc(primaryLabel.replace(' ↗', '')) + '; se abre en otra pestaña">' + esc(primaryLabel) + '</a>' + (a.delivery === 'repository' ? '' : '<a class="ghost" href="' + esc(a.github) + '" target="_blank" rel="noopener noreferrer" aria-label="Ver repositorio; se abre en otra pestaña">Ver repositorio</a>') + '<button class="ghost" id="share-app">Compartir ficha</button></div>' +
       '<div class="modal-qr"><canvas id="app-qr" width="180" height="180" role="img" aria-label="Código QR para abrir ' + esc(a.name) + '"></canvas><div><p class="kicker">Salto entre dispositivos</p><h3>Abrir desde el móvil</h3><p>Escanea este código. Se genera localmente y no envía la dirección a ningún servidor.</p><button class="ghost compact" id="download-qr">Descargar QR</button></div></div>' +
-      (related.length ? '<div class="modal-related"><p class="kicker">Conexiones 404</p><h3>También te puede servir</h3><div class="related-grid">' + related.map(function (r) { return '<a href="' + esc(appHref(r.name)) + '" aria-label="Ver ficha de ' + esc(r.name) + '"><span>' + esc(r.icon) + '</span><span><strong>' + esc(r.name) + '</strong><small>' + esc(r.category) + '</small></span><b>→</b></a>'; }).join('') + '</div></div>' : '') +
+      (related.length ? '<div class="modal-related"><p class="kicker">Conexiones 404</p><h3>También te puede servir</h3><div class="related-grid">' + related.map(function (r) { return '<button data-app="' + esc(r.name) + '"><span>' + esc(r.icon) + '</span><span><strong>' + esc(r.name) + '</strong><small>' + esc(r.category) + '</small></span><b>→</b></button>'; }).join('') + '</div></div>' : '') +
       '</div></div></div>';
   }
 
@@ -783,13 +751,7 @@
   }
 
   function applyUpdate() {
-    var worker = waitingWorker;
-    if (worker) worker.postMessage({ type: 'SKIP_WAITING' });
-    // Some installed PWAs delay controllerchange until the next foregrounding.
-    // Reload as a safe fallback so “Actualizar ahora” never becomes a no-op.
-    window.setTimeout(function () {
-      if (!refreshing) window.location.reload();
-    }, worker ? 900 : 0);
+    if (waitingWorker) waitingWorker.postMessage({ type: 'SKIP_WAITING' });
   }
 
   function clearOneFilter(key) {
@@ -867,6 +829,21 @@
       b.onclick = function () { setSaga(b.getAttribute('data-saga')); };
     });
     wireDynamicContent(document);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-view]'), function (b) {
+      b.onclick = function () {
+        var nextView = b.getAttribute('data-view');
+        var commit = function () { state.view = nextView; try { localStorage.setItem('u404-view', state.view); } catch (e) {} syncURL(true); render(); };
+        if (document.startViewTransition && !reduceMotion()) document.startViewTransition(commit); else commit();
+        scrollToId('catalogo');
+      };
+    });
+
+    var tech = document.getElementById('tech');
+    if (tech) tech.onchange = function (e) { state.techFilter = e.target.value; syncURL(true); render(); scrollToId('catalogo'); };
+    var sort = document.getElementById('sort');
+    if (sort) sort.onchange = function (e) { state.sort = e.target.value; try { localStorage.setItem('u404-sort', state.sort); } catch (err) {} syncURL(true); render(); scrollToId('catalogo'); };
+    var clear = document.getElementById('clear-filter');
+    if (clear) clear.onclick = resetFilters;
     var clearRecent = document.getElementById('clear-recent');
     if (clearRecent) clearRecent.onclick = function () { state.recent = []; saveJSON('u404-recent', []); render(); };
 
@@ -898,113 +875,20 @@
 
   // Keep critical interactions alive even when a render replaces the modal or catalog.
   // Delegation also covers mobile browsers that may dispatch the first tap to a
-  // newly-created control before per-node wiring has completed.
+  // newly-created button before the per-node wiring has completed.
   var delegatedInteractionsBound = false;
-  function setCatalogView(nextView) {
-    if (nextView !== 'grid' && nextView !== 'list') return;
-    var commit = function () {
-      state.view = nextView;
-      try { localStorage.setItem('u404-view', state.view); } catch (e) {}
-      syncURL(true);
-      render();
-    };
-    if (document.startViewTransition && !reduceMotion()) document.startViewTransition(commit); else commit();
-    scrollToId('catalogo');
-  }
-
-  function toggleCatalogMenu(button) {
-    var nextMenu = button.getAttribute('data-toggle-catalog-menu');
-    var now = Date.now();
-    if (state.catalogMenu === nextMenu && now - catalogMenuOpenedAt < 400) return;
-    state.catalogMenu = state.catalogMenu === nextMenu ? null : nextMenu;
-    if (state.catalogMenu) catalogMenuOpenedAt = now;
-    Array.prototype.forEach.call(document.querySelectorAll('.catalog-menu'), function (menu) {
-      var isOpen = menu.classList.contains('catalog-menu-' + state.catalogMenu);
-      var toggle = menu.querySelector('[data-toggle-catalog-menu]');
-      var panel = menu.querySelector('.catalog-menu-popover');
-      if (toggle) toggle.setAttribute('aria-expanded', String(isOpen));
-      if (panel) panel.hidden = !isOpen;
-    });
-  }
-
-  function setCatalogTechnology(value) {
-    state.techFilter = value || '';
-    state.catalogMenu = null;
-    syncURL(true);
-    render();
-    scrollToId('catalogo');
-  }
-
-  function setCatalogSort(value) {
-    state.sort = Object.prototype.hasOwnProperty.call(SORT_NAMES, value) ? value : 'recommended';
-    state.catalogMenu = null;
-    try { localStorage.setItem('u404-sort', state.sort); } catch (e) {}
-    syncURL(true);
-    render();
-    scrollToId('catalogo');
-  }
-
   function bindDelegatedInteractions() {
     if (delegatedInteractionsBound) return;
     delegatedInteractionsBound = true;
-    document.addEventListener('click', function (event) {
-      var target = event.target && event.target.closest ? event.target : null;
+    var closeFromEvent = function (event) {
+      var target = event.target && event.target.closest ? event.target.closest('#close-modal') : null;
       if (!target) return;
-      if (target.closest('#close-modal')) {
-        event.preventDefault();
-        event.stopPropagation();
-        closeApp();
-        return;
-      }
-      var view = target.closest('[data-view]');
-      if (view) {
-        event.preventDefault();
-        event.stopPropagation();
-        setCatalogView(view.getAttribute('data-view'));
-        return;
-      }
-      var favorite = target.closest('[data-fav]');
-      if (favorite) {
-        event.preventDefault();
-        event.stopPropagation();
-        toggleFavorite(favorite.getAttribute('data-fav'));
-        render();
-        return;
-      }
-      var appButton = target.closest('[data-app]');
-      if (appButton) {
-        event.preventDefault();
-        event.stopPropagation();
-        openApp(appButton.getAttribute('data-app'));
-        return;
-      }
-      var techChoice = target.closest('[data-tech-filter]');
-      if (techChoice) {
-        event.preventDefault();
-        event.stopPropagation();
-        setCatalogTechnology(techChoice.getAttribute('data-tech-filter'));
-        return;
-      }
-      var sortChoice = target.closest('[data-catalog-sort]');
-      if (sortChoice) {
-        event.preventDefault();
-        event.stopPropagation();
-        setCatalogSort(sortChoice.getAttribute('data-catalog-sort'));
-        return;
-      }
-      if (target.closest('#clear-filter')) {
-        event.preventDefault();
-        event.stopPropagation();
-        resetFilters();
-        return;
-      }
-      var oneFilter = target.closest('[data-clear-filter]');
-      if (oneFilter) {
-        event.preventDefault();
-        event.stopPropagation();
-        clearOneFilter(oneFilter.getAttribute('data-clear-filter'));
-      }
-    }, true);
+      event.preventDefault();
+      event.stopPropagation();
+      closeApp();
+    };
+    document.addEventListener('pointerup', closeFromEvent, true);
+    document.addEventListener('click', closeFromEvent, true);
   }
 
   function updateCatalogOnly() {
@@ -1199,7 +1083,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.20').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.21').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;
