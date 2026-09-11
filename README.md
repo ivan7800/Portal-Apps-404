@@ -1,8 +1,8 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.15 Stable Filter Panels
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.16 No-Redraw Filters
 
-## Actualización v41.15 — Filter Menu Fix
+## Actualización v41.16 — No-Redraw Filters
 
-Los filtros y el orden ya no dependen de los desplegables nativos del navegador. Se abren como un panel visible de opciones táctiles, con el estado seleccionado y una limpieza clara; el panel ya no se cierra durante el mismo clic que lo abre. El botón de actualización PWA recarga la aplicación si el navegador demora el cambio de controlador.
+Los filtros y el orden ya no dependen de los desplegables nativos del navegador. Se abren sin redibujar el catálogo, por lo que el panel permanece abierto hasta elegir una opción o pulsar de nuevo el control. El botón de actualización PWA recarga la aplicación si el navegador demora el cambio de controlador.
 
 ## Actualización v41.12 — Persistent Controls
 

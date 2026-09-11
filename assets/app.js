@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.15 Stable Filter Panels */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.16 No-Redraw Filters */
 (function () {
   'use strict';
 
@@ -27,7 +27,8 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.15 Stable Filter Panels';
+  var catalogMenuOpenedAt = 0;
+  var VERSION = 'v41.16 No-Redraw Filters';
   var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -269,14 +270,14 @@
     var techLabel = state.techFilter || 'Toda tecnología';
     return '<div class="catalog-menu catalog-menu-tech">' +
       '<button type="button" class="catalog-menu-toggle" data-toggle-catalog-menu="tech" aria-haspopup="true" aria-expanded="' + (state.catalogMenu === 'tech') + '"><span>' + esc(techLabel) + '</span><b aria-hidden="true">⌄</b></button>' +
-      (state.catalogMenu === 'tech' ? '<div class="catalog-menu-popover" role="group" aria-label="Filtrar por tecnología"><p>Tecnología</p><div class="catalog-menu-options"><button type="button" data-tech-filter=""' + (!state.techFilter ? ' aria-pressed="true"' : '') + '>Todas</button>' + techs.map(function (t) { return '<button type="button" data-tech-filter="' + esc(t) + '" aria-pressed="' + (state.techFilter === t) + '">' + esc(t) + '</button>'; }).join('') + '</div></div>' : '') +
+      '<div class="catalog-menu-popover" role="group" aria-label="Filtrar por tecnología"' + (state.catalogMenu === 'tech' ? '' : ' hidden') + '><p>Tecnología</p><div class="catalog-menu-options"><button type="button" data-tech-filter=""' + (!state.techFilter ? ' aria-pressed="true"' : '') + '>Todas</button>' + techs.map(function (t) { return '<button type="button" data-tech-filter="' + esc(t) + '" aria-pressed="' + (state.techFilter === t) + '">' + esc(t) + '</button>'; }).join('') + '</div></div>' +
       '</div>';
   }
 
   function sortMenuHTML() {
     return '<div class="catalog-menu catalog-menu-sort">' +
       '<button type="button" class="catalog-menu-toggle" data-toggle-catalog-menu="sort" aria-haspopup="true" aria-expanded="' + (state.catalogMenu === 'sort') + '"><span>' + esc(SORT_NAMES[state.sort]) + '</span><b aria-hidden="true">⌄</b></button>' +
-      (state.catalogMenu === 'sort' ? '<div class="catalog-menu-popover" role="group" aria-label="Ordenar aplicaciones"><p>Ordenar</p><div class="catalog-menu-options"><button type="button" data-catalog-sort="recommended" aria-pressed="' + (state.sort === 'recommended') + '">Recomendadas</button>' + Object.keys(SORT_NAMES).filter(function (key) { return key !== 'recommended'; }).map(function (key) { return '<button type="button" data-catalog-sort="' + key + '" aria-pressed="' + (state.sort === key) + '">' + esc(SORT_NAMES[key]) + '</button>'; }).join('') + '</div></div>' : '') +
+      '<div class="catalog-menu-popover" role="group" aria-label="Ordenar aplicaciones"' + (state.catalogMenu === 'sort' ? '' : ' hidden') + '><p>Ordenar</p><div class="catalog-menu-options"><button type="button" data-catalog-sort="recommended" aria-pressed="' + (state.sort === 'recommended') + '">Recomendadas</button>' + Object.keys(SORT_NAMES).filter(function (key) { return key !== 'recommended'; }).map(function (key) { return '<button type="button" data-catalog-sort="' + key + '" aria-pressed="' + (state.sort === key) + '">' + esc(SORT_NAMES[key]) + '</button>'; }).join('') + '</div></div>' +
       '</div>';
   }
 
@@ -896,6 +897,21 @@
     scrollToId('catalogo');
   }
 
+  function toggleCatalogMenu(button) {
+    var nextMenu = button.getAttribute('data-toggle-catalog-menu');
+    var now = Date.now();
+    if (state.catalogMenu === nextMenu && now - catalogMenuOpenedAt < 400) return;
+    state.catalogMenu = state.catalogMenu === nextMenu ? null : nextMenu;
+    if (state.catalogMenu) catalogMenuOpenedAt = now;
+    Array.prototype.forEach.call(document.querySelectorAll('.catalog-menu'), function (menu) {
+      var isOpen = menu.classList.contains('catalog-menu-' + state.catalogMenu);
+      var toggle = menu.querySelector('[data-toggle-catalog-menu]');
+      var panel = menu.querySelector('.catalog-menu-popover');
+      if (toggle) toggle.setAttribute('aria-expanded', String(isOpen));
+      if (panel) panel.hidden = !isOpen;
+    });
+  }
+
   function setCatalogTechnology(value) {
     state.techFilter = value || '';
     state.catalogMenu = null;
@@ -936,9 +952,7 @@
       if (menuToggle) {
         event.preventDefault();
         event.stopPropagation();
-        var nextMenu = menuToggle.getAttribute('data-toggle-catalog-menu');
-        state.catalogMenu = state.catalogMenu === nextMenu ? null : nextMenu;
-        render();
+        toggleCatalogMenu(menuToggle);
         return;
       }
       var techChoice = target.closest('[data-tech-filter]');
@@ -1162,7 +1176,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.15').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.16').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

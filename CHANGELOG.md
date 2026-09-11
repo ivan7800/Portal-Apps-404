@@ -1,6 +1,6 @@
 # Changelog
 
-## v41.15 Stable Filter Panels — corrección de controles y actualización
+## v41.16 No-Redraw Filters — corrección de controles y actualización
 
 - Sustituidos los desplegables nativos del catálogo por paneles de opciones visibles y táctiles, sin cierre inmediato al abrirlos.
 - El botón de actualización PWA incorpora una recarga de respaldo si el navegador demora el cambio de versión.

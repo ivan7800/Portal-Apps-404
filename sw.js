@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-15-stable-filter-panels';
+const CACHE = CACHE_PREFIX + 'v41-16-no-redraw-filters';
 const CORE = [
   './',
   './index.html',
