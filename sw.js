@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-9-interaction-reset';
+const CACHE = CACHE_PREFIX + 'v41-10-native-fallback';
 const CORE = [
   './',
   './index.html',

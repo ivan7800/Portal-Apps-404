@@ -1,5 +1,10 @@
 # Changelog
 
+## v41.10 Native Fallback — revisión preparada
+
+- La X de cada ficha tiene destino HTML nativo sin el parámetro app, además del cierre instantáneo por JavaScript.
+- El buscador es un formulario nativo con campo buscar, compatible con el teclado virtual y con envío estándar.
+
 ## v41.9 Interaction Reset — revisión preparada
 
 - Renovada la ruta del service worker y la caché PWA para reemplazar de forma inequívoca la versión anterior.

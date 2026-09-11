@@ -231,3 +231,4 @@ html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}body{-webki
 .modal-shot .modal-shot-visual img{width:100%;height:100%;object-fit:contain;object-position:50% 50%}
 .modal-content{min-width:0}.modal-heading{padding-right:56px}
 @media(max-width:980px){.app-modal{grid-template-columns:1fr}.modal-shot{position:relative;top:auto;height:auto;min-height:290px;max-height:360px;aspect-ratio:16/9}.modal-heading{padding-right:56px}}
+.modal-close{text-decoration:none}

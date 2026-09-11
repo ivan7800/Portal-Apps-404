@@ -18,7 +18,7 @@ async function createHarness() {
   };
   const caches = {
     open: async key => { calls.opened.push(key); return cache; },
-    keys: async () => ['another-app-v1', 'portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-9-interaction-reset'],
+    keys: async () => ['another-app-v1', 'portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-10-native-fallback'],
     delete: async key => { calls.deleted.push(key); return true; }
   };
   const self = {

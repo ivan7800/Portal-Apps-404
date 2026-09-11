@@ -1,9 +1,9 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.9 Interaction Reset
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.10 Native Fallback
 
-## Actualización v41.9 — Interaction Reset
+## Actualización v41.10 — Native Fallback
 
-- Nueva caché PWA y rutas versionadas para que Safari no reutilice una copia antigua.
-- Cierre de ficha y buscador controlados por eventos persistentes, válidos tras cualquier renderizado.
+- El cierre es ahora un enlace nativo además de un control JavaScript: nunca queda bloqueado por un evento.
+- El buscador es un formulario nativo y conserva el filtrado instantáneo; al pulsar Buscar también funciona sin JavaScript.
 
 ## Actualización v41.7 — Interaction Fix
 

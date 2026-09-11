@@ -17,9 +17,9 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
 });
 
 test('los recursos críticos llevan versión explícita para evitar caché antigua', () => {
-  assert.match(index, /assets\/styles\.css\?v=41\.9/);
-  assert.match(index, /assets\/app\.js\?v=41\.9/);
-  assert.match(index, /assets\/data\.js\?v=41\.9/);
+  assert.match(index, /assets\/styles\.css\?v=41\.10/);
+  assert.match(index, /assets\/app\.js\?v=41\.10/);
+  assert.match(index, /assets\/data\.js\?v=41\.10/);
 });
 
 test('la búsqueda evita reconstruir toda la aplicación', () => {
@@ -77,11 +77,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.9 y rutas relativas', () => {
+test('manifest y caché usan la release v41.10 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-9-interaction-reset/);
+  assert.match(serviceWorker, /v41-10-native-fallback/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 

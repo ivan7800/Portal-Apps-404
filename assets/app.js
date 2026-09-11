@@ -156,6 +156,13 @@
     if (state.selectedApp) url.searchParams.set('app', state.selectedApp.name);
     try { window.history[push ? 'pushState' : 'replaceState']({}, '', url.pathname + (url.search ? url.search : '') + url.hash); } catch (e) {}
   }
+  function modalCloseHref() {
+    try {
+      var url = new URL(window.location.href);
+      url.searchParams.delete('app');
+      return url.pathname + (url.search ? url.search : '') + url.hash;
+    } catch (e) { return './'; }
+  }
   function currentIntent() {
     for (var i = 0; i < INTENTS.length; i++) if (INTENTS[i].id === state.activeIntent) return INTENTS[i];
     return null;
@@ -484,7 +491,7 @@
             '<section class="section catalog-section" id="catalogo">' +
               '<div class="section-head catalog-head"><div><p class="kicker">Explorador</p><h2>Las ' + APPS.length + ' aplicaciones</h2></div><div class="view-switch" role="group" aria-label="Vista del catálogo"><button data-view="grid" aria-label="Vista en cuadrícula" aria-pressed="' + (state.view === 'grid') + '" title="Cuadrícula">▦</button><button data-view="list" aria-label="Vista en lista" aria-pressed="' + (state.view === 'list') + '" title="Lista">☷</button></div></div>' +
               '<div class="catalog-toolbar">' +
-                '<label class="catalog-search"><span aria-hidden="true">⌕</span><input id="q" type="search" autocomplete="off" spellcheck="false" aria-label="Buscar aplicaciones" placeholder="Buscar por nombre, función, categoría…" value="' + esc(state.query) + '"></label>' +
+                '<form class="catalog-search" id="catalog-search-form" role="search" action="./" method="get"><span aria-hidden="true">⌕</span><input id="q" name="buscar" type="search" autocomplete="off" spellcheck="false" aria-label="Buscar aplicaciones" placeholder="Buscar por nombre, función, categoría…" value="' + esc(state.query) + '"></form>' +
                 '<select id="tech" aria-label="Filtrar por tecnología"><option value="">Toda tecnología</option>' + techs.map(function (t) { return '<option value="' + esc(t) + '"' + (state.techFilter === t ? ' selected' : '') + '>' + esc(t) + '</option>'; }).join('') + '</select>' +
                 '<select id="sort" aria-label="Ordenar aplicaciones">' + Object.keys(SORT_NAMES).map(function (key) { return '<option value="' + key + '"' + (state.sort === key ? ' selected' : '') + '>' + esc(SORT_NAMES[key]) + '</option>'; }).join('') + '</select>' +
                 '<button class="filter-chip' + (filterCount ? ' is-on' : '') + '" id="clear-filter" aria-label="' + (filterCount ? 'Eliminar todos los filtros' : 'No hay filtros activos') + '"' + (filterCount ? '' : ' disabled') + '>' + (filterCount ? 'Limpiar (' + filterCount + ')' : 'Sin filtros') + '</button>' +
@@ -551,7 +558,7 @@
     var meta = appMeta(a);
     var primaryLabel = a.delivery === 'repository' ? 'Abrir repositorio ↗' : 'Abrir aplicación ↗';
     return '<div class="overlay" id="modal-overlay"><div class="app-modal" id="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description" tabindex="-1">' +
-      '<button class="modal-close" id="close-modal" aria-label="Cerrar ficha">×</button>' +
+      '<a class="modal-close" id="close-modal" href="' + esc(modalCloseHref()) + '" role="button" aria-label="Cerrar ficha">×</a>' +
       '<div class="modal-shot">' + coverHTML(a, 'Vista previa de ' + a.name, true).replace('class="app-shot"', 'class="app-shot modal-shot-visual"') + '<span class="modal-saga">' + esc(a.saga) + '</span></div>' +
       '<div class="modal-content"><div class="modal-heading"><div><p class="kicker">' + esc(a.category) + '</p><h2 id="modal-title">' + esc(a.name) + '</h2></div><button class="modal-fav" id="modal-fav" data-fav="' + esc(a.name) + '" aria-pressed="' + isFavorite(a.name) + '">' + (isFavorite(a.name) ? '★ Favorita' : '☆ Favorita') + '</button></div>' +
       '<p class="modal-description" id="modal-description">' + esc(a.description || a.short) + '</p><div class="modal-tags"><span class="status-label ' + meta.statusClass + '">● ' + esc(meta.status) + '</span><span>' + esc(meta.availability) + '</span><span>' + esc(meta.platform) + '</span><span>' + esc(meta.offline) + '</span><span>' + esc(LANGUAGES[a.name] || 'JavaScript') + '</span></div>' +
@@ -896,6 +903,13 @@
     document.addEventListener('input', queryFromEvent, true);
     document.addEventListener('change', queryFromEvent, true);
     document.addEventListener('search', queryFromEvent, true);
+    document.addEventListener('submit', function (event) {
+      var form = event.target;
+      if (!form || form.id !== 'catalog-search-form') return;
+      event.preventDefault();
+      var input = form.querySelector('#q');
+      if (input) commitCatalogQuery(input);
+    }, true);
   }
 
   function updateCatalogOnly() {
@@ -1090,7 +1104,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.9').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.10').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;
