@@ -154,3 +154,7 @@ Los cambios relevantes del proyecto se documentan en este archivo.
 ## [38.0.0] — 2026-09-05
 
 - Incorporación de Caminos Malditos Sangrientos como aplicación 94.
+## v41.23 · Night Shift 404
+
+- Añadido Night Shift 404 al catálogo, con portada local 640×360, metadatos y enlace al juego narrativo.
+- Renovada la caché PWA para incluir la nueva portada.

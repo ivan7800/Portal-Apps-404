@@ -1,12 +1,12 @@
-# Universo 404 · Auditoría de release v41.22
+# Universo 404 · Auditoría de release v41.23
 
 ## Resultado
 
-Base restaurada desde `Portal-Apps-404_v41.11_CLEAN-CATALOG(1).zip`, con QUINQUI 404 integrada, versionado actualizado a v41.22 y caché PWA renovada. Esta revisión se prepara para publicación posterior.
+Base restaurada desde `Portal-Apps-404_v41.11_CLEAN-CATALOG(1).zip`, con QUINQUI 404 y Night Shift 404 integradas, versionado actualizado a v41.23 y caché PWA renovada. Esta revisión se prepara para publicación posterior.
 
 ## Objetivo y criterios de aceptación
 
-- Mantener las 95 aplicaciones y los recursos locales del paquete.
+- Mantener las 96 aplicaciones y los recursos locales del paquete.
 - Conservar la navegación de fichas, filtros, ordenación y cambio de vista de la base estable.
 - Servir correctamente el portal bajo la subruta `/Portal-Apps-404/`.
 - No introducir dependencias nuevas, secretos ni backend.
@@ -16,7 +16,7 @@ Base restaurada desde `Portal-Apps-404_v41.11_CLEAN-CATALOG(1).zip`, con QUINQUI
 
 - **Estado inicial:** paquete v41.11 adjunto; ZIP íntegro.
 - **Hipótesis:** la base v41.11 es una regresión menor y estable respecto a las revisiones posteriores.
-- **Cambio aplicado:** integración de QUINQUI 404, portada local, actualización de versión a v41.22, rutas de assets y nombre de caché; actualización de pruebas, auditor y documentación.
+- **Cambio aplicado:** integración de Night Shift 404, portada local, actualización de versión a v41.23, rutas de assets y nombre de caché; actualización de pruebas, auditor y documentación.
 - **Archivos modificados:** `assets/app.js`, `assets/data.js`, `index.html`, `sw.js`, `package.json`, `package-lock.json`, `scripts/audit.mjs`, `tests/catalog.test.mjs`, `tests/release.test.mjs`, `tests/service-worker.test.mjs`, `README.md`, `CHANGELOG.md`.
 - **Archivo añadido:** este informe.
 - **Decisión:** FINALIZADO para entrega local; publicación posterior requiere decisión del usuario.
@@ -27,7 +27,7 @@ Base restaurada desde `Portal-Apps-404_v41.11_CLEAN-CATALOG(1).zip`, con QUINQUI
 |---|---|---|
 | Integridad del ZIP de entrada | ✅ Verificado | `unzip -t` sin errores |
 | Sintaxis JavaScript | ✅ Verificado | `node --check` en datos, utilidades, aplicación y service worker |
-| Auditoría estructural | ✅ Verificado | 95 apps, 117 archivos, 0 avisos, 0 errores |
+| Auditoría estructural | ✅ Verificado | 96 apps, 118 archivos, 0 avisos, 0 errores |
 | Tests de catálogo y regresión | ✅ Verificado | 22/22 tests superados |
 | Service worker: instalación, activación y caché | ✅ Verificado | Tests específicos superados |
 | Rutas relativas para GitHub Pages | ✅ Verificado | Auditoría y manifest |

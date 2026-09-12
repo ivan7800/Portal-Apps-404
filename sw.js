@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-22-quinqui-404';
+const CACHE = CACHE_PREFIX + 'v41-23-night-shift-404';
 const CORE = [
   './',
   './index.html',
@@ -15,6 +15,7 @@ const CORE = [
   './assets/icon-192.png',
   './assets/icon-512.png',
   './assets/screenshots/QUINQUI-404.webp',
+  './assets/screenshots/Night-Shift-404.png',
   './manifest.webmanifest'
 ];
 

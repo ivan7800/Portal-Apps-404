@@ -1,6 +1,6 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.22 · QUINQUI 404
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.23 · Night Shift 404
 
-## Actualización v41.22 — integración de QUINQUI 404
+## Actualización v41.23 — integración de Night Shift 404
 
 - Eliminada la barra de búsqueda del catálogo, que duplicaba el buscador universal y concentraba los problemas de interacción.
 - El catálogo conserva filtros por tecnología, orden, favoritos y acceso al buscador universal desde cabecera y navegación móvil.
@@ -150,7 +150,7 @@ robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
   catalog-utils.js         Normalización y ranking puro de búsqueda
-  data.js                  Catálogo de 95 aplicaciones
+  data.js                  Catálogo de 96 aplicaciones
   styles.css               Diseño responsive y temas
   fonts.css                Tres fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados

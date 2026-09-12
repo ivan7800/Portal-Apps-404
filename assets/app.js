@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.22 · QUINQUI 404 */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.23 · Night Shift 404 */
 (function () {
   'use strict';
 
@@ -27,7 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.22 · QUINQUI 404';
+  var VERSION = 'v41.23 · Night Shift 404';
   var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -1083,7 +1083,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.22').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.23').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

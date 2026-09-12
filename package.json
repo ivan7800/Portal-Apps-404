@@ -1,6 +1,6 @@
 {
   "name": "portal-apps-404",
-  "version": "41.22.0",
+  "version": "41.23.0",
   "private": true,
   "description": "Portal estático y PWA del ecosistema Universo 404.",
   "scripts": {

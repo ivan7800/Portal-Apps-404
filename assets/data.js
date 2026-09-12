@@ -1,7 +1,7 @@
 window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
-    "release": "v41.22",
+    "release": "v41.23",
     "updated": "2026-09-10",
     "externalLinksVerifiedAt": null
   },
@@ -147,7 +147,8 @@ window.PORTAL_DATA = {
     "ReleaseForge-404": "JavaScript",
     "Compra-404": "JavaScript",
     "Caminos-Malditos-Sangrientos": "JavaScript",
-    "QUINQUI-404": "JavaScript"
+    "QUINQUI-404": "JavaScript",
+    "Night-Shift-404": "JavaScript"
   },
   "APPS": [
     {
@@ -1631,6 +1632,23 @@ window.PORTAL_DATA = {
       "screenshot": "assets/screenshots/QUINQUI-404.webp",
       "pages": "https://ivan7800.github.io/QUINQUI-404/",
       "github": "https://github.com/ivan7800/QUINQUI-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app"
+    },
+    {
+      "name": "Night-Shift-404",
+      "short": "Juego narrativo local-first de cafetería, investigación y horror urbano durante siete turnos nocturnos.",
+      "description": "Night Shift 404 es un juego narrativo local-first ambientado en una cafetería del Raval durante siete noches. Investiga la ciudad, prepara bebidas y toma decisiones que alteran la memoria, el vínculo y los finales de una historia de misterio y horror urbano.",
+      "category": "Juego / Horror narrativo",
+      "saga": "Universo 404",
+      "icon": "☾",
+      "featured": true,
+      "screenshot": "assets/screenshots/Night-Shift-404.png",
+      "pages": "https://ivan7800.github.io/Night-Shift-404/",
+      "github": "https://github.com/ivan7800/Night-Shift-404",
       "status": "catalogued",
       "availability": "unverified",
       "offline": "declared",
