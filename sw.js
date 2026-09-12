@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-24-catalog-controls-hotfix';
+const CACHE = CACHE_PREFIX + 'v41-26-local-visual-covers';
 const CORE = [
   './',
   './index.html',
