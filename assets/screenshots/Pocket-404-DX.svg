@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="t d">
+<title id="t">Pocket 404 DX</title><desc id="d">Portada pixel art editorial para Rune Quest 404 DX.</desc>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#08111f"/><stop offset="1" stop-color="#1a0930"/></linearGradient></defs>
+<rect width="640" height="360" fill="url(#g)"/>
+<g opacity=".18" fill="#7cf0c5"><rect y="288" width="640" height="72"/><rect x="42" y="236" width="54" height="52"/><rect x="118" y="214" width="72" height="74"/><rect x="218" y="248" width="46" height="40"/><rect x="291" y="196" width="86" height="92"/><rect x="409" y="229" width="58" height="59"/><rect x="502" y="205" width="96" height="83"/></g>
+<g fill="#f0c45a"><rect x="84" y="64" width="16" height="16"/><rect x="116" y="64" width="16" height="16"/><rect x="100" y="48" width="16" height="16"/><rect x="100" y="80" width="16" height="16"/></g>
+<rect x="64" y="122" width="512" height="2" fill="#5ce1e6" opacity=".6"/>
+<text x="64" y="176" fill="#f7f3e8" font-family="system-ui,sans-serif" font-size="44" font-weight="800">POCKET 404 DX</text>
+<text x="66" y="212" fill="#7cf0c5" font-family="system-ui,sans-serif" font-size="20" font-weight="700" letter-spacing="4">RUNE QUEST 404 DX</text>
+<text x="66" y="250" fill="#aeb9d6" font-family="system-ui,sans-serif" font-size="17">16-BIT DEFINITIVE EDITION</text>
+<g transform="translate(468 56)"><rect width="108" height="108" rx="18" fill="#0f1b2d" stroke="#7cf0c5"/><path d="M54 24l10 18 20 4-14 14 3 21-19-9-19 9 3-21-14-14 20-4z" fill="#f0c45a"/></g>
+</svg>
