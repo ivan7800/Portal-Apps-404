@@ -9,6 +9,7 @@ const CORE = [
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
+  './assets/v4126-hotfix.js',
   './assets/logo.webp',
   './assets/favicon-32.png',
   './assets/apple-touch-icon.png',
