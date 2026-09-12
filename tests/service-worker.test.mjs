@@ -55,7 +55,7 @@ test('instala el shell y activa solo su familia de cachés', async () => {
   assert.ok(harness.calls.added.includes('./assets/catalog-utils.js'));
   harness.handlers.activate({ waitUntil: value => { task = value; } });
   await task;
-  assert.deepEqual(harness.calls.deleted, ['portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-11-clean-catalog', 'portal-apps-404-v41-21-stable-catalog-restore', 'portal-apps-404-v41-22-quinqui-404']);
+  assert.deepEqual(harness.calls.deleted, ['portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-11-clean-catalog', 'portal-apps-404-v41-21-stable-catalog-restore', 'portal-apps-404-v41-22-quinqui-404', 'portal-apps-404-v41-23-night-shift-404']);
   assert.equal(harness.calls.claimed, 1);
 });
 

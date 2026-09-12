@@ -1,6 +1,8 @@
-# I. Roig · Portal Apps 404 — Universo 404 OS v41.23 · Night Shift 404
+# I. Roig · Portal Apps 404 — Universo 404 OS v41.24 · Catalog Controls Hotfix
 
-## Actualización v41.23 — integración de Night Shift 404
+## Actualización v41.24 — corrección de filtros, orden y cambio de vista
+
+Los controles del catálogo ya no reconstruyen toda la aplicación: actualizan únicamente el contenido del catálogo, preservan la posición de scroll y evitan el salto al inicio observado en navegador.
 
 - Eliminada la barra de búsqueda del catálogo, que duplicaba el buscador universal y concentraba los problemas de interacción.
 - El catálogo conserva filtros por tecnología, orden, favoritos y acceso al buscador universal desde cabecera y navegación móvil.
@@ -165,7 +167,8 @@ package.json               Comandos de calidad y metadatos de release
 CHANGELOG.md               Historial de cambios
 CONTRIBUTING.md            Guía de contribución
 SECURITY.md                Política para comunicar vulnerabilidades
-RELEASE_AUDIT_v41.10.1.md  Auditoría y evidencias de la release actual
+RELEASE_AUDIT_v41.24.md    Auditoría y evidencias de la release actual
+RELEASE_AUDIT_v41.10.1.md  Auditoría histórica v41.10.1
 RELEASE_AUDIT_v38.2.md     Auditoría histórica v38.2
 ```
 

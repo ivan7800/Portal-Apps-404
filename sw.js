@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-23-night-shift-404';
+const CACHE = CACHE_PREFIX + 'v41-24-catalog-controls-hotfix';
 const CORE = [
   './',
   './index.html',

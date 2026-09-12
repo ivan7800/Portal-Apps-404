@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.23 · Night Shift 404 */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.24 · Catalog Controls Hotfix */
 (function () {
   'use strict';
 
@@ -27,7 +27,7 @@
     'ReleaseForge-404': 1, 'Compra-404': 1
   };
   var readyTimer = null;
-  var VERSION = 'v41.23 · Night Shift 404';
+  var VERSION = 'v41.24 · Catalog Controls Hotfix';
   var UPDATED = '11 de septiembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -764,8 +764,7 @@
       try { localStorage.setItem('u404-sort', state.sort); } catch (error) {}
     }
     syncURL(true);
-    render();
-    scrollToId('catalogo');
+    updateCatalogOnly();
   }
 
   function wireDynamicContent(scope) {
@@ -832,16 +831,27 @@
     Array.prototype.forEach.call(document.querySelectorAll('[data-view]'), function (b) {
       b.onclick = function () {
         var nextView = b.getAttribute('data-view');
-        var commit = function () { state.view = nextView; try { localStorage.setItem('u404-view', state.view); } catch (e) {} syncURL(true); render(); };
-        if (document.startViewTransition && !reduceMotion()) document.startViewTransition(commit); else commit();
-        scrollToId('catalogo');
+        if (!VIEW_NAMES[nextView] || nextView === state.view) return;
+        state.view = nextView;
+        try { localStorage.setItem('u404-view', state.view); } catch (e) {}
+        syncURL(true);
+        updateCatalogOnly();
       };
     });
 
     var tech = document.getElementById('tech');
-    if (tech) tech.onchange = function (e) { state.techFilter = e.target.value; syncURL(true); render(); scrollToId('catalogo'); };
+    if (tech) tech.onchange = function (e) {
+      state.techFilter = e.target.value;
+      syncURL(true);
+      updateCatalogOnly();
+    };
     var sort = document.getElementById('sort');
-    if (sort) sort.onchange = function (e) { state.sort = e.target.value; try { localStorage.setItem('u404-sort', state.sort); } catch (err) {} syncURL(true); render(); scrollToId('catalogo'); };
+    if (sort) sort.onchange = function (e) {
+      state.sort = e.target.value;
+      try { localStorage.setItem('u404-sort', state.sort); } catch (err) {}
+      syncURL(true);
+      updateCatalogOnly();
+    };
     var clear = document.getElementById('clear-filter');
     if (clear) clear.onclick = resetFilters;
     var clearRecent = document.getElementById('clear-recent');
@@ -891,12 +901,38 @@
     document.addEventListener('click', closeFromEvent, true);
   }
 
+  function syncCatalogControls() {
+    document.documentElement.setAttribute('data-view', state.view);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-view]'), function (button) {
+      button.setAttribute('aria-pressed', String(button.getAttribute('data-view') === state.view));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-saga]'), function (button) {
+      var active = button.getAttribute('data-saga') === state.activeSaga;
+      button.setAttribute('aria-pressed', String(active));
+      button.classList.toggle('active', active);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-intent]'), function (button) {
+      var active = button.getAttribute('data-intent') === state.activeIntent;
+      button.setAttribute('aria-pressed', String(active));
+      button.classList.toggle('is-active', active);
+    });
+    var tech = document.getElementById('tech');
+    if (tech && tech.value !== state.techFilter) tech.value = state.techFilter;
+    var sort = document.getElementById('sort');
+    if (sort && sort.value !== state.sort) sort.value = state.sort;
+  }
+
   function updateCatalogOnly() {
     var content = document.getElementById('catalog-content');
     if (!content) { render(); return; }
+    var scrollX = window.scrollX || window.pageXOffset || 0;
+    var scrollY = window.scrollY || window.pageYOffset || 0;
     content.innerHTML = catalogContentHTML(catalog());
+    syncCatalogControls();
     updateClearFilterButton();
     wireDynamicContent(content);
+    // Replacing only the catalogue must never move the user back to the top.
+    if (window.scrollTo) window.scrollTo(scrollX, scrollY);
   }
 
   function renderPaletteBody() {
@@ -927,7 +963,8 @@
   function resetFilters() {
     state.query = ''; state.activeSaga = null; state.activeIntent = null; state.techFilter = ''; state.sort = 'recommended';
     try { localStorage.setItem('u404-sort', state.sort); } catch (e) {}
-    syncURL(true); render(); scrollToId('catalogo');
+    syncURL(true);
+    updateCatalogOnly();
   }
 
   var motionObserver = null;
@@ -1083,7 +1120,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.23').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.24').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

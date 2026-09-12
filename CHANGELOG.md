@@ -1,5 +1,18 @@
 # Changelog
 
+## v41.24 · Catalog Controls Hotfix
+
+- Corregido el salto al inicio al cambiar tecnología, orden o vista.
+- Los filtros y el selector de vista actualizan solo `#catalog-content` en lugar de reconstruir todo `#app`.
+- Se conserva explícitamente la posición de scroll durante la actualización parcial.
+- Sincronizados estados `aria-pressed`, selectores y botón de limpiar filtros.
+- Cache busting y Service Worker renovados a v41.24.
+
+## v41.23 · Night Shift 404
+
+- Añadido Night Shift 404 al catálogo, con portada local 640×360, metadatos y enlace al juego narrativo.
+- Renovada la caché PWA para incluir la nueva portada.
+
 ## v41.22 · QUINQUI 404
 
 - Añadido QUINQUI 404 al catálogo, con enlace, metadatos y portada editorial local.
@@ -154,7 +167,3 @@ Los cambios relevantes del proyecto se documentan en este archivo.
 ## [38.0.0] — 2026-09-05
 
 - Incorporación de Caminos Malditos Sangrientos como aplicación 94.
-## v41.23 · Night Shift 404
-
-- Añadido Night Shift 404 al catálogo, con portada local 640×360, metadatos y enlace al juego narrativo.
-- Renovada la caché PWA para incluir la nueva portada.

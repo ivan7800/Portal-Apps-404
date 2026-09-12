@@ -33,7 +33,7 @@ vm.runInNewContext(source, sandbox, { filename: 'assets/data.js' });
 const data = sandbox.window.PORTAL_DATA;
 if (!data || !Array.isArray(data.APPS)) fail('assets/data.js no expone un catálogo APPS válido.');
 if (data?.META?.schemaVersion !== 2) fail('assets/data.js no usa el esquema de catálogo v2.');
-if (data?.META?.release !== 'v41.23') fail('assets/data.js no declara la release v41.23.');
+if (data?.META?.release !== 'v41.24') fail('assets/data.js no declara la release v41.24.');
 
 const apps = data?.APPS || [];
 if (!apps.length) fail('El catálogo APPS está vacío.');

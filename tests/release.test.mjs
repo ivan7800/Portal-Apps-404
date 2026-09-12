@@ -17,9 +17,9 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
 });
 
 test('los recursos críticos llevan versión explícita para evitar caché antigua', () => {
-  assert.match(index, /assets\/styles\.css\?v=41\.23/);
-  assert.match(index, /assets\/app\.js\?v=41\.23/);
-  assert.match(index, /assets\/data\.js\?v=41\.23/);
+  assert.match(index, /assets\/styles\.css\?v=41\.24/);
+  assert.match(index, /assets\/app\.js\?v=41\.24/);
+  assert.match(index, /assets\/data\.js\?v=41\.24/);
 });
 
 test('la búsqueda evita reconstruir toda la aplicación', () => {
@@ -74,11 +74,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.23 y rutas relativas', () => {
+test('manifest y caché usan la release v41.24 y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-23-night-shift-404/);
+  assert.match(serviceWorker, /v41-24-catalog-controls-hotfix/);
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 
@@ -88,7 +88,19 @@ test('el auditor ignora metadatos del clon y dependencias locales', () => {
 });
 
 
-test('la versión visible y el registro del service worker coinciden con v41.23', () => {
-  assert.match(app, /var VERSION = 'v41\.23 · Night Shift 404'/);
-  assert.match(app, /register\('\.\/sw\.js\?v=41\.23'\)/);
+test('la versión visible y el registro del service worker coinciden con v41.24', () => {
+  assert.match(app, /var VERSION = 'v41\.24 · Catalog Controls Hotfix'/);
+  assert.match(app, /register\('\.\/sw\.js\?v=41\.24'\)/);
+});
+
+
+test('filtros, orden y vista actualizan solo el catálogo sin saltar al inicio', () => {
+  const wireBlock = app.match(/function wire\(\) \{([\s\S]*?)\n  \/\/ Keep critical interactions alive/)?.[1] || '';
+  assert.match(wireBlock, /state\.view = nextView;[\s\S]*?updateCatalogOnly\(\)/);
+  assert.match(wireBlock, /tech\.onchange[\s\S]*?updateCatalogOnly\(\)/);
+  assert.match(wireBlock, /sort\.onchange[\s\S]*?updateCatalogOnly\(\)/);
+  const viewHandler = wireBlock.match(/\[data-view\][\s\S]*?var tech =/)?.[0] || '';
+  assert.doesNotMatch(viewHandler, /render\(\)|scrollToId/);
+  const partialUpdate = app.match(/function updateCatalogOnly\(\) \{([\s\S]*?)\n  function renderPaletteBody/)?.[1] || '';
+  assert.match(partialUpdate, /window\.scrollTo\(scrollX, scrollY\)/);
 });

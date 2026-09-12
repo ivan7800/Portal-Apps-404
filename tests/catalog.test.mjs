@@ -15,7 +15,7 @@ const aliases = {
 
 test('el catálogo usa el esquema v2 y conserva sus invariantes', () => {
   assert.equal(data.META.schemaVersion, 2);
-  assert.equal(data.META.release, 'v41.23');
+  assert.equal(data.META.release, 'v41.24');
   assert.equal(data.APPS.length, 96);
   assert.equal(Object.keys(data.LANGUAGES).length, 96);
   assert.equal(new Set(data.APPS.map(app => app.name)).size, 96);
