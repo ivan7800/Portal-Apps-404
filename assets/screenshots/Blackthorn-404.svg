@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Blackthorn 404: The Unremembered</title>
+  <desc id="desc">Portada editorial oscura con mansión gótica, espinas y estética 16-bit.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090b12"/>
+      <stop offset="0.55" stop-color="#16111c"/>
+      <stop offset="1" stop-color="#26111a"/>
+    </linearGradient>
+    <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6b556f" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <rect x="18" y="18" width="604" height="324" rx="18" fill="none" stroke="#6d374d" stroke-opacity=".7"/>
+  <circle cx="504" cy="84" r="55" fill="#b24e68" fill-opacity=".08"/>
+  <path d="M0 290 C120 240 190 310 320 270 S520 250 640 282 V360 H0Z" fill="#09090e"/>
+  <g fill="#12131b" stroke="#4a2b3a" stroke-width="4">
+    <path d="M235 245V132l44-36 42 30 38-44 46 44v119z"/>
+    <path d="M276 245V154h35v91M345 245V154h34v91"/>
+  </g>
+  <g fill="#c3657d" opacity=".72">
+    <rect x="288" y="171" width="9" height="22"/>
+    <rect x="359" y="171" width="9" height="22"/>
+    <rect x="317" y="126" width="9" height="18"/>
+  </g>
+  <g fill="none" stroke="#6f8a63" stroke-width="5" stroke-linecap="round">
+    <path d="M82 330C122 265 152 210 168 134"/>
+    <path d="M560 330C532 266 511 206 504 139"/>
+    <path d="M101 287l-25-12m44-27l-30-9m449 44l27-12m-42-24l28-11"/>
+  </g>
+  <g fill="#8fa276">
+    <path d="M154 180l-17-6 14-10zM165 154l-18-3 15-12zM500 179l18-6-15-11zM505 151l17-4-14-11z"/>
+  </g>
+  <rect y="0" width="640" height="360" fill="url(#fog)"/>
+  <text x="48" y="72" fill="#d6b3c0" font-family="Georgia,serif" font-size="22" letter-spacing="4">THE UNREMEMBERED</text>
+  <text x="46" y="118" fill="#f1e9ed" font-family="Georgia,serif" font-size="42" font-weight="700">BLACKTHORN 404</text>
+  <text x="49" y="151" fill="#b9919e" font-family="Arial,sans-serif" font-size="15" letter-spacing="2">16-BIT PSYCHOLOGICAL · COSMIC HORROR</text>
+  <text x="48" y="315" fill="#caa8b5" font-family="Arial,sans-serif" font-size="13">108 ROOMS · 9 BOSSES · 3 ENDINGS · NEW GAME+</text>
+</svg>
