@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-27-pocket-404-dx';
+const CACHE = CACHE_PREFIX + 'v41-28-blackthorn-404';
 const CORE = [
   './',
   './index.html',
@@ -7,6 +7,7 @@ const CORE = [
   './assets/fonts.css',
   './assets/data.js',
   './assets/pocket-404-dx.js',
+  './assets/blackthorn-404.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -19,6 +20,7 @@ const CORE = [
   './assets/screenshots/QUINQUI-404.webp',
   './assets/screenshots/Night-Shift-404.png',
   './assets/screenshots/Pocket-404-DX.svg',
+  './assets/screenshots/Blackthorn-404.svg',
   './manifest.webmanifest'
 ];
 
