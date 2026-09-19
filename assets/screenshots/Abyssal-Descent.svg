@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Abyssal Descent</title><desc id="desc">Portada editorial de horror cósmico para Abyssal Descent</desc>
+<defs><radialGradient id="abyss" cx="50%" cy="45%" r="70%"><stop stop-color="#173542"/><stop offset=".48" stop-color="#091a23"/><stop offset="1" stop-color="#020507"/></radialGradient><linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#27414a" stop-opacity=".55"/><stop offset="1" stop-color="#030708"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#abyss)"/>
+<path d="M0 675L395 265h410l395 410z" fill="url(#floor)"/>
+<g stroke="#46636b" stroke-opacity=".35" fill="none" stroke-width="3"><path d="M395 265L0 675M475 265L260 675M555 265L500 675M645 265L700 675M725 265L940 675M805 265L1200 675"/><path d="M345 318h510M292 375h616M225 447h750M140 540h920"/></g>
+<path d="M420 80h360v365H420z" fill="#030708" stroke="#365761" stroke-width="7"/><path d="M470 130h260v315H470z" fill="#071218" stroke="#213d46" stroke-width="5"/>
+<ellipse cx="600" cy="285" rx="82" ry="105" fill="#020405" stroke="#668f91" stroke-width="5"/><circle cx="570" cy="270" r="9" fill="#a5d6c5"/><circle cx="630" cy="270" r="9" fill="#a5d6c5"/>
+<path d="M600 390c-92 0-142 58-168 145M600 390c92 0 142 58 168 145M600 390c-45 70-48 130-34 196M600 390c45 70 48 130 34 196" fill="none" stroke="#182f35" stroke-width="20" stroke-linecap="round"/>
+<text x="600" y="585" text-anchor="middle" fill="#d7e6df" font-family="serif" font-size="68" font-weight="700" letter-spacing="7">ABYSSAL DESCENT</text>
+<text x="600" y="625" text-anchor="middle" fill="#71999a" font-family="monospace" font-size="22" letter-spacing="9">THE GREAT ABYSS AWAITS</text>
+</svg>
