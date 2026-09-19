@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-28-blackthorn-404';
+const CACHE = CACHE_PREFIX + 'v41-29-bomb-sweeper-87';
 const CORE = [
   './',
   './index.html',
@@ -8,6 +8,7 @@ const CORE = [
   './assets/data.js',
   './assets/pocket-404-dx.js',
   './assets/blackthorn-404.js',
+  './assets/bomb-sweeper-87.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -21,6 +22,7 @@ const CORE = [
   './assets/screenshots/Night-Shift-404.png',
   './assets/screenshots/Pocket-404-DX.svg',
   './assets/screenshots/Blackthorn-404.svg',
+  './assets/screenshots/Bomb-Sweeper-87.svg',
   './manifest.webmanifest'
 ];
 
