@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-29-bomb-sweeper-87';
+const CACHE = CACHE_PREFIX + 'v41-30-abyssal-descent';
 const CORE = [
   './',
   './index.html',
@@ -9,6 +9,7 @@ const CORE = [
   './assets/pocket-404-dx.js',
   './assets/blackthorn-404.js',
   './assets/bomb-sweeper-87.js',
+  './assets/abyssal-descent.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -23,6 +24,7 @@ const CORE = [
   './assets/screenshots/Pocket-404-DX.svg',
   './assets/screenshots/Blackthorn-404.svg',
   './assets/screenshots/Bomb-Sweeper-87.svg',
+  './assets/screenshots/Abyssal-Descent.svg',
   './manifest.webmanifest'
 ];
 
