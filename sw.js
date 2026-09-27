@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-31-historias-del-bloque-404';
+const CACHE = CACHE_PREFIX + 'v41-32-definitive-visual-covers';
 const CORE = [
   './',
   './index.html',
@@ -11,6 +11,7 @@ const CORE = [
   './assets/bomb-sweeper-87.js',
   './assets/abyssal-descent.js',
   './assets/historias-del-bloque-404.js',
+  './assets/visual-covers-v4132.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -27,6 +28,22 @@ const CORE = [
   './assets/screenshots/Bomb-Sweeper-87.svg',
   './assets/screenshots/Abyssal-Descent.svg',
   './assets/screenshots/Historias-del-Bloque-404.svg',
+  './assets/screenshots/AppHub-404.svg',
+  './assets/screenshots/Novel-Forge-404.svg',
+  './assets/screenshots/Motion-404.svg',
+  './assets/screenshots/Luna-Natura-404.svg',
+  './assets/screenshots/MYTHOS-404.svg',
+  './assets/screenshots/Comic-Reader-404.svg',
+  './assets/screenshots/PixelForge-404.svg',
+  './assets/screenshots/MD-Forge-404.svg',
+  './assets/screenshots/FileDoctor-404.svg',
+  './assets/screenshots/HumanScript-404.svg',
+  './assets/screenshots/IT-Commander-404.svg',
+  './assets/screenshots/SECOND-BRAIN-404.svg',
+  './assets/screenshots/Ringtone-404.svg',
+  './assets/screenshots/ReleaseForge-404.svg',
+  './assets/screenshots/Compra-404.svg',
+  './assets/screenshots/Caminos-Malditos-Sangrientos.svg',
   './manifest.webmanifest'
 ];
 
