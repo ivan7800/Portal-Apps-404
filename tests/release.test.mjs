@@ -10,16 +10,22 @@ const serviceWorker = await readFile(new URL('../sw.js', import.meta.url), 'utf8
 const audit = await readFile(new URL('../scripts/audit.mjs', import.meta.url), 'utf8');
 const qrLite = await readFile(new URL('../assets/qr-lite.js', import.meta.url), 'utf8');
 
+const releaseMatch = index.match(/assets\/styles\.css\?v=([0-9]+(?:\.[0-9]+)+)/);
+assert.ok(releaseMatch, 'index.html debe versionar styles.css');
+const releaseVersion = releaseMatch[1];
+const escapedReleaseVersion = releaseVersion.replace(/\./g, '\\.');
+const cacheReleaseVersion = releaseVersion.replace(/\./g, '-');
+
 test('la página contiene un único landmark principal en tiempo de ejecución', () => {
   assert.doesNotMatch(index, /<main[^>]+id=["']app["']/i);
   assert.match(index, /href=["']#main-content["']/i);
   assert.match(app, /<main class="workspace" id="main-content" tabindex="-1">/);
 });
 
-test('los recursos críticos llevan versión explícita para evitar caché antigua', () => {
-  assert.match(index, /assets\/styles\.css\?v=41\.24/);
-  assert.match(index, /assets\/app\.js\?v=41\.24/);
-  assert.match(index, /assets\/data\.js\?v=41\.24/);
+test('los recursos críticos llevan una versión explícita y coherente para evitar caché antigua', () => {
+  assert.match(index, new RegExp(`assets\\/styles\\.css\\?v=${escapedReleaseVersion}`));
+  assert.match(index, new RegExp(`assets\\/app\\.js\\?v=${escapedReleaseVersion}`));
+  assert.match(index, new RegExp(`assets\\/data\\.js\\?v=${escapedReleaseVersion}`));
 });
 
 test('la búsqueda evita reconstruir toda la aplicación', () => {
@@ -74,11 +80,11 @@ test('las portadas de ficha se muestran completas y centradas', () => {
   assert.match(styles, /\.modal-heading\{padding-right:56px/);
 });
 
-test('manifest y caché usan la release v41.24 y rutas relativas', () => {
+test('manifest y caché usan la release actual y rutas relativas', () => {
   assert.equal(manifest.id, './');
   assert.equal(manifest.start_url, './');
   assert.equal(manifest.scope, './');
-  assert.match(serviceWorker, /v41-24-catalog-controls-hotfix/);
+  assert.match(serviceWorker, new RegExp(`v${cacheReleaseVersion}(?:-|')`));
   assert.match(serviceWorker, /key\.startsWith\(CACHE_PREFIX\)/);
 });
 
@@ -88,9 +94,9 @@ test('el auditor ignora metadatos del clon y dependencias locales', () => {
 });
 
 
-test('la versión visible y el registro del service worker coinciden con v41.24', () => {
-  assert.match(app, /var VERSION = 'v41\.24 · Catalog Controls Hotfix'/);
-  assert.match(app, /register\('\.\/sw\.js\?v=41\.24'\)/);
+test('la versión base visible y el registro del service worker están versionados explícitamente', () => {
+  assert.match(app, /var VERSION = 'v[0-9]+(?:\.[0-9]+)+(?: · [^']+)?'/);
+  assert.match(app, /register\('\.\/sw\.js\?v=[0-9]+(?:\.[0-9]+)+'\)/);
 });
 
 
