@@ -1,0 +1,134 @@
+/* Portal Apps 404 · Cinematic Experience Layer v41.29 POLISH
+   Progressive enhancement only: the portal remains usable if this file is removed. */
+
+:root{
+  --cine-ease:cubic-bezier(.2,.8,.2,1);
+  --cine-ease-soft:cubic-bezier(.22,1,.36,1);
+  --cine-fast:180ms;
+  --cine-base:320ms;
+  --cine-slow:520ms;
+  --cine-accent:var(--accent,#f39a50);
+}
+
+/* Safe custom cursor: native pointer is hidden only after JS confirms support. */
+@media (hover:hover) and (pointer:fine){
+  html.has-custom-cursor,html.has-custom-cursor body,html.has-custom-cursor a,html.has-custom-cursor button,html.has-custom-cursor input,html.has-custom-cursor select{cursor:none!important}
+  .u404-cursor{position:fixed;left:0;top:0;width:10px;height:10px;border-radius:50%;background:var(--cine-accent);z-index:2000;pointer-events:none;transform:translate3d(-100px,-100px,0) translate(-50%,-50%);box-shadow:0 0 18px rgba(var(--accent-rgb),.55);will-change:transform}
+  .u404-cursor-ring{position:fixed;left:0;top:0;width:42px;height:42px;border:1px solid color-mix(in srgb,var(--cine-accent) 75%,white);border-radius:50%;z-index:1999;pointer-events:none;transform:translate3d(-100px,-100px,0) translate(-50%,-50%);transition:transform .06s linear,width var(--cine-base) var(--cine-ease-soft),height var(--cine-base) var(--cine-ease-soft),background var(--cine-fast) ease,border-color var(--cine-fast) ease;will-change:transform}
+  .u404-cursor-label{position:fixed;z-index:2001;pointer-events:none;transform:translate3d(-100px,-100px,0) translate(-50%,-50%);font-size:.56rem;font-weight:800;letter-spacing:.13em;color:#080a0f;opacity:0;transition:opacity var(--cine-fast) ease;will-change:transform}
+  html.cursor-view .u404-cursor{width:0;height:0;box-shadow:none}
+  html.cursor-view .u404-cursor-ring{width:60px;height:60px;background:var(--cine-accent);border-color:var(--cine-accent)}
+  html.cursor-view .u404-cursor-label{opacity:1}
+  html.cursor-action .u404-cursor-ring{width:52px;height:52px;border-color:var(--cine-accent);background:rgba(var(--accent-rgb),.09)}
+}
+
+/* 000 → 100 loader */
+.u404-loader{position:fixed;inset:0;z-index:1900;display:grid;place-items:center;background:var(--bg,#070a12);transition:opacity .55s var(--cine-ease),visibility .55s step-end;overflow:hidden}
+.u404-loader:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 25%,rgba(var(--accent-rgb),.16),transparent 36%),radial-gradient(circle at 20% 80%,rgba(var(--accent2-rgb),.12),transparent 38%)}
+.u404-loader-inner{position:relative;width:min(620px,82vw);display:grid;gap:18px}
+.u404-loader-meta{display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase}
+.u404-loader-count{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(5.5rem,18vw,13rem);line-height:.75;letter-spacing:-.07em;color:var(--ink)}
+.u404-loader-count span{color:transparent;-webkit-text-stroke:1px var(--cine-accent)}
+.u404-loader-track{height:1px;background:var(--line);overflow:hidden}.u404-loader-bar{height:100%;width:0;background:var(--cine-accent);box-shadow:0 0 18px rgba(var(--accent-rgb),.55)}
+html.u404-loaded .u404-loader{opacity:0;visibility:hidden;pointer-events:none}
+
+/* Scroll progress */
+.u404-scroll-progress{position:fixed;left:0;top:0;z-index:1000;width:100%;height:2px;transform:scaleX(0);transform-origin:left center;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 16px rgba(var(--accent-rgb),.38);pointer-events:none}
+
+/* Cinematic ticker / marquee */
+.cine-ticker{position:relative;margin:0 calc(clamp(18px,3.2vw,48px) * -1) 34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:rgba(var(--accent-rgb),.025)}
+.cine-ticker-track{display:flex;width:max-content;gap:38px;padding:10px 0;animation:cineTicker 34s linear infinite;white-space:nowrap;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cine-ticker-track b{color:var(--accent);font-weight:700}
+@keyframes cineTicker{to{transform:translateX(-50%)}}
+.card-marquee{position:absolute;left:0;right:0;bottom:0;z-index:4;overflow:hidden;height:32px;display:flex;align-items:center;pointer-events:none;opacity:0;transform:translateY(100%);transition:opacity var(--cine-base) ease,transform .38s var(--cine-ease);background:color-mix(in srgb,var(--panel) 82%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--line)}
+.card-marquee span{white-space:nowrap;display:block;width:max-content;font-size:.52rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);animation:cineCardTicker 9s linear infinite}
+.app-card:hover .card-marquee{opacity:1;transform:none}
+@keyframes cineCardTicker{to{transform:translateX(-50%)}}
+
+/* Stronger reveals without disturbing the existing reveal system. */
+.cine-reveal,.cine-reveal.cine-visible{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+
+/* Parallax + 3D tilt layer. Inline transform is set only while the pointer is over an element. */
+.u404-tilt{transform-style:preserve-3d;will-change:transform;transition:transform var(--cine-fast) var(--cine-ease-soft),box-shadow var(--cine-base) ease,border-color var(--cine-base) ease}
+.u404-tilt .app-shot,.u404-tilt .tile-icon,.u404-tilt .intent-icon{transform:translateZ(8px)}
+.app-card.u404-tilt:hover,.intent-card.u404-tilt:hover,.small-tile.u404-tilt:hover{box-shadow:0 20px 56px rgba(0,0,0,.24),0 0 0 1px rgba(var(--accent-rgb),.13)}
+.hero-copy{transform:translate3d(var(--cine-hero-x,0),var(--cine-hero-y,0),0);transition:transform .16s ease-out;will-change:transform}
+.spot-card{--cine-spot-y:0px}.spot-card .spot-visual{transform:translateY(var(--cine-spot-y));will-change:transform}
+
+/* Hover polish */
+.app-card{overflow:hidden}.app-card:after{content:"";position:absolute;inset:-1px;z-index:0;pointer-events:none;border-radius:inherit;background:radial-gradient(420px circle at var(--px,50%) var(--py,50%),rgba(var(--accent-rgb),.11),transparent 46%);opacity:0;transition:opacity var(--cine-base) ease}.app-card:hover:after{opacity:1}.app-card>*{position:relative;z-index:1}.app-card .app-shot img{transition:transform var(--cine-slow) var(--cine-ease-soft),filter var(--cine-base) ease}.app-card:hover .app-shot img{transform:scale(1.028);filter:saturate(1.045) contrast(1.02)}
+.app-card .card-signature b,.intent-arrow,.tile-go,.row-go{transition:transform var(--cine-base) var(--cine-ease-soft)}.app-card:hover .card-signature b,.intent-card:hover .intent-arrow,.small-tile:hover .tile-go,.app-row:hover .row-go{transform:translateX(3px)}
+
+/* Visual Archive: 101-app immersive overview */
+.visual-archive-overlay{position:fixed;inset:0;z-index:1200;background:color-mix(in srgb,var(--bg) 94%,black);backdrop-filter:blur(24px);display:flex;flex-direction:column;animation:archiveIn .32s var(--cine-ease) both}
+@keyframes archiveIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+.visual-archive-head{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:max(18px,env(safe-area-inset-top)) clamp(18px,3vw,42px) 18px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--panel) 88%,transparent)}
+.visual-archive-title{display:flex;align-items:end;gap:16px;min-width:0}.visual-archive-title h2{margin:0;font-family:"Cinzel Decorative",Georgia,serif;font-size:clamp(1.35rem,3vw,2.6rem);line-height:1}.visual-archive-title span{color:var(--muted);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+.visual-archive-actions{display:flex;gap:8px}.visual-archive-actions button{width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);color:var(--ink);cursor:pointer}
+.visual-archive-toolbar{display:flex;align-items:center;gap:12px;padding:12px clamp(18px,3vw,42px);border-bottom:1px solid var(--line)}
+.visual-archive-search{flex:1;min-width:0;height:42px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);padding:0 14px;outline:none}.visual-archive-search:focus{border-color:rgba(var(--accent-rgb),.55);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.08)}
+.visual-archive-count{font-size:.68rem;color:var(--muted);white-space:nowrap}
+.visual-archive-grid{flex:1;overflow:auto;padding:clamp(16px,2.6vw,38px);display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:12px;overscroll-behavior:contain}
+.archive-card{position:relative;min-width:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);padding:0;text-align:left;color:var(--ink);cursor:pointer;transition:transform var(--cine-base) var(--cine-ease-soft),border-color var(--cine-base) ease,box-shadow var(--cine-base) ease}.archive-card:hover{transform:translateY(-3px);border-color:rgba(var(--accent-rgb),.36);box-shadow:0 16px 40px rgba(0,0,0,.22)}
+.archive-card-visual{display:block;aspect-ratio:16/9;background:var(--bg2);overflow:hidden}.archive-card-visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--cine-slow) var(--cine-ease-soft),filter var(--cine-base) ease;filter:saturate(.88)}.archive-card:hover .archive-card-visual img{transform:scale(1.035);filter:saturate(1.05)}
+.archive-card-copy{display:grid;gap:5px;padding:12px 13px 14px}.archive-card-copy strong{font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.archive-card-copy small{color:var(--muted);font-size:.62rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.archive-card-index{position:absolute;left:9px;top:9px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(0,0,0,.58);color:#fff;font-size:.52rem;padding:4px 7px;backdrop-filter:blur(8px)}
+.archive-card-fallback{height:100%;display:grid;place-items:center;background:radial-gradient(circle at 70% 20%,rgba(var(--accent-rgb),.18),transparent 32%),linear-gradient(135deg,var(--panel2),var(--bg));font-family:"Cormorant Garamond",serif;font-size:2.4rem;color:var(--accent)}
+
+/* Language control */
+.u404-lang{height:36px;display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;background:var(--panel);overflow:hidden}.u404-lang button{height:100%;min-width:36px;border:0;background:transparent;color:var(--faint);font-size:.61rem;font-weight:800;letter-spacing:.08em;cursor:pointer}.u404-lang button[aria-pressed="true"]{background:rgba(var(--accent-rgb),.12);color:var(--ink)}.u404-lang i{width:1px;height:14px;background:var(--line)}
+
+/* Cinematic app modal + previous/next/fullscreen controls */
+.overlay{backdrop-filter:blur(20px) saturate(.92)}
+.app-modal{border-color:rgba(var(--accent-rgb),.24)!important;box-shadow:0 45px 140px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.025);animation:cineModalIn .4s var(--cine-ease-soft) both}
+@keyframes cineModalIn{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
+.modal-shot:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,transparent 55%,rgba(var(--accent-rgb),.08)),linear-gradient(0deg,rgba(0,0,0,.14),transparent 35%)}
+.cine-modal-nav{position:absolute;z-index:12;left:14px;top:14px;display:flex;gap:6px}.cine-modal-nav button{width:44px;height:44px;border:1px solid rgba(255,255,255,.16);border-radius:10px;background:rgba(0,0,0,.56);color:#fff;backdrop-filter:blur(10px);font-size:1rem;cursor:pointer;transition:background .2s ease,transform .2s ease}.cine-modal-nav button:hover{background:rgba(var(--accent-rgb),.8);color:#111;transform:translateY(-2px)}
+.presentation-fullscreen{position:absolute;z-index:8;right:68px;top:14px;width:46px;height:46px;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(0,0,0,.55);color:#fff;font-size:1.05rem;cursor:pointer}
+
+/* A compact fixed archive launcher on desktop */
+.u404-archive-fab{position:fixed;z-index:69;right:22px;bottom:22px;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid rgba(var(--accent-rgb),.28);border-radius:999px;background:color-mix(in srgb,var(--panel) 88%,transparent);backdrop-filter:blur(16px);color:var(--ink);box-shadow:0 16px 45px rgba(0,0,0,.24);font-size:.67rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform .25s var(--cine-ease),border-color .25s ease}.u404-archive-fab:hover{transform:translateY(-3px);border-color:rgba(var(--accent-rgb),.6)}.u404-archive-fab span{color:var(--accent)}
+
+
+/* v41.29 fine polish: tactile microinteractions without new global layers */
+.hero-actions button,.app-open,.row-open,.small-tile,.intent-card,.u404-archive-fab,.visual-archive-actions button,.cine-modal-nav button{transition-property:transform,border-color,background-color,box-shadow,opacity;transition-duration:var(--cine-fast),var(--cine-base),var(--cine-base),var(--cine-base),var(--cine-fast);transition-timing-function:var(--cine-ease-soft),ease,ease,ease,ease}
+.hero-actions button:active,.app-open:active,.row-open:active,.u404-archive-fab:active,.visual-archive-actions button:active,.cine-modal-nav button:active{transform:translateY(1px) scale(.985)}
+:where(.hero-actions button,.app-open,.row-open,.small-tile,.intent-card,.u404-archive-fab,.visual-archive-actions button,.cine-modal-nav button,.archive-card):focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 72%,white);outline-offset:3px}
+.archive-card:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.06) 49%,transparent 62%);transform:translateX(-120%);transition:transform .62s var(--cine-ease-soft)}
+.archive-card:hover:after{transform:translateX(120%)}
+
+/* Three lightweight, project-specific modal entrances. Transform/opacity only. */
+.cine-theme-abyssal .modal-shot-visual{animation:cineAbyssalShot .56s var(--cine-ease-soft) both}
+.cine-theme-abyssal .modal-content{animation:cineAbyssalCopy .46s .05s var(--cine-ease-soft) both}
+@keyframes cineAbyssalShot{from{opacity:.35;transform:scale(1.025) translateY(7px)}to{opacity:1;transform:none}}
+@keyframes cineAbyssalCopy{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.cine-theme-night .modal-shot-visual{animation:cineNightShot .5s var(--cine-ease-soft) both}
+.cine-theme-night .modal-content{animation:cineNightCopy .44s .04s var(--cine-ease-soft) both}
+@keyframes cineNightShot{from{opacity:.25;transform:translateX(-10px) scale(1.01)}to{opacity:1;transform:none}}
+@keyframes cineNightCopy{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:none}}
+.cine-theme-quinqui .modal-shot-visual{animation:cineQuinquiShot .54s var(--cine-ease-soft) both}
+.cine-theme-quinqui .modal-content{animation:cineQuinquiCopy .44s .05s var(--cine-ease-soft) both}
+@keyframes cineQuinquiShot{from{opacity:.3;transform:scale(.99) translateX(8px)}to{opacity:1;transform:none}}
+@keyframes cineQuinquiCopy{from{opacity:0;transform:translateY(8px) translateX(-5px)}to{opacity:1;transform:none}}
+
+@media(max-width:900px){
+  .visual-archive-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+  .u404-archive-fab{bottom:78px;right:14px;padding:0 12px}.u404-archive-fab b{display:none}
+}
+@media(max-width:720px){
+  .u404-lang{height:34px}.u404-lang button{min-width:32px}
+  .visual-archive-head{grid-template-columns:1fr auto}.visual-archive-title{align-items:flex-start;flex-direction:column;gap:5px}.visual-archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:12px}.archive-card-copy{padding:9px 9px 11px}.archive-card-copy strong{font-size:.72rem}.archive-card-copy small{font-size:.56rem}
+  .cine-modal-nav{top:10px;left:10px}.cine-modal-nav button{width:40px;height:40px}.presentation-fullscreen{right:62px;top:9px;width:42px;height:42px}
+  .cine-ticker{margin-inline:-18px}
+}
+@media(max-width:430px){.visual-archive-grid{grid-template-columns:1fr 1fr}.visual-archive-count{display:none}.archive-card-index{font-size:.46rem}.u404-archive-fab{right:10px}.u404-lang{display:none}}
+
+@media(prefers-reduced-motion:reduce){
+  .cine-ticker-track,.card-marquee span{animation:none!important}.cine-reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}.u404-tilt{transform:none!important}.hero-copy,.spot-card .spot-visual{transform:none!important}.u404-loader{transition:none}.cine-theme-abyssal .modal-shot-visual,.cine-theme-abyssal .modal-content,.cine-theme-night .modal-shot-visual,.cine-theme-night .modal-content,.cine-theme-quinqui .modal-shot-visual,.cine-theme-quinqui .modal-content{animation:none!important}
+}
+
+
+/* v41.29 performance + visibility safeguards */
+.app-card,.intent-card,.small-tile{backface-visibility:hidden}
+.visual-archive-grid{contain:layout paint style}
+.archive-card{contain:layout paint}
+@media (max-width:900px){.card-marquee{backdrop-filter:none}.app-card:after{display:none}}
