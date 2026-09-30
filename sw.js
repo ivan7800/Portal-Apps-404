@@ -1,9 +1,10 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-26-stable-101';
+const CACHE = CACHE_PREFIX + 'v41-29-cinematic-polish';
 const CORE = [
   './',
   './index.html',
   './assets/styles.css',
+  './assets/cinematic.css',
   './assets/fonts.css',
   './assets/data.js',
   './assets/pocket-404-dx.js',
@@ -14,6 +15,7 @@ const CORE = [
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
+  './assets/cinematic.js',
   './assets/logo.webp',
   './assets/favicon-32.png',
   './assets/apple-touch-icon.png',
