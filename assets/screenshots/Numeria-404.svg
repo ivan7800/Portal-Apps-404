@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Numeria 404</title><desc id="desc">Portada editorial geométrica para Numeria 404.</desc>
+<defs><radialGradient id="bg" cx="50%" cy="42%" r="75%"><stop stop-color="#23283a"/><stop offset=".5" stop-color="#10131c"/><stop offset="1" stop-color="#07080c"/></radialGradient><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e4c66c"/><stop offset="1" stop-color="#8f6b2f"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#bg)"/>
+<g transform="translate(600 305)" fill="none" stroke="url(#gold)" stroke-width="3" opacity=".9">
+<circle r="185"/><circle r="132"/><circle r="78"/>
+<path d="M0-185L160 92H-160Z"/><path d="M0 185L-160-92H160Z"/>
+</g>
+<g fill="#e8d99d" font-family="Georgia,serif" text-anchor="middle">
+<text x="600" y="115" font-size="28" letter-spacing="8">MAPA NUMÉRICO · LOCAL FIRST</text>
+<text x="600" y="320" font-size="105" font-weight="700">404</text>
+</g>
+<g fill="#c8af64" font-family="monospace" font-size="28" text-anchor="middle">
+<text x="600" y="210">1 · 4 · 7 · 2 · 5 · 8 · 3 · 6 · 9</text>
+</g>
+<text x="600" y="555" text-anchor="middle" fill="#f1ead0" font-family="Georgia,serif" font-size="70" font-weight="700" letter-spacing="7">NUMERIA 404</text>
+<text x="600" y="605" text-anchor="middle" fill="#a99a6e" font-family="monospace" font-size="23" letter-spacing="7">PITAGÓRICA · CALDEA · CICLOS · COMPATIBILIDAD</text>
+</svg>
