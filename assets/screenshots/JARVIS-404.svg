@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">JARVIS 404</title><desc id="desc">Portada editorial de asistente local para sistemas e IA.</desc>
+<defs><radialGradient id="bg" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="#14334a"/><stop offset=".52" stop-color="#07121d"/><stop offset="1" stop-color="#030508"/></radialGradient><linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5ce1e6"/><stop offset="1" stop-color="#8df5b5"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#bg)"/>
+<g fill="none" stroke="#173747" stroke-width="2" opacity=".8"><path d="M0 122h1200M0 553h1200M190 0v675M1010 0v675"/><circle cx="600" cy="315" r="210"/><circle cx="600" cy="315" r="154"/></g>
+<g transform="translate(600 315)" fill="none" stroke="url(#ring)"><circle r="117" stroke-width="8"/><circle r="82" stroke-width="3" stroke-dasharray="18 10"/><path d="M-155 0h55M100 0h55M0-155v55M0 100v55" stroke-width="4"/></g>
+<g fill="#8df5b5"><circle cx="600" cy="315" r="16"/><circle cx="473" cy="188" r="6"/><circle cx="727" cy="188" r="6"/><circle cx="473" cy="442" r="6"/><circle cx="727" cy="442" r="6"/></g>
+<g font-family="monospace" fill="#6f8c9b" font-size="18"><text x="86" y="108">SYSTEMS</text><text x="1020" y="108">RAG</text><text x="86" y="586">VOICE</text><text x="985" y="586">AUTOMATION</text></g>
+<text x="600" y="108" text-anchor="middle" fill="#dffcff" font-family="system-ui,sans-serif" font-size="70" font-weight="800" letter-spacing="10">JARVIS 404</text>
+<text x="600" y="165" text-anchor="middle" fill="#8df5b5" font-family="monospace" font-size="23" letter-spacing="7">LOCAL SYSTEM INTELLIGENCE</text>
+<text x="600" y="555" text-anchor="middle" fill="#d4e3e8" font-family="system-ui,sans-serif" font-size="24">WINDOWS · OLLAMA · SQLITE · COMMAND CENTER</text>
+<text x="600" y="601" text-anchor="middle" fill="#68818d" font-family="monospace" font-size="18" letter-spacing="5">20 TOOLS · 22 WORKFLOWS · LOOPBACK ONLY</text>
+</svg>

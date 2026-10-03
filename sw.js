@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-homeops-104';
+const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-jarvis-105';
 const CORE = [
   './',
   './index.html',
@@ -15,6 +15,7 @@ const CORE = [
   './assets/techno-404-studio.js',
   './assets/numeria-404.js',
   './assets/homeops-404.js',
+  './assets/jarvis-404.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -34,6 +35,7 @@ const CORE = [
   './assets/screenshots/Techno-404-Studio.svg',
   './assets/screenshots/Numeria-404.svg',
   './assets/screenshots/HomeOps-404.svg',
+  './assets/screenshots/JARVIS-404.svg',
   './manifest.webmanifest'
 ];
 
