@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-jarvis-105';
+const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-oneiro-106';
 const CORE = [
   './',
   './index.html',
@@ -16,6 +16,7 @@ const CORE = [
   './assets/numeria-404.js',
   './assets/homeops-404.js',
   './assets/jarvis-404.js',
+  './assets/oneiro-404.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -36,6 +37,7 @@ const CORE = [
   './assets/screenshots/Numeria-404.svg',
   './assets/screenshots/HomeOps-404.svg',
   './assets/screenshots/JARVIS-404.svg',
+  './assets/screenshots/ONEIRO-404.svg',
   './manifest.webmanifest'
 ];
 
