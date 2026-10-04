@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">ABYSSAL HAND 404</title><desc id="d">Roguelike de cartas y horror cósmico</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="75%"><stop stop-color="#18243a"/><stop offset=".45" stop-color="#0a1020"/><stop offset="1" stop-color="#03050a"/></radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19243d"/><stop offset="1" stop-color="#080c16"/></linearGradient>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#8fd8ff"/><stop offset=".5" stop-color="#b792ff"/><stop offset="1" stop-color="#ff6f91"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".12" stroke="#8fb8ff" fill="none"><circle cx="800" cy="455" r="310"/><circle cx="800" cy="455" r="230"/><path d="M220 710C430 590 540 250 800 190c260 60 370 400 580 520"/></g>
+  <g transform="translate(405 205) rotate(-10 150 245)"><rect width="300" height="490" rx="22" fill="url(#card)" stroke="#6f78a8" stroke-width="3"/><circle cx="150" cy="180" r="72" fill="#0d1426" stroke="#b792ff" stroke-width="4"/><path d="M95 180c35-55 75-55 110 0-35 55-75 55-110 0Z" fill="none" stroke="#d6c4ff" stroke-width="8"/><circle cx="150" cy="180" r="15" fill="#ff6f91"/><text x="150" y="380" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#d7ddff">THE GAZE</text></g>
+  <g transform="translate(650 170)"><rect width="300" height="510" rx="22" fill="url(#card)" stroke="#8f6bb5" stroke-width="4"/><path d="M150 95c65 70 90 135 30 215-18 25-18 58 5 90-75-20-118-72-118-137 0-63 42-111 83-168Z" fill="#7c4fb2" opacity=".45"/><path d="M88 290c42 38 82 45 124 0" fill="none" stroke="#ff7998" stroke-width="8"/><text x="150" y="430" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#f3eaff">ABYSSAL</text></g>
+  <g transform="translate(910 205) rotate(10 150 245)"><rect width="300" height="490" rx="22" fill="url(#card)" stroke="#5b87a7" stroke-width="3"/><path d="M150 105l38 85 92 10-70 62 20 90-80-46-80 46 20-90-70-62 92-10z" fill="none" stroke="#8fd8ff" stroke-width="6"/><text x="150" y="380" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#d7f4ff">THE GATE</text></g>
+  <text x="800" y="95" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="800" fill="url(#a)">ABYSSAL HAND 404</text>
+  <text x="800" y="755" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="24" letter-spacing="5" fill="#9cb0d0">ROGUELIKE DE CARTAS · HORROR CÓSMICO</text>
+  <text x="800" y="810" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="20" fill="#71809b">OFFLINE · PWA · SEEDS · RELIQUIAS · RITUALES</text>
+</svg>
