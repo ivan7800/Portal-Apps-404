@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">CAU OS</title><desc id="d">Knowledge Server para equipos de soporte</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111c"/><stop offset="1" stop-color="#10243b"/></linearGradient>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#58d6ff"/><stop offset="1" stop-color="#6ef2b5"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".16" stroke="#7adfff" fill="none"><path d="M0 180h1600M0 360h1600M0 540h1600M0 720h1600"/><path d="M260 0v900M520 0v900M780 0v900M1040 0v900M1300 0v900"/></g>
+  <rect x="110" y="110" width="1380" height="680" rx="28" fill="#091827" stroke="#2f5874" stroke-width="3"/>
+  <rect x="160" y="180" width="300" height="520" rx="18" fill="#0d2235" stroke="#25475f"/>
+  <rect x="500" y="180" width="930" height="110" rx="18" fill="#0d2235" stroke="#25475f"/>
+  <rect x="500" y="330" width="930" height="370" rx="18" fill="#0b1d2d" stroke="#25475f"/>
+  <g fill="#16354b"><rect x="205" y="250" width="210" height="22" rx="8"/><rect x="205" y="300" width="170" height="22" rx="8"/><rect x="205" y="350" width="190" height="22" rx="8"/><rect x="205" y="400" width="150" height="22" rx="8"/></g>
+  <rect x="550" y="215" width="640" height="40" rx="20" fill="#132d42"/><circle cx="1360" cy="235" r="20" fill="#58d6ff" opacity=".75"/>
+  <g fill="#102a3f" stroke="#28536f"><rect x="550" y="385" width="820" height="70" rx="14"/><rect x="550" y="480" width="820" height="70" rx="14"/><rect x="550" y="575" width="820" height="70" rx="14"/></g>
+  <text x="170" y="165" font-family="Arial,Helvetica,sans-serif" font-size="34" font-weight="700" fill="url(#a)">CAU OS</text>
+  <text x="550" y="420" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700" fill="#dff8ff">KNOWLEDGE SERVER</text>
+  <text x="550" y="465" font-family="Arial,Helvetica,sans-serif" font-size="20" fill="#8fb7ca">Documentación · búsqueda · soluciones · usuarios · auditoría</text>
+  <text x="550" y="525" font-family="Arial,Helvetica,sans-serif" font-size="19" fill="#7ccfe7">BASE DE CONOCIMIENTO CENTRALIZADA PARA SOPORTE</text>
+  <text x="550" y="620" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#82a8bb">Local · Intranet · Windows Server</text>
+</svg>
