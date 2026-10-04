@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-souls-codex-107';
+const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-case-108';
 const CORE = [
   './',
   './index.html',
@@ -18,6 +18,7 @@ const CORE = [
   './assets/jarvis-404.js',
   './assets/oneiro-404.js',
   './assets/souls-codex-404.js',
+  './assets/case-404.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -40,6 +41,7 @@ const CORE = [
   './assets/screenshots/JARVIS-404.svg',
   './assets/screenshots/ONEIRO-404.svg',
   './assets/screenshots/SOULS-CODEX-404.svg',
+  './assets/screenshots/CASE-404.svg',
   './manifest.webmanifest'
 ];
 
