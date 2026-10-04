@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">IT Warehouse 404</title><desc id="d">Inventario IT multiusuario con PostgreSQL, auditoría y QR</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#070b10"/><stop offset="1" stop-color="#16202b"/></linearGradient>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#ffb347"/><stop offset="1" stop-color="#ffd36b"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".12" stroke="#ffd36b" fill="none"><path d="M0 180h1600M0 360h1600M0 540h1600M0 720h1600"/><path d="M240 0v900M480 0v900M720 0v900M960 0v900M1200 0v900M1440 0v900"/></g>
+  <rect x="110" y="110" width="1380" height="680" rx="28" fill="#0d131a" stroke="#5a4630" stroke-width="3"/>
+  <rect x="155" y="175" width="360" height="540" rx="18" fill="#111a23" stroke="#4a3a29"/>
+  <g fill="#1d2a35" stroke="#66523a"><rect x="195" y="235" width="280" height="90" rx="12"/><rect x="195" y="345" width="280" height="90" rx="12"/><rect x="195" y="455" width="280" height="90" rx="12"/><rect x="195" y="565" width="280" height="90" rx="12"/></g>
+  <g fill="#2b3946"><rect x="220" y="258" width="88" height="44" rx="6"/><rect x="220" y="368" width="88" height="44" rx="6"/><rect x="220" y="478" width="88" height="44" rx="6"/><rect x="220" y="588" width="88" height="44" rx="6"/></g>
+  <g fill="#ffbf55"><circle cx="430" cy="280" r="10"/><circle cx="430" cy="390" r="10"/><circle cx="430" cy="500" r="10"/><circle cx="430" cy="610" r="10"/></g>
+  <rect x="570" y="175" width="865" height="120" rx="18" fill="#111a23" stroke="#4a3a29"/>
+  <rect x="570" y="335" width="865" height="380" rx="18" fill="#101820" stroke="#4a3a29"/>
+  <rect x="620" y="215" width="620" height="38" rx="19" fill="#1e2b35"/>
+  <rect x="1280" y="205" width="105" height="58" rx="12" fill="#ffb347" opacity=".88"/>
+  <g fill="#18232d" stroke="#4c4030"><rect x="620" y="390" width="765" height="72" rx="12"/><rect x="620" y="490" width="765" height="72" rx="12"/><rect x="620" y="590" width="765" height="72" rx="12"/></g>
+  <g fill="#ffd36b"><rect x="650" y="412" width="58" height="28" rx="4"/><rect x="650" y="512" width="58" height="28" rx="4"/><rect x="650" y="612" width="58" height="28" rx="4"/></g>
+  <text x="155" y="150" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#e7edf3">WAREHOUSE / ASSET CONTROL</text>
+  <text x="620" y="430" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="url(#a)">IT WAREHOUSE 404</text>
+  <text x="620" y="475" font-family="Arial,Helvetica,sans-serif" font-size="20" fill="#b3bdc8">POSTGRESQL · MULTIUSUARIO · ROLES · AUDITORÍA</text>
+  <text x="620" y="530" font-family="Arial,Helvetica,sans-serif" font-size="19" fill="#ffca72">QR / ASSET TAG / UBICACIONES / MOVIMIENTOS</text>
+  <text x="620" y="630" font-family="Arial,Helvetica,sans-serif" font-size="18" fill="#9ba8b5">Servidor central · Windows / móvil · LAN</text>
+</svg>
