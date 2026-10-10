@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-lingua-nativa-123';
+const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-sonic-forge-124';
 const CORE = [
   './',
   './index.html',
@@ -34,6 +34,7 @@ const CORE = [
   './assets/project-command-404.js',
   './assets/solo-business-404.js',
   './assets/lingua-nativa-404.js',
+  './assets/sonic-forge-404.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -72,6 +73,7 @@ const CORE = [
   './assets/screenshots/PROJECT-COMMAND-404.svg',
   './assets/screenshots/SOLO-BUSINESS-404.svg',
   './assets/screenshots/LINGUA-NATIVA-404.svg',
+  './assets/screenshots/SONIC-FORGE-404.svg',
   './manifest.webmanifest'
 ];
 
