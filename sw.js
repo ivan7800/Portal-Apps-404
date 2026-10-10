@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-netwatch-112';
+const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-evolution-chronos-114';
 const CORE = [
   './',
   './index.html',
@@ -23,6 +23,8 @@ const CORE = [
   './assets/it-warehouse-404.js',
   './assets/abyssal-hand-404.js',
   './assets/netwatch-404.js',
+  './assets/evolution-lab-404.js',
+  './assets/chronos-404.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -50,6 +52,8 @@ const CORE = [
   './assets/screenshots/IT-Warehouse-404.svg',
   './assets/screenshots/ABYSSAL-HAND-404.svg',
   './assets/screenshots/NETWATCH-404.svg',
+  './assets/screenshots/EVOLUTION-LAB-404.svg',
+  './assets/screenshots/CHRONOS-404.svg',
   './manifest.webmanifest'
 ];
 
