@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+<title id="t">NETWATCH 404</title><desc id="d">Portada editorial para panel local de análisis de red en Windows</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#06121c"/><stop offset="1" stop-color="#12283a"/></linearGradient><linearGradient id="gl" x2="1"><stop stop-color="#54d6f5"/><stop offset="1" stop-color="#8affc4"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<g stroke="#143849" opacity=".7"><path d="M0 180H1600M0 360H1600M0 540H1600M0 720H1600M200 0V900M400 0V900M600 0V900M800 0V900M1000 0V900M1200 0V900M1400 0V900"/></g>
+<text x="108" y="166" font-family="Arial,sans-serif" font-size="74" font-weight="800" fill="#e4f8ff">NETWATCH <tspan fill="#6cecca">404</tspan></text>
+<text x="112" y="216" font-family="Arial,sans-serif" font-size="26" letter-spacing="6" fill="#81aebf">LOCAL NETWORK ANALYTICS</text>
+<rect x="98" y="278" width="1404" height="510" rx="25" fill="#091b28" stroke="#2b5266" stroke-width="3"/>
+<g stroke="#3bc5df" stroke-width="4" fill="none" opacity=".85"><path d="M770 510 515 392M770 510 1040 392M770 510 1200 617M770 510 440 658M770 510 920 690"/></g>
+<g fill="#0f3543" stroke="#80fbd4" stroke-width="5"><circle cx="770" cy="510" r="57"/><circle cx="515" cy="392" r="31"/><circle cx="1040" cy="392" r="31"/><circle cx="1200" cy="617" r="31"/><circle cx="440" cy="658" r="31"/><circle cx="920" cy="690" r="31"/></g>
+<g fill="#a4fce6"><circle cx="770" cy="510" r="20"/><circle cx="515" cy="392" r="10"/><circle cx="1040" cy="392" r="10"/><circle cx="1200" cy="617" r="10"/><circle cx="440" cy="658" r="10"/><circle cx="920" cy="690" r="10"/></g>
+<text x="112" y="831" font-family="Arial,sans-serif" font-size="24" fill="#88b0c0">DIAGNÓSTICO  /  MAPA VISUAL  /  MONITOR LOCAL  /  WINDOWS</text>
+</svg>
