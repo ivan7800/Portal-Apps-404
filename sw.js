@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-world-genesis-117';
+const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-eiffel-118';
 const CORE = [
   './',
   './index.html',
@@ -28,6 +28,7 @@ const CORE = [
   './assets/mnemosyne-404.js',
   './assets/deep-space-404.js',
   './assets/world-genesis-404.js',
+  './assets/eiffel-404.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -60,6 +61,7 @@ const CORE = [
   './assets/screenshots/MNEMOSYNE-404.svg',
   './assets/screenshots/DEEP-SPACE-404.svg',
   './assets/screenshots/WORLD-GENESIS-404.svg',
+  './assets/screenshots/EIFFEL-404.svg',
   './manifest.webmanifest'
 ];
 
