@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-project-command-121';
+const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-solo-business-122';
 const CORE = [
   './',
   './index.html',
@@ -32,6 +32,7 @@ const CORE = [
   './assets/pi-legacy.js',
   './assets/ghost-test-404.js',
   './assets/project-command-404.js',
+  './assets/solo-business-404.js',
   './assets/catalog-utils.js',
   './assets/qr-lite.js',
   './assets/app.js',
@@ -68,6 +69,7 @@ const CORE = [
   './assets/screenshots/Pi-Legacy.svg',
   './assets/screenshots/GHOST-TEST-404.svg',
   './assets/screenshots/PROJECT-COMMAND-404.svg',
+  './assets/screenshots/SOLO-BUSINESS-404.svg',
   './manifest.webmanifest'
 ];
 
