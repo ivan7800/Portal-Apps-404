@@ -25,7 +25,7 @@ test('el catálogo usa el esquema v2 y conserva sus invariantes', () => {
   assert.equal(data.META.release, 'v41.24');
   assert.equal(data.APPS.length, 125);
   assert.equal(Object.keys(data.LANGUAGES).length, data.APPS.length);
-  assert.equal(new Set(data.APPS.map(app => app.name)).size, 96);
+  assert.equal(new Set(data.APPS.map(app => app.name)).size, data.APPS.length);
   assert.equal(new Set(data.APPS.map(app => app.saga)).size, 7);
 });
 
