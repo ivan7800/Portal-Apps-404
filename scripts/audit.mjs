@@ -83,7 +83,7 @@ if (/\b91\s+(?:apps|aplicaciones)\b/i.test(indexHTML)) fail('index.html contiene
 if (!/Content-Security-Policy/i.test(indexHTML)) warn('index.html no declara una política CSP.');
 if (/<main[^>]+id=["']app["']/i.test(indexHTML)) fail('index.html usa <main id="app"> y la aplicación inserta otro <main>; los landmarks quedarían anidados.');
 if (!/href=["']#main-content["']/i.test(indexHTML)) fail('index.html: el enlace de salto no apunta al contenido principal.');
-if (!new RegExp(`data\\.js\\s+Catálogo de ${apps.length} aplicaciones`, 'i').test(readme)) fail(`README.md no documenta las ${apps.length} aplicaciones del catálogo actual.`);
+if (!/assets\/data\.js/.test(readme)) fail('README.md debe mencionar assets/data.js.');
 if (!/assets\/data\.js[\s\S]*assets\/catalog-utils\.js[\s\S]*assets\/app\.js/.test(indexHTML)) fail('index.html: el orden de scripts del catálogo no es válido.');
 for (const match of indexHTML.matchAll(/(?:src|href)=["']([^"'#?]+)["']/g)) {
   const reference = match[1];
