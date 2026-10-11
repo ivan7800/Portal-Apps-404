@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-26-cinematic-41-29-sonic-forge-124';
+const CACHE = CACHE_PREFIX + 'v41-30-linux-404';
 const CORE = [
   './',
   './index.html',
