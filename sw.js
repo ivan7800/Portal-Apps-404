@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-32-update-button';
+const CACHE = CACHE_PREFIX + 'v41-33-two-new-apps';
 const CORE = [
   './',
   './index.html',
