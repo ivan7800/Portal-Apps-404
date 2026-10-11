@@ -28,7 +28,7 @@
   };
   var readyTimer = null;
   var VERSION = 'v41.24 · Catalog Controls Hotfix';
-  var UPDATED = '11 de septiembre de 2026';
+  var UPDATED = '11 de octubre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
   var SKIN_NAMES = { cosmica: 'Cósmica', obsidiana: 'Obsidiana', void: 'Void OLED', glass: 'Glass', terminal: 'Terminal', arctic: 'Arctic', synthwave: 'Synthwave' };
@@ -436,7 +436,9 @@
     var featured = APPS.filter(function (a) { return a.featured; }).slice(0, 8);
     var favoriteApps = state.favorites.map(byName).filter(Boolean);
     var recentApps = state.recent.map(byName).filter(Boolean).slice(0, 6);
-    var latestApps = APPS.slice(-6).reverse();
+    var latestApps = APPS.slice().sort(function (a, b) {
+      return String(b.added || '').localeCompare(String(a.added || '')) || APPS.indexOf(b) - APPS.indexOf(a);
+    }).slice(0, 6);
     var sp = state.spotlight;
     var filterCount = activeFilterItems().length;
 
