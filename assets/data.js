@@ -149,7 +149,9 @@ window.PORTAL_DATA = {
     "Caminos-Malditos-Sangrientos": "JavaScript",
     "QUINQUI-404": "JavaScript",
     "Night-Shift-404": "JavaScript",
-    "LINUX-404": "JavaScript"
+    "LINUX-404": "JavaScript",
+    "EIDOLON-404": "JavaScript",
+    "VIRUS-MUSEUM-404": "JavaScript"
   },
   "APPS": [
     {
@@ -1667,6 +1669,42 @@ window.PORTAL_DATA = {
       "screenshot": "assets/screenshots/json404.svg",
       "pages": "https://ivan7800.github.io/LINUX-404/",
       "github": "https://github.com/ivan7800/LINUX-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-11"
+    },
+    {
+      "name": "EIDOLON-404",
+      "short": "Aventura original de exploración, combate y puzles entre dos realidades.",
+      "description": "EIDOLON 404 es una aventura de exploración, combate y resolución de puzles que transcurre entre dos realidades.",
+      "category": "Juego / Aventura",
+      "saga": "Universo 404",
+      "icon": "◈",
+      "featured": true,
+      "screenshot": "assets/screenshots/json404.svg",
+      "pages": "https://ivan7800.github.io/EIDOLON-404/",
+      "github": "https://github.com/ivan7800/EIDOLON-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-11"
+    },
+    {
+      "name": "VIRUS-MUSEUM-404",
+      "short": "Museo interactivo de la historia del malware con simulaciones visuales seguras.",
+      "description": "VIRUS MUSEUM 404 recorre la historia del malware mediante fichas históricas, simulaciones visuales y un escritorio ficticio. Es un recurso educativo: no incluye malware real ni ejecuta acciones sobre el equipo.",
+      "category": "Formación / Ciberseguridad",
+      "saga": "Formación & IT",
+      "icon": "☣",
+      "featured": true,
+      "screenshot": "assets/screenshots/json404.svg",
+      "pages": "https://ivan7800.github.io/VIRUS-MUSEUM-404/",
+      "github": "https://github.com/ivan7800/VIRUS-MUSEUM-404",
       "status": "catalogued",
       "availability": "unverified",
       "offline": "not-declared",
