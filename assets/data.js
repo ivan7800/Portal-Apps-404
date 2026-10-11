@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.24",
-    "updated": "2026-09-10",
+    "updated": "2026-10-11",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -148,7 +148,8 @@ window.PORTAL_DATA = {
     "Compra-404": "JavaScript",
     "Caminos-Malditos-Sangrientos": "JavaScript",
     "QUINQUI-404": "JavaScript",
-    "Night-Shift-404": "JavaScript"
+    "Night-Shift-404": "JavaScript",
+    "LINUX-404": "JavaScript"
   },
   "APPS": [
     {
@@ -1652,6 +1653,23 @@ window.PORTAL_DATA = {
       "status": "catalogued",
       "availability": "unverified",
       "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app"
+    },
+    {
+      "name": "LINUX-404",
+      "short": "Aprende Linux Mint a tu ritmo con lecciones, biblioteca y terminal simulada.",
+      "description": "LINUX 404 es una plataforma educativa para aprender Linux Mint Cinnamon con 86 lecciones, 24 preguntas, 42 comandos y 24 conceptos. Incluye ruta guiada, biblioteca de consulta y laboratorio de terminal seguro: los comandos se simulan y no se ejecutan en el equipo.",
+      "category": "Formación / Linux",
+      "saga": "Formación & IT",
+      "icon": "⌘",
+      "featured": true,
+      "screenshot": "assets/screenshots/json404.svg",
+      "pages": "https://ivan7800.github.io/LINUX-404/",
+      "github": "https://github.com/ivan7800/LINUX-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
       "platform": "web",
       "delivery": "web-app"
     }
