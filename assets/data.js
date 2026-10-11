@@ -151,7 +151,9 @@ window.PORTAL_DATA = {
     "Night-Shift-404": "JavaScript",
     "LINUX-404": "JavaScript",
     "EIDOLON-404": "JavaScript",
-    "VIRUS-MUSEUM-404": "JavaScript"
+    "VIRUS-MUSEUM-404": "JavaScript",
+    "WONDERS-404": "JavaScript / WebGL",
+    "DAYTONA-404": "JavaScript / WebGL"
   },
   "APPS": [
     {
@@ -1705,6 +1707,42 @@ window.PORTAL_DATA = {
       "screenshot": "assets/screenshots/json404.svg",
       "pages": "https://ivan7800.github.io/VIRUS-MUSEUM-404/",
       "github": "https://github.com/ivan7800/VIRUS-MUSEUM-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-11"
+    },
+    {
+      "name": "WONDERS-404",
+      "short": "Museo artístico interactivo con ocho maravillas y monumentos recreados en 3D.",
+      "description": "WONDERS 404 es una colección artística local-first de ocho destinos tridimensionales para explorar monumentos y lugares emblemáticos desde el navegador, compatible con GitHub Pages.",
+      "category": "Cultura / Exploración 3D",
+      "saga": "Universo 404",
+      "icon": "◇",
+      "featured": true,
+      "screenshot": "assets/screenshots/json404.svg",
+      "pages": "https://ivan7800.github.io/WONDERS-404/",
+      "github": "https://github.com/ivan7800/WONDERS-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-11"
+    },
+    {
+      "name": "DAYTONA-404",
+      "short": "Juego original de carreras arcade 3D inspirado en las recreativas de los noventa.",
+      "description": "DAYTONA 404 es un videojuego de carreras arcade 3D original que recupera el espíritu de las recreativas de los años noventa con conducción y competición desde el navegador.",
+      "category": "Juego / Carreras 3D",
+      "saga": "Universo 404",
+      "icon": "🏁",
+      "featured": true,
+      "screenshot": "assets/screenshots/json404.svg",
+      "pages": "https://ivan7800.github.io/DAYTONA-404/",
+      "github": "https://github.com/ivan7800/DAYTONA-404",
       "status": "catalogued",
       "availability": "unverified",
       "offline": "not-declared",
