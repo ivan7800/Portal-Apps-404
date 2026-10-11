@@ -1,3 +1,8 @@
+## Actualización 2026-10-11 — LINUX 404
+
+- Incorporada LINUX 404 a Formación & IT, con 86 lecciones y laboratorio de terminal simulado.
+- Catálogo actualizado a 97 aplicaciones y caché PWA renovada.
+
 # I. Roig · Portal Apps 404 — Universo 404 OS v41.24 · Catalog Controls Hotfix
 
 ## Actualización v41.24 — corrección de filtros, orden y cambio de vista
