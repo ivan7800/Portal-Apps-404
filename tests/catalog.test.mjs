@@ -5,6 +5,13 @@ import vm from 'node:vm';
 
 const sandbox = { window: {} };
 vm.runInNewContext(await readFile(new URL('../assets/data.js', import.meta.url), 'utf8'), sandbox);
+const indexHTML = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+const extensions = [...indexHTML.matchAll(/<script src="(assets\/[a-z0-9-]+\.js)(?:\?[^\"]*)?" defer><\/script>/gi)]
+  .map(match => match[1])
+  .filter(path => !['assets/data.js', 'assets/app.js', 'assets/catalog-utils.js', 'assets/qr-lite.js', 'assets/cinematic.js'].includes(path));
+for (const path of extensions) {
+  vm.runInNewContext(await readFile(new URL('../' + path, import.meta.url), 'utf8'), sandbox, { filename: path });
+}
 vm.runInNewContext(await readFile(new URL('../assets/catalog-utils.js', import.meta.url), 'utf8'), sandbox);
 
 const data = sandbox.window.PORTAL_DATA;
@@ -16,8 +23,8 @@ const aliases = {
 test('el catálogo usa el esquema v2 y conserva sus invariantes', () => {
   assert.equal(data.META.schemaVersion, 2);
   assert.equal(data.META.release, 'v41.24');
-  assert.equal(data.APPS.length, 96);
-  assert.equal(Object.keys(data.LANGUAGES).length, 96);
+  assert.equal(data.APPS.length, 125);
+  assert.equal(Object.keys(data.LANGUAGES).length, data.APPS.length);
   assert.equal(new Set(data.APPS.map(app => app.name)).size, 96);
   assert.equal(new Set(data.APPS.map(app => app.saga)).size, 7);
 });
