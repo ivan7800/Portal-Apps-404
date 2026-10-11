@@ -1,3 +1,9 @@
+## Nuevas aplicaciones — WONDERS 404 y DAYTONA 404
+
+- **WONDERS-404** — Ocho destinos artísticos en 3D: https://ivan7800.github.io/WONDERS-404/
+- **DAYTONA-404** — Carreras arcade 3D: https://ivan7800.github.io/DAYTONA-404/
+- **129 aplicaciones** en total (101 base + 28 extensiones).
+
 ## Nuevas aplicaciones — 11 de octubre de 2026
 
 - **EIDOLON-404** — Aventura original de exploración, combate y puzles entre dos realidades: https://ivan7800.github.io/EIDOLON-404/
