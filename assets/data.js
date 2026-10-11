@@ -1671,7 +1671,8 @@ window.PORTAL_DATA = {
       "availability": "unverified",
       "offline": "not-declared",
       "platform": "web",
-      "delivery": "web-app"
+      "delivery": "web-app",
+      "added": "2026-10-11"
     }
   ]
 };
