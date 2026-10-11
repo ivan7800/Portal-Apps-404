@@ -1,3 +1,9 @@
+## Nuevas aplicaciones — 11 de octubre de 2026
+
+- **EIDOLON-404** — Aventura original de exploración, combate y puzles entre dos realidades: https://ivan7800.github.io/EIDOLON-404/
+- **VIRUS-MUSEUM-404** — Museo educativo e interactivo de malware histórico con simulaciones visuales seguras: https://ivan7800.github.io/VIRUS-MUSEUM-404/
+- **Catálogo total: 127 aplicaciones** (99 en `assets/data.js` y 28 extensiones).
+
 ## Actualización 2026-10-11 — LINUX 404
 
 - Incorporada LINUX 404 a Formación & IT, con 86 lecciones y laboratorio de terminal simulado.
