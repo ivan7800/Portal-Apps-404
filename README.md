@@ -157,7 +157,7 @@ robots.txt / sitemap.xml   SEO técnico
 assets/
   app.js                   Interfaz y lógica en JavaScript
   catalog-utils.js         Normalización y ranking puro de búsqueda
-  data.js                  Catálogo de 96 aplicaciones
+  data.js                  Catálogo base de 97 aplicaciones (más 28 extensiones)
   styles.css               Diseño responsive y temas
   fonts.css                Tres fuentes/subconjuntos locales
   fonts/                    Archivos WOFF2 utilizados
