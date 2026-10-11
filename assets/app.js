@@ -753,7 +753,43 @@
   }
 
   function applyUpdate() {
-    if (waitingWorker) waitingWorker.postMessage({ type: 'SKIP_WAITING' });
+    var button = document.getElementById('apply-update');
+    if (button) button.disabled = true;
+    function finish(message) {
+      if (button) button.disabled = false;
+      if (message) showToast(message);
+    }
+    if (!('serviceWorker' in navigator) || location.protocol === 'file:') {
+      finish('La comprobación de actualizaciones requiere abrir el portal desde GitHub Pages.');
+      return;
+    }
+    navigator.serviceWorker.getRegistration('./').then(function (registration) {
+      if (!registration) {
+        finish('No hay una instalación PWA activa. Recarga la página para iniciar el servicio.');
+        return;
+      }
+      var candidate = registration.waiting || waitingWorker;
+      if (candidate && candidate.state !== 'redundant') {
+        showToast('Instalando la actualización…');
+        candidate.postMessage({ type: 'SKIP_WAITING' });
+        if (button) button.disabled = false;
+        return;
+      }
+      return registration.update().then(function () {
+        var candidate = registration.waiting || waitingWorker;
+        if (candidate && candidate.state !== 'redundant') {
+          showToast('Instalando la actualización…');
+          candidate.postMessage({ type: 'SKIP_WAITING' });
+          if (button) button.disabled = false;
+        } else if (registration.installing) {
+          finish('Se está preparando una nueva versión. Te avisaremos cuando esté lista.');
+        } else {
+          finish('Ya estás utilizando la versión más reciente disponible.');
+        }
+      });
+    }).catch(function () {
+      finish('No se pudo comprobar la actualización. Revisa la conexión y vuelve a intentarlo.');
+    });
   }
 
   function clearOneFilter(key) {
@@ -1122,7 +1158,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.24').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.32').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;
