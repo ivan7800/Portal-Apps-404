@@ -35,7 +35,7 @@ test('todas las fichas declaran estado verificable y tipo de entrega', () => {
     assert.match(app.availability, /^(verified|unverified|unavailable)$/);
     assert.match(app.offline, /^(declared|not-declared)$/);
     assert.match(app.platform, /^(web|webassembly|hybrid-windows|windows)$/);
-    assert.match(app.delivery, /^(web-app|repository|server-app)$/);
+    assert.match(app.delivery, /^(web-app|repository|server-app|desktop-app)$/);
   }
 });
 
