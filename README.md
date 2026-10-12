@@ -1,3 +1,8 @@
+## Nueva aplicación — CHASE 404 · 12 de octubre de 2026
+
+- **CHASE-404** — Conducción arcade y persecuciones en una Barcelona ficticia de 1984: https://ivan7800.github.io/CHASE-404/
+- **131 aplicaciones** (103 en `assets/data.js` y 28 extensiones).
+
 ## Nueva aplicación — VOYNICH 404 · 12 de octubre de 2026
 
 - **VOYNICH-404** — Archivo interactivo del manuscrito Voynich con atlas, folios, laboratorio EVA, criptoanálisis y cuaderno de investigación: https://ivan7800.github.io/VOYNICH-404/
