@@ -154,7 +154,8 @@ window.PORTAL_DATA = {
     "VIRUS-MUSEUM-404": "JavaScript",
     "WONDERS-404": "JavaScript / WebGL",
     "DAYTONA-404": "JavaScript / WebGL",
-    "VOYNICH-404": "JavaScript / HTML / CSS / Python (lanzador local)"
+    "VOYNICH-404": "JavaScript / HTML / CSS / Python (lanzador local)",
+    "CHASE-404": "JavaScript / HTML / CSS"
   },
   "APPS": [
     {
@@ -1765,6 +1766,24 @@ window.PORTAL_DATA = {
       "status": "catalogued",
       "availability": "unverified",
       "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-12"
+    },
+    {
+      "name": "CHASE-404",
+      "short": "Persecuciones policiales y conducción arcade por una Barcelona ficticia de 1984.",
+      "description": "CHASE 404 es un videojuego original de conducción arcade ambientado en una versión ficticia y condensada de la Barcelona de 1984, con estética ochentera y persecuciones urbanas.",
+      "category": "Juego / Conducción arcade",
+      "saga": "Universo 404",
+      "icon": "🚓",
+      "featured": true,
+      "screenshot": "assets/screenshots/json404.svg",
+      "pages": "https://ivan7800.github.io/CHASE-404/",
+      "github": "https://github.com/ivan7800/CHASE-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-10-12"
