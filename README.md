@@ -1,3 +1,8 @@
+## Nueva aplicación — VOYNICH 404 · 12 de octubre de 2026
+
+- **VOYNICH-404** — Archivo interactivo del manuscrito Voynich con atlas, folios, laboratorio EVA, criptoanálisis y cuaderno de investigación: https://ivan7800.github.io/VOYNICH-404/
+- **130 aplicaciones** en total (102 en `assets/data.js` y 28 extensiones).
+
 ## Nuevas aplicaciones — WONDERS 404 y DAYTONA 404
 
 - **WONDERS-404** — Ocho destinos artísticos en 3D: https://ivan7800.github.io/WONDERS-404/
