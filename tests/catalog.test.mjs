@@ -54,3 +54,18 @@ test('la coincidencia por nombre se prioriza', () => {
     .sort((a, b) => b.score - a.score);
   assert.equal(ranked[0].name, 'Ringtone-404');
 });
+
+test('las carátulas recientes son únicas y existen en el proyecto', async () => {
+  const recentNames = ['LINUX-404', 'EIDOLON-404', 'VIRUS-MUSEUM-404', 'WONDERS-404', 'DAYTONA-404', 'VOYNICH-404', 'CHASE-404'];
+  const covers = new Set();
+  for (const name of recentNames) {
+    const app = data.APPS.find(item => item.name === name);
+    assert.ok(app, name + ' debe figurar en el catálogo');
+    assert.equal(app.screenshot, 'assets/screenshots/' + name + '.svg');
+    assert.ok(!covers.has(app.screenshot), name + ' no debe compartir carátula');
+    covers.add(app.screenshot);
+    const svg = await readFile(new URL('../' + app.screenshot, import.meta.url), 'utf8');
+    assert.match(svg, /<svg[^>]+viewBox="0 0 1280 720"/);
+    assert.match(svg, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+});
