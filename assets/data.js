@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.24",
-    "updated": "2026-10-11",
+    "updated": "2026-10-12",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -153,7 +153,8 @@ window.PORTAL_DATA = {
     "EIDOLON-404": "JavaScript",
     "VIRUS-MUSEUM-404": "JavaScript",
     "WONDERS-404": "JavaScript / WebGL",
-    "DAYTONA-404": "JavaScript / WebGL"
+    "DAYTONA-404": "JavaScript / WebGL",
+    "VOYNICH-404": "JavaScript / HTML / CSS / Python (lanzador local)"
   },
   "APPS": [
     {
@@ -1749,6 +1750,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-10-11"
+    },
+    {
+      "name": "VOYNICH-404",
+      "short": "Archivo interactivo del manuscrito Voynich con folios, atlas, teorías y laboratorio de criptoanálisis.",
+      "description": "VOYNICH 404 es una aplicación de investigación histórica sobre el manuscrito Voynich. Reúne folios, evidencias, cronología, un atlas botánico y astral, transcripción EVA, criptoanálisis, teorías y un cuaderno personal local con importación y exportación de copias.",
+      "category": "Cultura / Manuscritos y misterios",
+      "saga": "Archivo simbólico",
+      "icon": "❧",
+      "featured": true,
+      "screenshot": "assets/screenshots/json404.svg",
+      "pages": "https://ivan7800.github.io/VOYNICH-404/",
+      "github": "https://github.com/ivan7800/VOYNICH-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-12"
     }
   ]
 };
