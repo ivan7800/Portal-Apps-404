@@ -24,7 +24,7 @@
     'Guardian-Senior-AI': 1, 'AppHub-404': 1, 'MYTHOS-404': 1,
     'PixelForge-404': 1, 'MD-Forge-404': 1, 'FileDoctor-404': 1, 'HumanScript-404': 1,
     'IT-Commander-404': 1, 'SECOND-BRAIN-404': 1, 'Ringtone-404': 1,
-    'ReleaseForge-404': 1, 'Compra-404': 1, 'EIDOLON-404': 1, 'VIRUS-MUSEUM-404': 1, 'LINUX-404': 1, 'WONDERS-404': 1, 'DAYTONA-404': 1, 'VOYNICH-404': 1
+    'ReleaseForge-404': 1, 'Compra-404': 1, 'EIDOLON-404': 1, 'VIRUS-MUSEUM-404': 1, 'LINUX-404': 1, 'WONDERS-404': 1, 'DAYTONA-404': 1, 'VOYNICH-404': 1, 'CHASE-404': 1
   };
   var readyTimer = null;
   var VERSION = 'v41.24 · Catalog Controls Hotfix';
@@ -1158,7 +1158,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.35').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.36').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;
