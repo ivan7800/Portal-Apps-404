@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-36-chase';
+const CACHE = CACHE_PREFIX + 'v41-37-unique-covers';
 const CORE = [
   './',
   './index.html',
@@ -74,6 +74,13 @@ const CORE = [
   './assets/screenshots/SOLO-BUSINESS-404.svg',
   './assets/screenshots/LINGUA-NATIVA-404.svg',
   './assets/screenshots/SONIC-FORGE-404.svg',
+  './assets/screenshots/LINUX-404.svg',
+  './assets/screenshots/EIDOLON-404.svg',
+  './assets/screenshots/VIRUS-MUSEUM-404.svg',
+  './assets/screenshots/WONDERS-404.svg',
+  './assets/screenshots/DAYTONA-404.svg',
+  './assets/screenshots/VOYNICH-404.svg',
+  './assets/screenshots/CHASE-404.svg',
   './manifest.webmanifest'
 ];
 
