@@ -1,3 +1,9 @@
+## Nueva aplicación — DRIVE THE SUNSET · 13 de octubre de 2026
+
+- **DRIVE-THE-SUNSET** — Conducción arcade por rutas mediterráneas, coches americanos ficticios y pequeñas historias de viaje: https://ivan7800.github.io/DRIVE-THE-SUNSET/
+- **Carátula premium propia** en `assets/screenshots/DRIVE-THE-SUNSET.svg`.
+- **132 aplicaciones** en total (104 en `assets/data.js` y 28 extensiones).
+
 ## Nueva aplicación — CHASE 404 · 12 de octubre de 2026
 
 - **CHASE-404** — Conducción arcade y persecuciones en una Barcelona ficticia de 1984: https://ivan7800.github.io/CHASE-404/
