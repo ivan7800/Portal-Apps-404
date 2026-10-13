@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.24",
-    "updated": "2026-10-12",
+    "updated": "2026-10-13",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -155,7 +155,8 @@ window.PORTAL_DATA = {
     "WONDERS-404": "JavaScript / WebGL",
     "DAYTONA-404": "JavaScript / WebGL",
     "VOYNICH-404": "JavaScript / HTML / CSS / Python (lanzador local)",
-    "CHASE-404": "JavaScript / HTML / CSS"
+    "CHASE-404": "JavaScript / HTML / CSS",
+    "DRIVE-THE-SUNSET": "JavaScript / HTML / CSS / WebGL"
   },
   "APPS": [
     {
@@ -1787,6 +1788,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-10-12"
+    },
+    {
+      "name": "DRIVE-THE-SUNSET",
+      "short": "Viajes mediterráneos y conducción arcade con coches americanos clásicos y rutas al atardecer.",
+      "description": "DRIVE THE SUNSET es un juego original de conducción arcade y viajes mediterráneos: cuatro rutas, coches americanos ficticios de los años setenta, ochenta y noventa, radio sintetizada, encuentros narrativos, distintas condiciones de luz y modos Crucero y Arcade.",
+      "category": "Juego / Conducción arcade",
+      "saga": "Universo 404",
+      "icon": "🌅",
+      "featured": true,
+      "screenshot": "assets/screenshots/DRIVE-THE-SUNSET.svg",
+      "pages": "https://ivan7800.github.io/DRIVE-THE-SUNSET/",
+      "github": "https://github.com/ivan7800/DRIVE-THE-SUNSET",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-13"
     }
   ]
 };
