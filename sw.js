@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-38-cinematic-covers';
+const CACHE = CACHE_PREFIX + 'v41-39-drive-the-sunset';
 const CORE = [
   './',
   './index.html',
@@ -81,6 +81,7 @@ const CORE = [
   './assets/screenshots/DAYTONA-404.svg',
   './assets/screenshots/VOYNICH-404.svg',
   './assets/screenshots/CHASE-404.svg',
+  './assets/screenshots/DRIVE-THE-SUNSET.svg',
   './manifest.webmanifest'
 ];
 
