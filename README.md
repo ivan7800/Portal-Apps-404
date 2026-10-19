@@ -1,3 +1,9 @@
+## Nueva aplicación — SANITY 404 · 19 de octubre de 2026
+
+- **SANITY-404** — Survival horror 3D ambientado en la mansión Veyr en 1927: https://ivan7800.github.io/SANITY-404/
+- **Carátula personalizada** en `assets/screenshots/SANITY-404.svg`.
+- **133 aplicaciones** en total (105 en `assets/data.js` y 28 extensiones).
+
 ## Nueva aplicación — DRIVE THE SUNSET · 13 de octubre de 2026
 
 - **DRIVE-THE-SUNSET** — Conducción arcade por rutas mediterráneas, coches americanos ficticios y pequeñas historias de viaje: https://ivan7800.github.io/DRIVE-THE-SUNSET/
