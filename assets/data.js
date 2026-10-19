@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.24",
-    "updated": "2026-10-13",
+    "updated": "2026-10-19",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -156,7 +156,8 @@ window.PORTAL_DATA = {
     "DAYTONA-404": "JavaScript / WebGL",
     "VOYNICH-404": "JavaScript / HTML / CSS / Python (lanzador local)",
     "CHASE-404": "JavaScript / HTML / CSS",
-    "DRIVE-THE-SUNSET": "JavaScript / HTML / CSS / WebGL"
+    "DRIVE-THE-SUNSET": "JavaScript / HTML / CSS / WebGL",
+    "SANITY-404": "JavaScript / WebGL / HTML / CSS"
   },
   "APPS": [
     {
@@ -1806,6 +1807,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-10-13"
+    },
+    {
+      "name": "SANITY-404",
+      "short": "Survival horror 3D en la mansión Veyr: explora, resuelve enigmas y protege tus recuerdos.",
+      "description": "SANITY 404: El archivo de las ausencias es un survival horror 3D original ambientado en Europa en noviembre de 1927. Encarnas a Élise Moreau, una restauradora que investiga la desaparición de su hermano en la mansión Veyr. Explora ocho zonas, reúne tres sellos, interpreta documentos, gestiona tu cordura y enfréntate a criaturas y decisiones narrativas.",
+      "category": "Juego / Survival horror 3D",
+      "saga": "Universo 404",
+      "icon": "🕯",
+      "featured": true,
+      "screenshot": "assets/screenshots/SANITY-404.svg",
+      "pages": "https://ivan7800.github.io/SANITY-404/",
+      "github": "https://github.com/ivan7800/SANITY-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-19"
     }
   ]
 };
