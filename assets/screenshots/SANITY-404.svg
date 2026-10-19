@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="Carátula artística de SANITY-404, la mansión Veyr de noche, 1927">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#040a12"/><stop offset=".45" stop-color="#172331"/><stop offset="1" stop-color="#46575b"/></linearGradient>
+<radialGradient id="moon"><stop stop-color="#f5edcb" stop-opacity=".85"/><stop offset=".28" stop-color="#b7b9a9" stop-opacity=".42"/><stop offset="1" stop-color="#7b8f98" stop-opacity="0"/></radialGradient>
+<linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a1b4b1" stop-opacity="0"/><stop offset="1" stop-color="#ced9ce" stop-opacity=".54"/></linearGradient>
+<linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#182323"/><stop offset="1" stop-color="#060a0c"/></linearGradient>
+<radialGradient id="lamp"><stop stop-color="#f5c78b" stop-opacity=".6"/><stop offset="1" stop-color="#f5c78b" stop-opacity="0"/></radialGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="19"/></filter>
+<filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+<pattern id="grain" width="97" height="79" patternUnits="userSpaceOnUse"><circle cx="6" cy="13" r=".7" fill="#eef4dd" opacity=".22"/><circle cx="61" cy="49" r=".6" fill="#e1efe7" opacity=".17"/><circle cx="83" cy="8" r=".5" fill="#fff" opacity=".14"/></pattern>
+</defs>
+<rect width="1280" height="720" fill="url(#sky)"/>
+<circle cx="977" cy="155" r="190" fill="url(#moon)"/><circle cx="980" cy="153" r="61" fill="#d2d5c1" opacity=".58"/>
+<path d="M0 370L82 301L151 329L229 262L326 330L415 285L531 338L633 286L740 329L825 258L924 310L1024 243L1125 299L1280 224V720H0Z" fill="#0f1b21" opacity=".66"/>
+<g fill="#050c11"><path d="M0 445L110 374L198 400L255 368L351 415L420 370L510 422L599 357L665 390L739 363L842 407L917 370L990 404L1095 349L1169 386L1280 333V720H0Z"/></g>
+<g transform="translate(465 120)">
+<path d="M65 352V174L109 142V83L151 54L197 83V123L225 103L278 121V89L326 45L374 89V131L426 156V352Z" fill="#10181d" stroke="#667478" stroke-width="4"/>
+<path d="M59 180L146 104L213 148L295 112L359 106L434 163" fill="none" stroke="#849193" stroke-width="9"/>
+<path d="M112 145V87H181V145M301 110V74H369V145" fill="#162229" stroke="#596566" stroke-width="4"/>
+<path d="M325 45V-12L341 -29L355 -12V47" fill="#19242a" stroke="#738086" stroke-width="4"/>
+<path d="M148 51V15M136 33H159" stroke="#c8bca4" stroke-width="4"/>
+<path d="M224 352V213L248 182L284 182L307 213V352" fill="#05090d" stroke="#a0a392" stroke-width="3"/>
+<g fill="#cbb67a" opacity=".78"><path d="M92 212h35v56H92zM154 212h34v56h-34zM343 212h35v56h-35zM393 212h24v56h-24zM93 293h35v48H93zM158 293h31v48h-31zM346 293h33v48h-33zM393 293h23v48h-23z"/></g>
+<g stroke="#283334" stroke-width="5"><path d="M109 213v58M170 213v58M358 213v58M405 213v58M110 296v45M174 296v45M362 296v45"/></g>
+</g>
+<path d="M0 455Q236 420 445 459T910 453T1280 434V720H0Z" fill="url(#ground)"/>
+<path d="M500 466L729 465L986 720H176Z" fill="#243034" opacity=".43"/>
+<g stroke="#b9c5bb" stroke-opacity=".32" fill="none"><path d="M514 466L278 720M721 466L900 720M478 520H766M418 592H826"/></g>
+<g fill="#070e11"><path d="M79 475L99 316L115 475M1114 475L1129 292L1148 475M1171 475L1186 333L1202 475"/><path d="M45 473Q124 399 193 469M1024 469Q1129 387 1254 461"/></g>
+<ellipse cx="637" cy="508" rx="340" ry="63" fill="#bac9ba" opacity=".21" filter="url(#blur)"/>
+<path d="M0 499Q300 462 613 490T1280 482V720H0Z" fill="url(#mist)" opacity=".58"/>
+<g transform="translate(628 411)" fill="#03070a"><circle cx="0" cy="32" r="15"/><path d="M-15 48Q-34 94-26 170L-59 241H57L22 169Q30 97 15 48Z"/><path d="M-18 78L-55 150L-43 154L-2 111M18 77L50 147L40 150L0 110"/></g>
+<circle cx="625" cy="473" r="110" fill="url(#lamp)" opacity=".14"/>
+<rect y="538" width="1280" height="182" fill="#060b0f" opacity=".82"/>
+<path d="M55 559H1219M55 689H1219" stroke="#9ca699" opacity=".45"/><path d="M55 559H194" stroke="#c7b588" stroke-width="4"/>
+<text x="62" y="67" font-family="Georgia,serif" font-size="21" letter-spacing="8" fill="#ded5bc">EL ARCHIVO DE LAS AUSENCIAS</text>
+<text x="66" y="635" font-family="Georgia,serif" font-weight="700" font-size="89" letter-spacing="5" fill="#e8dfc9">SANITY<tspan fill="#bc625b">—404</tspan></text>
+<text x="70" y="673" font-family="Georgia,serif" font-size="21" letter-spacing="5" fill="#9faea8">MANSIÓN VEYR  •  NOVIEMBRE DE 1927  •  SURVIVAL HORROR</text>
+<text x="1209" y="48" font-family="monospace" font-size="16" letter-spacing="4" text-anchor="end" fill="#aab9ae">UNIVERSO 404</text>
+<rect width="1280" height="720" fill="url(#grain)" opacity=".4"/>
+</svg>
