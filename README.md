@@ -1,3 +1,9 @@
+## Nueva aplicación — DEAD ROAD 404 · 25 de octubre de 2026
+
+- **DEAD-ROAD-404** — Carretera estadounidense de 1992, conducción 3D y supervivencia, desarrollado en TypeScript y Three.js: https://ivan7800.github.io/DEAD-ROAD-404/
+- **Carátula propia** en `assets/screenshots/DEAD-ROAD-404.svg`.
+- **134 aplicaciones** en total (106 en `assets/data.js` y 28 extensiones).
+
 ## Nueva aplicación — SANITY 404 · 19 de octubre de 2026
 
 - **SANITY-404** — Survival horror 3D ambientado en la mansión Veyr en 1927: https://ivan7800.github.io/SANITY-404/
