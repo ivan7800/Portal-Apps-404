@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.24",
-    "updated": "2026-10-19",
+    "updated": "2026-10-25",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -157,7 +157,8 @@ window.PORTAL_DATA = {
     "VOYNICH-404": "JavaScript / HTML / CSS / Python (lanzador local)",
     "CHASE-404": "JavaScript / HTML / CSS",
     "DRIVE-THE-SUNSET": "JavaScript / HTML / CSS / WebGL",
-    "SANITY-404": "JavaScript / WebGL / HTML / CSS"
+    "SANITY-404": "JavaScript / WebGL / HTML / CSS",
+    "DEAD-ROAD-404": "TypeScript / Three.js / Vite / WebGL"
   },
   "APPS": [
     {
@@ -1825,6 +1826,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-10-19"
+    },
+    {
+      "name": "DEAD-ROAD-404",
+      "short": "Conducción y supervivencia en una carretera estadounidense nocturna de 1992.",
+      "description": "DEAD ROAD 404 es un videojuego 3D de carretera ambientado en una Americana nocturna de 1992, desarrollado con TypeScript, Three.js y Vite. Incluye un coche Firebird ficticio de diseño procedural, la gasolinera SUNSPUR FUEL, el establecimiento MILE 404 y sistema de partidas locales. Su versión Fase 19 continúa en desarrollo y requiere validación funcional completa.",
+      "category": "Juego / Conducción y supervivencia",
+      "saga": "Universo 404",
+      "icon": "🛣️",
+      "featured": true,
+      "screenshot": "assets/screenshots/DEAD-ROAD-404.svg",
+      "pages": "https://ivan7800.github.io/DEAD-ROAD-404/",
+      "github": "https://github.com/ivan7800/DEAD-ROAD-404",
+      "status": "experimental",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-25"
     }
   ]
 };
