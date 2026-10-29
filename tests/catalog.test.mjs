@@ -23,7 +23,7 @@ const aliases = {
 test('el catálogo usa el esquema v2 y conserva sus invariantes', () => {
   assert.equal(data.META.schemaVersion, 2);
   assert.equal(data.META.release, 'v41.24');
-  assert.equal(data.APPS.length, 136);
+  assert.equal(data.APPS.length, 137);
   assert.equal(Object.keys(data.LANGUAGES).length, data.APPS.length);
   assert.equal(new Set(data.APPS.map(app => app.name)).size, data.APPS.length);
   assert.equal(new Set(data.APPS.map(app => app.saga)).size, 7);
@@ -56,7 +56,7 @@ test('la coincidencia por nombre se prioriza', () => {
 });
 
 test('las carátulas recientes son únicas y existen en el proyecto', async () => {
-  const recentNames = ['LINUX-404', 'EIDOLON-404', 'VIRUS-MUSEUM-404', 'WONDERS-404', 'DAYTONA-404', 'VOYNICH-404', 'CHASE-404', 'DRIVE-THE-SUNSET', 'SANITY-404', 'DEAD-ROAD-404', 'NAMELESS-404', 'DEAD-CABIN-404'];
+  const recentNames = ['LINUX-404', 'EIDOLON-404', 'VIRUS-MUSEUM-404', 'WONDERS-404', 'DAYTONA-404', 'VOYNICH-404', 'CHASE-404', 'DRIVE-THE-SUNSET', 'SANITY-404', 'DEAD-ROAD-404', 'NAMELESS-404', 'DEAD-CABIN-404', 'INTO-THE-ABYSS-404'];
   const covers = new Set();
   for (const name of recentNames) {
     const app = data.APPS.find(item => item.name === name);
