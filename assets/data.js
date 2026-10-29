@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.24",
-    "updated": "2026-10-25",
+    "updated": "2026-10-29",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -158,7 +158,9 @@ window.PORTAL_DATA = {
     "CHASE-404": "JavaScript / HTML / CSS",
     "DRIVE-THE-SUNSET": "JavaScript / HTML / CSS / WebGL",
     "SANITY-404": "JavaScript / WebGL / HTML / CSS",
-    "DEAD-ROAD-404": "TypeScript / Three.js / Vite / WebGL"
+    "DEAD-ROAD-404": "TypeScript / Three.js / Vite / WebGL",
+    "NAMELESS-404": "TypeScript / JavaScript / HTML / CSS / WebGL",
+    "DEAD-CABIN-404": "JavaScript / HTML / CSS / SVG"
   },
   "APPS": [
     {
@@ -1844,6 +1846,42 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-10-25"
+    },
+    {
+      "name": "NAMELESS-404",
+      "short": "Terror psicológico de siete días con RPG maldito de 8 bits, doble pantalla, sigilo y persecuciones.",
+      "description": "NAMELESS 404 es un videojuego original de terror psicológico con presentación inspirada en las consolas portátiles de doble pantalla. Incluye siete días, tres finales, un RPG maldito de 8 bits, escenarios como el edificio Kiba, sigilo, persecuciones y cámara cinematográfica.",
+      "category": "Juego / Terror psicológico",
+      "saga": "Universo 404",
+      "icon": "👁",
+      "featured": true,
+      "screenshot": "assets/screenshots/NAMELESS-404.svg",
+      "pages": "https://ivan7800.github.io/NAMELESS-404/",
+      "github": "https://github.com/ivan7800/NAMELESS-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-29"
+    },
+    {
+      "name": "DEAD-CABIN-404",
+      "short": "Juego de mesa digital de terror táctico para un jugador, con cartas, dados y campaña de ocho expedientes.",
+      "description": "DEAD CABIN 404: La noche del umbral es un juego de mesa digital de terror táctico en solitario. Incluye tablero modular, 25 habitaciones, 24 cartas de acontecimientos, siete tipos de enemigo, dados d6, gestión de recursos, ocho expedientes narrativos, modo supervivencia, logros y guardado local.",
+      "category": "Juego / Terror táctico de mesa",
+      "saga": "Universo 404",
+      "icon": "🏚",
+      "featured": true,
+      "screenshot": "assets/screenshots/DEAD-CABIN-404.svg",
+      "pages": "https://ivan7800.github.io/DEAD-CABIN-404/",
+      "github": "https://github.com/ivan7800/DEAD-CABIN-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-29"
     }
   ]
 };
