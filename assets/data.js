@@ -160,7 +160,8 @@ window.PORTAL_DATA = {
     "SANITY-404": "JavaScript / WebGL / HTML / CSS",
     "DEAD-ROAD-404": "TypeScript / Three.js / Vite / WebGL",
     "NAMELESS-404": "TypeScript / JavaScript / HTML / CSS / WebGL",
-    "DEAD-CABIN-404": "JavaScript / HTML / CSS / SVG"
+    "DEAD-CABIN-404": "JavaScript / HTML / CSS / SVG",
+    "INTO-THE-ABYSS-404": "TypeScript / JavaScript / Canvas 2D / WebGL2"
   },
   "APPS": [
     {
@@ -1876,6 +1877,24 @@ window.PORTAL_DATA = {
       "screenshot": "assets/screenshots/DEAD-CABIN-404.svg",
       "pages": "https://ivan7800.github.io/DEAD-CABIN-404/",
       "github": "https://github.com/ivan7800/DEAD-CABIN-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-29"
+    },
+    {
+      "name": "INTO-THE-ABYSS-404",
+      "short": "Táctica por turnos y horror cósmico en un tablero isométrico de estética 16 bits.",
+      "description": "INTO THE ABYSS 404 — REBIRTH es un videojuego táctico de horror cósmico por turnos con tablero isométrico de 8 × 8, cinco sectores, Custodios, monstruos y jefe final. Incluye panoramas pixel art de estilo 16 bits y condiciones climáticas diferenciadas; el renderizado actual usa Canvas 2D o WebGL2 opcional.",
+      "category": "Juego / Terror cósmico táctico",
+      "saga": "Universo 404",
+      "icon": "◈",
+      "featured": true,
+      "screenshot": "assets/screenshots/INTO-THE-ABYSS-404.svg",
+      "pages": "https://ivan7800.github.io/INTO-THE-ABYSS-404/",
+      "github": "https://github.com/ivan7800/INTO-THE-ABYSS-404",
       "status": "catalogued",
       "availability": "unverified",
       "offline": "declared",
