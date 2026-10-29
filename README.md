@@ -1,3 +1,10 @@
+## Nuevas aplicaciones — 29 de octubre de 2026
+
+- **NAMELESS-404** — Terror psicológico con siete días, RPG maldito de 8 bits, sigilo, persecuciones y tres finales: https://ivan7800.github.io/NAMELESS-404/
+- **DEAD-CABIN-404** — Juego de mesa digital de terror táctico en solitario: https://ivan7800.github.io/DEAD-CABIN-404/
+- **Carátulas artísticas premium propias**: `assets/screenshots/NAMELESS-404.svg` y `assets/screenshots/DEAD-CABIN-404.svg`.
+- **136 aplicaciones**: 108 en `assets/data.js` y 28 extensiones.
+
 ## Nueva aplicación — DEAD ROAD 404 · 25 de octubre de 2026
 
 - **DEAD-ROAD-404** — Carretera estadounidense de 1992, conducción 3D y supervivencia, desarrollado en TypeScript y Three.js: https://ivan7800.github.io/DEAD-ROAD-404/
