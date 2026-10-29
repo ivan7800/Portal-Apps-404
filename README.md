@@ -1,3 +1,9 @@
+## Nueva aplicación — INTO THE ABYSS 404 · 29 de octubre de 2026
+
+- **INTO-THE-ABYSS-404** — Juego táctico de horror cósmico por turnos, tablero isométrico 8 × 8 y estética pixel art de 16 bits: https://ivan7800.github.io/INTO-THE-ABYSS-404/
+- **Carátula artística individual** en `assets/screenshots/INTO-THE-ABYSS-404.svg`.
+- **137 aplicaciones** en total (109 del catálogo base y 28 extensiones).
+
 ## Nuevas aplicaciones — 29 de octubre de 2026
 
 - **NAMELESS-404** — Terror psicológico con siete días, RPG maldito de 8 bits, sigilo, persecuciones y tres finales: https://ivan7800.github.io/NAMELESS-404/
