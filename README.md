@@ -1,3 +1,9 @@
+## Nueva aplicación — MUTATION 404 · 29 de octubre de 2026
+
+- **MUTATION-404** — RPG ASCII de supervivencia, exploración de sectores, mutaciones y combate: https://ivan7800.github.io/MUTATION-404/
+- **Carátula artística propia** en `assets/screenshots/MUTATION-404.svg`.
+- **138 aplicaciones** (110 en `assets/data.js` y 28 extensiones).
+
 ## Nueva aplicación — INTO THE ABYSS 404 · 29 de octubre de 2026
 
 - **INTO-THE-ABYSS-404** — Juego táctico de horror cósmico por turnos, tablero isométrico 8 × 8 y estética pixel art de 16 bits: https://ivan7800.github.io/INTO-THE-ABYSS-404/
