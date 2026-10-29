@@ -161,7 +161,8 @@ window.PORTAL_DATA = {
     "DEAD-ROAD-404": "TypeScript / Three.js / Vite / WebGL",
     "NAMELESS-404": "TypeScript / JavaScript / HTML / CSS / WebGL",
     "DEAD-CABIN-404": "JavaScript / HTML / CSS / SVG",
-    "INTO-THE-ABYSS-404": "TypeScript / JavaScript / Canvas 2D / WebGL2"
+    "INTO-THE-ABYSS-404": "TypeScript / JavaScript / Canvas 2D / WebGL2",
+    "MUTATION-404": "TypeScript / HTML / CSS / JavaScript"
   },
   "APPS": [
     {
@@ -1895,6 +1896,24 @@ window.PORTAL_DATA = {
       "screenshot": "assets/screenshots/INTO-THE-ABYSS-404.svg",
       "pages": "https://ivan7800.github.io/INTO-THE-ABYSS-404/",
       "github": "https://github.com/ivan7800/INTO-THE-ABYSS-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-10-29"
+    },
+    {
+      "name": "MUTATION-404",
+      "short": "RPG ASCII posapocalíptico con mutaciones, combate, ruinas y exploración de sectores.",
+      "description": "MUTATION 404: Los archivos del abismo es un RPG ASCII para navegador con sectores, biomas, mutaciones, combate, comercio, fabricación, misiones y el personaje CERO-7. Su versión 1.1 incorpora una renovación visual y conserva la progresión y los guardados de versiones anteriores.",
+      "category": "Juego / RPG ASCII y supervivencia",
+      "saga": "Universo 404",
+      "icon": "☣",
+      "featured": true,
+      "screenshot": "assets/screenshots/MUTATION-404.svg",
+      "pages": "https://ivan7800.github.io/MUTATION-404/",
+      "github": "https://github.com/ivan7800/MUTATION-404",
       "status": "catalogued",
       "availability": "unverified",
       "offline": "declared",
