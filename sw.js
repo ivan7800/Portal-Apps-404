@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-42-nameless-dead-cabin';
+const CACHE = CACHE_PREFIX + 'v41-43-into-the-abyss';
 const CORE = [
   './',
   './index.html',
@@ -86,6 +86,7 @@ const CORE = [
   './assets/screenshots/DEAD-ROAD-404.svg',
   './assets/screenshots/NAMELESS-404.svg',
   './assets/screenshots/DEAD-CABIN-404.svg',
+  './assets/screenshots/INTO-THE-ABYSS-404.svg',
   './manifest.webmanifest'
 ];
 
