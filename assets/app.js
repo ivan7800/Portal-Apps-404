@@ -198,7 +198,7 @@
       return { app: x, score: score };
     }).filter(function (x) { return x.score > 0; }).sort(function (a1, b1) { return b1.score - a1.score || a1.app.name.localeCompare(b1.app.name); }).slice(0, 3).map(function (x) { return x.app; });
   }
-  function sharedScreenshot(a) { return !!(a && (screenshotUses[a.screenshot] > 1 || GENERIC_COVER_APPS[a.name])); }
+  function sharedScreenshot(a) { return !!(a && a.screenshot === 'assets/screenshots/json404.svg' && a.name !== 'json404'); }
   function coverHTML(a, altText, eager) {
     var index = Math.max(0, APPS.indexOf(a));
     if (sharedScreenshot(a)) {
