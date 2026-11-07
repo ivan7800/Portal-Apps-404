@@ -1,3 +1,10 @@
+## Corrección de carátulas — v41.45 · 7 de noviembre de 2026
+
+- Restauradas las referencias de 14 aplicaciones que apuntaban a capturas ajenas o al marcador `json404.svg` pese a tener carátula propia.
+- Eliminada la supresión automática de imágenes por compartir archivo o por figurar en una lista negra de aplicaciones.
+- Incorporadas pruebas del catálogo completo para comprobar la existencia e identidad de sus carátulas.
+- Caché PWA renovada y precarga de las 14 imágenes recuperadas. No se han sustituido las portadas válidas de otros proyectos.
+
 ## Nueva aplicación — MUTATION 404 · 29 de octubre de 2026
 
 - **MUTATION-404** — RPG ASCII de supervivencia, exploración de sectores, mutaciones y combate: https://ivan7800.github.io/MUTATION-404/
