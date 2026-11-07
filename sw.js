@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-44-mutation-404';
+const CACHE = CACHE_PREFIX + 'v41-45-restore-all-covers';
 const CORE = [
   './',
   './index.html',
@@ -88,6 +88,21 @@ const CORE = [
   './assets/screenshots/DEAD-CABIN-404.svg',
   './assets/screenshots/INTO-THE-ABYSS-404.svg',
   './assets/screenshots/MUTATION-404.svg',
+  // Carátulas recuperadas del catálogo: disponibles también sin conexión.
+  './assets/screenshots/Novel-Forge-404.svg',
+  './assets/screenshots/AppHub-404.svg',
+  './assets/screenshots/MYTHOS-404.svg',
+  './assets/screenshots/Comic-Reader-404.svg',
+  './assets/screenshots/Motion-404.svg',
+  './assets/screenshots/Luna-Natura-404.svg',
+  './assets/screenshots/Caminos-Malditos-Sangrientos.svg',
+  './assets/screenshots/MD-Forge-404.svg',
+  './assets/screenshots/FileDoctor-404.svg',
+  './assets/screenshots/HumanScript-404.svg',
+  './assets/screenshots/IT-Commander-404.svg',
+  './assets/screenshots/SECOND-BRAIN-404.svg',
+  './assets/screenshots/Ringtone-404.svg',
+  './assets/screenshots/ReleaseForge-404.svg',
   './manifest.webmanifest'
 ];
 
