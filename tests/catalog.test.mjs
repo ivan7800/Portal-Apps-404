@@ -69,3 +69,34 @@ test('las carátulas recientes son únicas y existen en el proyecto', async () =
     assert.match(svg, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   }
 });
+
+test('todas las carátulas del catálogo completo existen y tienen formato válido', async () => {
+  const screenshots = new Set();
+  for (const app of data.APPS) {
+    const path = app.screenshot;
+    assert.match(path, /^assets\/screenshots\/[a-z0-9ñáéíóú._-]+\.(svg|png|jpg|jpeg|webp)$/i, app.name);
+    assert.ok(!screenshots.has(path), app.name + ' reutiliza una carátula de otra aplicación: ' + path);
+    screenshots.add(path);
+
+    const contents = await readFile(new URL('../' + path, import.meta.url));
+    assert.ok(contents.length > 100, app.name + ' tiene una carátula vacía o incompleta');
+    if (path.endsWith('.svg')) {
+      const markup = contents.toString('utf8');
+      assert.match(markup, /<svg\b[^>]*>/, app.name + ' no tiene cabecera SVG');
+      assert.match(markup, /<\/svg>\s*$/, app.name + ' no cierra el SVG');
+      assert.match(markup, /viewBox=/, app.name + ' no define viewBox');
+    }
+  }
+});
+
+test('las catorce portadas recuperadas apuntan a su propio recurso', () => {
+  const restored = [
+    'Novel-Forge-404', 'AppHub-404', 'MYTHOS-404', 'Comic-Reader-404',
+    'Motion-404', 'Luna-Natura-404', 'Caminos-Malditos-Sangrientos',
+    'MD-Forge-404', 'FileDoctor-404', 'HumanScript-404', 'IT-Commander-404',
+    'SECOND-BRAIN-404', 'Ringtone-404', 'ReleaseForge-404'
+  ];
+  for (const name of restored) {
+    assert.equal(data.APPS.find(app => app.name === name)?.screenshot, 'assets/screenshots/' + name + '.svg');
+  }
+});
