@@ -11,21 +11,8 @@
   }
 
   var APPS = D.APPS;
-  var screenshotUses = {};
-  APPS.forEach(function (app) { screenshotUses[app.screenshot] = (screenshotUses[app.screenshot] || 0) + 1; });
-  var GENERIC_COVER_APPS = {
-    INSANITY: 1, 'musica-404': 1, json404: 1, SafeSignal: 1,
-    'Windows-Master-Suite': 1, Cauers4ever: 1, 'diario-moleskine': 1,
-    'Biblioteca-Oculta': 1, 'PocketTone-Archive': 1, 'Storyboard-Studio': 1,
-    'portal-descargas-corporativas': 1, 'sin-bruma': 1, 'Atlas-Pattern-AI': 1,
-    'Claude-Skills-Pack': 1, 'zerokey-ai': 1, 'doppelganger-chat': 1, 'i.roig': 1,
-    'El-Evangelio-del-Nombre-Devorado': 1, 'NECRONOMICON-404': 1,
-    'Strategy-Lab-Campaign': 1, 'Vigilia-Abisal': 1, 'VOX-MORPHER-404': 1,
-    'Guardian-Senior-AI': 1, 'AppHub-404': 1, 'MYTHOS-404': 1,
-    'PixelForge-404': 1, 'MD-Forge-404': 1, 'FileDoctor-404': 1, 'HumanScript-404': 1,
-    'IT-Commander-404': 1, 'SECOND-BRAIN-404': 1, 'Ringtone-404': 1,
-    'ReleaseForge-404': 1, 'Compra-404': 1
-  };
+  // Las imágenes del catálogo se muestran tal como están asociadas a cada app.
+  // Solo una ruta marcadora explícita debe usar una portada de respaldo.
   var readyTimer = null;
   var VERSION = 'v41.24 · Catalog Controls Hotfix';
   var UPDATED = '11 de octubre de 2026';
