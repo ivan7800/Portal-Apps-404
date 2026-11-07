@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-45-restore-all-covers';
+const CACHE = CACHE_PREFIX + 'v41-46-premium-cover-collection';
 const CORE = [
   './',
   './index.html',
@@ -103,6 +103,11 @@ const CORE = [
   './assets/screenshots/SECOND-BRAIN-404.svg',
   './assets/screenshots/Ringtone-404.svg',
   './assets/screenshots/ReleaseForge-404.svg',
+  './assets/screenshots/BinForge-404.svg',
+  './assets/screenshots/Cockatils-404.svg',
+  './assets/screenshots/Compra-404.svg',
+  './assets/screenshots/Nightmare-404.svg',
+  './assets/screenshots/PixelForge-404.svg',
   './manifest.webmanifest'
 ];
 
