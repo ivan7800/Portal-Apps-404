@@ -1,3 +1,7 @@
+## Carátulas cinematográficas — v41.51 · 8 de noviembre de 2026
+
+Diez portadas que conservaban diseños básicos han sido sustituidas por composiciones cinematográficas individuales, optimizadas e incrustadas sin dependencias externas en SVG: SONIC-FORGE-404, LINGUA-NATIVA-404, SOLO-BUSINESS-404, PROJECT-COMMAND-404, GHOST-TEST-404, Pi-Legacy, EIFFEL-404, WORLD-GENESIS-404, ONEIRO-404 y JARVIS-404. Se conservan las rutas, fichas y portadas del resto de las aplicaciones. Caché PWA v41.51 y pruebas de regresión específicas.
+
 ## Nueva aplicación — DUNGEON 404 · 8 de noviembre de 2026
 
 - **DUNGEON-404 — Midnight Terror**: dungeon crawler por casillas de terror cósmico con cuatro expedicionarios, cuatro profundidades y tres finales: https://ivan7800.github.io/DUNGEON-404/.

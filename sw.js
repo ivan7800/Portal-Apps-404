@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-50-dungeon-404';
+const CACHE = CACHE_PREFIX + 'v41-51-premium-ten';
 const CORE = [
   './',
   './index.html',
@@ -132,6 +132,7 @@ const CORE = [
   './assets/screenshots/Guardian-Senior-AI.svg',
   './assets/screenshots/portal-descargas-corporativas.svg',
   './assets/screenshots/DUNGEON-404.svg',
+
   './manifest.webmanifest'
 ];
 
