@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.24",
-    "updated": "2026-10-29",
+    "updated": "2026-11-08",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -162,7 +162,8 @@ window.PORTAL_DATA = {
     "NAMELESS-404": "TypeScript / JavaScript / HTML / CSS / WebGL",
     "DEAD-CABIN-404": "JavaScript / HTML / CSS / SVG",
     "INTO-THE-ABYSS-404": "TypeScript / JavaScript / Canvas 2D / WebGL2",
-    "MUTATION-404": "TypeScript / HTML / CSS / JavaScript"
+    "MUTATION-404": "TypeScript / HTML / CSS / JavaScript",
+    "DUNGEON-404": "HTML / CSS / JavaScript / WebGL / Canvas 2D"
   },
   "APPS": [
     {
@@ -1920,6 +1921,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-10-29"
+    },
+    {
+      "name": "DUNGEON-404",
+      "short": "Dungeon crawler de terror cósmico con cuatro expedicionarios, cordura, rituales y tres finales.",
+      "description": "DUNGEON 404 — Midnight Terror es un dungeon crawler por casillas con cuatro héroes y cuatro profundidades: Cripta, Biblioteca Sumergida, Laberinto Olvidado y Osario del Primer Nombre. Incluye encuentros tácticos, bestiario cósmico, cordura, investigación, reliquias, rituales, guardado local y tres finales. Estética pulp de horror ochentero; ejecutable en navegador mediante servidor local o GitHub Pages.",
+      "category": "Juego / Dungeon crawler de horror cósmico",
+      "saga": "Universo 404",
+      "icon": "🕯",
+      "featured": true,
+      "screenshot": "assets/screenshots/DUNGEON-404.svg",
+      "pages": "https://ivan7800.github.io/DUNGEON-404/",
+      "github": "https://github.com/ivan7800/DUNGEON-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-11-08"
     }
   ]
 };

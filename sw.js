@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-49-cinematic-final-thirteen';
+const CACHE = CACHE_PREFIX + 'v41-50-dungeon-404';
 const CORE = [
   './',
   './index.html',
@@ -131,6 +131,7 @@ const CORE = [
   './assets/screenshots/VOX-MORPHER-404.svg',
   './assets/screenshots/Guardian-Senior-AI.svg',
   './assets/screenshots/portal-descargas-corporativas.svg',
+  './assets/screenshots/DUNGEON-404.svg',
   './manifest.webmanifest'
 ];
 
