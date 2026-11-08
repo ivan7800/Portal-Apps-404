@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-47-correct-cover-mappings';
+const CACHE = CACHE_PREFIX + 'v41-48-cinematic-art-ten';
 const CORE = [
   './',
   './index.html',
@@ -108,6 +108,16 @@ const CORE = [
   './assets/screenshots/Compra-404.svg',
   './assets/screenshots/Nightmare-404.svg',
   './assets/screenshots/PixelForge-404.svg',
+  './assets/screenshots/INSANITY.svg',
+  './assets/screenshots/musica-404.svg',
+  './assets/screenshots/json404.svg',
+  './assets/screenshots/SafeSignal.svg',
+  './assets/screenshots/Cauers4ever.svg',
+  './assets/screenshots/Biblioteca-Oculta.svg',
+  './assets/screenshots/PocketTone-Archive.svg',
+  './assets/screenshots/Atlas-Pattern-AI.svg',
+  './assets/screenshots/NECRONOMICON-404.svg',
+  './assets/screenshots/Windows-Master-Suite.svg',
   './manifest.webmanifest'
 ];
 

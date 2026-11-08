@@ -1,3 +1,7 @@
+## Carátulas cinematográficas — v41.48 · 8 de noviembre de 2026
+
+Diez imágenes únicas recuperan las portadas de INSANITY, musica-404, json404, SafeSignal, Cauers4ever, Biblioteca-Oculta, PocketTone-Archive, Atlas-Pattern-AI, NECRONOMICON-404 y Windows-Master-Suite. Cada portada mantiene su ruta `assets/screenshots/<nombre>.svg` y contiene una ilustración JPEG optimizada dentro de SVG, sin descargas externas. Nueva caché PWA v41.48 y regresión automatizada.
+
 ## Corrección de carátulas — v41.45 · 7 de noviembre de 2026
 
 - Restauradas las referencias de 14 aplicaciones que apuntaban a capturas ajenas o al marcador `json404.svg` pese a tener carátula propia.
