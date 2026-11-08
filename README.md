@@ -1,3 +1,7 @@
+## Restauración de carátulas — v41.49 · 8 de noviembre de 2026
+
+Se han sustituido las 13 portadas de plantilla genérica restantes por 13 ilustraciones SVG propias y autocontenidas, diseñadas de acuerdo con cada producto: diario-moleskine, Storyboard-Studio, sin-bruma, Claude-Skills-Pack, zerokey-ai, doppelganger-chat, i.roig, El-Evangelio-del-Nombre-Devorado, Strategy-Lab-Campaign, Vigilia-Abisal, VOX-MORPHER-404, Guardian-Senior-AI y portal-descargas-corporativas. Rutas estables y control de regresión. Esta colección combina ilustraciones cinematográficas y diseños tecnológicos; los SVG son vectoriales, no fotografías.
+
 ## Carátulas cinematográficas — v41.48 · 8 de noviembre de 2026
 
 Diez imágenes únicas recuperan las portadas de INSANITY, musica-404, json404, SafeSignal, Cauers4ever, Biblioteca-Oculta, PocketTone-Archive, Atlas-Pattern-AI, NECRONOMICON-404 y Windows-Master-Suite. Cada portada mantiene su ruta `assets/screenshots/<nombre>.svg` y contiene una ilustración JPEG optimizada dentro de SVG, sin descargas externas. Nueva caché PWA v41.48 y regresión automatizada.

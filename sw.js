@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-48-cinematic-art-ten';
+const CACHE = CACHE_PREFIX + 'v41-49-cinematic-final-thirteen';
 const CORE = [
   './',
   './index.html',
@@ -118,6 +118,19 @@ const CORE = [
   './assets/screenshots/Atlas-Pattern-AI.svg',
   './assets/screenshots/NECRONOMICON-404.svg',
   './assets/screenshots/Windows-Master-Suite.svg',
+  './assets/screenshots/diario-moleskine.svg',
+  './assets/screenshots/Storyboard-Studio.svg',
+  './assets/screenshots/sin-bruma.svg',
+  './assets/screenshots/Claude-Skills-Pack.svg',
+  './assets/screenshots/zerokey-ai.svg',
+  './assets/screenshots/doppelganger-chat.svg',
+  './assets/screenshots/i.roig.svg',
+  './assets/screenshots/El-Evangelio-del-Nombre-Devorado.svg',
+  './assets/screenshots/Strategy-Lab-Campaign.svg',
+  './assets/screenshots/Vigilia-Abisal.svg',
+  './assets/screenshots/VOX-MORPHER-404.svg',
+  './assets/screenshots/Guardian-Senior-AI.svg',
+  './assets/screenshots/portal-descargas-corporativas.svg',
   './manifest.webmanifest'
 ];
 
