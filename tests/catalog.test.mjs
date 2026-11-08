@@ -100,3 +100,8 @@ test('las catorce portadas recuperadas apuntan a su propio recurso', () => {
     assert.equal(data.APPS.find(app => app.name === name)?.screenshot, 'assets/screenshots/' + name + '.svg');
   }
 });
+
+test('PixelForge y Compra usan sus carátulas propias', () => {
+  assert.equal(data.APPS.find(app => app.name === 'PixelForge-404')?.screenshot, 'assets/screenshots/PixelForge-404.svg');
+  assert.equal(data.APPS.find(app => app.name === 'Compra-404')?.screenshot, 'assets/screenshots/Compra-404.svg');
+});
