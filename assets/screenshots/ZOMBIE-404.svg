@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="ZOMBIE-404: carátula cinematográfica de supervivencia zombi con ciudad devastada, supervivientes y horda">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#120b16"/><stop offset=".45" stop-color="#73202c"/><stop offset=".72" stop-color="#d35442"/><stop offset="1" stop-color="#140e15"/></linearGradient><radialGradient id="moon"><stop stop-color="#ffa9a0"/><stop offset=".65" stop-color="#df4a4a"/><stop offset="1" stop-color="#7a1625"/></radialGradient><linearGradient id="ground" x2="0" y2="1"><stop stop-color="#211819"/><stop offset="1" stop-color="#050608"/></linearGradient><linearGradient id="ink" x2="0" y2="1"><stop stop-color="#eee8da"/><stop offset="1" stop-color="#a4a198"/></linearGradient><radialGradient id="fire"><stop stop-color="#ef7548" stop-opacity=".8"/><stop offset="1" stop-color="#b02b2b" stop-opacity="0"/></radialGradient><filter id="grain"><feTurbulence baseFrequency=".6" numOctaves="3" seed="4" type="fractalNoise"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".13"/></feComponentTransfer></filter><filter id="blur"><feGaussianBlur stdDeviation="18"/></filter></defs>
+<rect width="1280" height="720" fill="url(#sky)"/>
+<circle cx="1025" cy="154" r="111" fill="url(#moon)"/><circle cx="1025" cy="154" r="126" fill="#f55752" opacity=".25" filter="url(#blur)"/>
+<g fill="#2f141b" opacity=".75"><path d="M0 320V120l110 30 24-40 80 20 22 170 64 5v-95l100 25 20-65 58 18 10 120 62 0v-65l70-19 32 88 90 0v-115l78 20 14 70 55-12 10 108 120-15v-115h70v115h106v150H0Z"/></g>
+<g fill="#100e13"><path d="M0 490V258l112 22 25-69h34l16 225 115 10V334l130-40 9 154 109-20V310l85-22 26 147 90 20 10-165 93 18 30 150 150-25 15-148h63l35 175 110-6v260H0Z"/></g>
+<g stroke="#e9a08b" stroke-opacity=".35" stroke-width="3"><path d="M52 321v24m77-42v28m208 66v27m49-51v21m126-39v23m40-20v23m249 18v33m78-31v34m89-51v26m90-26v30"/></g>
+<path d="M0 495Q155 450 314 498T641 485T960 510T1280 478V720H0Z" fill="url(#ground)"/>
+<g fill="#c9412b" opacity=".58"><ellipse cx="130" cy="521" rx="170" ry="43" fill="url(#fire)"/><ellipse cx="1120" cy="488" rx="160" ry="42" fill="url(#fire)"/></g>
+<g stroke="#131010" fill="#131010" stroke-linecap="round" stroke-linejoin="round">
+<path stroke-width="12" d="M70 595v-83m0 32-27-43m27 43 29-52M68 585l-22 50m24-50 24 58"/><circle cx="70" cy="493" r="23"/>
+<path stroke-width="11" d="M181 610v-104m0 54-44-32m44 32 28-38m-30 72-20 59m24-60 27 65"/><circle cx="184" cy="492" r="23"/>
+<path stroke-width="11" d="M270 589v-81m0 43 38-44m-38 41-32-29m32 65-22 54m22-54 25 52"/><circle cx="270" cy="489" r="20"/>
+<path stroke-width="12" d="M1009 590V482m0 66-49-27m49 25 48-53m-47 91-29 67m30-67 28 69"/><circle cx="1006" cy="467" r="24"/>
+<path stroke-width="13" d="M1125 590v-93m0 53-43-39m43 38 32-31m-33 65-28 57m30-57 29 62"/><circle cx="1128" cy="478" r="23"/>
+<path stroke-width="12" d="M1215 606v-94m0 41-35-38m35 38 30-44m-29 90-24 57m25-57 23 58"/><circle cx="1218" cy="497" r="21"/>
+</g>
+<g fill="#030508"><path d="M420 720l8-117 26-71 28-18 22-49 53-18 33 14 18 46 25 30 29 67 9 116Z"/><ellipse cx="555" cy="439" rx="50" ry="63"/><path d="M506 435q-21-81 58-82 61 17 43 74l-24-34-67 22Z"/><path d="M471 535l-98 63 20 25 107-39Z"/><path d="M626 529l116 37-13 30-122-19Z"/><path d="M499 572l-28 148h58l29-131Z"/><path d="M580 577l34 143h63l-55-163Z"/></g>
+<g fill="#141b1d" stroke="#40352d" stroke-width="5"><path d="M528 468l47-8 29 120-70 21Z"/><path d="M486 515l72 28-17 40-74-28Z"/></g>
+<path d="M365 590l214-74 14 19-210 89Z" fill="#161b20" stroke="#5a5551" stroke-width="5"/>
+<g fill="#060809"><path d="M710 720l24-129 26-57 22-16 15-41 43-15 37 21 15 43 27 32 17 162Z"/><ellipse cx="836" cy="450" rx="37" ry="50"/><path d="M798 438q2-53 37-55 50 3 41 65l-26-25-42 26Z"/><path d="M764 555l-50 86 30 15 66-72Z"/><path d="M882 549l44 65 37-9-56-96Z"/></g>
+<g stroke="#f4d4c5" stroke-opacity=".14" stroke-width="3"><path d="M0 650L1280 650M0 690L1280 690"/></g>
+<rect x="0" y="0" width="1280" height="365" fill="#06060b" opacity=".46"/>
+<text x="640" y="93" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-size="44" font-weight="900" letter-spacing="12" fill="#dd514b">EL FIN SOLO ES EL PRINCIPIO</text>
+<text x="640" y="246" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-weight="900" font-size="168" textLength="1160" lengthAdjust="spacingAndGlyphs" stroke="#0b080c" stroke-width="12" paint-order="stroke" fill="url(#ink)">ZOMBIE<tspan fill="#e72f2d">-404</tspan></text>
+<text x="640" y="298" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" letter-spacing="12" fill="#f2b7a7">SUPERVIVENCIA ZOMBI</text>
+<path d="M60 306H350M930 306H1220" stroke="#b73534" stroke-width="5"/>
+<rect width="1280" height="720" filter="url(#grain)" opacity=".5"/>
+<rect width="1280" height="720" fill="none" stroke="#070709" stroke-width="19"/>
+</svg>
