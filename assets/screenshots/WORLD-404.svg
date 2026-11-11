@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="WORLD-404 · El Archivo de la Marea Negra, portada cinematográfica de horror cósmico">
+<defs>
+ <linearGradient id="night" x2="0" y2="1"><stop stop-color="#07111b"/><stop offset=".46" stop-color="#12313d"/><stop offset="1" stop-color="#04080d"/></linearGradient>
+ <radialGradient id="void"><stop stop-color="#95c6bf" stop-opacity=".67"/><stop offset=".15" stop-color="#184652" stop-opacity=".75"/><stop offset=".48" stop-color="#071620" stop-opacity=".95"/><stop offset="1" stop-color="#03070a" stop-opacity="0"/></radialGradient>
+ <linearGradient id="sea" x2=".1" y2="1"><stop stop-color="#265d69"/><stop offset=".28" stop-color="#061f29"/><stop offset="1" stop-color="#02090e"/></linearGradient>
+ <linearGradient id="glass" x2="1" y2="0"><stop stop-color="#021016"/><stop offset=".52" stop-color="#10262a"/><stop offset="1" stop-color="#03090e"/></linearGradient>
+ <radialGradient id="lamp"><stop stop-color="#ebba75" stop-opacity=".53"/><stop offset="1" stop-color="#ebba75" stop-opacity="0"/></radialGradient>
+ <linearGradient id="screen" x2="0" y2="1"><stop stop-color="#052a22"/><stop offset="1" stop-color="#010c0b"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="12"/></filter>
+ <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".68" numOctaves="3" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".11"/></feComponentTransfer></filter>
+ <clipPath id="window"><rect x="265" y="185" width="760" height="360"/></clipPath>
+</defs>
+<rect width="1280" height="720" fill="url(#night)"/>
+<g clip-path="url(#window)">
+ <rect x="265" y="185" width="760" height="360" fill="#102a36"/>
+ <circle cx="735" cy="323" r="255" fill="url(#void)"/>
+ <circle cx="735" cy="317" r="52" fill="#02090c" opacity=".87"/>
+ <ellipse cx="735" cy="317" rx="10" ry="46" fill="#a4d0ca" opacity=".52"/>
+ <g opacity=".65" stroke="#102b31" stroke-width="23" fill="none" stroke-linecap="round">
+  <path d="M720 360 Q865 355 940 260 Q950 215 1010 200"/>
+  <path d="M735 357 Q890 430 1020 380"/>
+  <path d="M690 375 Q610 300 500 270 Q430 256 420 202"/>
+ </g>
+ <path d="M265 435 Q350 408 429 438 Q525 366 615 410 Q730 360 840 415 Q948 357 1025 409 L1025 550 H265Z" fill="url(#sea)"/>
+ <g fill="none" stroke="#98cbd0" stroke-opacity=".35">
+  <path stroke-width="5" d="M260 444 Q390 406 515 445 T770 435 T1030 434"/>
+  <path stroke-width="3" d="M265 475 Q425 438 565 471 T870 465 T1060 451"/>
+  <path stroke-width="2" d="M265 506 Q415 480 575 510 T1025 495"/>
+ </g>
+ <path d="M937 430 L965 430 965 351 947 351Z" fill="#060c12"/>
+ <path d="M936 352 L953 332 968 352Z" fill="#060c12"/>
+ <path d="M940 363 L967 363 1030 337 969 374Z" fill="#d9eadf" opacity=".38"/>
+ <path d="M940 363 L967 363 1030 337 969 374Z" fill="#a3d9d4" opacity=".34" filter="url(#glow)"/>
+ <g stroke="#bedee2" stroke-opacity=".18"><path d="M285 180L270 530M380 181L400 550M475 182L455 540M575 185L590 545M675 185L650 540M775 185L795 545M875 185L850 545M975 185L995 545"/></g>
+</g>
+<path d="M245 172 H1045 V563 H245 Z M265 185 V545 H1025 V185 Z" fill="url(#glass)" fill-rule="evenodd"/>
+<g stroke="#080f15" stroke-width="13"><path d="M640 181 V550M255 410H1035"/></g>
+<g opacity=".87">
+ <rect x="0" y="177" width="240" height="410" fill="#111c20"/>
+ <path d="M0 241H225M0 345H225M0 449H225" stroke="#354348" stroke-width="5"/>
+ <g fill="#ccbb91" opacity=".68"><rect x="35" y="215" width="105" height="19"/><rect x="35" y="318" width="105" height="19"/><rect x="35" y="420" width="105" height="19"/></g>
+ <path d="M0 575H1280V720H0Z" fill="#070c0d"/>
+</g>
+<circle cx="1040" cy="589" r="220" fill="url(#lamp)"/>
+<g>
+ <path d="M448 569 Q442 473 455 426 Q467 399 488 392 Q514 384 533 398 Q565 429 565 569 L600 720H410Z" fill="#05080a"/>
+ <path d="M455 438 Q473 424 495 438 L514 570 493 720 448 720Z" fill="#0b1114"/>
+ <ellipse cx="496" cy="381" rx="37" ry="47" fill="#030608"/>
+ <path d="M456 372Q463 323 504 335Q546 332 531 380Q520 355 510 361Q478 353 456 372Z" fill="#030608"/>
+ <path d="M473 424L513 437 506 507 487 515Z" fill="#0a1011"/>
+</g>
+<g transform="translate(845 474)">
+ <ellipse cx="150" cy="228" rx="220" ry="60" fill="#15110d"/>
+ <path d="M49 58L258 58 274 222 15 222Z" fill="#171915" stroke="#6f674f" stroke-width="7"/>
+ <rect x="71" y="76" width="171" height="111" rx="10" fill="url(#screen)" stroke="#3f6654" stroke-width="7"/>
+ <text x="86" y="105" fill="#78e0a7" font-size="14" font-family="monospace">TERMINAL 04</text>
+ <text x="86" y="133" fill="#78e0a7" font-size="12" font-family="monospace">ARCHIVO MUNICIPAL</text>
+ <text x="86" y="160" fill="#a0efb7" font-size="18" font-family="monospace">&gt; WORLD-404_</text>
+ <rect x="26" y="222" width="255" height="30" rx="6" fill="#474b3b"/>
+ <g stroke="#151e19" stroke-width="3"><path d="M39 231H270M39 242H270"/></g>
+</g>
+<path d="M0 585L400 548 820 580 1280 540V720H0Z" fill="#120f0d" opacity=".91"/>
+<g transform="translate(90 574) rotate(-7)">
+ <rect width="300" height="123" fill="#8c7d60" stroke="#423727" stroke-width="8"/>
+ <path d="M20 20H282M20 42H282M20 99H282" stroke="#544b3b" stroke-width="2"/>
+ <text x="34" y="79" font-family="Georgia,serif" font-size="29" fill="#421b18">EXPEDIENTE 404</text>
+</g>
+<g stroke="#ddd0b2" stroke-width="2" fill="none" opacity=".74" transform="translate(658 648)">
+ <circle r="54"/><circle r="34"/><path d="M-68 0H68M0-68V68M-40-40L40 40M40-40L-40 40"/>
+</g>
+<rect width="1280" height="720" fill="#ffffff" filter="url(#grain)" opacity=".18"/>
+<rect width="1280" height="720" fill="#020408" opacity=".13"/>
+<text x="640" y="42" text-anchor="middle" letter-spacing="7" fill="#d1c2a9" font-size="18" font-family="Georgia,serif">ARCHIVO MUNICIPAL · 1987 · TERMINAL 04</text>
+<path d="M65 32H270M1010 32H1215" stroke="#b19f88" opacity=".7" stroke-width="2"/>
+<text x="640" y="137" text-anchor="middle" fill="#f0e3cd" font-size="105" font-weight="bold" font-family="Georgia,serif" stroke="#0b0b0d" stroke-width="2" paint-order="stroke">WORLD-404</text>
+<text x="640" y="171" text-anchor="middle" fill="#dfcbb0" letter-spacing="5" font-size="24" font-family="Georgia,serif">EL ARCHIVO DE LA MAREA NEGRA</text>
+<rect x="0" y="0" width="1280" height="720" fill="none" stroke="#111315" stroke-width="19"/>
+</svg>
