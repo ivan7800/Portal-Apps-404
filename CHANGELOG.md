@@ -1,5 +1,13 @@
 # Changelog
 
+## v41.52 · Release Sync — 11 de noviembre de 2026
+
+- Unificado el recuento del catálogo en 140; el ticker obtiene el número directamente de `assets/data.js`.
+- Sincronizadas la release visible, las URL versionadas y el registro del Service Worker en v41.52.
+- Renovada la caché PWA a `v41-52-release-sync` y actualizada la fecha de novedades.
+- Corregida la prueba del catálogo y añadidas comprobaciones para evitar divergencias futuras.
+
+
 ## v41.24 · Catalog Controls Hotfix
 
 - Corregido el salto al inicio al cambiar tecnología, orden o vista.

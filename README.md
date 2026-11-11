@@ -1,3 +1,9 @@
+## Sincronización de release — v41.52 · 11 de noviembre de 2026
+
+- Catálogo de 140 aplicaciones; el ticker refleja el total real automáticamente.
+- Número de release, recursos del portal y caché PWA sincronizados en v41.52.
+- Fecha de novedades actualizada y comprobaciones para detectar futuras discrepancias.
+
 ## Carátulas cinematográficas — v41.51 · 8 de noviembre de 2026
 
 Diez portadas que conservaban diseños básicos han sido sustituidas por composiciones cinematográficas individuales, optimizadas e incrustadas sin dependencias externas en SVG: SONIC-FORGE-404, LINGUA-NATIVA-404, SOLO-BUSINESS-404, PROJECT-COMMAND-404, GHOST-TEST-404, Pi-Legacy, EIFFEL-404, WORLD-GENESIS-404, ONEIRO-404 y JARVIS-404. Se conservan las rutas, fichas y portadas del resto de las aplicaciones. Caché PWA v41.51 y pruebas de regresión específicas.

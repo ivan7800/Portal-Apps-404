@@ -33,18 +33,28 @@ vm.runInNewContext(source, sandbox, { filename: 'assets/data.js' });
 const data = sandbox.window.PORTAL_DATA;
 if (!data || !Array.isArray(data.APPS)) fail('assets/data.js no expone un catálogo APPS válido.');
 if (data?.META?.schemaVersion !== 2) fail('assets/data.js no usa el esquema de catálogo v2.');
-if (data?.META?.release !== 'v41.24') fail('assets/data.js no declara la release v41.24.');
+const release = data?.META?.release;
+if (!/^v\d+\.\d+$/.test(release || '')) fail('assets/data.js no declara una release válida.');
+const indexHTML = await readFile(join(root, 'index.html'), 'utf8');
+const extensionScripts = [...indexHTML.matchAll(/<script src="(assets\/[a-z0-9-]+\.js)(?:\?[^"]*)?" defer><\/script>/gi)]
+  .map(match => match[1])
+  .filter(path => !['assets/data.js', 'assets/app.js', 'assets/catalog-utils.js', 'assets/qr-lite.js', 'assets/cinematic.js'].includes(path));
+for (const path of extensionScripts) {
+  const extension = await readFile(join(root, path), 'utf8');
+  vm.runInNewContext(extension, sandbox, { filename: path });
+}
 
 const apps = data?.APPS || [];
 if (!apps.length) fail('El catálogo APPS está vacío.');
+if (apps.length !== 140) fail(`El portal debe mostrar 140 aplicaciones y el catálogo cargado contiene ${apps.length}.`);
 const required = ['name', 'short', 'category', 'saga', 'icon', 'screenshot', 'pages', 'github', 'status', 'availability', 'offline', 'platform', 'delivery'];
 const seen = { name: new Map(), pages: new Map(), github: new Map() };
 const allowed = {
   status: new Set(['catalogued', 'experimental', 'archived']),
   availability: new Set(['verified', 'unverified', 'unavailable']),
   offline: new Set(['declared', 'not-declared']),
-  platform: new Set(['web', 'webassembly', 'hybrid-windows']),
-  delivery: new Set(['web-app', 'repository'])
+  platform: new Set(['web', 'webassembly', 'hybrid-windows', 'windows']),
+  delivery: new Set(['web-app', 'repository', 'server-app', 'desktop-app'])
 };
 
 for (const [index, app] of apps.entries()) {
@@ -77,8 +87,19 @@ if (sagas.length !== 7) fail(`El mapa orbital requiere 7 mundos y el catálogo d
 const files = await walk(root);
 if (files.length > 200) warn(`El proyecto tiene ${files.length} archivos; conviene revisar assets y artefactos innecesarios.`);
 
-const indexHTML = await readFile(join(root, 'index.html'), 'utf8');
+const appSource = await readFile(join(root, 'assets/app.js'), 'utf8');
+const cinematicSource = await readFile(join(root, 'assets/cinematic.js'), 'utf8');
+const serviceWorker = await readFile(join(root, 'sw.js'), 'utf8');
 const readme = await readFile(join(root, 'README.md'), 'utf8');
+const releaseNumber = String(release || '').replace(/^v/, '');
+const expectedCacheVersion = releaseNumber.replace(/\./g, '-');
+if (!appSource.includes(`var VERSION = '${release} · Release Sync'`)) fail('assets/app.js y assets/data.js no declaran la misma release visible.');
+if (!appSource.includes(`sw.js?v=${releaseNumber}`)) fail('assets/app.js registra un Service Worker con una versión distinta.');
+if (!new RegExp(`v${expectedCacheVersion}(?:-|')`).test(serviceWorker)) fail('sw.js y assets/data.js no comparten la versión de caché.');
+for (const match of indexHTML.matchAll(/(?:src|href)=["'](assets\/[^"'?#]+)(?:\?v=([^"'&]+))?["']/g)) {
+  if (/\.(?:css|js)$/i.test(match[1]) && match[2] !== releaseNumber) fail(`index.html: ${match[1]} no usa la versión global ${releaseNumber}.`);
+}
+if (!/window\.PORTAL_DATA\.APPS\.length/.test(cinematicSource) || /\b101 APPS\b/.test(cinematicSource)) fail('assets/cinematic.js debe obtener el recuento del catálogo.');
 if (/\b91\s+(?:apps|aplicaciones)\b/i.test(indexHTML)) fail('index.html contiene un recuento fijo de aplicaciones.');
 if (!/Content-Security-Policy/i.test(indexHTML)) warn('index.html no declara una política CSP.');
 if (/<main[^>]+id=["']app["']/i.test(indexHTML)) fail('index.html usa <main id="app"> y la aplicación inserta otro <main>; los landmarks quedarían anidados.');
@@ -106,7 +127,6 @@ if (manifest) {
   }
 }
 
-const serviceWorker = await readFile(join(root, 'sw.js'), 'utf8');
 const coreMatch = serviceWorker.match(/const\s+CORE\s*=\s*\[(.*?)\];/s);
 if (!coreMatch) fail('sw.js: no se pudo localizar la lista CORE.');
 else {

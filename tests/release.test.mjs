@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import vm from 'node:vm';
 
 const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const app = await readFile(new URL('../assets/app.js', import.meta.url), 'utf8');
@@ -9,6 +10,15 @@ const manifest = JSON.parse(await readFile(new URL('../manifest.webmanifest', im
 const serviceWorker = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
 const audit = await readFile(new URL('../scripts/audit.mjs', import.meta.url), 'utf8');
 const qrLite = await readFile(new URL('../assets/qr-lite.js', import.meta.url), 'utf8');
+const cinematicScript = await readFile(new URL('../assets/cinematic.js', import.meta.url), 'utf8');
+const dataSource = await readFile(new URL('../assets/data.js', import.meta.url), 'utf8');
+const dataSandbox = { window: {} };
+vm.runInNewContext(dataSource, dataSandbox);
+const data = dataSandbox.window.PORTAL_DATA;
+const extensionScripts = [...index.matchAll(/<script src="(assets\/[a-z0-9-]+\.js)(?:\?[^"]*)?" defer><\/script>/gi)]
+  .map(match => match[1])
+  .filter(path => !['assets/data.js', 'assets/app.js', 'assets/catalog-utils.js', 'assets/qr-lite.js', 'assets/cinematic.js'].includes(path));
+for (const path of extensionScripts) vm.runInNewContext(await readFile(new URL('../' + path, import.meta.url), 'utf8'), dataSandbox, { filename: path });
 
 const releaseMatch = index.match(/assets\/styles\.css\?v=([0-9]+(?:\.[0-9]+)+)/);
 assert.ok(releaseMatch, 'index.html debe versionar styles.css');
@@ -22,7 +32,19 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
   assert.match(app, /<main class="workspace" id="main-content" tabindex="-1">/);
 });
 
+test('número de apps, ticker, fecha y versión visible coinciden con el catálogo', () => {
+  assert.equal(data.APPS.length, 140);
+  assert.match(app, /var UPDATED = '11 de noviembre de 2026'/);
+  assert.match(cinematicScript, /var appCount=window\.PORTAL_DATA&&Array\.isArray\(window\.PORTAL_DATA\.APPS\)\?window\.PORTAL_DATA\.APPS\.length:0/);
+  assert.doesNotMatch(cinematicScript, /101 APPS/);
+  assert.ok(app.includes(`var VERSION = '${data.META.release} · Release Sync'`));
+});
+
 test('los recursos críticos llevan una versión explícita y coherente para evitar caché antigua', () => {
+  assert.equal(releaseVersion, data.META.release.replace(/^v/, ''));
+  const localResources = [...index.matchAll(/(?:src|href)="(assets\/[^"?#]+\.(?:css|js))(?:\?v=([^"&]+))?"/g)];
+  assert.ok(localResources.length > 0);
+  for (const [, path, version] of localResources) assert.equal(version, releaseVersion, path + ' debe usar la versión global del portal');
   assert.match(index, new RegExp(`assets\\/styles\\.css\\?v=${escapedReleaseVersion}`));
   assert.match(index, new RegExp(`assets\\/app\\.js\\?v=${escapedReleaseVersion}`));
   assert.match(index, new RegExp(`assets\\/data\\.js\\?v=${escapedReleaseVersion}`));
@@ -95,8 +117,12 @@ test('el auditor ignora metadatos del clon y dependencias locales', () => {
 
 
 test('la versión base visible y el registro del service worker están versionados explícitamente', () => {
-  assert.match(app, /var VERSION = 'v[0-9]+(?:\.[0-9]+)+(?: · [^']+)?'/);
-  assert.match(app, /register\('\.\/sw\.js\?v=[0-9]+(?:\.[0-9]+)+'\)/);
+  assert.ok(app.includes(`var VERSION = '${data.META.release} · Release Sync'`));
+  assert.match(app, new RegExp("register\\('\\.\\/sw\\.js\\?v=" + escapedReleaseVersion + "'\\)"));
+  assert.equal(releaseVersion, data.META.release.replace(/^v/, ''));
+  const localResources = [...index.matchAll(/(?:src|href)="(assets\/[^"?#]+\.(?:css|js))(?:\?v=([^"&]+))?"/g)];
+  assert.ok(localResources.length > 0);
+  for (const [, path, version] of localResources) assert.equal(version, releaseVersion, path + ' debe usar la versión global del portal');
 });
 
 

@@ -1,5 +1,5 @@
 /* Portal Apps 404 · Cinematic Experience Layer v41.29 POLISH
-   No framework. No CDN. Progressive enhancement for the existing v41.26 portal. */
+   No framework. No CDN. Progressive enhancement for the v41.52 portal. */
 (function(){
   'use strict';
 
@@ -86,7 +86,8 @@
   function injectTicker(){
     var hero=document.querySelector('.hero-os'); if(!hero || document.getElementById('cine-ticker')) return;
     var ticker=document.createElement('div'); ticker.id='cine-ticker'; ticker.className='cine-ticker'; ticker.setAttribute('data-cine-owned','');
-    var chunk='<span>I. ROIG</span><b>✦</b><span>101 APPS</span><b>✦</b><span>UNIVERSO 404</span><b>✦</b><span>LOCAL-FIRST</span><b>✦</b><span>GAMES</span><b>✦</b><span>SYSTEMS</span><b>✦</b><span>PWA</span><b>✦</b><span>NO FRAMEWORKS</span><b>✦</b>';
+    var appCount=window.PORTAL_DATA&&Array.isArray(window.PORTAL_DATA.APPS)?window.PORTAL_DATA.APPS.length:0;
+    var chunk='<span>I. ROIG</span><b>✦</b><span>'+appCount+' APPS</span><b>✦</b><span>UNIVERSO 404</span><b>✦</b><span>LOCAL-FIRST</span><b>✦</b><span>GAMES</span><b>✦</b><span>SYSTEMS</span><b>✦</b><span>PWA</span><b>✦</b><span>NO FRAMEWORKS</span><b>✦</b>';
     ticker.innerHTML='<div class="cine-ticker-track">'+chunk+chunk+'</div>'; hero.insertAdjacentElement('afterend',ticker);
   }
 
