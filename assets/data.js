@@ -164,7 +164,8 @@ window.PORTAL_DATA = {
     "INTO-THE-ABYSS-404": "TypeScript / JavaScript / Canvas 2D / WebGL2",
     "MUTATION-404": "TypeScript / HTML / CSS / JavaScript",
     "DUNGEON-404": "HTML / CSS / JavaScript / WebGL / Canvas 2D",
-    "WORLD-404": "HTML / CSS / JavaScript"
+    "WORLD-404": "HTML / CSS / JavaScript",
+    "ZOMBIE-404": "HTML / CSS / JavaScript"
   },
   "APPS": [
     {
@@ -1955,6 +1956,24 @@ window.PORTAL_DATA = {
       "status": "catalogued",
       "availability": "unverified",
       "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-11-11"
+    },
+    {
+      "name": "ZOMBIE-404",
+      "short": "Supervivencia zombi en un mundo devastado: explora, combate y resiste a los no muertos.",
+      "description": "ZOMBIE-404 es un videojuego de supervivencia zombi para navegador, ambientado en un mundo posapocalíptico. Sobrevive a los no muertos, explora escenarios y afronta los peligros de la infección.",
+      "category": "Juego / Supervivencia zombi",
+      "saga": "Universo 404",
+      "icon": "☣",
+      "featured": true,
+      "screenshot": "assets/screenshots/ZOMBIE-404.svg",
+      "pages": "https://ivan7800.github.io/ZOMBIE-404/",
+      "github": "https://github.com/ivan7800/ZOMBIE-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-11-11"
