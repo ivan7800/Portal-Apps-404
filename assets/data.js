@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.24",
-    "updated": "2026-11-08",
+    "updated": "2026-11-11",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -163,7 +163,8 @@ window.PORTAL_DATA = {
     "DEAD-CABIN-404": "JavaScript / HTML / CSS / SVG",
     "INTO-THE-ABYSS-404": "TypeScript / JavaScript / Canvas 2D / WebGL2",
     "MUTATION-404": "TypeScript / HTML / CSS / JavaScript",
-    "DUNGEON-404": "HTML / CSS / JavaScript / WebGL / Canvas 2D"
+    "DUNGEON-404": "HTML / CSS / JavaScript / WebGL / Canvas 2D",
+    "WORLD-404": "HTML / CSS / JavaScript"
   },
   "APPS": [
     {
@@ -1939,6 +1940,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-11-08"
+    },
+    {
+      "name": "WORLD-404",
+      "short": "Aventura de investigación y horror cósmico: resuelve expedientes, conecta pistas y enfrenta la Marea Negra.",
+      "description": "WORLD-404 — El Archivo de la Marea Negra es un juego narrativo de investigación ambientado en un archivo municipal en 1987. Explora escenas, interroga testigos, conecta pistas, prepara sellos y afronta combates con gestión de recursos y daño mental. Incluye incidentes variables, desenlaces distintos, guardado local e importación/exportación de partidas.",
+      "category": "Juego / Investigación y horror cósmico",
+      "saga": "Universo 404",
+      "icon": "🌊",
+      "featured": true,
+      "screenshot": "assets/screenshots/WORLD-404.svg",
+      "pages": "https://ivan7800.github.io/WORLD-404/",
+      "github": "https://github.com/ivan7800/WORLD-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-11-11"
     }
   ]
 };
