@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.52",
-    "updated": "2026-11-11",
+    "updated": "2026-11-12",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -165,7 +165,8 @@ window.PORTAL_DATA = {
     "MUTATION-404": "TypeScript / HTML / CSS / JavaScript",
     "DUNGEON-404": "HTML / CSS / JavaScript / WebGL / Canvas 2D",
     "WORLD-404": "HTML / CSS / JavaScript",
-    "ZOMBIE-404": "HTML / CSS / JavaScript"
+    "ZOMBIE-404": "HTML / CSS / JavaScript",
+    "ASHEN-VEIL-404": "JavaScript / HTML / CSS / Canvas 2D"
   },
   "APPS": [
     {
@@ -1977,6 +1978,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-11-11"
+    },
+    {
+      "name": "ASHEN-VEIL-404",
+      "short": "Dungeon crawler de fantasía oscura en primera persona con combate, criptas, secretos y jefes.",
+      "description": "ASHEN VEIL 404 — REBIRTH es un dungeon crawler original de fantasía oscura con motor raycasting retro 2.5D y estética pixel art. Recorre cuatro regiones, combate espectros y caballeros, descubre reliquias y secretos, mejora al personaje y enfrenta al Vigía de las Profundidades. Incluye esquiva, bloqueo, magia, inventario, guardado local y edición autónoma para navegador.",
+      "category": "Juego / Dungeon crawler de fantasía oscura",
+      "saga": "Universo 404",
+      "icon": "⚔",
+      "featured": true,
+      "screenshot": "assets/screenshots/ASHEN-VEIL-404.svg",
+      "pages": "https://ivan7800.github.io/ASHEN-VEIL-404/",
+      "github": "https://github.com/ivan7800/ASHEN-VEIL-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-11-12"
     }
   ]
 };
