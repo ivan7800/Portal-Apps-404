@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="ECLIPSE OF ASH 404: portada cinematográfica de fantasía oscura HD-2D con viajera ante una catedral durante un eclipse">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#080e17"/><stop offset=".45" stop-color="#303346"/><stop offset=".8" stop-color="#604250"/><stop offset="1" stop-color="#110e18"/></linearGradient><radialGradient id="eclipse"><stop stop-color="#0b0c14" offset=".33"/><stop stop-color="#111521" offset=".47"/><stop stop-color="#f4ab81" offset=".51"/><stop stop-color="#a65b75" offset=".57"/><stop stop-color="#674665" stop-opacity=".25" offset=".85"/><stop stop-color="#151a25" stop-opacity="0" offset="1"/></radialGradient><linearGradient id="earth" x2="0" y2="1"><stop stop-color="#484150"/><stop stop-color="#141622" offset=".42"/><stop stop-color="#05080d" offset="1"/></linearGradient><linearGradient id="columns" x2="0" y2="1"><stop stop-color="#564a59"/><stop stop-color="#11141f" offset=".65"/><stop stop-color="#080b12" offset="1"/></linearGradient><linearGradient id="blade" x2="1" y2=".25"><stop stop-color="#f5d9ad"/><stop stop-color="#7b929c" offset=".52"/><stop stop-color="#283445" offset="1"/></linearGradient><filter id="mist"><feGaussianBlur stdDeviation="17"/></filter><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".59" numOctaves="3" seed="19"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".12"/></feComponentTransfer></filter></defs>
+<rect width="1280" height="720" fill="url(#sky)"/>
+<circle cx="655" cy="327" r="290" fill="url(#eclipse)"/>
+<g opacity=".23" stroke="#c2a5b6" stroke-width="2"><path d="M655 52V594M365 327h580M452 124l412 404M863 121L450 530"/></g>
+<g fill="#0d1420" opacity=".83"><path d="M0 455l125-144 130 121 92-89 116 101 122-110 131 96 112-102 151 105 125-127 76 140v274H0Z"/></g>
+<path d="M0 536L144 466l80 34 111-95 91 67 134-62 99 55 104-69 150 80 133-67 126 90 108-40v261H0Z" fill="#131623"/>
+<g fill="url(#columns)" stroke="#655468" stroke-width="3">
+<path d="M416 515V333l-23-20 22-25v-92l32-49 33 49v91l19 27v201Z"/>
+<path d="M786 515V333l-23-20 22-25v-92l32-49 33 49v91l19 27v201Z"/>
+<path d="M494 522V304l35-40v-95l27-39 27 39v95l30 39v219Z"/>
+<path d="M671 522V304l35-40v-95l27-39 27 39v95l30 39v219Z"/>
+<path d="M575 523V274l26-48 40-94 39 94 27 48v249Z"/>
+<path d="M468 514V381q0-106 172-159 172 53 172 159v133Z" fill="#242332"/>
+</g>
+<g fill="#090c15"><path d="M584 516V387q0-54 56-79 56 25 56 79v129Z"/><path d="M505 443v-66q0-27 27-44 27 17 27 44v66Z"/><path d="M722 443v-66q0-27 27-44 27 17 27 44v66Z"/></g>
+<g stroke="#a987a5" fill="none" opacity=".54" stroke-width="5"><circle cx="640" cy="269" r="30"/><path d="M610 269h60m-30-30v60m-21-51 42 42m0-42-42 42"/></g>
+<g stroke="#6f606e" stroke-width="9" opacity=".75"><path d="M387 516l-20-210M873 516l35-212M505 525l-28-170M773 525l25-164"/></g>
+<path d="M0 547Q180 484 322 532T665 521T950 539T1280 500V720H0Z" fill="url(#earth)"/>
+<path d="M0 574Q250 545 450 569T890 558T1280 561" fill="none" stroke="#a16f82" opacity=".35" stroke-width="36" filter="url(#mist)"/>
+<g fill="#edb78c" opacity=".54"><circle cx="291" cy="518" r="3"/><circle cx="921" cy="483" r="4"/><circle cx="1018" cy="510" r="3"/><circle cx="182" cy="580" r="2"/><circle cx="1087" cy="572" r="2"/><circle cx="702" cy="567" r="3"/></g>
+<g transform="translate(642 480)">
+<path d="M-70 240l-19-126 20-95 39-47 22-35 10-17 26 3 26 29 38 58 25 113-18 117Z" fill="#080b12" stroke="#544c5e" stroke-width="6"/>
+<path d="M-19-56q-26-15-21-51 6-43 42-44 41 7 41 51l-19 44Z" fill="#171822" stroke="#4a4251" stroke-width="5"/>
+<path d="M-32-118l18-43 47 11 21 53-27-34-26 9Z" fill="#11131a"/>
+<path d="M-39-25l38 37 48-31 23 111-120 8Z" fill="#312739" stroke="#806475" stroke-width="5"/>
+<path d="M-61 20l-68 130-20-11 64-154Z" fill="#121824" stroke="#56495c" stroke-width="5"/>
+<path d="M72 28l54 97 23-11-49-125Z" fill="#121824" stroke="#56495c" stroke-width="5"/>
+<path d="M-150 126l-10 114 14 0 24-108Z" fill="url(#blade)" stroke="#7f8294" stroke-width="3"/>
+<path d="M-174 127h62" stroke="#d1b38a" stroke-width="8"/>
+<path d="M-52 87l-21 153h62l19-137Z" fill="#151521"/>
+<path d="M41 98l30 142h59l-49-155Z" fill="#151521"/>
+</g>
+<path d="M0 657Q190 630 373 655T779 660T1280 635V720H0Z" fill="#080c13" opacity=".8"/>
+<rect width="1280" height="720" fill="#010307" opacity=".14"/>
+<rect width="1280" height="720" filter="url(#grain)" opacity=".25"/>
+<text x="640" y="47" text-anchor="middle" font-family="Georgia,serif" font-size="17" letter-spacing="8" fill="#f1ceae">BAJO EL ECLIPSE DE VAELORIA</text>
+<text x="640" y="145" text-anchor="middle" font-family="Georgia,serif" font-size="98" font-weight="bold" letter-spacing="3" stroke="#050811" stroke-width="9" paint-order="stroke" fill="#f3ddc1">ECLIPSE <tspan fill="#de9e92">OF ASH</tspan></text>
+<text x="640" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="bold" letter-spacing="14" stroke="#090a12" stroke-width="7" paint-order="stroke" fill="#e6c5bd">404  ·  HD-2D</text>
+<path d="M100 211h315m450 0h315" stroke="#b88790" stroke-width="2"/>
+<text x="640" y="690" text-anchor="middle" font-family="Georgia,serif" font-size="16" letter-spacing="6" fill="#e6baa8">FANTASÍA OSCURA · ACCIÓN · EXPLORACIÓN</text>
+<rect width="1280" height="720" fill="none" stroke="#080a0e" stroke-width="22"/>
+</svg>
