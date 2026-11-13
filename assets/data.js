@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.52",
-    "updated": "2026-11-12",
+    "updated": "2026-11-13",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -166,7 +166,8 @@ window.PORTAL_DATA = {
     "DUNGEON-404": "HTML / CSS / JavaScript / WebGL / Canvas 2D",
     "WORLD-404": "HTML / CSS / JavaScript",
     "ZOMBIE-404": "HTML / CSS / JavaScript",
-    "ASHEN-VEIL-404": "JavaScript / HTML / CSS / Canvas 2D"
+    "ASHEN-VEIL-404": "JavaScript / HTML / CSS / Canvas 2D",
+    "ECLIPSE-OF-ASH": "TypeScript / JavaScript / Vite / WebGL 2"
   },
   "APPS": [
     {
@@ -1996,6 +1997,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-11-12"
+    },
+    {
+      "name": "ECLIPSE-OF-ASH",
+      "short": "Aventura HD-2D de acción y fantasía oscura bajo el eclipse de Vaeloria, con mazmorras, armas y jefes.",
+      "description": "ECLIPSE OF ASH 404 es una aventura HD-2D de acción y fantasía oscura. Sigue a Eira por Vaeloria a través de diez regiones, ocho mazmorras y ocho jefes, con dos realidades y tres finales previstos. Incluye cuatro armas, exploración, combates, inscripciones, efectos de iluminación y audio sintetizado original.",
+      "category": "Juego / Acción y fantasía oscura HD-2D",
+      "saga": "Universo 404",
+      "icon": "⚔",
+      "featured": true,
+      "screenshot": "assets/screenshots/ECLIPSE-OF-ASH.svg",
+      "pages": "https://ivan7800.github.io/ECLIPSE-OF-ASH/",
+      "github": "https://github.com/ivan7800/ECLIPSE-OF-ASH",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-11-13"
     }
   ]
 };
