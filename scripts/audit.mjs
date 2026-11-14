@@ -86,7 +86,21 @@ const sagas = [...new Set(apps.map(app => app.saga))];
 if (sagas.length !== 7) fail(`El mapa orbital requiere 7 mundos y el catálogo declara ${sagas.length}.`);
 
 const files = await walk(root);
-if (files.length > 200) warn(`El proyecto tiene ${files.length} archivos; conviene revisar assets y artefactos innecesarios.`);
+// El tamaño o número de archivos no determina por sí mismo un fallo.
+const referencedScreenshots = new Set(apps.map(app => app.screenshot));
+for (const name of await readdir(join(root, 'assets', 'screenshots'))) {
+  const path = 'assets/screenshots/' + name;
+  if (!referencedScreenshots.has(path)) warn('Carátula sin ficha activa: ' + path);
+}
+const loadedScripts = new Set(
+  [...indexHTML.matchAll(/<script\b[^>]*\bsrc=["'](assets\/[^"'?]+\.js)(?:\?[^"']*)?["']/g)]
+    .map(match => match[1])
+);
+for (const name of await readdir(join(root, 'assets'))) {
+  if (name.endsWith('.js') && !loadedScripts.has('assets/' + name)) {
+    warn('Script no cargado por index.html: assets/' + name);
+  }
+}
 
 const appSource = await readFile(join(root, 'assets/app.js'), 'utf8');
 const cinematicSource = await readFile(join(root, 'assets/cinematic.js'), 'utf8');
@@ -136,9 +150,23 @@ if (manifest) {
 const coreMatch = serviceWorker.match(/const\s+CORE\s*=\s*\[(.*?)\];/s);
 if (!coreMatch) fail('sw.js: no se pudo localizar la lista CORE.');
 else {
-  for (const match of coreMatch[1].matchAll(/['"](.+?)['"]/g)) {
-    const item = match[1].replace(/^\.\//, '');
-    if (item && !existsSync(join(root, item))) fail(`sw.js: recurso CORE inexistente (${match[1]}).`);
+  const items = [...coreMatch[1].matchAll(/['"](.+?)['"]/g)].map(match => match[1].replace(/^\.\//, ''));
+  if (items.length !== new Set(items).size) fail('sw.js: CORE contiene rutas duplicadas.');
+  let shellBytes = 0;
+  for (const item of items) {
+    if (item.startsWith('assets/screenshots/')) fail('sw.js: no se deben precargar carátulas: ' + item);
+    const filename = join(root, item);
+    if (item && item !== '.' && !existsSync(filename)) {
+      fail('sw.js: recurso CORE inexistente (' + item + ').');
+    } else if (item && item !== '.' && existsSync(filename)) {
+      const entry = await stat(filename);
+      if (entry.isFile()) shellBytes += entry.size;
+    }
+  }
+  if (shellBytes > 5 * 1024 * 1024) warn('sw.js: la instalación supera 5 MiB (' + shellBytes + ' bytes).');
+  if (!serviceWorker.includes('async function assetResponse(') ||
+      !serviceWorker.includes('await cache.put(request, response.clone())')) {
+    fail('sw.js: falta la caché bajo demanda.');
   }
 }
 if (!/key\.startsWith\(CACHE_PREFIX\)/.test(serviceWorker)) fail('sw.js: la limpieza de caché no está aislada por prefijo.');
