@@ -80,7 +80,7 @@ test('las carátulas recientes son únicas y existen en el proyecto', async () =
   }
 });
 
-test('las seis carátulas cinematográficas actuales son JPEG únicos y precacheados', async () => {
+test('las seis carátulas cinematográficas son JPEG únicos y cacheables bajo demanda', async () => {
   const names = ['DUNGEON-404', 'WORLD-404', 'ZOMBIE-404', 'ASHEN-VEIL-404', 'ECLIPSE-OF-ASH', 'Marea-hueca'];
   const sw = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
   const paths = new Set();
@@ -94,7 +94,8 @@ test('las seis carátulas cinematográficas actuales son JPEG únicos y precache
     assert.ok(jpg.length > 100_000, name + ': JPEG demasiado pequeño');
     assert.equal(jpg.subarray(0, 3).toString('hex'), 'ffd8ff', name + ': firma JPEG inválida');
     assert.equal(jpg.subarray(-2).toString('hex'), 'ffd9', name + ': JPEG incompleto');
-    assert.ok(sw.includes("'./" + path + "'"), name + ': portada ausente de precaché PWA');
+    const core = sw.match(/const CORE = \[([\s\S]*?)\];/)?.[1] || '';
+    assert.ok(!core.includes(path), name + ': descarga obligatoria innecesaria');
   }
 });
 
