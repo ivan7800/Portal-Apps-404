@@ -1,5 +1,6 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-52-cinematic-six';
+const CACHE = CACHE_PREFIX + 'v41-52-shell-lazy-covers';
+// Instalar solo el shell; carátulas se descargan y almacenan al visitarlas.
 const CORE = [
   './',
   './index.html',
@@ -7,12 +8,6 @@ const CORE = [
   './assets/cinematic.css',
   './assets/fonts.css',
   './assets/data.js',
-  './assets/screenshots/Marea-hueca-cinematic.jpg',
-  './assets/screenshots/ECLIPSE-OF-ASH-cinematic.jpg',
-  './assets/screenshots/ASHEN-VEIL-404-cinematic.jpg',
-  './assets/screenshots/ZOMBIE-404-cinematic.jpg',
-  './assets/screenshots/WORLD-404-cinematic.jpg',
-  './assets/screenshots/DUNGEON-404-cinematic.jpg',
   './assets/pocket-404-dx.js',
   './assets/blackthorn-404.js',
   './assets/bomb-sweeper-87.js',
@@ -50,95 +45,6 @@ const CORE = [
   './assets/apple-touch-icon.png',
   './assets/icon-192.png',
   './assets/icon-512.png',
-  './assets/screenshots/QUINQUI-404.webp',
-  './assets/screenshots/Night-Shift-404.png',
-  './assets/screenshots/Pocket-404-DX.svg',
-  './assets/screenshots/Blackthorn-404.svg',
-  './assets/screenshots/Bomb-Sweeper-87.svg',
-  './assets/screenshots/Abyssal-Descent.svg',
-  './assets/screenshots/Historias-del-Bloque-404.svg',
-  './assets/screenshots/Techno-404-Studio.svg',
-  './assets/screenshots/Numeria-404.svg',
-  './assets/screenshots/HomeOps-404.svg',
-  './assets/screenshots/JARVIS-404.svg',
-  './assets/screenshots/ONEIRO-404.svg',
-  './assets/screenshots/SOULS-CODEX-404.svg',
-  './assets/screenshots/CASE-404.svg',
-  './assets/screenshots/CAU-OS.svg',
-  './assets/screenshots/IT-Warehouse-404.svg',
-  './assets/screenshots/ABYSSAL-HAND-404.svg',
-  './assets/screenshots/NETWATCH-404.svg',
-  './assets/screenshots/EVOLUTION-LAB-404.svg',
-  './assets/screenshots/CHRONOS-404.svg',
-  './assets/screenshots/MNEMOSYNE-404.svg',
-  './assets/screenshots/DEEP-SPACE-404.svg',
-  './assets/screenshots/WORLD-GENESIS-404.svg',
-  './assets/screenshots/EIFFEL-404.svg',
-  './assets/screenshots/Pi-Legacy.svg',
-  './assets/screenshots/GHOST-TEST-404.svg',
-  './assets/screenshots/PROJECT-COMMAND-404.svg',
-  './assets/screenshots/SOLO-BUSINESS-404.svg',
-  './assets/screenshots/LINGUA-NATIVA-404.svg',
-  './assets/screenshots/SONIC-FORGE-404.svg',
-  './assets/screenshots/LINUX-404.svg',
-  './assets/screenshots/EIDOLON-404.svg',
-  './assets/screenshots/VIRUS-MUSEUM-404.svg',
-  './assets/screenshots/WONDERS-404.svg',
-  './assets/screenshots/DAYTONA-404.svg',
-  './assets/screenshots/VOYNICH-404.svg',
-  './assets/screenshots/CHASE-404.svg',
-  './assets/screenshots/DRIVE-THE-SUNSET.svg',
-  './assets/screenshots/SANITY-404.svg',
-  './assets/screenshots/DEAD-ROAD-404.svg',
-  './assets/screenshots/NAMELESS-404.svg',
-  './assets/screenshots/DEAD-CABIN-404.svg',
-  './assets/screenshots/INTO-THE-ABYSS-404.svg',
-  './assets/screenshots/MUTATION-404.svg',
-  // Carátulas recuperadas del catálogo: disponibles también sin conexión.
-  './assets/screenshots/Novel-Forge-404.svg',
-  './assets/screenshots/AppHub-404.svg',
-  './assets/screenshots/MYTHOS-404.svg',
-  './assets/screenshots/Comic-Reader-404.svg',
-  './assets/screenshots/Motion-404.svg',
-  './assets/screenshots/Luna-Natura-404.svg',
-  './assets/screenshots/Caminos-Malditos-Sangrientos.svg',
-  './assets/screenshots/MD-Forge-404.svg',
-  './assets/screenshots/FileDoctor-404.svg',
-  './assets/screenshots/HumanScript-404.svg',
-  './assets/screenshots/IT-Commander-404.svg',
-  './assets/screenshots/SECOND-BRAIN-404.svg',
-  './assets/screenshots/Ringtone-404.svg',
-  './assets/screenshots/ReleaseForge-404.svg',
-  './assets/screenshots/BinForge-404.svg',
-  './assets/screenshots/Cockatils-404.svg',
-  './assets/screenshots/Compra-404.svg',
-  './assets/screenshots/Nightmare-404.svg',
-  './assets/screenshots/PixelForge-404.svg',
-  './assets/screenshots/INSANITY.svg',
-  './assets/screenshots/musica-404.svg',
-  './assets/screenshots/json404.svg',
-  './assets/screenshots/SafeSignal.svg',
-  './assets/screenshots/Cauers4ever.svg',
-  './assets/screenshots/Biblioteca-Oculta.svg',
-  './assets/screenshots/PocketTone-Archive.svg',
-  './assets/screenshots/Atlas-Pattern-AI.svg',
-  './assets/screenshots/NECRONOMICON-404.svg',
-  './assets/screenshots/Windows-Master-Suite.svg',
-  './assets/screenshots/diario-moleskine.svg',
-  './assets/screenshots/Storyboard-Studio.svg',
-  './assets/screenshots/sin-bruma.svg',
-  './assets/screenshots/Claude-Skills-Pack.svg',
-  './assets/screenshots/zerokey-ai.svg',
-  './assets/screenshots/doppelganger-chat.svg',
-  './assets/screenshots/i.roig.svg',
-  './assets/screenshots/El-Evangelio-del-Nombre-Devorado.svg',
-  './assets/screenshots/Strategy-Lab-Campaign.svg',
-  './assets/screenshots/Vigilia-Abisal.svg',
-  './assets/screenshots/VOX-MORPHER-404.svg',
-  './assets/screenshots/Guardian-Senior-AI.svg',
-  './assets/screenshots/portal-descargas-corporativas.svg',
-  './assets/screenshots/DUNGEON-404.svg',
-
   './manifest.webmanifest'
 ];
 
@@ -191,12 +97,13 @@ async function navigationResponse(request) {
   }
 }
 
-async function assetResponse(request) {
+async function assetResponse(request, event) {
   const cache = await caches.open(CACHE);
   const cached = await cache.match(request);
   const network = fetch(request)
     .then(response => updateCache(request, response))
     .catch(() => null);
+  if (cached && event && typeof event.waitUntil === 'function') event.waitUntil(network);
   return cached || (await network) || Response.error();
 }
 
@@ -205,5 +112,5 @@ self.addEventListener('fetch', event => {
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
   if (url.origin !== location.origin || !url.pathname.startsWith(scopePath())) return;
-  event.respondWith(request.mode === 'navigate' ? navigationResponse(request) : assetResponse(request));
+  event.respondWith(request.mode === 'navigate' ? navigationResponse(request) : assetResponse(request, event));
 });
