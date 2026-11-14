@@ -15,7 +15,7 @@
   // Solo una ruta marcadora explícita debe usar una portada de respaldo.
   var readyTimer = null;
   var VERSION = 'v41.52 · Release Sync';
-  var UPDATED = '11 de noviembre de 2026';
+  var UPDATED = '14 de noviembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
   var SKIN_NAMES = { cosmica: 'Cósmica', obsidiana: 'Obsidiana', void: 'Void OLED', glass: 'Glass', terminal: 'Terminal', arctic: 'Arctic', synthwave: 'Synthwave' };

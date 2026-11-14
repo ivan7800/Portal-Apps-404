@@ -4,6 +4,7 @@ import { existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
+import { MIN_CATALOG_APPS, ALLOWED_PLATFORMS } from './catalog-policy.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const online = process.argv.includes('--online');
@@ -46,14 +47,14 @@ for (const path of extensionScripts) {
 
 const apps = data?.APPS || [];
 if (!apps.length) fail('El catálogo APPS está vacío.');
-if (apps.length !== 140) fail(`El portal debe mostrar 140 aplicaciones y el catálogo cargado contiene ${apps.length}.`);
+if (apps.length < MIN_CATALOG_APPS) fail(`Regresión del catálogo: se esperaban al menos ${MIN_CATALOG_APPS} aplicaciones y se encontraron ${apps.length}.`);
 const required = ['name', 'short', 'category', 'saga', 'icon', 'screenshot', 'pages', 'github', 'status', 'availability', 'offline', 'platform', 'delivery'];
 const seen = { name: new Map(), pages: new Map(), github: new Map() };
 const allowed = {
   status: new Set(['catalogued', 'experimental', 'archived']),
   availability: new Set(['verified', 'unverified', 'unavailable']),
   offline: new Set(['declared', 'not-declared']),
-  platform: new Set(['web', 'webassembly', 'hybrid-windows', 'windows']),
+  platform: ALLOWED_PLATFORMS,
   delivery: new Set(['web-app', 'repository', 'server-app', 'desktop-app'])
 };
 
@@ -94,6 +95,11 @@ const readme = await readFile(join(root, 'README.md'), 'utf8');
 const releaseNumber = String(release || '').replace(/^v/, '');
 const expectedCacheVersion = releaseNumber.replace(/\./g, '-');
 if (!appSource.includes(`var VERSION = '${release} · Release Sync'`)) fail('assets/app.js y assets/data.js no declaran la misma release visible.');
+if (/^\d{4}-\d{2}-\d{2}$/.test(data?.META?.updated || '')) {
+  const updated = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+    .format(new Date(`${data.META.updated}T12:00:00Z`));
+  if (!appSource.includes(`var UPDATED = '${updated}'`)) fail('assets/app.js no refleja la fecha real de actualización del catálogo.');
+} else fail('assets/data.js: fecha META.updated inválida o ausente.');
 if (!appSource.includes(`sw.js?v=${releaseNumber}`)) fail('assets/app.js registra un Service Worker con una versión distinta.');
 if (!new RegExp(`v${expectedCacheVersion}(?:-|')`).test(serviceWorker)) fail('sw.js y assets/data.js no comparten la versión de caché.');
 for (const match of indexHTML.matchAll(/(?:src|href)=["'](assets\/[^"'?#]+)(?:\?v=([^"'&]+))?["']/g)) {
