@@ -1,8 +1,15 @@
-## Sincronización de release — v41.52 · 11 de noviembre de 2026
+## Mantenimiento de recursos y PWA — v41.52 · 14 de noviembre de 2026
 
-- Catálogo de 140 aplicaciones; el ticker refleja el total real automáticamente.
-- Número de release, recursos del portal y caché PWA sincronizados en v41.52.
-- Fecha de novedades actualizada y comprobaciones para detectar futuras discrepancias.
+- **144 aplicaciones activas**: 116 fichas en `assets/data.js` y 28 extensiones JavaScript.
+- Retirados **14 SVG antiguos** y **5 scripts históricos no cargados**, sin alterar las portadas vigentes ni las fichas.
+- La PWA instala la interfaz, los scripts, fuentes e iconos. **Las portadas se descargan y cachean al visitarlas**, sin precargarlas todas. Una carátula no visitada con conexión podría no estar disponible sin conexión.
+- Auditoría de imágenes huérfanas, scripts no cargados, rutas inexistentes y tamaño del shell, sin límite arbitrario de 200 archivos.
+- Los archivos retirados siguen disponibles en el historial Git.
+
+## Sincronización de release — v41.52 · 11 de noviembre de 2026 (histórico)
+
+- En esa fecha se documentaron 140 aplicaciones; actualmente se cargan 144.
+- Se sincronizaron la release, los recursos versionados y la caché PWA.
 
 ## Carátulas cinematográficas — v41.51 · 8 de noviembre de 2026
 

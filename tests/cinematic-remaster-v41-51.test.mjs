@@ -22,7 +22,8 @@ test('las diez portadas cinematográficas sustituyen las plantillas genéricas',
     assert.ok(svg.includes('Carátula cinematográfica exclusiva de ' + name), name + ': portada equivocada');
     assert.ok(!seen.has(svg), name + ': portada duplicada');
     assert.ok(extension.includes(path), name + ': la ficha no enlaza con la portada');
-    assert.ok(sw.includes("'./" + path + "'"), name + ': carátula no precacheada');
+    const core = sw.match(/const CORE = \[([\s\S]*?)\];/)?.[1] || '';
+    assert.ok(!core.includes(path), name + ': carátula no debe forzar instalación');
     seen.add(svg);
   }
 });

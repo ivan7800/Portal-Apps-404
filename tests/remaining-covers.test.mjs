@@ -16,13 +16,14 @@ test('las 13 carátulas originales no recurren a la vieja plantilla', async () =
     seen.add(svg);
   }
 });
-test('catálogo y precarga reconocen las trece carátulas', async () => {
+test('catálogo reconoce las trece carátulas con caché bajo demanda', async () => {
   const d = await readFile(new URL('../assets/data.js', import.meta.url), 'utf8');
   const worker = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
   const ctx = { window: {} };
   vm.runInNewContext(d, ctx);
   for (const name of names) {
     assert.equal(ctx.window.PORTAL_DATA.APPS.find(a => a.name === name)?.screenshot, 'assets/screenshots/' + name + '.svg', name);
-    assert.ok(worker.includes("'./assets/screenshots/" + name + ".svg'"), name + ': no está precacheada');
+    const core = worker.match(/const CORE = \[([\s\S]*?)\];/)?.[1] || '';
+    assert.ok(!core.includes('assets/screenshots/' + name + '.svg'), name + ': descarga obligatoria innecesaria');
   }
 });

@@ -53,6 +53,7 @@ test('instala el shell y activa solo su familia de cachés', async () => {
   harness.handlers.install({ waitUntil: value => { task = value; } });
   await task;
   assert.ok(harness.calls.added.includes('./assets/catalog-utils.js'));
+  assert.equal(harness.calls.added.filter(path => path.includes('/screenshots/')).length, 0, 'instalación sin precarga de portadas');
   harness.handlers.activate({ waitUntil: value => { task = value; } });
   await task;
   assert.deepEqual(harness.calls.deleted, ['portal-apps-404-v38-1-release-audit', 'portal-apps-404-v41-11-clean-catalog', 'portal-apps-404-v41-21-stable-catalog-restore', 'portal-apps-404-v41-22-quinqui-404', 'portal-apps-404-v41-23-night-shift-404']);
@@ -117,4 +118,18 @@ test('no intercepta recursos del mismo origen fuera del scope', async () => {
     respondWith: () => { handled = true; }
   });
   assert.equal(handled, false);
+});
+
+test('una portada visitada se guarda y queda disponible sin conexión', async () => {
+  const harness = await createHarness();
+  let response;
+  const request = { method: 'GET', mode: 'cors', url: 'https://example.test/assets/screenshots/DUNGEON-404-cinematic.jpg' };
+  harness.handlers.fetch({ request, respondWith: value => { response = value; } });
+  assert.equal(await (await response).text(), 'network');
+  assert.ok(harness.calls.put.includes(request.url));
+
+  harness.setCachedAsset(new Response('portada almacenada'));
+  harness.setNetwork('fail');
+  harness.handlers.fetch({ request, respondWith: value => { response = value; } });
+  assert.equal(await (await response).text(), 'portada almacenada');
 });
