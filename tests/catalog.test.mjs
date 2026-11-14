@@ -72,19 +72,13 @@ test('las carátulas recientes son únicas y existen en el proyecto', async () =
     if (expectedPath.endsWith('.svg')) {
       const svg = contents.toString('utf8');
       assert.match(svg, /<svg[^>]+viewBox="0 0 1280 720"/);
-      assert.match(svg, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\    assert.equal(app.screenshot, 'assets/screenshots/' + name + '.svg');
-    assert.ok(!covers.has(app.screenshot), name + ' no debe compartir carátula');
-    covers.add(app.screenshot);
-    const svg = await readFile(new URL('../' + app.screenshot, import.meta.url), 'utf8');
-    assert.match(svg, /<svg[^>]+viewBox="0 0 1280 720"/);
-    assert.match(svg, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));')));
+      assert.ok(svg.includes(name), name + ': portada SVG sin identidad');
     } else {
       assert.ok(contents.length > 100_000, name + ': JPEG cinematográfico incompleto');
       assert.equal(contents.subarray(0, 3).toString('hex'), 'ffd8ff', name + ': firma JPEG inválida');
     }
   }
 });
-
 
 test('las seis carátulas cinematográficas actuales son JPEG únicos y precacheados', async () => {
   const names = ['DUNGEON-404', 'WORLD-404', 'ZOMBIE-404', 'ASHEN-VEIL-404', 'ECLIPSE-OF-ASH', 'Marea-hueca'];
