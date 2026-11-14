@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-52-release-sync';
+const CACHE = CACHE_PREFIX + 'v41-52-cinematic-six';
 const CORE = [
   './',
   './index.html',
@@ -7,6 +7,12 @@ const CORE = [
   './assets/cinematic.css',
   './assets/fonts.css',
   './assets/data.js',
+  './assets/screenshots/Marea-hueca-cinematic.jpg',
+  './assets/screenshots/ECLIPSE-OF-ASH-cinematic.jpg',
+  './assets/screenshots/ASHEN-VEIL-404-cinematic.jpg',
+  './assets/screenshots/ZOMBIE-404-cinematic.jpg',
+  './assets/screenshots/WORLD-404-cinematic.jpg',
+  './assets/screenshots/DUNGEON-404-cinematic.jpg',
   './assets/pocket-404-dx.js',
   './assets/blackthorn-404.js',
   './assets/bomb-sweeper-87.js',
