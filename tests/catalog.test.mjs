@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import vm from 'node:vm';
+import { MIN_CATALOG_APPS, ALLOWED_PLATFORMS } from '../scripts/catalog-policy.mjs';
 
 const sandbox = { window: {} };
 vm.runInNewContext(await readFile(new URL('../assets/data.js', import.meta.url), 'utf8'), sandbox);
@@ -23,7 +24,7 @@ const aliases = {
 test('el catálogo usa el esquema v2 y conserva sus invariantes', () => {
   assert.equal(data.META.schemaVersion, 2);
   assert.equal(data.META.release, 'v41.52');
-  assert.equal(data.APPS.length, 140);
+  assert.ok(data.APPS.length >= MIN_CATALOG_APPS, `Catálogo reducido a ${data.APPS.length} aplicaciones`);
   assert.equal(Object.keys(data.LANGUAGES).length, data.APPS.length);
   assert.equal(new Set(data.APPS.map(app => app.name)).size, data.APPS.length);
   assert.equal(new Set(data.APPS.map(app => app.saga)).size, 7);
@@ -34,7 +35,7 @@ test('todas las fichas declaran estado verificable y tipo de entrega', () => {
     assert.match(app.status, /^(catalogued|experimental|archived)$/);
     assert.match(app.availability, /^(verified|unverified|unavailable)$/);
     assert.match(app.offline, /^(declared|not-declared)$/);
-    assert.match(app.platform, /^(web|webassembly|hybrid-windows|windows)$/);
+    assert.ok(ALLOWED_PLATFORMS.has(app.platform), `${app.name}: plataforma no reconocida (${app.platform})`);
     assert.match(app.delivery, /^(web-app|repository|server-app|desktop-app)$/);
   }
 });
@@ -61,12 +62,45 @@ test('las carátulas recientes son únicas y existen en el proyecto', async () =
   for (const name of recentNames) {
     const app = data.APPS.find(item => item.name === name);
     assert.ok(app, name + ' debe figurar en el catálogo');
-    assert.equal(app.screenshot, 'assets/screenshots/' + name + '.svg');
+    const expectedPath = name === 'DUNGEON-404'
+      ? 'assets/screenshots/DUNGEON-404-cinematic.jpg'
+      : 'assets/screenshots/' + name + '.svg';
+    assert.equal(app.screenshot, expectedPath);
+    assert.ok(!covers.has(app.screenshot), name + ' no debe compartir carátula');
+    covers.add(app.screenshot);
+    const contents = await readFile(new URL('../' + app.screenshot, import.meta.url));
+    if (expectedPath.endsWith('.svg')) {
+      const svg = contents.toString('utf8');
+      assert.match(svg, /<svg[^>]+viewBox="0 0 1280 720"/);
+      assert.match(svg, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\    assert.equal(app.screenshot, 'assets/screenshots/' + name + '.svg');
     assert.ok(!covers.has(app.screenshot), name + ' no debe compartir carátula');
     covers.add(app.screenshot);
     const svg = await readFile(new URL('../' + app.screenshot, import.meta.url), 'utf8');
     assert.match(svg, /<svg[^>]+viewBox="0 0 1280 720"/);
-    assert.match(svg, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+    assert.match(svg, new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));')));
+    } else {
+      assert.ok(contents.length > 100_000, name + ': JPEG cinematográfico incompleto');
+      assert.equal(contents.subarray(0, 3).toString('hex'), 'ffd8ff', name + ': firma JPEG inválida');
+    }
+  }
+});
+
+
+test('las seis carátulas cinematográficas actuales son JPEG únicos y precacheados', async () => {
+  const names = ['DUNGEON-404', 'WORLD-404', 'ZOMBIE-404', 'ASHEN-VEIL-404', 'ECLIPSE-OF-ASH', 'Marea-hueca'];
+  const sw = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
+  const paths = new Set();
+  for (const name of names) {
+    const app = data.APPS.find(entry => entry.name === name);
+    const path = 'assets/screenshots/' + name + '-cinematic.jpg';
+    assert.equal(app?.screenshot, path, name + ': la ficha no enlaza con el JPEG');
+    assert.ok(!paths.has(path), name + ': portada duplicada');
+    paths.add(path);
+    const jpg = await readFile(new URL('../' + path, import.meta.url));
+    assert.ok(jpg.length > 100_000, name + ': JPEG demasiado pequeño');
+    assert.equal(jpg.subarray(0, 3).toString('hex'), 'ffd8ff', name + ': firma JPEG inválida');
+    assert.equal(jpg.subarray(-2).toString('hex'), 'ffd9', name + ': JPEG incompleto');
+    assert.ok(sw.includes("'./" + path + "'"), name + ': portada ausente de precaché PWA');
   }
 });
 

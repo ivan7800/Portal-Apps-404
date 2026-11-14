@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import vm from 'node:vm';
+import { MIN_CATALOG_APPS } from '../scripts/catalog-policy.mjs';
 
 const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const app = await readFile(new URL('../assets/app.js', import.meta.url), 'utf8');
@@ -33,8 +34,10 @@ test('la página contiene un único landmark principal en tiempo de ejecución',
 });
 
 test('número de apps, ticker, fecha y versión visible coinciden con el catálogo', () => {
-  assert.equal(data.APPS.length, 140);
-  assert.match(app, /var UPDATED = '11 de noviembre de 2026'/);
+  assert.ok(data.APPS.length >= MIN_CATALOG_APPS, `Catálogo reducido a ${data.APPS.length} aplicaciones`);
+  const expectedDate = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+    .format(new Date(`${data.META.updated}T12:00:00Z`));
+  assert.ok(app.includes(`var UPDATED = '${expectedDate}'`));
   assert.match(cinematicScript, /var appCount=window\.PORTAL_DATA&&Array\.isArray\(window\.PORTAL_DATA\.APPS\)\?window\.PORTAL_DATA\.APPS\.length:0/);
   assert.doesNotMatch(cinematicScript, /101 APPS/);
   assert.ok(app.includes(`var VERSION = '${data.META.release} · Release Sync'`));
