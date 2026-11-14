@@ -17,14 +17,16 @@ test('las diez carátulas cinematográficas son distintas, válidas y autoconten
     fingerprints.add(svg);
   }
 });
-test('catálogo y caché PWA usan todas las portadas restauradas', async () => {
+test('el catálogo conserva las portadas y evita precargarlas', async () => {
   const code = await readFile(new URL('../assets/data.js', import.meta.url), 'utf8');
   const serviceWorker = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
   const context = { window: {} };
   vm.runInNewContext(code, context);
+  assert.doesNotMatch(serviceWorker.match(/const CORE = \[([\s\S]*?)\];/)?.[1] || '', /assets\/screenshots\//);
+  assert.match(serviceWorker, /async function assetResponse\(/);
   for (const name of names) {
     const app = context.window.PORTAL_DATA.APPS.find(app => app.name === name);
     assert.equal(app?.screenshot, 'assets/screenshots/' + name + '.svg', name);
-    assert.ok(serviceWorker.includes("'./assets/screenshots/" + name + ".svg'"), name + ': falta en caché');
+
   }
 });
