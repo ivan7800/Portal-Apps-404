@@ -1,5 +1,13 @@
 # Changelog
 
+## v41.52 · Limpieza selectiva y caché bajo demanda — 14 de noviembre de 2026
+
+- Eliminados 14 SVG sustituidos y cinco scripts históricos no utilizados.
+- Instalación PWA ligera: las carátulas se guardan al visitarlas, no durante la instalación.
+- Auditoría de portadas huérfanas, scripts inactivos y tamaño del shell (umbral de advertencia: 5 MiB).
+- Documentado el catálogo actual de 144 aplicaciones (116 base y 28 extensiones).
+- Pruebas adaptadas para comprobar la caché bajo demanda y preservar las carátulas vigentes.
+
 ## v41.52 · Release Sync — 11 de noviembre de 2026
 
 - Unificado el recuento del catálogo en 140; el ticker obtiene el número directamente de `assets/data.js`.
