@@ -2,7 +2,7 @@ window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
     "release": "v41.52",
-    "updated": "2026-11-13",
+    "updated": "2026-11-14",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -167,7 +167,8 @@ window.PORTAL_DATA = {
     "WORLD-404": "HTML / CSS / JavaScript",
     "ZOMBIE-404": "HTML / CSS / JavaScript",
     "ASHEN-VEIL-404": "JavaScript / HTML / CSS / Canvas 2D",
-    "ECLIPSE-OF-ASH": "TypeScript / JavaScript / Vite / WebGL 2"
+    "ECLIPSE-OF-ASH": "TypeScript / JavaScript / Vite / WebGL 2",
+    "Marea-hueca": "JavaScript / Three.js / WebGL 2 / HTML / CSS"
   },
   "APPS": [
     {
@@ -2015,6 +2016,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-11-13"
+    },
+    {
+      "name": "Marea-hueca",
+      "short": "Sandbox voxel de supervivencia y horror cósmico: excava, construye refugios y descubre los ecos de una cuenca sin mar.",
+      "description": "La Marea Hueca es un sandbox voxel de exploración, construcción y supervivencia con horror cósmico. Recorre La Costra, el Espinazo y la Salina Ciega, extrae y coloca bloques, fabrica herramientas y explora el recinto enterrado bajo el observatorio. Cuenta con criaturas propias, progresión narrativa opcional mediante ecos, autoguardado y exportación de partidas. La experiencia jugable requiere teclado y ratón.",
+      "category": "Juego / Sandbox voxel y horror cósmico",
+      "saga": "Universo 404",
+      "icon": "🌊",
+      "featured": true,
+      "screenshot": "assets/screenshots/Marea-hueca.svg",
+      "pages": "https://ivan7800.github.io/Marea-hueca/",
+      "github": "https://github.com/ivan7800/Marea-hueca",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "webgl",
+      "delivery": "web-app",
+      "added": "2026-11-14"
     }
   ]
 };
