@@ -1,3 +1,10 @@
+## ELDRITCH-404 — v41.53 · 15 de noviembre de 2026
+
+- Añadido **ELDRITCH-404**, roguelite de acción y horror cósmico con campaña de diez capítulos, mando y progresión permanente.
+- Portada cinematográfica original en `assets/screenshots/ELDRITCH-404-cinematic.jpg` (1280 × 720, JPG optimizado).
+- Catálogo de **145 aplicaciones**: 117 en el archivo base y 28 extensiones. Las demás carátulas no cambian.
+- Release v41.53 sincronizada y caché PWA bajo demanda actualizada.
+
 ## Mantenimiento de recursos y PWA — v41.52 · 14 de noviembre de 2026
 
 - **144 aplicaciones activas**: 116 fichas en `assets/data.js` y 28 extensiones JavaScript.

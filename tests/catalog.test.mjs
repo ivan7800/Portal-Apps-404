@@ -23,7 +23,7 @@ const aliases = {
 
 test('el catálogo usa el esquema v2 y conserva sus invariantes', () => {
   assert.equal(data.META.schemaVersion, 2);
-  assert.equal(data.META.release, 'v41.52');
+  assert.equal(data.META.release, 'v41.53');
   assert.ok(data.APPS.length >= MIN_CATALOG_APPS, `Catálogo reducido a ${data.APPS.length} aplicaciones`);
   assert.equal(Object.keys(data.LANGUAGES).length, data.APPS.length);
   assert.equal(new Set(data.APPS.map(app => app.name)).size, data.APPS.length);
@@ -133,4 +133,16 @@ test('las catorce portadas recuperadas apuntan a su propio recurso', () => {
 test('PixelForge y Compra usan sus carátulas propias', () => {
   assert.equal(data.APPS.find(app => app.name === 'PixelForge-404')?.screenshot, 'assets/screenshots/PixelForge-404.svg');
   assert.equal(data.APPS.find(app => app.name === 'Compra-404')?.screenshot, 'assets/screenshots/Compra-404.svg');
+});
+
+test('ELDRITCH-404 está registrado una vez y utiliza su portada JPG cinematográfica', async () => {
+  const entries = data.APPS.filter(app => app.name === 'ELDRITCH-404');
+  assert.equal(entries.length, 1);
+  assert.equal(entries[0].pages, 'https://ivan7800.github.io/ELDRITCH-404/');
+  const path = 'assets/screenshots/ELDRITCH-404-cinematic.jpg';
+  assert.equal(entries[0].screenshot, path);
+  const jpg = await readFile(new URL('../' + path, import.meta.url));
+  assert.ok(jpg.length > 100_000);
+  assert.equal(jpg.subarray(0, 3).toString('hex'), 'ffd8ff');
+  assert.equal(jpg.subarray(-2).toString('hex'), 'ffd9');
 });

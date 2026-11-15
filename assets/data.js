@@ -1,8 +1,8 @@
 window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
-    "release": "v41.52",
-    "updated": "2026-11-14",
+    "release": "v41.53",
+    "updated": "2026-11-15",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -168,7 +168,8 @@ window.PORTAL_DATA = {
     "ZOMBIE-404": "HTML / CSS / JavaScript",
     "ASHEN-VEIL-404": "JavaScript / HTML / CSS / Canvas 2D",
     "ECLIPSE-OF-ASH": "TypeScript / JavaScript / Vite / WebGL 2",
-    "Marea-hueca": "JavaScript / Three.js / WebGL 2 / HTML / CSS"
+    "Marea-hueca": "JavaScript / Three.js / WebGL 2 / HTML / CSS",
+    "ELDRITCH-404": "JavaScript / HTML / CSS / Canvas 2D"
   },
   "APPS": [
     {
@@ -2034,6 +2035,24 @@ window.PORTAL_DATA = {
       "platform": "webgl",
       "delivery": "web-app",
       "added": "2026-11-14"
+    },
+    {
+      "name": "ELDRITCH-404",
+      "short": "Roguelite de acción y horror cósmico: sobrevive a oleadas en Innsmouth y desentraña diez capítulos.",
+      "description": "ELDRITCH-404 es un roguelite de acción y horror cósmico ambientado en Innsmouth Olvidada. Sobrevive a oleadas mediante ataques automáticos, esquiva, rituales y mejoras de armas. Incluye una campaña de Historia de diez capítulos enlazados con decisiones y epílogos, doce investigadores, reliquias, progresión permanente, siete modos de juego, soporte de teclado y mando y guardado local con exportación de perfil.",
+      "category": "Juego / Roguelite de acción y horror cósmico",
+      "saga": "Universo 404",
+      "icon": "🐙",
+      "featured": true,
+      "screenshot": "assets/screenshots/ELDRITCH-404-cinematic.jpg",
+      "pages": "https://ivan7800.github.io/ELDRITCH-404/",
+      "github": "https://github.com/ivan7800/ELDRITCH-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-11-15"
     }
   ]
 };

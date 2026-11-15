@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-52-shell-lazy-covers';
+const CACHE = CACHE_PREFIX + 'v41-53-eldritch-release';
 // Instalar solo el shell; carátulas se descargan y almacenan al visitarlas.
 const CORE = [
   './',
