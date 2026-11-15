@@ -1,5 +1,12 @@
 # Changelog
 
+## v41.53 · ELDRITCH-404 — 15 de noviembre de 2026
+
+- Incorporación del roguelite de acción y horror cósmico ELDRITCH-404.
+- Portada cinematográfica JPG original optimizada para el catálogo.
+- 145 aplicaciones, release y caché PWA sincronizadas.
+- Prueba de registro único e integridad del JPEG.
+
 ## v41.52 · Limpieza selectiva y caché bajo demanda — 14 de noviembre de 2026
 
 - Eliminados 14 SVG sustituidos y cinco scripts históricos no utilizados.
