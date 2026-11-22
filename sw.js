@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-53-eldritch-release';
+const CACHE = CACHE_PREFIX + 'v41-54-echo-command-center';
 // Instalar solo el shell; carátulas se descargan y almacenan al visitarlas.
 const CORE = [
   './',

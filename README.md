@@ -1,3 +1,10 @@
+## ECHO-404 · Command Center — v41.54 · 22 de noviembre de 2026
+
+- Añadido **ECHO-404**, un espacio personal para reuniones, notas, transcripciones, decisiones y tareas con vistas claras y oscuras.
+- Carátula cinematográfica original `assets/screenshots/ECHO-404-cinematic.png`, sin sustituir ninguna de las 145 carátulas anteriores.
+- **146 aplicaciones en ejecución** (118 fichas base y 28 extensiones); caché PWA y release v41.54 sincronizadas.
+- La versión funcional completa de ECHO-404 necesita un servidor local Python y SQLite; Whisper y Ollama son integraciones opcionales. La dirección de GitHub Pages no reemplaza el servidor para grabaciones, actas y persistencia completa.
+
 ## ELDRITCH-404 — v41.53 · 15 de noviembre de 2026
 
 - Añadido **ELDRITCH-404**, roguelite de acción y horror cósmico con campaña de diez capítulos, mando y progresión permanente.

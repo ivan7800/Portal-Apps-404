@@ -23,7 +23,7 @@ const aliases = {
 
 test('el catálogo usa el esquema v2 y conserva sus invariantes', () => {
   assert.equal(data.META.schemaVersion, 2);
-  assert.equal(data.META.release, 'v41.53');
+  assert.equal(data.META.release, 'v41.54');
   assert.ok(data.APPS.length >= MIN_CATALOG_APPS, `Catálogo reducido a ${data.APPS.length} aplicaciones`);
   assert.equal(Object.keys(data.LANGUAGES).length, data.APPS.length);
   assert.equal(new Set(data.APPS.map(app => app.name)).size, data.APPS.length);
@@ -145,4 +145,17 @@ test('ELDRITCH-404 está registrado una vez y utiliza su portada JPG cinematogr�
   assert.ok(jpg.length > 100_000);
   assert.equal(jpg.subarray(0, 3).toString('hex'), 'ffd8ff');
   assert.equal(jpg.subarray(-2).toString('hex'), 'ffd9');
+});
+
+test('ECHO-404 aparece una vez con portada cinematográfica y entrega local documentada', async () => {
+  const entries = data.APPS.filter(app => app.name === 'ECHO-404');
+  assert.equal(entries.length, 1);
+  assert.equal(entries[0].pages, 'https://ivan7800.github.io/ECHO-404/');
+  assert.equal(entries[0].delivery, 'server-app');
+  assert.equal(entries[0].offline, 'not-declared');
+  const path = 'assets/screenshots/ECHO-404-cinematic.png';
+  assert.equal(entries[0].screenshot, path);
+  const bytes = await readFile(new URL('../' + path, import.meta.url));
+  assert.ok(bytes.length > 100_000);
+  assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
 });
