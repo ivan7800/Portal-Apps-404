@@ -1,5 +1,12 @@
 # Changelog
 
+## v41.54 · ECHO-404 — 22 de noviembre de 2026
+
+- Incorporado ECHO-404, Command Center para reuniones, notas, decisiones y tareas.
+- Nueva portada cinematográfica PNG propia, manteniendo intactas las demás.
+- Catálogo de 146 aplicaciones; release y PWA sincronizadas.
+- Test de integridad de portada y ficha, con dependencia de servidor local documentada.
+
 ## v41.53 · ELDRITCH-404 — 15 de noviembre de 2026
 
 - Incorporación del roguelite de acción y horror cósmico ELDRITCH-404.

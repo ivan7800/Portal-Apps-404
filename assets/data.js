@@ -1,8 +1,8 @@
 window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
-    "release": "v41.53",
-    "updated": "2026-11-15",
+    "release": "v41.54",
+    "updated": "2026-11-22",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -169,7 +169,8 @@ window.PORTAL_DATA = {
     "ASHEN-VEIL-404": "JavaScript / HTML / CSS / Canvas 2D",
     "ECLIPSE-OF-ASH": "TypeScript / JavaScript / Vite / WebGL 2",
     "Marea-hueca": "JavaScript / Three.js / WebGL 2 / HTML / CSS",
-    "ELDRITCH-404": "JavaScript / HTML / CSS / Canvas 2D"
+    "ELDRITCH-404": "JavaScript / HTML / CSS / Canvas 2D",
+    "ECHO-404": "Python / SQLite / JavaScript / HTML / CSS"
   },
   "APPS": [
     {
@@ -2053,6 +2054,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-11-15"
+    },
+    {
+      "name": "ECHO-404",
+      "short": "Command Center personal para reuniones, grabaciones, notas, decisiones y tareas, con transcripción y actas mediante IA local opcional.",
+      "description": "ECHO-404 es un espacio personal para organizar reuniones, notas, decisiones y tareas desde una interfaz Command Center con temas claro y oscuro. Permite grabar micrófono y conservar tomas en el navegador, editar transcripciones y exportarlas a TXT, Markdown o DOCX. Con Whisper y Ollama instalados opcionalmente, permite transcribir audio y proponer actas y tareas. La experiencia completa utiliza un servidor Python local (3.9+) y almacena el texto en SQLite; la página publicada en GitHub Pages por sí sola no sustituye el servidor ni la persistencia local.",
+      "category": "Productividad / Reuniones y notas",
+      "saga": "Herramientas",
+      "icon": "🎙",
+      "featured": true,
+      "screenshot": "assets/screenshots/ECHO-404-cinematic.png",
+      "pages": "https://ivan7800.github.io/ECHO-404/",
+      "github": "https://github.com/ivan7800/ECHO-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "server-app",
+      "added": "2026-11-22"
     }
   ]
 };
