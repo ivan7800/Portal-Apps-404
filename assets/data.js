@@ -1,8 +1,8 @@
 window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
-    "release": "v41.54",
-    "updated": "2026-11-22",
+    "release": "v41.55",
+    "updated": "2026-11-23",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -170,7 +170,8 @@ window.PORTAL_DATA = {
     "ECLIPSE-OF-ASH": "TypeScript / JavaScript / Vite / WebGL 2",
     "Marea-hueca": "JavaScript / Three.js / WebGL 2 / HTML / CSS",
     "ELDRITCH-404": "JavaScript / HTML / CSS / Canvas 2D",
-    "ECHO-404": "Python / SQLite / JavaScript / HTML / CSS"
+    "ECHO-404": "Python / SQLite / JavaScript / HTML / CSS",
+    "ASHEN-PILGRIMAGE": "JavaScript / HTML / CSS / Canvas"
   },
   "APPS": [
     {
@@ -2072,6 +2073,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "server-app",
       "added": "2026-11-22"
+    },
+    {
+      "name": "ASHEN-PILGRIMAGE",
+      "short": "Aventura de acción grimdark en 2D lateral, con pixel art, grabado medieval y un mundo de cenizas.",
+      "description": "ASHEN PILGRIMAGE es una aventura original de fantasía oscura para navegador, con exploración lateral y una dirección artística híbrida de pixel art y grabado medieval. Viaja entre ruinas góticas, combate criaturas y afronta un peregrinaje hostil de atmósfera grimdark.",
+      "category": "Juego / Acción y aventura dark fantasy",
+      "saga": "Universo 404",
+      "icon": "⚔",
+      "featured": true,
+      "screenshot": "assets/screenshots/ASHEN-PILGRIMAGE-cinematic.svg",
+      "pages": "https://ivan7800.github.io/ASHEN-PILGRIMAGE/",
+      "github": "https://github.com/ivan7800/ASHEN-PILGRIMAGE",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "web",
+      "delivery": "web-app",
+      "added": "2026-11-23"
     }
   ]
 };
