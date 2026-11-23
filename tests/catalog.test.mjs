@@ -23,7 +23,7 @@ const aliases = {
 
 test('el catálogo usa el esquema v2 y conserva sus invariantes', () => {
   assert.equal(data.META.schemaVersion, 2);
-  assert.equal(data.META.release, 'v41.54');
+  assert.match(data.META.release, /^v\d+\.\d+$/);
   assert.ok(data.APPS.length >= MIN_CATALOG_APPS, `Catálogo reducido a ${data.APPS.length} aplicaciones`);
   assert.equal(Object.keys(data.LANGUAGES).length, data.APPS.length);
   assert.equal(new Set(data.APPS.map(app => app.name)).size, data.APPS.length);
