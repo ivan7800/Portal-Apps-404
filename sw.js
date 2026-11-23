@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-55-ashen-pilgrimage';
+const CACHE = CACHE_PREFIX + 'v41-55-ashen-pilgrimage-real-cover';
 // Instalar solo el shell; carátulas se descargan y almacenan al visitarlas.
 const CORE = [
   './',

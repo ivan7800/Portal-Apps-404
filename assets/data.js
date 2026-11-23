@@ -2082,7 +2082,7 @@ window.PORTAL_DATA = {
       "saga": "Universo 404",
       "icon": "⚔",
       "featured": true,
-      "screenshot": "assets/screenshots/ASHEN-PILGRIMAGE-cinematic.svg",
+      "screenshot": "assets/screenshots/ASHEN-PILGRIMAGE-cinematic.webp",
       "pages": "https://ivan7800.github.io/ASHEN-PILGRIMAGE/",
       "github": "https://github.com/ivan7800/ASHEN-PILGRIMAGE",
       "status": "catalogued",
