@@ -165,6 +165,6 @@ test('INNSMOUTH-404 usa su portada cinematográfica AVIF en alta definición', a
   const app = data.APPS.find(item => item.name === 'INNSMOUTH-404');
   assert.equal(app?.screenshot, 'assets/screenshots/INNSMOUTH-404-cinematic-hd.avif');
   const bytes = await readFile(new URL('../' + app.screenshot, import.meta.url));
-  assert.ok(bytes.length > 50_000, 'La portada original de alta resolución no debe sustituirse por una miniatura');
+  assert.ok(bytes.length > 200_000, 'La portada de alta calidad no debe sustituirse por una miniatura o compresión excesiva');
   assert.equal(bytes.subarray(4, 12).toString('ascii'), 'ftypavif', 'La imagen debe ser AVIF real');
 });

@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.58 · Release Sync */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.59 · Release Sync */
 (function () {
   'use strict';
 
@@ -14,7 +14,7 @@
   // Las imágenes del catálogo se muestran tal como están asociadas a cada app.
   // Solo una ruta marcadora explícita debe usar una portada de respaldo.
   var readyTimer = null;
-  var VERSION = 'v41.58 · Release Sync';
+  var VERSION = 'v41.59 · Release Sync';
   var UPDATED = '24 de noviembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -1146,7 +1146,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.58').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.59').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;
