@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'portal-apps-404-';
-const CACHE = CACHE_PREFIX + 'v41-57-innsmouth-cinematic';
+const CACHE = CACHE_PREFIX + 'v41-58-innsmouth-hd';
 // Instalar solo el shell; carátulas se descargan y almacenan al visitarlas.
 const CORE = [
   './',

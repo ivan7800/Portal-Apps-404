@@ -1,4 +1,4 @@
-/* I. Roig · Portal Apps 404 — Universo 404 OS v41.57 · Release Sync */
+/* I. Roig · Portal Apps 404 — Universo 404 OS v41.58 · Release Sync */
 (function () {
   'use strict';
 
@@ -14,7 +14,7 @@
   // Las imágenes del catálogo se muestran tal como están asociadas a cada app.
   // Solo una ruta marcadora explícita debe usar una portada de respaldo.
   var readyTimer = null;
-  var VERSION = 'v41.57 · Release Sync';
+  var VERSION = 'v41.58 · Release Sync';
   var UPDATED = '24 de noviembre de 2026';
   var LANGUAGES = D.LANGUAGES || {};
   var SKINS = ['cosmica', 'obsidiana', 'void', 'glass', 'terminal', 'arctic', 'synthwave'];
@@ -192,7 +192,8 @@
       var hue = (index * 47 + 18) % 360;
       return '<span class="app-shot generated-cover" style="--cover-hue:' + hue + '" role="img" aria-label="Portada de ' + esc(a.name) + '"><span class="cover-rings" aria-hidden="true"></span><span class="cover-core" aria-hidden="true">' + esc(a.icon) + '</span><span class="cover-title">' + esc(a.name) + '</span><span class="cover-category">' + esc(a.category) + '</span></span>';
     }
-    return '<span class="app-shot"><img src="' + esc(a.screenshot) + '" alt="' + esc(altText || ('Vista previa de ' + a.name)) + '" loading="' + (eager ? 'eager' : 'lazy') + '" decoding="async" width="1280" height="720"></span>';
+    var portrait = a.name === 'INNSMOUTH-404';
+    return '<span class="app-shot"><img src="' + esc(a.screenshot) + '" alt="' + esc(altText || ('Vista previa de ' + a.name)) + '" loading="' + (eager ? 'eager' : 'lazy') + '" decoding="async" width="' + (portrait ? '1024' : '1280') + '" height="' + (portrait ? '1536' : '720') + '"' + (portrait ? ' style="object-fit:contain"' : '') + '></span>';
   }
   function isFavorite(name) { return state.favorites.indexOf(name) !== -1; }
 
@@ -1145,7 +1146,7 @@
       window.location.reload();
     });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./sw.js?v=41.57').then(function (registration) {
+      navigator.serviceWorker.register('./sw.js?v=41.58').then(function (registration) {
         if (registration.waiting) showUpdate(registration.waiting);
         registration.addEventListener('updatefound', function () {
           var worker = registration.installing;

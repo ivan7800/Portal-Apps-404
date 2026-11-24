@@ -103,7 +103,7 @@ test('todas las carátulas del catálogo completo existen y tienen formato váli
   const screenshots = new Set();
   for (const app of data.APPS) {
     const path = app.screenshot;
-    assert.match(path, /^assets\/screenshots\/[a-z0-9ñáéíóú._-]+\.(svg|png|jpg|jpeg|webp)$/i, app.name);
+    assert.match(path, /^assets\/screenshots\/[a-z0-9ñáéíóú._-]+\.(svg|png|jpg|jpeg|webp|avif)$/i, app.name);
     assert.ok(!screenshots.has(path), app.name + ' reutiliza una carátula de otra aplicación: ' + path);
     screenshots.add(path);
 
@@ -158,4 +158,13 @@ test('ECHO-404 aparece una vez con portada cinematográfica y entrega local docu
   const bytes = await readFile(new URL('../' + path, import.meta.url));
   assert.ok(bytes.length > 100_000);
   assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+});
+
+
+test('INNSMOUTH-404 usa su portada cinematográfica AVIF en alta definición', async () => {
+  const app = data.APPS.find(item => item.name === 'INNSMOUTH-404');
+  assert.equal(app?.screenshot, 'assets/screenshots/INNSMOUTH-404-cinematic-hd.avif');
+  const bytes = await readFile(new URL('../' + app.screenshot, import.meta.url));
+  assert.ok(bytes.length > 50_000, 'La portada original de alta resolución no debe sustituirse por una miniatura');
+  assert.equal(bytes.subarray(4, 12).toString('ascii'), 'ftypavif', 'La imagen debe ser AVIF real');
 });
