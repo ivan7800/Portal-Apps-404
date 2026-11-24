@@ -1,7 +1,7 @@
 window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
-    "release": "v41.56",
+    "release": "v41.57",
     "updated": "2026-11-24",
     "externalLinksVerifiedAt": null
   },
@@ -2101,7 +2101,7 @@ window.PORTAL_DATA = {
       "saga": "Universo 404",
       "icon": "🐙",
       "featured": true,
-      "screenshot": "assets/screenshots/INNSMOUTH-404-cinematic.svg",
+      "screenshot": "assets/screenshots/INNSMOUTH-404-cinematic.jpg",
       "pages": "https://ivan7800.github.io/INNSMOUTH-404/",
       "github": "https://github.com/ivan7800/INNSMOUTH-404",
       "status": "catalogued",
