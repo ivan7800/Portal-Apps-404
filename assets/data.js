@@ -1,8 +1,8 @@
 window.PORTAL_DATA = {
   "META": {
     "schemaVersion": 2,
-    "release": "v41.55",
-    "updated": "2026-11-23",
+    "release": "v41.56",
+    "updated": "2026-11-24",
     "externalLinksVerifiedAt": null
   },
   "PALETTES": {
@@ -171,7 +171,8 @@ window.PORTAL_DATA = {
     "Marea-hueca": "JavaScript / Three.js / WebGL 2 / HTML / CSS",
     "ELDRITCH-404": "JavaScript / HTML / CSS / Canvas 2D",
     "ECHO-404": "Python / SQLite / JavaScript / HTML / CSS",
-    "ASHEN-PILGRIMAGE": "JavaScript / HTML / CSS / Canvas"
+    "ASHEN-PILGRIMAGE": "JavaScript / HTML / CSS / Canvas",
+    "INNSMOUTH-404": "JavaScript / HTML / CSS / Canvas 2D / WebGL"
   },
   "APPS": [
     {
@@ -2091,6 +2092,24 @@ window.PORTAL_DATA = {
       "platform": "web",
       "delivery": "web-app",
       "added": "2026-11-23"
+    },
+    {
+      "name": "INNSMOUTH-404",
+      "short": "Survival horror gótico costero en Innsmouth (1927): investigación, cordura y secretos de las profundidades.",
+      "description": "INNSMOUTH-404: La herencia de las profundidades es un survival horror narrativo original en primera persona inspirado en los Mitos de Cthulhu, ambientado en Innsmouth en 1927. La candidata v1.0.0-rc.7.1 incluye ocho capítulos, 23 mapas, tres finales, exploración, sigilo, combate de recursos limitados, pistas, decisiones y guardado local. Presenta estética de pixel art gótico costero con motor 2.5D y WebGL experimental. La versión candidata aún requiere pruebas humanas y en dispositivos físicos.",
+      "category": "Juego / Survival horror lovecraftiano",
+      "saga": "Universo 404",
+      "icon": "🐙",
+      "featured": true,
+      "screenshot": "assets/screenshots/INNSMOUTH-404-cinematic.svg",
+      "pages": "https://ivan7800.github.io/INNSMOUTH-404/",
+      "github": "https://github.com/ivan7800/INNSMOUTH-404",
+      "status": "catalogued",
+      "availability": "unverified",
+      "offline": "not-declared",
+      "platform": "webgl",
+      "delivery": "web-app",
+      "added": "2026-11-24"
     }
   ]
 };
